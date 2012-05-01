@@ -17,6 +17,7 @@ class Drawable
         virtual ~Drawable();
         virtual bool LoadGLTextures();
         virtual void Draw();
+        virtual void Update(const sf::Input &input);
         GLuint* GetTextures();
 
         GLfloat	xrot;				// X Rotation

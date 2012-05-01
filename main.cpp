@@ -150,30 +150,13 @@ int main()
 
         //Handle movement keys
         const sf::Input& Input = App.GetInput();
+        
+        box.Update(Input);
 
-        if (Input.IsKeyDown(sf::Key::PageUp)) {
-            z-=0.02f;
-        }
-        if (Input.IsKeyDown(sf::Key::PageDown)) {
-            z+=0.02f;
-        }
-        if (Input.IsKeyDown(sf::Key::Up)) {
-            xspeed-=0.01f;
-        }
-        if (Input.IsKeyDown(sf::Key::Down)) {
-            xspeed+=0.01f;
-        }
-        if (Input.IsKeyDown(sf::Key::Right)) {
-            yspeed+=0.01f;
-        }
-        if (Input.IsKeyDown(sf::Key::Left)) {
-            yspeed-=0.01f;
-        }
-
-        box.z = z;
+        
+        
         box.filter = filter;
-        box.xrot = xrot;
-        box.yrot = yrot;
+        
         
         // Turn VSYNC on so that animations run at a more reasonable speed on new CPU's/GPU's.
         App.UseVerticalSync(vsync);

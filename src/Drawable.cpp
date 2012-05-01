@@ -48,7 +48,7 @@ bool Drawable::LoadGLTextures()
 		gluBuild2DMipmaps(GL_TEXTURE_2D, 3, Image.GetWidth(), Image.GetHeight(), GL_RGBA, GL_UNSIGNED_BYTE, Image.GetPixelsPtr());
 		return true;
 	}
-        abort();
+        
 	return false;
 }
 
@@ -105,4 +105,27 @@ void Drawable::Draw() {
 
 GLuint* Drawable::GetTextures() {
     return texture;
+}
+
+void Drawable::Update(const sf::Input &input) {
+    
+    if (input.IsKeyDown(sf::Key::PageUp)) {
+            z-=0.02f;
+        }
+        if (input.IsKeyDown(sf::Key::PageDown)) {
+            z+=0.02f;
+        }
+        if (input.IsKeyDown(sf::Key::Up)) {
+            xspeed-=0.01f;
+        }
+        if (input.IsKeyDown(sf::Key::Down)) {
+            xspeed+=0.01f;
+        }
+        if (input.IsKeyDown(sf::Key::Right)) {
+            yspeed+=0.01f;
+        }
+        if (input.IsKeyDown(sf::Key::Left)) {
+            yspeed-=0.01f;
+        }
+
 }
