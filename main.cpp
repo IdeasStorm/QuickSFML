@@ -11,6 +11,11 @@
 #include <SFML/Graphics.hpp>
 #include <Drawable.h>
 #include "Box.h"
+#include <list>
+using namespace std;
+
+list<Drawable*> components;
+
 bool fullscreen = FALSE; // Fullscreen Flag Set To Fullscreen Mode By Default
 bool vsync = TRUE; // Turn VSYNC on/off
 bool light; // Lighting ON/OFF ( NEW )
@@ -28,15 +33,21 @@ GLfloat LightPosition[] = {0.0f, 0.0f, 2.0f, 1.0f};
 GLuint filter; // Which Filter To Use
 GLuint texture[3]; // Storage For 3 Textures
 
-Box box;
+
+
+void LoadComponents(){    
+    components.push_back(new Box);
+}
 
 int LoadGLTextures() // Load Bitmaps And Convert To Textures
 {
-    //int Status=FALSE;									// Status Indicator
+    bool Status=true;									// Status Indicator
+    list<Drawable*>::iterator i;
+    for (i=components.begin();i!=components.end();i++){
+        Status = Status && (*i)->LoadGLTextures();
+    }
+    return Status;
 
-    return box.LoadGLTextures();
-
-    //return Status;										// Return The Status
 }
 
 GLvoid ReSizeGLScene(GLsizei width, GLsizei height) // Resize And Initialize The GL Window
@@ -60,6 +71,7 @@ GLvoid ReSizeGLScene(GLsizei width, GLsizei height) // Resize And Initialize The
 
 int InitGL() // All Setup For OpenGL Goes Here
 {
+    LoadComponents();
     if (!LoadGLTextures()) // Jump To Texture Loading Routine
     {
         return FALSE; // If Texture Didn't Load Return FALSE
@@ -73,6 +85,11 @@ int InitGL() // All Setup For OpenGL Goes Here
     glDepthFunc(GL_LEQUAL); // The Type Of Depth Testing To Do
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST); // Really Nice Perspective Calculations
 
+    // setup lighting for each component
+    list<Drawable*>::iterator i;
+    for (i=components.begin();i!=components.end();i++){
+        (*i)->SetupLighting();
+    }
     glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient); // Setup The Ambient Light
     glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse); // Setup The Diffuse Light
     glLightfv(GL_LIGHT1, GL_POSITION, LightPosition); // Position The Light
@@ -84,7 +101,11 @@ int DrawGLScene() // Here's Where We Do All The Drawing
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear The Screen And The Depth Buffer
     glLoadIdentity(); // Reset The View
-    box.Draw();
+    
+    list<Drawable*>::iterator i;
+    for (i=components.begin();i!=components.end();i++){
+        (*i)->Draw();
+    }
 
     xrot += xspeed;
     yrot += yspeed;
@@ -149,11 +170,11 @@ int main() {
         //Handle movement keys
         const sf::Input& Input = App.GetInput();
 
-        box.Update(Input);
-
-
-
-        box.filter = filter;
+        list<Drawable*>::iterator i;
+        for (i=components.begin();i!=components.end();i++){
+            (*i)->Update(Input);
+            (*i)->filter = filter;
+        }
 
 
         // Turn VSYNC on so that animations run at a more reasonable speed on new CPU's/GPU's.

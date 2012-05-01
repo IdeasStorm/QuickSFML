@@ -16,6 +16,9 @@ Drawable::~Drawable() {
     //dtor
 }
 
+void Drawable::SetupLighting() {
+    
+}
 
 GLuint* Drawable::GetTextures() {
     return texture;
