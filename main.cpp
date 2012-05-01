@@ -10,88 +10,87 @@
 #include <Drawable.h>
 #define TRUE true
 #define FALSE false
-bool	fullscreen=FALSE;	// Fullscreen Flag Set To Fullscreen Mode By Default
-bool    vsync=TRUE;         // Turn VSYNC on/off
-bool	light;				// Lighting ON/OFF ( NEW )
+bool fullscreen = FALSE; // Fullscreen Flag Set To Fullscreen Mode By Default
+bool vsync = TRUE; // Turn VSYNC on/off
+bool light; // Lighting ON/OFF ( NEW )
 
-GLfloat	xrot;				// X Rotation
-GLfloat	yrot;				// Y Rotation
-GLfloat xspeed;				// X Rotation Speed
-GLfloat yspeed;				// Y Rotation Speed
-GLfloat	z=-5.0f;			// Depth Into The Screen
+GLfloat xrot; // X Rotation
+GLfloat yrot; // Y Rotation
+GLfloat xspeed; // X Rotation Speed
+GLfloat yspeed; // Y Rotation Speed
+GLfloat z = -5.0f; // Depth Into The Screen
 
-GLfloat LightAmbient[]=		{ 0.5f, 0.5f, 0.5f, 1.0f };
-GLfloat LightDiffuse[]=		{ 1.0f, 1.0f, 1.0f, 1.0f };
-GLfloat LightPosition[]=	{ 0.0f, 0.0f, 2.0f, 1.0f };
+GLfloat LightAmbient[] = {0.5f, 0.5f, 0.5f, 1.0f};
+GLfloat LightDiffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
+GLfloat LightPosition[] = {0.0f, 0.0f, 2.0f, 1.0f};
 
-GLuint	filter;				// Which Filter To Use
-GLuint	texture[3];			// Storage For 3 Textures
+GLuint filter; // Which Filter To Use
+GLuint texture[3]; // Storage For 3 Textures
 
 Drawable box;
 
-int LoadGLTextures()									// Load Bitmaps And Convert To Textures
+int LoadGLTextures() // Load Bitmaps And Convert To Textures
 {
-	//int Status=FALSE;									// Status Indicator
+    //int Status=FALSE;									// Status Indicator
 
-        return box.LoadGLTextures();
+    return box.LoadGLTextures();
 
-	//return Status;										// Return The Status
+    //return Status;										// Return The Status
 }
 
-GLvoid ReSizeGLScene(GLsizei width, GLsizei height)		// Resize And Initialize The GL Window
+GLvoid ReSizeGLScene(GLsizei width, GLsizei height) // Resize And Initialize The GL Window
 {
-	if (height==0)										// Prevent A Divide By Zero By
-	{
-		height=1;										// Making Height Equal One
-	}
+    if (height == 0) // Prevent A Divide By Zero By
+    {
+        height = 1; // Making Height Equal One
+    }
 
-	glViewport(0,0,width,height);						// Reset The Current Viewport
+    glViewport(0, 0, width, height); // Reset The Current Viewport
 
-	glMatrixMode(GL_PROJECTION);						// Select The Projection Matrix
-	glLoadIdentity();									// Reset The Projection Matrix
+    glMatrixMode(GL_PROJECTION); // Select The Projection Matrix
+    glLoadIdentity(); // Reset The Projection Matrix
 
-	// Calculate The Aspect Ratio Of The Window
-	gluPerspective(45.0f,(GLfloat)width/(GLfloat)height,0.1f,100.0f);
+    // Calculate The Aspect Ratio Of The Window
+    gluPerspective(45.0f, (GLfloat) width / (GLfloat) height, 0.1f, 100.0f);
 
-	glMatrixMode(GL_MODELVIEW);							// Select The Modelview Matrix
-	glLoadIdentity();									// Reset The Modelview Matrix
+    glMatrixMode(GL_MODELVIEW); // Select The Modelview Matrix
+    glLoadIdentity(); // Reset The Modelview Matrix
 }
 
-int InitGL()										    // All Setup For OpenGL Goes Here
+int InitGL() // All Setup For OpenGL Goes Here
 {
-    if (!LoadGLTextures())								// Jump To Texture Loading Routine
-	{
-		return FALSE;									// If Texture Didn't Load Return FALSE
-	}
+    if (!LoadGLTextures()) // Jump To Texture Loading Routine
+    {
+        return FALSE; // If Texture Didn't Load Return FALSE
+    }
 
-	glEnable(GL_TEXTURE_2D);							// Enable Texture Mapping
-	glShadeModel(GL_SMOOTH);							// Enable Smooth Shading
-	glClearColor(0.0f, 0.0f, 0.0f, 0.5f);				// Black Background
-	glClearDepth(1.0f);									// Depth Buffer Setup
-	glEnable(GL_DEPTH_TEST);							// Enables Depth Testing
-	glDepthFunc(GL_LEQUAL);								// The Type Of Depth Testing To Do
-	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	// Really Nice Perspective Calculations
+    glEnable(GL_TEXTURE_2D); // Enable Texture Mapping
+    glShadeModel(GL_SMOOTH); // Enable Smooth Shading
+    glClearColor(0.0f, 0.0f, 0.0f, 0.5f); // Black Background
+    glClearDepth(1.0f); // Depth Buffer Setup
+    glEnable(GL_DEPTH_TEST); // Enables Depth Testing
+    glDepthFunc(GL_LEQUAL); // The Type Of Depth Testing To Do
+    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST); // Really Nice Perspective Calculations
 
-    glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient);		// Setup The Ambient Light
-	glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);		// Setup The Diffuse Light
-	glLightfv(GL_LIGHT1, GL_POSITION,LightPosition);	// Position The Light
-	glEnable(GL_LIGHT1);								// Enable Light One
-	return TRUE;										// Initialization Went OK
+    glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient); // Setup The Ambient Light
+    glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse); // Setup The Diffuse Light
+    glLightfv(GL_LIGHT1, GL_POSITION, LightPosition); // Position The Light
+    glEnable(GL_LIGHT1); // Enable Light One
+    return TRUE; // Initialization Went OK
 }
 
-int DrawGLScene()									    // Here's Where We Do All The Drawing
+int DrawGLScene() // Here's Where We Do All The Drawing
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Clear The Screen And The Depth Buffer
-	glLoadIdentity();									// Reset The View
-        box.Draw();
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear The Screen And The Depth Buffer
+    glLoadIdentity(); // Reset The View
+    box.Draw();
 
-	xrot+=xspeed;
-	yrot+=yspeed;
-	return TRUE;										// Keep Going
+    xrot += xspeed;
+    yrot += yspeed;
+    return TRUE; // Keep Going
 }
 
-int main()
-{
+int main() {
     // Create the main window
     sf::Window App(sf::VideoMode(800, 600, 32), "SFML/NeHe OpenGL");
 
@@ -99,12 +98,10 @@ int main()
     ReSizeGLScene(800, 600);
 
     // Start game loop
-    while (App.IsOpened())
-    {
+    while (App.IsOpened()) {
         // Process events
         sf::Event Event;
-        while (App.GetEvent(Event))
-        {
+        while (App.GetEvent(Event)) {
             // Close window : exit
             if (Event.Type == sf::Event::Closed)
                 App.Close();
@@ -121,15 +118,15 @@ int main()
                         break;
                     case sf::Key::F1:
                         fullscreen = !fullscreen;
-                        App.Create(fullscreen ? sf::VideoMode::GetDesktopMode() : sf::VideoMode(800, 600, 32) , "SFML/NeHe OpenGL",
-                        (fullscreen ? sf::Style::Fullscreen : sf::Style::Resize | sf::Style::Close));
-                        ReSizeGLScene(App.GetWidth(),App.GetHeight());
+                        App.Create(fullscreen ? sf::VideoMode::GetDesktopMode() : sf::VideoMode(800, 600, 32), "SFML/NeHe OpenGL",
+                                (fullscreen ? sf::Style::Fullscreen : sf::Style::Resize | sf::Style::Close));
+                        ReSizeGLScene(App.GetWidth(), App.GetHeight());
                         break;
                     case sf::Key::F5:
                         vsync = !vsync;
                         break;
                     case sf::Key::L:
-                        light=!light;
+                        light = !light;
                         if (!light) {
                             glDisable(GL_LIGHTING);
                         } else {
@@ -137,9 +134,9 @@ int main()
                         }
                         break;
                     case sf::Key::F:
-                        filter+=1;
-                        if (filter>2) {
-                            filter=0;
+                        filter += 1;
+                        if (filter > 2) {
+                            filter = 0;
                         }
                         break;
                     default:
@@ -150,14 +147,14 @@ int main()
 
         //Handle movement keys
         const sf::Input& Input = App.GetInput();
-        
+
         box.Update(Input);
 
-        
-        
+
+
         box.filter = filter;
-        
-        
+
+
         // Turn VSYNC on so that animations run at a more reasonable speed on new CPU's/GPU's.
         App.UseVerticalSync(vsync);
 
