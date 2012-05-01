@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>include/Box.h</itemPath>
       <itemPath>include/Drawable.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -13,6 +14,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>src/Box.cpp</itemPath>
       <itemPath>src/Drawable.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>

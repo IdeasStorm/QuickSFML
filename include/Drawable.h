@@ -14,16 +14,11 @@ class Drawable {
 public:
     Drawable();
     virtual ~Drawable();
-    virtual bool LoadGLTextures();
-    virtual void Draw();
-    virtual void Update(const sf::Input &input);
+    virtual bool LoadGLTextures()=0;
+    virtual void Draw()=0;
+    virtual void Update(const sf::Input &input)=0;
     GLuint* GetTextures();
 
-    GLfloat xrot; // X Rotation
-    GLfloat yrot; // Y Rotation
-    GLfloat xspeed; // X Rotation Speed
-    GLfloat yspeed; // Y Rotation Speed
-    GLfloat z; // Depth Into The Screen
     GLuint filter; // Which Filter To Use
 protected:
     GLuint texture[3]; // Storage For 3 Textures

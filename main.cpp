@@ -5,11 +5,12 @@
  *		If You've Found This Code Useful, Please Let Me Know.
  *		Visit My Site At nehe.gamedev.net
  */
+#define TRUE true
+#define FALSE false
 
 #include <SFML/Graphics.hpp>
 #include <Drawable.h>
-#define TRUE true
-#define FALSE false
+#include "Box.h"
 bool fullscreen = FALSE; // Fullscreen Flag Set To Fullscreen Mode By Default
 bool vsync = TRUE; // Turn VSYNC on/off
 bool light; // Lighting ON/OFF ( NEW )
@@ -27,7 +28,7 @@ GLfloat LightPosition[] = {0.0f, 0.0f, 2.0f, 1.0f};
 GLuint filter; // Which Filter To Use
 GLuint texture[3]; // Storage For 3 Textures
 
-Drawable box;
+Box box;
 
 int LoadGLTextures() // Load Bitmaps And Convert To Textures
 {
