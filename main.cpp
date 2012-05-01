@@ -31,11 +31,11 @@ Drawable box;
 
 int LoadGLTextures()									// Load Bitmaps And Convert To Textures
 {
-	int Status=FALSE;									// Status Indicator
+	//int Status=FALSE;									// Status Indicator
 
-        box.LoadGLTextures();
+        return box.LoadGLTextures();
 
-	return Status;										// Return The Status
+	//return Status;										// Return The Status
 }
 
 GLvoid ReSizeGLScene(GLsizei width, GLsizei height)		// Resize And Initialize The GL Window

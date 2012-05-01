@@ -1,0 +1,4 @@
+# depslib dependency file v1.0
+1335739055 source:/home/adn/OpenGL/Metro-Simulation/main.cpp
+	<SFML/Graphics.hpp>
+
