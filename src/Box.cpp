@@ -11,6 +11,8 @@ Box::Box() {
     z = -5.0f;
     xspeed = 0;
     yspeed = 0;
+    xrot=0;
+    yrot=0;
     depth = 2.0f;
     height = 2.0f;
     width = 2.0f;

@@ -11,7 +11,7 @@
  */
 
 
-#include <cyclone/core.h>
+#include "core.h"
 
 using namespace cyclone;
 
