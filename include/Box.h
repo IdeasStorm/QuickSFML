@@ -18,6 +18,9 @@ public:
     bool LoadGLTextures();
     void Draw();
     virtual ~Box();
+    GLfloat height;
+    GLfloat width;
+    GLfloat depth;
 private:
     GLfloat xrot; // X Rotation
     GLfloat yrot; // Y Rotation
