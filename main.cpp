@@ -11,6 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include <Drawable.h>
 #include "Box.h"
+#include "Ground.h"
 #include <list>
 using namespace std;
 
@@ -37,6 +38,7 @@ GLuint texture[3]; // Storage For 3 Textures
 
 void LoadComponents(){    
     components.push_back(new Box);
+    components.push_back(new Ground);
 }
 
 int LoadGLTextures() // Load Bitmaps And Convert To Textures

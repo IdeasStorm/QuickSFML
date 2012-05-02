@@ -9,6 +9,8 @@
 
 Box::Box() {
     z = -5.0f;
+    xspeed = 0;
+    yspeed = 0;
 }
 
 Box::Box(const Box& orig) {

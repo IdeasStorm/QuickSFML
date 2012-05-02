@@ -8,12 +8,18 @@
 #ifndef GROUND_H
 #define	GROUND_H
 
-class Ground {
+#include "Drawable.h"
+
+class Ground : public Drawable{
 public:
     Ground();
     Ground(const Ground& orig);
+    void Draw();
+    bool LoadGLTextures();
+    void Update(const sf::Input&);
     virtual ~Ground();
 private:
+    GLfloat rot;
 
 };
 

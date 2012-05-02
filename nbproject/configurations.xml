@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>include/Box.h</itemPath>
       <itemPath>include/Drawable.h</itemPath>
+      <itemPath>include/Ground.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -16,6 +17,7 @@
                    projectFiles="true">
       <itemPath>src/Box.cpp</itemPath>
       <itemPath>src/Drawable.cpp</itemPath>
+      <itemPath>src/Ground.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
