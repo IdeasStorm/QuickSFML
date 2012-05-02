@@ -37,7 +37,7 @@ GLuint texture[3]; // Storage For 3 Textures
 
 
 void LoadComponents(){    
-    components.push_back(new Box);
+    //components.push_back(new Box);
     components.push_back(new Ground);
 }
 
