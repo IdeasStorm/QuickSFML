@@ -8,6 +8,11 @@
 #include "Box.h"
 
 Box::Box() {
+    init();
+    my_elements = elements::FrontOpened;
+}
+
+void Box::init(){
     z = -5.0f;
     xspeed = 0;
     yspeed = 0;
@@ -16,8 +21,25 @@ Box::Box() {
     depth = 2.0f;
     height = 2.0f;
     width = 2.0f;
-    my_elements = elements::FrontOpened;
-    
+    my_elements = elements::All;
+}
+
+Box::Box(Vector3 position){
+    init();
+    this->position = position;
+}
+
+Box::Box(Vector3 position, Vector3 halfsize) {
+    init();
+    this->position = position;
+    this->halfSize = halfsize;
+}
+
+Box::Box(Vector3 position, Vector3 halfsize, Element my_elements) {
+    init();
+    this->position = position;
+    this->halfSize = halfsize;
+    this->my_elements = my_elements;
 }
 
 Box::Box(const Box& orig) {
@@ -55,7 +77,7 @@ void Box::Update(const sf::Input& input){
 
 void Box::Draw(){
     glLoadIdentity(); // Reset The View
-    glTranslatef(0.0f, 0.0f, z);
+    glTranslatef(position.x,position.y,position.z);
 
     glRotatef(xrot, 1.0f, 0.0f, 0.0f);
     glRotatef(yrot, 0.0f, 1.0f, 0.0f);

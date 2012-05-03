@@ -8,6 +8,8 @@
 #ifndef BOX_H
 #define	BOX_H
 #include "Drawable.h"
+#include "core.h"
+using namespace cyclone;
 namespace elements {
         enum Element{
         None = 0x0,
@@ -33,8 +35,11 @@ class Box : public Drawable{
 public:
 
     Box();
+    Box(Vector3 position);
+    Box(Vector3 position, Vector3 halfsize);
+    Box(Vector3 position, Vector3 halfsize,Element my_elements);
     Box(const Box& orig);
-    
+    void init();
     void Update(const sf::Input& input);
     bool LoadContent();
     void Draw();
@@ -43,6 +48,8 @@ public:
     GLfloat height;
     GLfloat width;
     GLfloat depth;
+    Vector3 position;
+    Vector3 halfSize;
     
 private:
     Element my_elements;
