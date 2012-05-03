@@ -170,7 +170,7 @@ void Box::Draw(){
 bool Box::LoadContent() {
     // Load The Bitmap, Check For Errors, If Bitmap's Not Found Quit
     sf::Image Image;
-    if (Image.LoadFromFile("./Data/NeHe.bmp")) {
+    if (Image.LoadFromFile(texture_path)) {
         // TODO change this
 
         glGenTextures(3, &texture[0]); // Create Three Textures

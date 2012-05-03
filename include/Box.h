@@ -9,6 +9,7 @@
 #define	BOX_H
 #include "Drawable.h"
 #include "core.h"
+using namespace std;
 using namespace cyclone;
 namespace elements {
         enum Element{
@@ -90,9 +91,14 @@ public:
     GLfloat yrot; // Y Rotation
     GLfloat zrot; // Z Rotation
     
+    void setTexture(string path) {
+        texture_path = path;
+        LoadContent();
+    }
+    
 private:
     Element my_elements;
-    
+    string texture_path;
     GLfloat xspeed; // X Rotation Speed
     GLfloat yspeed; // Y Rotation Speed
 

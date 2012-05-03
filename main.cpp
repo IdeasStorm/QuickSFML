@@ -38,6 +38,7 @@ GLuint texture[3]; // Storage For 3 Textures
 
 void LoadComponents(){   
     Box* box = new Box(Vector3(0,0,-5), Vector3(1,2,1),elements::OpenBox);
+    box->setTexture("./Data/NeHe.bmp");
     components.push_back(box);
     //components.push_back(new Ground);
 }
