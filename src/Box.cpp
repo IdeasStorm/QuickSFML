@@ -16,6 +16,8 @@ Box::Box() {
     depth = 2.0f;
     height = 2.0f;
     width = 2.0f;
+    my_elements = elements::FrontOpened;
+    
 }
 
 Box::Box(const Box& orig) {
@@ -63,66 +65,84 @@ void Box::Draw(){
     GLfloat h = height / 2.0;
     GLfloat w = width  / 2.0;
     glBegin(GL_QUADS);
-    // Front Face
-    glNormal3f(0.0f, 0.0f, 1.0f);
-    glTexCoord2f(0.0f, 0.0f);
-    glVertex3f(-w, -h, d);
-    glTexCoord2f(1.0f, 0.0f);
-    glVertex3f(w, -h, d);
-    glTexCoord2f(1.0f, 1.0f);
-    glVertex3f(w, h, d);
-    glTexCoord2f(0.0f, 1.0f);
-    glVertex3f(-w, h, d);
-    // Back Face
-    glNormal3f(0.0f, 0.0f, -1.0f);
-    glTexCoord2f(1.0f, 0.0f);
-    glVertex3f(-w, -h, -d);
-    glTexCoord2f(1.0f, 1.0f);
-    glVertex3f(-w, h, -d);
-    glTexCoord2f(0.0f, 1.0f);
-    glVertex3f(w, h, -d);
-    glTexCoord2f(0.0f, 0.0f);
-    glVertex3f(w, -h, -d);
-    // Top Face
-    glNormal3f(0.0f, 1.0f, 0.0f);
-    glTexCoord2f(0.0f, 1.0f);
-    glVertex3f(-w, h, -d);
-    glTexCoord2f(0.0f, 0.0f);
-    glVertex3f(-w, h, d);
-    glTexCoord2f(1.0f, 0.0f);
-    glVertex3f(w, h, d);
-    glTexCoord2f(1.0f, 1.0f);
-    glVertex3f(w, h, -d);
-    // Bottom Face
-    glNormal3f(0.0f, -1.0f, 0.0f);
-    glTexCoord2f(1.0f, 1.0f);
-    glVertex3f(-w, -h, -d);
-    glTexCoord2f(0.0f, 1.0f);
-    glVertex3f(w, -h, -d);
-    glTexCoord2f(0.0f, 0.0f);
-    glVertex3f(w, -h , d);
-    glTexCoord2f(1.0f, 0.0f);
-    glVertex3f(-w, -h, d);
-    // Right face
-    glNormal3f(1.0f, 0.0f, 0.0f);
-    glTexCoord2f(1.0f, 0.0f);
-    glVertex3f(w, -h, -d);
-    glTexCoord2f(1.0f, 1.0f);
-    glVertex3f(w, h, -d);
-    glTexCoord2f(0.0f, 1.0f);
-    glVertex3f(w, h, d);
-    glTexCoord2f(0.0f, 0.0f);
-    glVertex3f(w, -h, d);
-    // Left Face
-    glNormal3f(-1.0f, 0.0f, 0.0f);
-    glTexCoord2f(0.0f, 0.0f);
-    glVertex3f(-w, -h, -d);
-    glTexCoord2f(1.0f, 0.0f);
-    glVertex3f(-w, -h, d);
-    glTexCoord2f(1.0f, 1.0f);
-    glVertex3f(-w, h, d);
-    glTexCoord2f(0.0f, 1.0f);
-    glVertex3f(-w, h, -d);
+    
+    if (elements::has(my_elements,elements::Front)) {
+        // Front Face
+        glNormal3f(0.0f, 0.0f, 1.0f);
+        glTexCoord2f(0.0f, 0.0f);
+        glVertex3f(-w, -h, d);
+        glTexCoord2f(1.0f, 0.0f);
+        glVertex3f(w, -h, d);
+        glTexCoord2f(1.0f, 1.0f);
+        glVertex3f(w, h, d);
+        glTexCoord2f(0.0f, 1.0f);
+        glVertex3f(-w, h, d);
+    }
+    
+    if (elements::has(my_elements,elements::Back)) {
+        // Back Face
+        glNormal3f(0.0f, 0.0f, -1.0f);
+        glTexCoord2f(1.0f, 0.0f);
+        glVertex3f(-w, -h, -d);
+        glTexCoord2f(1.0f, 1.0f);
+        glVertex3f(-w, h, -d);
+        glTexCoord2f(0.0f, 1.0f);
+        glVertex3f(w, h, -d);
+        glTexCoord2f(0.0f, 0.0f);
+        glVertex3f(w, -h, -d);
+    }
+    
+    if (elements::has(my_elements,elements::Top)) {
+        // Top Face
+        glNormal3f(0.0f, 1.0f, 0.0f);
+        glTexCoord2f(0.0f, 1.0f);
+        glVertex3f(-w, h, -d);
+        glTexCoord2f(0.0f, 0.0f);
+        glVertex3f(-w, h, d);
+        glTexCoord2f(1.0f, 0.0f);
+        glVertex3f(w, h, d);
+        glTexCoord2f(1.0f, 1.0f);
+        glVertex3f(w, h, -d);
+    }
+    
+    if (elements::has(my_elements,elements::Bottom)) {
+        // Bottom Face
+        glNormal3f(0.0f, -1.0f, 0.0f);
+        glTexCoord2f(1.0f, 1.0f);
+        glVertex3f(-w, -h, -d);
+        glTexCoord2f(0.0f, 1.0f);
+        glVertex3f(w, -h, -d);
+        glTexCoord2f(0.0f, 0.0f);
+        glVertex3f(w, -h , d);
+        glTexCoord2f(1.0f, 0.0f);
+        glVertex3f(-w, -h, d);
+    }
+    
+    if (elements::has(my_elements,elements::Right)) {
+        // Right face
+        glNormal3f(1.0f, 0.0f, 0.0f);
+        glTexCoord2f(1.0f, 0.0f);
+        glVertex3f(w, -h, -d);
+        glTexCoord2f(1.0f, 1.0f);
+        glVertex3f(w, h, -d);
+        glTexCoord2f(0.0f, 1.0f);
+        glVertex3f(w, h, d);
+        glTexCoord2f(0.0f, 0.0f);
+        glVertex3f(w, -h, d);
+    }
+
+    if (elements::has(my_elements,elements::Left)) {
+        // Left Face
+        glNormal3f(-1.0f, 0.0f, 0.0f);
+        glTexCoord2f(0.0f, 0.0f);
+        glVertex3f(-w, -h, -d);
+        glTexCoord2f(1.0f, 0.0f);
+        glVertex3f(-w, -h, d);
+        glTexCoord2f(1.0f, 1.0f);
+        glVertex3f(-w, h, d);
+        glTexCoord2f(0.0f, 1.0f);
+        glVertex3f(-w, h, -d);
+    }
     glEnd();
     xrot += xspeed;
     yrot += yspeed;
@@ -157,4 +177,12 @@ bool Box::LoadContent() {
     }
 
     return false;
+}
+
+void Box::SetComponents(elements::Element elements) {
+    this->my_elements = elements;
+}
+
+bool elements::has(Element elements, Element test){
+    return ((elements & test) == test);
 }
