@@ -15,7 +15,7 @@ public:
     Ground();
     Ground(const Ground& orig);
     void Draw();
-    bool LoadGLTextures();
+    bool LoadContent();
     void Update(const sf::Input&);
     virtual ~Ground();
 private:

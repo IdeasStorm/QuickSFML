@@ -46,7 +46,7 @@ int LoadGLTextures() // Load Bitmaps And Convert To Textures
     bool Status=true;									// Status Indicator
     list<Drawable*>::iterator i;
     for (i=components.begin();i!=components.end();i++){
-        Status = Status && (*i)->LoadGLTextures();
+        Status = Status && (*i)->LoadContent();
     }
     return Status;
 

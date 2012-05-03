@@ -37,8 +37,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/src/Drawable.o \
 	${OBJECTDIR}/src/Ground.o \
-	${OBJECTDIR}/src/Box.o \
-	${OBJECTDIR}/src/core.o
+	${OBJECTDIR}/src/Box.o
 
 
 # C Compiler Flags
@@ -84,11 +83,6 @@ ${OBJECTDIR}/src/Box.o: src/Box.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Box.o src/Box.cpp
-
-${OBJECTDIR}/src/core.o: src/core.cpp 
-	${MKDIR} -p ${OBJECTDIR}/src
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/core.o src/core.cpp
 
 # Subprojects
 .build-subprojects:

@@ -14,7 +14,7 @@ class Drawable {
 public:
     Drawable();
     virtual ~Drawable();
-    virtual bool LoadGLTextures()=0;
+    virtual bool LoadContent()=0;
     virtual void Draw()=0;
     virtual void Update(const sf::Input &input)=0;
     virtual void SetupLighting();

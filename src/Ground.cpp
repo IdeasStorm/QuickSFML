@@ -85,7 +85,7 @@ void Ground::Draw() {
     glEnd();
 }
 
-bool  Ground::LoadGLTextures() {
+bool  Ground::LoadContent() {
     // Load The Bitmap, Check For Errors, If Bitmap's Not Found Quit
     sf::Image Image;
     if (Image.LoadFromFile("./Data/NeHe.bmp")) {

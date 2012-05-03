@@ -11,12 +11,16 @@
 
 class Box : public Drawable{
 public:
+    enum ComponentsMask{
+        TOP
+    };
     Box();
     Box(const Box& orig);
     
     void Update(const sf::Input& input);
-    bool LoadGLTextures();
+    bool LoadContent();
     void Draw();
+    void setComponennts(ComponentsMask mask);
     virtual ~Box();
     GLfloat height;
     GLfloat width;
