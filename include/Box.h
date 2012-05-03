@@ -45,19 +45,56 @@ public:
     void Draw();
     void SetComponents(Element elements);
     virtual ~Box();
-    GLfloat height;
-    GLfloat width;
-    GLfloat depth;
+
+    void setDepth(GLfloat depth) {
+        this->halfSize.z = depth / 2.0f;
+    }
+
+    GLfloat getDepth() const {
+        return this->halfSize.z * 2;
+    }
+
+    void setWidth(GLfloat width) {
+        this->halfSize.x = width / 2.0f;
+    }
+
+    GLfloat getWidth() const {
+        return halfSize.x * 2;
+    }
+
+    void setHeight(GLfloat height) {
+        this->halfSize.y = height / 2.0f;
+    }
+
+    GLfloat getHeight() const {
+        return halfSize.y * 2;
+    }
+    
     Vector3 position;
     Vector3 halfSize;
+    Vector3 rotationAxis;
+    GLfloat rotation; //  Rotation
+
+    bool axis_angle; // rotation based on axis and angle
+    
+    void setAxisRotation() {
+        axis_angle = true;
+    }
+    
+    void setYawPitchRollRotation() {
+        axis_angle = false;
+    }
+    
+    // Yaw, pitch, Roll
+    GLfloat xrot; // X Rotation
+    GLfloat yrot; // Y Rotation
+    GLfloat zrot; // Z Rotation
     
 private:
     Element my_elements;
-    GLfloat xrot; // X Rotation
-    GLfloat yrot; // Y Rotation
+    
     GLfloat xspeed; // X Rotation Speed
     GLfloat yspeed; // Y Rotation Speed
-    GLfloat z; // Depth Into The Screen
 
 };
 

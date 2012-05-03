@@ -13,14 +13,13 @@ Box::Box() {
 }
 
 void Box::init(){
-    z = -5.0f;
+    axis_angle = false;
     xspeed = 0;
     yspeed = 0;
     xrot=0;
     yrot=0;
-    depth = 2.0f;
-    height = 2.0f;
-    width = 2.0f;
+    zrot=0;
+    this->halfSize=Vector3(1,1,1);
     my_elements = elements::All;
 }
 
@@ -52,12 +51,6 @@ Box::~Box() {
 
 void Box::Update(const sf::Input& input){
     
-    if (input.IsKeyDown(sf::Key::PageUp)) {
-        z -= 0.02f;
-    }
-    if (input.IsKeyDown(sf::Key::PageDown)) {
-        z += 0.02f;
-    }
     if (input.IsKeyDown(sf::Key::Up)) {
         xspeed -= 0.01f;
     }
@@ -70,22 +63,28 @@ void Box::Update(const sf::Input& input){
     if (input.IsKeyDown(sf::Key::Left)) {
         yspeed -= 0.01f;
     }
-    if (input.IsKeyDown(sf::Key::O)) {
-        depth += 0.1f;
-    }
+    xrot += xspeed;
+    yrot += yspeed;
+    
+    rotation += xspeed;
+    
 }
 
 void Box::Draw(){
     glLoadIdentity(); // Reset The View
     glTranslatef(position.x,position.y,position.z);
 
-    glRotatef(xrot, 1.0f, 0.0f, 0.0f);
-    glRotatef(yrot, 0.0f, 1.0f, 0.0f);
-    
+    if (axis_angle) {
+        glRotatef(rotation, rotationAxis.x,rotationAxis.y,rotationAxis.z);
+    } else {
+        glRotatef(xrot,1,0,0);
+        glRotatef(yrot,0,1,0);
+        glRotatef(zrot,0,0,1);
+    }
     glBindTexture(GL_TEXTURE_2D, texture[filter]);
-    GLfloat d = depth  / 2.0;
-    GLfloat h = height / 2.0;
-    GLfloat w = width  / 2.0;
+    GLfloat d = halfSize.z ;
+    GLfloat h = halfSize.y ;
+    GLfloat w = halfSize.x ;
     glBegin(GL_QUADS);
     
     if (elements::has(my_elements,elements::Front)) {
@@ -166,8 +165,6 @@ void Box::Draw(){
         glVertex3f(-w, h, -d);
     }
     glEnd();
-    xrot += xspeed;
-    yrot += yspeed;
 }
 
 bool Box::LoadContent() {
