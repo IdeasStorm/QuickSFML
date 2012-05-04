@@ -172,7 +172,7 @@ bool Box::LoadContent() {
     sf::Image Image;
     if (Image.LoadFromFile(texture_path)) {
         // TODO change this
-
+        
         glGenTextures(3, &texture[0]); // Create Three Textures
 
         // Create Nearest Filtered Texture
