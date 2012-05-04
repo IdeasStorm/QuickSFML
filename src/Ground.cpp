@@ -29,9 +29,9 @@ void Ground::Update(const sf::Input& input) {
 }
 
 void Ground::LoadComponents() {
-    Box *side1 = new Box();
-    Box *side2 = new Box();
-    side1->setElements(elements::FlippedOpenBox);
-    side2->setElements(elements::FlippedOpenBox);
-    
+    Box *side1 = new Box(sf::Vector3f(0,0,-5), 
+            sf::Vector3f(1,10,2), 
+            elements::FlippedOpenBox
+    );
+    components.push_back(side1);
 }

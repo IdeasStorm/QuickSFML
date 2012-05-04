@@ -46,7 +46,10 @@ GLuint* Drawable::GetTextures() {
 }
 
 void Drawable::LoadComponents() {
-    
+    list<Drawable*>::iterator i;
+    for (i=components.begin();i!=components.end();i++){
+        (*i)->LoadComponents();
+    }
 }
 
 bool Drawable::LoadContent() {

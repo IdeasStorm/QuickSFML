@@ -52,6 +52,11 @@ void LoadComponents(){
     */
     Ground *g = new Ground();
     components.push_back(g);
+    
+    list<Drawable*>::iterator i;
+    for (i=components.begin();i!=components.end();i++){
+        (*i)->LoadComponents();
+    }
 }
 
 int LoadGLTextures() // Load Bitmaps And Convert To Textures
