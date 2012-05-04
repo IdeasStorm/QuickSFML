@@ -39,8 +39,12 @@ GLuint texture[3]; // Storage For 3 Textures
 
 
 
-void LoadComponents(){    
-    components.push_back(new Box);
+void LoadComponents(){   
+    Box* box = new Box(Vector3(0,0,-5), Vector3(1,1,1),elements::OpenBox);
+    box->setTexture("./Data/NeHe.bmp");
+    components.push_back(box);
+    //components.push_back(new Ground);
+
 }
 
 int LoadGLTextures() // Load Bitmaps And Convert To Textures
@@ -48,7 +52,7 @@ int LoadGLTextures() // Load Bitmaps And Convert To Textures
     bool Status=true;									// Status Indicator
     list<Drawable*>::iterator i;
     for (i=components.begin();i!=components.end();i++){
-        Status = Status && (*i)->LoadGLTextures();
+        Status = Status && (*i)->LoadContent();
     }
     return Status;
 

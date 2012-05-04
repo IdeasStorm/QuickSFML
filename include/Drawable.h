@@ -13,7 +13,7 @@ class Drawable {
 public:
     Drawable();
     virtual ~Drawable();
-    virtual bool LoadGLTextures()=0;
+    virtual bool LoadContent()=0;
     virtual void Draw()=0;
     void ApplyCamera();
     void UpdateCamera(const sf::Input &input);
