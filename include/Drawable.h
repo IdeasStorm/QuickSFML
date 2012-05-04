@@ -15,8 +15,8 @@ public:
     virtual ~Drawable();
     virtual bool LoadContent()=0;
     virtual void Draw()=0;
-    void ApplyCamera();
-    void UpdateCamera(const sf::Input &input);
+    //void ApplyCamera();
+    //void UpdateCamera(const sf::Input &input );
     virtual void Update(const sf::Input &input)=0;
     virtual void SetupLighting();
     GLuint* GetTextures();

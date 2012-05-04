@@ -39,14 +39,11 @@ GLuint texture[3]; // Storage For 3 Textures
 
 
 
+
 void LoadComponents(){   
     Box* box = new Box(Vector3(0,0,-5), Vector3(1,1,1),elements::OpenBox);
-    Box* box2 = new Box(Vector3(-5,0,-5), Vector3(1,1,1),elements::OpenBox);
-    
     box->setTexture("./Data/NeHe.bmp");
-    box2->setTexture("./Data/NeHe.bmp");
     components.push_back(box);
-    components.push_back(box2);
     //components.push_back(new Ground);
 
 }
@@ -120,7 +117,8 @@ int DrawGLScene() // Here's Where We Do All The Drawing
     list<Drawable*>::iterator i;
     
     glLoadIdentity(); // Reset The View
-    (*components.begin())->ApplyCamera();
+    camera.ApplyCamera();
+//    Drawable.camera.ApplyCameraTransform();
     for (i=components.begin();i!=components.end();i++){
         (*i)->Draw();
     }
@@ -134,7 +132,7 @@ int main() {
     // Create the main window
     sf::Window App(sf::VideoMode(800, 600, 32), "SFML/NeHe OpenGL");
     InitGL();
-          
+
     ReSizeGLScene(800, 600);
               
     // Start game loop
@@ -190,7 +188,8 @@ int main() {
         const sf::Input& Input = App.GetInput();
         
         list<Drawable*>::iterator i;
-        (*components.begin())->UpdateCamera(Input);
+        camera.UpdateCamera(Input);
+        App.SetCursorPosition(0,0);
         for (i=components.begin();i!=components.end();i++){            
             (*i)->Update(Input);
             (*i)->filter = filter;
