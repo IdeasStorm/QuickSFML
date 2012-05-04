@@ -9,6 +9,15 @@
 
 #include "Light.h"
 
+GLfloat* vec4(sf::Color color){
+    GLfloat* res = new GLfloat[4];
+    res[0] = color.r;
+    res[1] = color.g;
+    res[2] = color.b;
+    res[3] = color.a;
+    return res;
+}
+
 Light::Light() {
 }
 
@@ -26,7 +35,3 @@ void Light::SetupLighting() {
     
 }
 
-GLfloat* vec4(sf::Color color){
-    GLfloat *res =  {color.r,color.g,color.b,color.a};
-    return res;
-}
