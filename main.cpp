@@ -39,15 +39,17 @@ GLuint texture[3]; // Storage For 3 Textures
 
 
 
+
 void LoadComponents(){   
+
     /*
     Box* box = new Box(sf::Vector3f(0,0,-5), sf::Vector3f(1,1,1),elements::OpenBox);
     Box* box2 = new Box(sf::Vector3f(-5,0,-5), sf::Vector3f(1,1,1),elements::OpenBox);
     
+    Box* box = new Box(Vector3(0,0,-5), Vector3(1,1,1),elements::OpenBox);
+
     box->setTexture("./Data/NeHe.bmp");
-    box2->setTexture("./Data/NeHe.bmp");
     components.push_back(box);
-    components.push_back(box2);
     //components.push_back(new Ground);
     */
     Ground *g = new Ground();
@@ -128,7 +130,7 @@ int DrawGLScene() // Here's Where We Do All The Drawing
     list<Drawable*>::iterator i;
     
     glLoadIdentity(); // Reset The View
-    (*components.begin())->ApplyCamera();
+    camera.ApplyCamera();
     for (i=components.begin();i!=components.end();i++){
         (*i)->Draw();
     }
@@ -142,12 +144,13 @@ int main() {
     // Create the main window
     sf::Window App(sf::VideoMode(800, 600, 32), "SFML/NeHe OpenGL");
     InitGL();
-          
+    
     ReSizeGLScene(800, 600);
-              
+
     // Start game loop
     while (App.IsOpened()) {
         // Process events
+        
         sf::Event Event;
         while (App.GetEvent(Event)) {
             // Close window : exit
@@ -195,10 +198,14 @@ int main() {
         }
 
         //Handle movement keys
+        App.SetCursorPosition(400,300);
         const sf::Input& Input = App.GetInput();
         
+        //App.SetCursorPosition( sf::VideoMode.Width/2,sf::VideoMode.Height/2);
+        
         list<Drawable*>::iterator i;
-        (*components.begin())->UpdateCamera(Input);
+        float a = Input.GetMouseX(); 
+        camera.UpdateCamera(Input);
         for (i=components.begin();i!=components.end();i++){            
             (*i)->Update(Input);
             (*i)->filter = filter;
