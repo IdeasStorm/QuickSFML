@@ -39,7 +39,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/src/math3d.o \
 	${OBJECTDIR}/src/Drawable.o \
 	${OBJECTDIR}/src/Ground.o \
-	${OBJECTDIR}/src/Box.o
+	${OBJECTDIR}/src/Box.o \
+	${OBJECTDIR}/src/Light.o
 
 
 # C Compiler Flags
@@ -95,6 +96,11 @@ ${OBJECTDIR}/src/Box.o: src/Box.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
 	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Box.o src/Box.cpp
+
+${OBJECTDIR}/src/Light.o: src/Light.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} $@.d
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Light.o src/Light.cpp
 
 # Subprojects
 .build-subprojects:

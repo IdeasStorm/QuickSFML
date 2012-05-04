@@ -459,4 +459,3 @@ void RotateVector(M3DVector3f vVectorSrc, M3DVector3f vVectorDst)
 
 
 #endif
-
