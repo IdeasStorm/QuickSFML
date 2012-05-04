@@ -40,9 +40,13 @@ public:
     Box(Vector3 position, Vector3 halfsize);
     Box(Vector3 position, Vector3 halfsize,Element my_elements);
     Box(const Box& orig);
+
+    bool LoadGLTextures();
+
     void init();
     void Update(const sf::Input& input);
     bool LoadContent();
+
     void Draw();
     void SetComponents(Element elements);
     virtual ~Box();
@@ -71,6 +75,14 @@ public:
         return halfSize.y * 2;
     }
     
+   void setTexture(string path) {
+        texture_path = path;
+        LoadContent();
+    }
+ 
+       
+private:
+
     Vector3 position;
     Vector3 halfSize;
     Vector3 rotationAxis;
@@ -87,15 +99,11 @@ public:
     }
     
     // Yaw, pitch, Roll
+
     GLfloat xrot; // X Rotation
     GLfloat yrot; // Y Rotation
     GLfloat zrot; // Z Rotation
-    
-    void setTexture(string path) {
-        texture_path = path;
-        LoadContent();
-    }
-    
+       
 private:
     Element my_elements;
     string texture_path;

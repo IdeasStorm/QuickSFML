@@ -6,6 +6,7 @@
  */
 
 #include "Box.h"
+#include "glframe.h"
 
 Box::Box() {
     init();
@@ -49,8 +50,13 @@ Box::~Box() {
 }
 
 
-void Box::Update(const sf::Input& input){
+void Box::Update(const sf::Input& input ){
     
+
+//    if (input.IsKeyDown(sf::Key::PageDown)) {
+  //      z += 0.02f;
+    //}
+
     if (input.IsKeyDown(sf::Key::Up)) {
         xspeed -= 0.01f;
     }
@@ -71,7 +77,7 @@ void Box::Update(const sf::Input& input){
 }
 
 void Box::Draw(){
-    glLoadIdentity(); // Reset The View
+
     glTranslatef(position.x,position.y,position.z);
 
     if (axis_angle) {
@@ -82,6 +88,7 @@ void Box::Draw(){
         glRotatef(zrot,0,0,1);
     }
     glBindTexture(GL_TEXTURE_2D, texture[filter]);
+
     GLfloat d = halfSize.z ;
     GLfloat h = halfSize.y ;
     GLfloat w = halfSize.x ;
@@ -164,6 +171,7 @@ void Box::Draw(){
         glTexCoord2f(0.0f, 1.0f);
         glVertex3f(-w, h, -d);
     }
+
     glEnd();
 }
 
