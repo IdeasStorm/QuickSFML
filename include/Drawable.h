@@ -22,7 +22,7 @@ public:
     virtual void Update(const sf::Input &input)=0;
     virtual void SetupLighting();
     GLuint* GetTextures();
-    void LoadComponents();
+    virtual void LoadComponents();
 
     GLuint filter; // Which Filter To Use
 protected:

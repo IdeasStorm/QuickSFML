@@ -24,6 +24,11 @@ Ground::~Ground() {
 
 void Ground::Update(const sf::Input& input) {
     //Update2(input);
+    list<Drawable*>::iterator i;
+    for (i=components.begin();i!=components.end();i++){            
+            ((Drawable*)(*i))->Update(input);
+            ((Drawable*)(*i))->filter = filter;
+    }
     if (input.IsKeyDown(sf::Key::Z))
         rot++;
 }
@@ -33,5 +38,6 @@ void Ground::LoadComponents() {
             sf::Vector3f(1,10,2), 
             elements::FlippedOpenBox
     );
+    side1->setTexture(box_texture);
     components.push_back(side1);
 }

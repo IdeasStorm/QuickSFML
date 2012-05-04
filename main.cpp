@@ -53,11 +53,13 @@ void LoadComponents(){
     //components.push_back(new Ground);
     */
     Ground *g = new Ground();
+    g->box_texture = "./Data/NeHe.bmp";
     components.push_back(g);
+    
     
     list<Drawable*>::iterator i;
     for (i=components.begin();i!=components.end();i++){
-        (*i)->LoadComponents();
+        ((Drawable*)(*i))->LoadComponents();
     }
 }
 
@@ -66,7 +68,7 @@ int LoadGLTextures() // Load Bitmaps And Convert To Textures
     bool Status=true;									// Status Indicator
     list<Drawable*>::iterator i;
     for (i=components.begin();i!=components.end();i++){
-        Status = Status && (*i)->LoadContent();
+        Status = Status && ((Drawable*)(*i))->LoadContent();
     }
     return Status;
 
@@ -111,7 +113,7 @@ int InitGL() // All Setup For OpenGL Goes Here
     // setup lighting for each component
     list<Drawable*>::iterator i;
     for (i=components.begin();i!=components.end();i++){
-        (*i)->SetupLighting();
+        ((Drawable*)(*i))->SetupLighting();
     }
     glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient); // Setup The Ambient Light
     glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse); // Setup The Diffuse Light
@@ -132,7 +134,7 @@ int DrawGLScene() // Here's Where We Do All The Drawing
     glLoadIdentity(); // Reset The View
     camera.ApplyCamera();
     for (i=components.begin();i!=components.end();i++){
-        (*i)->Draw();
+        ((Drawable*)(*i))->Draw();
     }
 
     xrot += xspeed;
@@ -207,8 +209,8 @@ int main() {
         float a = Input.GetMouseX(); 
         camera.UpdateCamera(Input);
         for (i=components.begin();i!=components.end();i++){            
-            (*i)->Update(Input);
-            (*i)->filter = filter;
+            ((Drawable*)(*i))->Update(Input);
+            ((Drawable*)(*i))->filter = filter;
         }
 
 
