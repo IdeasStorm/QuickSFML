@@ -29,11 +29,11 @@ void ApplyCamera()
          
 void UpdateCamera(const sf::Input& input)
 {
-    Mouse[0] = input.GetMouseX() ;//- 400;
-    Mouse[1] = input.GetMouseY() ;//- 300;
+    Mouse[0] = input.GetMouseX() - 400;
+    Mouse[1] = input.GetMouseY() - 300;
     
-   // RotateLocalX(Mouse[1] - Mouse[3]);
-    RotateLocalY((Mouse[0] - Mouse[2])*0.001f);
+   // RotateLocalX(-Mouse[1]*0.001f);
+//    RotateLocalY((-Mouse[0])*0.001f);
 
   if (input.IsKeyDown(sf::Key::A))
     MoveRight(0.1);
@@ -51,8 +51,8 @@ void UpdateCamera(const sf::Input& input)
     RotateLocalY(-0.01);
     MoveRight(-0.01);
   }
-    Mouse[2] = Mouse[0] ;
-    Mouse[3] = Mouse[1] ;
+  //  Mouse[2] = Mouse[0] ;
+   // Mouse[3] = Mouse[1] ;
 }
           
         // Default position and orientation. At the origin, looking
@@ -456,6 +456,4 @@ void RotateVector(M3DVector3f vVectorSrc, M3DVector3f vVectorDst)
     vVectorDst[2] = m[2] * vVectorSrc[0] + m[6] * vVectorSrc[1] + m[10] * vVectorSrc[2];	
     }
 };
-
-
 #endif

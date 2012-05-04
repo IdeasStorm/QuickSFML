@@ -131,12 +131,13 @@ int main() {
     // Create the main window
     sf::Window App(sf::VideoMode(800, 600, 32), "SFML/NeHe OpenGL");
     InitGL();
-
+    
     ReSizeGLScene(800, 600);
-              
+
     // Start game loop
     while (App.IsOpened()) {
         // Process events
+        
         sf::Event Event;
         while (App.GetEvent(Event)) {
             // Close window : exit
@@ -184,11 +185,13 @@ int main() {
         }
 
         //Handle movement keys
+        App.SetCursorPosition(400,300);
         const sf::Input& Input = App.GetInput();
+        
         //App.SetCursorPosition( sf::VideoMode.Width/2,sf::VideoMode.Height/2);
-       // App.SetCursorPosition( 800/2,600/2);
         
         list<Drawable*>::iterator i;
+        float a = Input.GetMouseX(); 
         camera.UpdateCamera(Input);
         for (i=components.begin();i!=components.end();i++){            
             (*i)->Update(Input);
