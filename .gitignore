@@ -4,3 +4,4 @@ Debug/
 Release/
 *.o
 build/
+dist/Debug/GNU-Linux-x86/metro-simulation
