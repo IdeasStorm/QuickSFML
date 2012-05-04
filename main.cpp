@@ -40,15 +40,18 @@ GLuint texture[3]; // Storage For 3 Textures
 
 
 void LoadComponents(){   
-    Box* box = new Box(Vector3(0,0,-5), Vector3(1,1,1),elements::OpenBox);
-    Box* box2 = new Box(Vector3(-5,0,-5), Vector3(1,1,1),elements::OpenBox);
+    /*
+    Box* box = new Box(sf::Vector3f(0,0,-5), sf::Vector3f(1,1,1),elements::OpenBox);
+    Box* box2 = new Box(sf::Vector3f(-5,0,-5), sf::Vector3f(1,1,1),elements::OpenBox);
     
     box->setTexture("./Data/NeHe.bmp");
     box2->setTexture("./Data/NeHe.bmp");
     components.push_back(box);
     components.push_back(box2);
     //components.push_back(new Ground);
-
+    */
+    Ground *g = new Ground();
+    components.push_back(g);
 }
 
 int LoadGLTextures() // Load Bitmaps And Convert To Textures
