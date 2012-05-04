@@ -118,7 +118,6 @@ int DrawGLScene() // Here's Where We Do All The Drawing
     
     glLoadIdentity(); // Reset The View
     camera.ApplyCamera();
-//    Drawable.camera.ApplyCameraTransform();
     for (i=components.begin();i!=components.end();i++){
         (*i)->Draw();
     }
@@ -186,10 +185,11 @@ int main() {
 
         //Handle movement keys
         const sf::Input& Input = App.GetInput();
+        //App.SetCursorPosition( sf::VideoMode.Width/2,sf::VideoMode.Height/2);
+       // App.SetCursorPosition( 800/2,600/2);
         
         list<Drawable*>::iterator i;
         camera.UpdateCamera(Input);
-        App.SetCursorPosition(0,0);
         for (i=components.begin();i!=components.end();i++){            
             (*i)->Update(Input);
             (*i)->filter = filter;

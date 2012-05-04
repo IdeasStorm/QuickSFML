@@ -12,13 +12,16 @@
 // code for OpenGL immersive environments.
 // Richard S. Wright Jr.
 class GLFrame
-    {
-	protected:
-        M3DVector3f vOrigin;	// Where am I?
-        M3DVector3f vForward;	// Where am I going?
-        M3DVector3f vUp;		// Which way is up?
-
-    public:
+{
+    
+protected:
+    M3DVector3f vOrigin;	// Where am I?
+    M3DVector3f vForward;	// Where am I going?
+    M3DVector3f vUp;		// Which way is up?
+    M3DVector4f Mouse ;
+//    float OldMouseX =0, OldMouseY =0, MouseX=0,MouseY=0 ;
+public:
+        
 void ApplyCamera()
 {
     ApplyCameraTransform();
@@ -26,8 +29,11 @@ void ApplyCamera()
          
 void UpdateCamera(const sf::Input& input)
 {
-//camera.RotateLocalY(0.01*input.GetMouseY());
-//camera.RotateLocalX(0.01*input.GetMouseX());
+    Mouse[0] = input.GetMouseX() ;//- 400;
+    Mouse[1] = input.GetMouseY() ;//- 300;
+    
+   // RotateLocalX(Mouse[1] - Mouse[3]);
+    RotateLocalY((Mouse[0] - Mouse[2])*0.001f);
 
   if (input.IsKeyDown(sf::Key::A))
     MoveRight(0.1);
@@ -45,21 +51,24 @@ void UpdateCamera(const sf::Input& input)
     RotateLocalY(-0.01);
     MoveRight(-0.01);
   }
-
+    Mouse[2] = Mouse[0] ;
+    Mouse[3] = Mouse[1] ;
 }
           
         // Default position and orientation. At the origin, looking
         // down the positive Z axis (right handed coordinate system).
-        GLFrame(void) {
-                // At origin
+GLFrame(void) {
+    
+    Mouse[0] = 0; Mouse[1] = 0; Mouse[2] = 0;Mouse[3] = 0;
+    // At origin
     vOrigin[0] = 0.0f; vOrigin[1] = 0.0f; vOrigin[2] = 0.0f; 
 
-                // Up is up (+Y)
+    // Up is up (+Y)
     vUp[0] = 0.0f; vUp[1] = 1.0f; vUp[2] = 0.0f;
 
-                // Forward is -Z (default OpenGL)
+    // Forward is -Z (default OpenGL)
     vForward[0] = 0.0f; vForward[1] = 0.0f; vForward[2] = -1.0f;
-    }
+}
 
 
 /////////////////////////////////////////////////////////////
