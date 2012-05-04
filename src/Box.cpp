@@ -6,6 +6,7 @@
  */
 
 #include "Box.h"
+#include "glframe.h"
 
 Box::Box() {
     z = -5.0f;
@@ -26,8 +27,9 @@ Box::~Box() {
 }
 
 
-void Box::Update(const sf::Input& input){
+void Box::Update(const sf::Input& input ){
     
+    //Update2(input);
     if (input.IsKeyDown(sf::Key::PageUp)) {
         z -= 0.02f;
     }
@@ -52,7 +54,12 @@ void Box::Update(const sf::Input& input){
 }
 
 void Box::Draw(){
-    glLoadIdentity(); // Reset The View
+    
+    
+    //glLoadIdentity(); // Reset The View
+   //           camera.ApplyCameraTransform();
+    //Draw2();
+    //glTranslatef(myt,0,0);
     glTranslatef(0.0f, 0.0f, z);
 
     glRotatef(xrot, 1.0f, 0.0f, 0.0f);
@@ -62,6 +69,7 @@ void Box::Draw(){
     GLfloat d = depth  / 2.0;
     GLfloat h = height / 2.0;
     GLfloat w = width  / 2.0;
+    
     glBegin(GL_QUADS);
     // Front Face
     glNormal3f(0.0f, 0.0f, 1.0f);
@@ -123,6 +131,7 @@ void Box::Draw(){
     glVertex3f(-w, h, d);
     glTexCoord2f(0.0f, 1.0f);
     glVertex3f(-w, h, -d);
+    
     glEnd();
     xrot += xspeed;
     yrot += yspeed;

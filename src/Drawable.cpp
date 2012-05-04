@@ -16,6 +16,26 @@ Drawable::~Drawable() {
     //dtor
 }
 
+ void Drawable::UpdateCamera(const sf::Input& input)
+{
+      if (input.IsKeyDown(sf::Key::A))
+        camera.MoveRight(0.1);
+      if (input.IsKeyDown(sf::Key::D))
+        camera.MoveRight(-0.1);
+      if (input.IsKeyDown(sf::Key::W))
+        camera.MoveForward(0.1);
+      if (input.IsKeyDown(sf::Key::S))
+        camera.MoveForward(-0.1);
+      if (input.IsKeyDown(sf::Key::Q))
+        camera.RotateLocalY(0.01);
+      if (input.IsKeyDown(sf::Key::E))
+        camera.RotateLocalY(-0.01);
+        
+}
+ void Drawable::ApplyCamera()
+{
+        camera.ApplyCameraTransform();
+}
 void Drawable::SetupLighting() {
     
 }

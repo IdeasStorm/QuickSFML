@@ -22,7 +22,9 @@ Ground::~Ground() {
 }
 
 void Ground::Draw() {
-    glLoadIdentity(); // Reset The View
+    
+    //glLoadIdentity(); // Reset The View
+    //Draw2();
     glTranslatef(0.0f, 0.0f, -5.0f);
 
     glRotatef(rot, 1.0f, 0.0f, 0.0f);
@@ -117,6 +119,7 @@ bool  Ground::LoadGLTextures() {
 }
 
 void Ground::Update(const sf::Input& input) {
-    if (input.IsKeyDown(sf::Key::A))
+    //Update2(input);
+    if (input.IsKeyDown(sf::Key::Z))
         rot++;
 }

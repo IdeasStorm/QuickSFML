@@ -14,7 +14,7 @@ public:
     Box();
     Box(const Box& orig);
     
-    void Update(const sf::Input& input);
+    void Update(const sf::Input& input );
     bool LoadGLTextures();
     void Draw();
     virtual ~Box();
@@ -23,6 +23,8 @@ public:
     GLfloat depth;
     
 private:
+    float myt ;
+//    GLFrame camera;
     GLfloat xrot; // X Rotation
     GLfloat yrot; // Y Rotation
     GLfloat xspeed; // X Rotation Speed

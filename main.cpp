@@ -13,10 +13,13 @@
 #include "Box.h"
 #include "Ground.h"
 #include <list>
+#include "glframe.h"
 using namespace std;
 
 list<Drawable*> components;
 
+
+GLFrame camera ;
 bool fullscreen = FALSE; // Fullscreen Flag Set To Fullscreen Mode By Default
 bool vsync = TRUE; // Turn VSYNC on/off
 bool light; // Lighting ON/OFF ( NEW )
@@ -38,7 +41,6 @@ GLuint texture[3]; // Storage For 3 Textures
 
 void LoadComponents(){    
     components.push_back(new Box);
-    //components.push_back(new Ground);
 }
 
 int LoadGLTextures() // Load Bitmaps And Convert To Textures
@@ -61,11 +63,12 @@ GLvoid ReSizeGLScene(GLsizei width, GLsizei height) // Resize And Initialize The
 
     glViewport(0, 0, width, height); // Reset The Current Viewport
 
+   
     glMatrixMode(GL_PROJECTION); // Select The Projection Matrix
     glLoadIdentity(); // Reset The Projection Matrix
 
-    // Calculate The Aspect Ratio Of The Window
-    gluPerspective(45.0f, (GLfloat) width / (GLfloat) height, 0.1f, 100.0f);
+    // Calculate The Aspect Ratio Of The Window    
+    gluPerspective(45.0f,(GLfloat) 800 / (GLfloat) 600, 0.1f, 100.0f);
 
     glMatrixMode(GL_MODELVIEW); // Select The Modelview Matrix
     glLoadIdentity(); // Reset The Modelview Matrix
@@ -78,7 +81,7 @@ int InitGL() // All Setup For OpenGL Goes Here
     {
         return FALSE; // If Texture Didn't Load Return FALSE
     }
-
+   
     glEnable(GL_TEXTURE_2D); // Enable Texture Mapping
     glShadeModel(GL_SMOOTH); // Enable Smooth Shading
     glClearColor(0.0f, 0.0f, 0.0f, 0.5f); // Black Background
@@ -102,9 +105,14 @@ int InitGL() // All Setup For OpenGL Goes Here
 int DrawGLScene() // Here's Where We Do All The Drawing
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear The Screen And The Depth Buffer
+        
     glLoadIdentity(); // Reset The View
-    
+
+        
     list<Drawable*>::iterator i;
+    
+    glLoadIdentity(); // Reset The View
+    (*components.begin())->ApplyCamera();
     for (i=components.begin();i!=components.end();i++){
         (*i)->Draw();
     }
@@ -117,10 +125,10 @@ int DrawGLScene() // Here's Where We Do All The Drawing
 int main() {
     // Create the main window
     sf::Window App(sf::VideoMode(800, 600, 32), "SFML/NeHe OpenGL");
-
     InitGL();
+          
     ReSizeGLScene(800, 600);
-
+              
     // Start game loop
     while (App.IsOpened()) {
         // Process events
@@ -129,13 +137,14 @@ int main() {
             // Close window : exit
             if (Event.Type == sf::Event::Closed)
                 App.Close();
-
+        
             // Resize event : adjust viewport
             if (Event.Type == sf::Event::Resized)
                 ReSizeGLScene(Event.Size.Width, Event.Size.Height);
 
             // Handle Keyboard Events
             if (Event.Type == sf::Event::KeyPressed) {
+
                 switch (Event.Key.Code) {
                     case sf::Key::Escape:
                         App.Close();
@@ -171,9 +180,10 @@ int main() {
 
         //Handle movement keys
         const sf::Input& Input = App.GetInput();
-
+        
         list<Drawable*>::iterator i;
-        for (i=components.begin();i!=components.end();i++){
+        (*components.begin())->UpdateCamera(Input);
+        for (i=components.begin();i!=components.end();i++){            
             (*i)->Update(Input);
             (*i)->filter = filter;
         }
@@ -188,6 +198,7 @@ int main() {
         App.SetActive();
 
         //Draw some pretty stuff
+        
         DrawGLScene();
 
         // Finally, display rendered frame on screen
