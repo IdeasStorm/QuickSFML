@@ -26,10 +26,14 @@ Drawable::~Drawable() {
         camera.MoveForward(0.1);
       if (input.IsKeyDown(sf::Key::S))
         camera.MoveForward(-0.1);
-      if (input.IsKeyDown(sf::Key::Q))
+      if (input.IsKeyDown(sf::Key::Q)){
         camera.RotateLocalY(0.01);
-      if (input.IsKeyDown(sf::Key::E))
+        camera.MoveRight(0.01);
+      }
+      if (input.IsKeyDown(sf::Key::E)){
         camera.RotateLocalY(-0.01);
+        camera.MoveRight(-0.01);
+      }
         
 }
  void Drawable::ApplyCamera()
