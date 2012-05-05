@@ -18,7 +18,7 @@
 
 using namespace std;
 
-list<DrawableGL*> components;
+list<GLDrawable*> components;
 
 
 GLFrame camera ;
@@ -50,18 +50,18 @@ void LoadComponents(){
     
     model = new Model("monkey.3ds");
     
-    list<DrawableGL*>::iterator i;
+    list<GLDrawable*>::iterator i;
     for (i=components.begin();i!=components.end();i++){
-        ((DrawableGL*)(*i))->LoadComponents();
+        ((GLDrawable*)(*i))->LoadComponents();
     }
 }
 
 int LoadGLTextures() // Load Bitmaps And Convert To Textures
 {
     bool Status=true;									// Status Indicator
-    list<DrawableGL*>::iterator i;
+    list<GLDrawable*>::iterator i;
     for (i=components.begin();i!=components.end();i++){
-        Status = Status && ((DrawableGL*)(*i))->LoadContent();
+        Status = Status && ((GLDrawable*)(*i))->LoadContent();
     }
     return Status;
 
@@ -104,9 +104,9 @@ int InitGL() // All Setup For OpenGL Goes Here
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST); // Really Nice Perspective Calculations
 
     // setup lighting for each component
-    list<DrawableGL*>::iterator i;
+    list<GLDrawable*>::iterator i;
     for (i=components.begin();i!=components.end();i++){
-        ((DrawableGL*)(*i))->SetupLighting();
+        ((GLDrawable*)(*i))->SetupLighting();
     }
     glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient); // Setup The Ambient Light
     glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse); // Setup The Diffuse Light
@@ -124,12 +124,12 @@ int DrawGLScene() // Here's Where We Do All The Drawing
         
     glLoadIdentity(); // Reset The View
         
-    list<DrawableGL*>::iterator i;
+    list<GLDrawable*>::iterator i;
     
     glLoadIdentity(); // Reset The View
     camera.ApplyCamera();
     for (i=components.begin();i!=components.end();i++){
-        ((DrawableGL*)(*i))->Draw();
+        ((GLDrawable*)(*i))->Draw();
     }
     
     glTranslated(5,0,0);
@@ -201,13 +201,13 @@ int main() {
         //Handle movement keys
         const sf::Input& Input = App.GetInput();
 
-        list<DrawableGL*>::iterator i;
+        list<GLDrawable*>::iterator i;
         
         camera.UpdateCamera(Input,App.GetWidth()/2,App.GetHeight()/2);
         
         for (i=components.begin();i!=components.end();i++){            
-            ((DrawableGL*)(*i))->Update(Input);
-            ((DrawableGL*)(*i))->filter = filter;
+            ((GLDrawable*)(*i))->Update(Input);
+            ((GLDrawable*)(*i))->filter = filter;
         }
 
         // Turn VSYNC on so that animations run at a more reasonable speed on new CPU's/GPU's.
