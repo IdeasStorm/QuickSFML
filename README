@@ -14,4 +14,11 @@ you can either install it from repo
     sudo apt-get install libsfml-dev
 
 or you can download the source and compile it
-    http://sfml-dev.org 
+    http://sfml-dev.org
+
+
+Quick Start Guide
+=================
+- create a new class derived from class "GLScene"
+- override LoadComponents() method and call the base at the end of it
+- override Update(input) to set your Update logic (using keyboard+mouse)
