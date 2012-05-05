@@ -88,8 +88,15 @@ void Box::Draw(){
         glRotatef(yrot,0,1,0);
         glRotatef(zrot,0,0,1);
     }
-    if (textureEnabled) 
+    
+    //TODO make better mechanism
+    if (textureEnabled) {
+        glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, texture[filter]);
+    }
+    else {
+        glDisable(GL_TEXTURE_2D);
+    }
 
     GLfloat d = halfSize.z ;
     GLfloat h = halfSize.y ;

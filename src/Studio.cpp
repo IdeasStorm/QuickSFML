@@ -21,12 +21,24 @@ void Studio::LoadComponents(){
 }
 
 void Studio::Update(const sf::Input& input){
-    static bool was_down = false;
+    static bool N_was_down = false;
+    static bool T_was_down = false;
     
     if (input.IsKeyDown(sf::Key::N) )  {
-        was_down = true;
-    } else if (was_down) {
-        was_down = false;
+        N_was_down = true;
+    } else if (N_was_down) {
+        N_was_down = false;
+        Box *box = new Box();
+        box->setTexture("Data/NeHe.bmp");
+        box->DisableTexture();
+        box->setTexture("Data/NeHe.bmp");
+        components.push_back(box);
+    }
+    
+    if (input.IsKeyDown(sf::Key::T) )  {
+        T_was_down = true;
+    } else if (T_was_down) {
+        T_was_down = false;
         Box *box = new Box();
         box->setTexture("Data/NeHe.bmp");
         box->DisableTexture();

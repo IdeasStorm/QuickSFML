@@ -27,8 +27,8 @@ public:
     GLuint filter; // Which Filter To Use
     virtual void DisableTexture() {
         textureEnabled = false;
-        glDisable(GL_TEXTURE);
     }
+    
 protected:
     list<GLDrawable*> components;
     GLuint texture[3]; // Storage For 3 Textures
