@@ -183,16 +183,14 @@ int main() {
                 }
             }
         }
-
+        float a = App.GetWidth()/2;
+        float b = App.GetHeight()/2; 
+        App.SetCursorPosition(a,b);
         //Handle movement keys
-        App.SetCursorPosition(400,300);
         const sf::Input& Input = App.GetInput();
-        
-        //App.SetCursorPosition( sf::VideoMode.Width/2,sf::VideoMode.Height/2);
-        
         list<Drawable*>::iterator i;
-        float a = Input.GetMouseX(); 
-        camera.UpdateCamera(Input);
+        
+        camera.UpdateCamera(Input,a,b);
         for (i=components.begin();i!=components.end();i++){            
             (*i)->Update(Input);
             (*i)->filter = filter;

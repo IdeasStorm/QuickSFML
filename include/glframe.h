@@ -20,6 +20,7 @@ protected:
     M3DVector3f vUp;		// Which way is up?
     M3DVector4f Mouse ;
 //    float OldMouseX =0, OldMouseY =0, MouseX=0,MouseY=0 ;
+    bool first;
 public:
         
 void ApplyCamera()
@@ -27,13 +28,20 @@ void ApplyCamera()
     ApplyCameraTransform();
 }
          
-void UpdateCamera(const sf::Input& input)
+void UpdateCamera(const sf::Input& input,float a , float b )
 {
-    Mouse[0] = input.GetMouseX() - 400;
-    Mouse[1] = input.GetMouseY() - 300;
+    if (first){
+        Mouse[0] = 0 ;
+        Mouse[1] = 0 ;
+        first = false ;
+    }else{
+        Mouse[0] = input.GetMouseX() - a;
+        Mouse[1] = input.GetMouseY() - b;
+    }
+
     
-   // RotateLocalX(-Mouse[1]*0.001f);
-//    RotateLocalY((-Mouse[0])*0.001f);
+    RotateLocalX(Mouse[1]*0.001f);
+    RotateLocalY((-Mouse[0])*0.001f);
 
   if (input.IsKeyDown(sf::Key::A))
     MoveRight(0.1);
@@ -58,7 +66,7 @@ void UpdateCamera(const sf::Input& input)
         // Default position and orientation. At the origin, looking
         // down the positive Z axis (right handed coordinate system).
 GLFrame(void) {
-    
+    first = true ;
     Mouse[0] = 0; Mouse[1] = 0; Mouse[2] = 0;Mouse[3] = 0;
     // At origin
     vOrigin[0] = 0.0f; vOrigin[1] = 0.0f; vOrigin[2] = 0.0f; 
