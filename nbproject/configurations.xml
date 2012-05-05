@@ -7,6 +7,7 @@
       <itemPath>include/Box.h</itemPath>
       <itemPath>include/Drawable.h</itemPath>
       <itemPath>include/Ground.h</itemPath>
+      <itemPath>include/Light.h</itemPath>
       <itemPath>include/glframe.h</itemPath>
       <itemPath>include/math3d.h</itemPath>
     </logicalFolder>
@@ -20,6 +21,7 @@
       <itemPath>src/Box.cpp</itemPath>
       <itemPath>src/Drawable.cpp</itemPath>
       <itemPath>src/Ground.cpp</itemPath>
+      <itemPath>src/Light.cpp</itemPath>
       <itemPath>src/SpherWord32.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
       <itemPath>src/math3d.cpp</itemPath>
@@ -35,8 +37,6 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
-    <itemPath>src/Light.cpp</itemPath>
-    <itemPath>include/Light.h</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
