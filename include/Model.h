@@ -12,15 +12,16 @@
 #include <GL/glew.h>
 #include <SFML/Graphics.hpp>
 #include <lib3ds/file.h>
+#include "Drawable.h"
 
-class Model
+class Model : public GLDrawable
 {
     public :
         Model(std::string filename);  
-        virtual void Draw() const;
-        virtual void CreateVBO();
-        //virtual ~Model();
-    protected:
+        void Draw() const;
+        bool LoadContent();
+        void Update(const sf::Input &input);
+    private:
         void GetFaces();
         unsigned int m_TotalFaces;
         Lib3dsFile * m_model;
