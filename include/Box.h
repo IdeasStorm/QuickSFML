@@ -41,7 +41,6 @@ public:
     Box(sf::Vector3f position, sf::Vector3f halfsize,Element my_elements);
     Box(const Box& orig);
 
-    bool LoadGLTextures();
 
     void init();
     void Update(const sf::Input& input);
