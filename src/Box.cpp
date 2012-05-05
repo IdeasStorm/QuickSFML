@@ -20,22 +20,22 @@ void Box::init(){
     xrot=0;
     yrot=0;
     zrot=0;
-    this->halfSize=Vector3(1,1,1);
+    this->halfSize=sf::Vector3f(1,1,1);
     my_elements = elements::All;
 }
 
-Box::Box(Vector3 position){
+Box::Box(sf::Vector3f position){
     init();
     this->position = position;
 }
 
-Box::Box(Vector3 position, Vector3 halfsize) {
+Box::Box(sf::Vector3f position, sf::Vector3f halfsize) {
     init();
     this->position = position;
     this->halfSize = halfsize;
 }
 
-Box::Box(Vector3 position, Vector3 halfsize, Element my_elements) {
+Box::Box(sf::Vector3f position, sf::Vector3f halfsize, Element my_elements) {
     init();
     this->position = position;
     this->halfSize = halfsize;

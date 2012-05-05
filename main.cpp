@@ -37,15 +37,17 @@ GLfloat LightPosition[] = {0.0f, 0.0f, 2.0f, 1.0f};
 GLuint filter; // Which Filter To Use
 GLuint texture[3]; // Storage For 3 Textures
 
-
-
-
 void LoadComponents(){   
-    Box* box = new Box(Vector3(0,0,-5), Vector3(1,1,1),elements::OpenBox);
-    box->setTexture("./Data/NeHe.bmp");
-    components.push_back(box);
-    //components.push_back(new Ground);
 
+    Ground *g = new Ground();
+    g->box_texture = "./Data/NeHe.bmp";
+    components.push_back(g);
+    
+    
+    list<Drawable*>::iterator i;
+    for (i=components.begin();i!=components.end();i++){
+        ((Drawable*)(*i))->LoadComponents();
+    }
 }
 
 int LoadGLTextures() // Load Bitmaps And Convert To Textures
@@ -53,7 +55,7 @@ int LoadGLTextures() // Load Bitmaps And Convert To Textures
     bool Status=true;									// Status Indicator
     list<Drawable*>::iterator i;
     for (i=components.begin();i!=components.end();i++){
-        Status = Status && (*i)->LoadContent();
+        Status = Status && ((Drawable*)(*i))->LoadContent();
     }
     return Status;
 
@@ -98,7 +100,7 @@ int InitGL() // All Setup For OpenGL Goes Here
     // setup lighting for each component
     list<Drawable*>::iterator i;
     for (i=components.begin();i!=components.end();i++){
-        (*i)->SetupLighting();
+        ((Drawable*)(*i))->SetupLighting();
     }
     glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient); // Setup The Ambient Light
     glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse); // Setup The Diffuse Light
@@ -119,7 +121,7 @@ int DrawGLScene() // Here's Where We Do All The Drawing
     glLoadIdentity(); // Reset The View
     camera.ApplyCamera();
     for (i=components.begin();i!=components.end();i++){
-        (*i)->Draw();
+        ((Drawable*)(*i))->Draw();
     }
 
     xrot += xspeed;
@@ -183,19 +185,16 @@ int main() {
                 }
             }
         }
-        float a = App.GetWidth()/2;
-        float b = App.GetHeight()/2; 
-        App.SetCursorPosition(a,b);
+        App.SetCursorPosition(App.GetWidth()/2,App.GetHeight()/2);
         //Handle movement keys
         const sf::Input& Input = App.GetInput();
         list<Drawable*>::iterator i;
         
-        camera.UpdateCamera(Input,a,b);
+        camera.UpdateCamera(Input,App.GetWidth()/2,App.GetHeight()/2);
         for (i=components.begin();i!=components.end();i++){            
-            (*i)->Update(Input);
-            (*i)->filter = filter;
+            ((Drawable*)(*i))->Update(Input);
+            ((Drawable*)(*i))->filter = filter;
         }
-
 
         // Turn VSYNC on so that animations run at a more reasonable speed on new CPU's/GPU's.
         App.UseVerticalSync(vsync);

@@ -10,7 +10,6 @@
 #include "Drawable.h"
 #include "core.h"
 using namespace std;
-using namespace cyclone;
 namespace elements {
         enum Element{
         None = 0x0,
@@ -32,13 +31,14 @@ namespace elements {
     bool has(Element elements,Element test);
 }
 using namespace elements;
+
 class Box : public Drawable{
 public:
 
     Box();
-    Box(Vector3 position);
-    Box(Vector3 position, Vector3 halfsize);
-    Box(Vector3 position, Vector3 halfsize,Element my_elements);
+    Box(sf::Vector3f position);
+    Box(sf::Vector3f position, sf::Vector3f halfsize);
+    Box(sf::Vector3f position, sf::Vector3f halfsize,Element my_elements);
     Box(const Box& orig);
 
     bool LoadGLTextures();
@@ -80,12 +80,29 @@ public:
         LoadContent();
     }
  
-       
+   void setElements(Element element) {
+       my_elements = element;
+   }
+   
+   sf::Vector3f position;
+   sf::Vector3f halfSize;
+   
+   void setRotation(sf::Vector3f axis, GLfloat rotation) {
+       axis_angle = true;
+       rotationAxis  = axis;
+       this->rotation = rotation;
+   }
+   
+   void setRotation(GLfloat yaw,GLfloat pitch,GLfloat roll){
+       axis_angle = false;
+       xrot  = pitch;
+       yrot  = yaw;
+       zrot  = roll;
+   }
 private:
 
-    Vector3 position;
-    Vector3 halfSize;
-    Vector3 rotationAxis;
+    
+    sf::Vector3f rotationAxis;
     GLfloat rotation; //  Rotation
 
     bool axis_angle; // rotation based on axis and angle

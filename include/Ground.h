@@ -10,14 +10,17 @@
 
 #include "Drawable.h"
 
+using namespace std;
+
 class Ground : public Drawable{
 public:
     Ground();
     Ground(const Ground& orig);
-    void Draw();
-    bool LoadContent();
+    void LoadComponents();
     void Update(const sf::Input&);
     virtual ~Ground();
+    
+    string box_texture;
 private:
     GLfloat rot;
 
