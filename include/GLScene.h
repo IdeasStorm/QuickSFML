@@ -23,9 +23,7 @@ public:
     GLScene(char* title="");
     GLScene(const GLScene& orig);
     
-    virtual void LoadComponents(){
-        
-    }
+    virtual void LoadComponents()=0;
     virtual bool LoadContent();
     int InitGL();
     
@@ -41,12 +39,14 @@ public:
     
     
     virtual ~GLScene();
-private:
-    
+protected:
     list<GLDrawable*> components;
 
 
     GLFrame camera ;
+private:
+    
+    
     bool fullscreen ; // Fullscreen Flag Set To Fullscreen Mode By Default
     bool vsync ; // Turn VSYNC on/off
     bool light; // Lighting ON/OFF ( NEW )

@@ -16,6 +16,7 @@ GLScene::GLScene(char* title) : window(sf::VideoMode(800, 600, 32), title) {
     memcpy(this->LightDiffuse, LightDiffuse, sizeof LightDiffuse);
     memcpy(this->LightPosition, LightPosition, sizeof LightPosition);
     
+    filter = 0;
     fullscreen = FALSE; // Fullscreen Flag Set To Fullscreen Mode By Default
     vsync = TRUE; // Turn VSYNC on/off
 }
@@ -195,4 +196,11 @@ bool GLScene::LoadContent() {
         Status = Status && ((GLDrawable*)(*i))->LoadContent();
     }
     return Status;
+}
+
+void GLScene::LoadComponents() {
+    list<GLDrawable*>::iterator i;
+    for (i=components.begin();i!=components.end();i++){
+        ((GLDrawable*)(*i))->LoadComponents();
+    }
 }
