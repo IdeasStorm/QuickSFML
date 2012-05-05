@@ -7,48 +7,48 @@
 
 #include "Drawable.h"
 
-Drawable::Drawable() {
+DrawableGL::DrawableGL() {
     //ctor
     filter = 0;
 }
 
-Drawable::~Drawable() {
+DrawableGL::~DrawableGL() {
     //dtor
 }
 
 
 
-GLuint* Drawable::GetTextures() {
+GLuint* DrawableGL::GetTextures() {
     return texture;
 }
 
-void Drawable::LoadComponents() {
-    list<Drawable*>::iterator i;
+void DrawableGL::LoadComponents() {
+    list<DrawableGL*>::iterator i;
     for (i=components.begin();i!=components.end();i++){
-        ((Drawable*)(*i))->LoadComponents();
+        ((DrawableGL*)(*i))->LoadComponents();
     }
 }
 
-bool Drawable::LoadContent() {
+bool DrawableGL::LoadContent() {
     bool Status=true;									// Status Indicator
-    list<Drawable*>::iterator i;
+    list<DrawableGL*>::iterator i;
     for (i=components.begin();i!=components.end();i++){
-        Status = Status && ((Drawable*)(*i))->LoadContent();
+        Status = Status && ((DrawableGL*)(*i))->LoadContent();
     }
     return Status;
 }
 
-void Drawable::SetupLighting() {
+void DrawableGL::SetupLighting() {
     // setup lighting for each component
-    list<Drawable*>::iterator i;
+    list<DrawableGL*>::iterator i;
     for (i=components.begin();i!=components.end();i++){
-        ((Drawable*)(*i))->SetupLighting();
+        ((DrawableGL*)(*i))->SetupLighting();
     }
 }
 
-void Drawable::Draw() {
-    list<Drawable*>::iterator i;
+void DrawableGL::Draw() {
+    list<DrawableGL*>::iterator i;
     for (i=components.begin();i!=components.end();i++){
-        ((Drawable*)(*i))->Draw();
+        ((DrawableGL*)(*i))->Draw();
     }
 }

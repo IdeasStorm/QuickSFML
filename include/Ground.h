@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Ground : public Drawable{
+class Ground : public DrawableGL{
 public:
     Ground();
     Ground(const Ground& orig);

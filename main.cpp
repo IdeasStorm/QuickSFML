@@ -16,7 +16,7 @@
 #include "glframe.h"
 using namespace std;
 
-list<Drawable*> components;
+list<DrawableGL*> components;
 
 
 GLFrame camera ;
@@ -57,18 +57,18 @@ void LoadComponents(){
     components.push_back(g);
     
     
-    list<Drawable*>::iterator i;
+    list<DrawableGL*>::iterator i;
     for (i=components.begin();i!=components.end();i++){
-        ((Drawable*)(*i))->LoadComponents();
+        ((DrawableGL*)(*i))->LoadComponents();
     }
 }
 
 int LoadGLTextures() // Load Bitmaps And Convert To Textures
 {
     bool Status=true;									// Status Indicator
-    list<Drawable*>::iterator i;
+    list<DrawableGL*>::iterator i;
     for (i=components.begin();i!=components.end();i++){
-        Status = Status && ((Drawable*)(*i))->LoadContent();
+        Status = Status && ((DrawableGL*)(*i))->LoadContent();
     }
     return Status;
 
@@ -111,9 +111,9 @@ int InitGL() // All Setup For OpenGL Goes Here
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST); // Really Nice Perspective Calculations
 
     // setup lighting for each component
-    list<Drawable*>::iterator i;
+    list<DrawableGL*>::iterator i;
     for (i=components.begin();i!=components.end();i++){
-        ((Drawable*)(*i))->SetupLighting();
+        ((DrawableGL*)(*i))->SetupLighting();
     }
     glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient); // Setup The Ambient Light
     glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse); // Setup The Diffuse Light
@@ -129,12 +129,12 @@ int DrawGLScene() // Here's Where We Do All The Drawing
     glLoadIdentity(); // Reset The View
 
         
-    list<Drawable*>::iterator i;
+    list<DrawableGL*>::iterator i;
     
     glLoadIdentity(); // Reset The View
     camera.ApplyCamera();
     for (i=components.begin();i!=components.end();i++){
-        ((Drawable*)(*i))->Draw();
+        ((DrawableGL*)(*i))->Draw();
     }
 
     xrot += xspeed;
@@ -205,12 +205,12 @@ int main() {
         
         //App.SetCursorPosition( sf::VideoMode.Width/2,sf::VideoMode.Height/2);
         
-        list<Drawable*>::iterator i;
+        list<DrawableGL*>::iterator i;
         float a = Input.GetMouseX(); 
         camera.UpdateCamera(Input);
         for (i=components.begin();i!=components.end();i++){            
-            ((Drawable*)(*i))->Update(Input);
-            ((Drawable*)(*i))->filter = filter;
+            ((DrawableGL*)(*i))->Update(Input);
+            ((DrawableGL*)(*i))->filter = filter;
         }
 
 

@@ -11,10 +11,10 @@
 #include <list>
 using namespace std;
 
-class Drawable {
+class DrawableGL {
 public:
-    Drawable();
-    virtual ~Drawable();
+    DrawableGL();
+    virtual ~DrawableGL();
 
     virtual bool LoadContent();
     virtual void Draw();
@@ -26,7 +26,7 @@ public:
 
     GLuint filter; // Which Filter To Use
 protected:
-    list<Drawable*> components;
+    list<DrawableGL*> components;
     GLuint texture[3]; // Storage For 3 Textures
 private:
 };

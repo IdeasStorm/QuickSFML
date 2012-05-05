@@ -24,10 +24,10 @@ Ground::~Ground() {
 
 void Ground::Update(const sf::Input& input) {
     //Update2(input);
-    list<Drawable*>::iterator i;
+    list<DrawableGL*>::iterator i;
     for (i=components.begin();i!=components.end();i++){            
-            ((Drawable*)(*i))->Update(input);
-            ((Drawable*)(*i))->filter = filter;
+            ((DrawableGL*)(*i))->Update(input);
+            ((DrawableGL*)(*i))->filter = filter;
     }
     if (input.IsKeyDown(sf::Key::Z))
         rot++;

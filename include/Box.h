@@ -32,7 +32,7 @@ namespace elements {
 }
 using namespace elements;
 
-class Box : public Drawable{
+class Box : public DrawableGL{
 public:
 
     Box();
