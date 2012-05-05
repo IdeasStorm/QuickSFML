@@ -11,6 +11,8 @@
       <itemPath>include/Light.h</itemPath>
       <itemPath>include/Model.h</itemPath>
       <itemPath>include/MyScene.h</itemPath>
+      <itemPath>include/Studio.h</itemPath>
+      <itemPath>include/Train.h</itemPath>
       <itemPath>include/glframe.h</itemPath>
       <itemPath>include/math3d.h</itemPath>
     </logicalFolder>
@@ -29,6 +31,8 @@
       <itemPath>src/Model.cpp</itemPath>
       <itemPath>src/MyScene.cpp</itemPath>
       <itemPath>src/SpherWord32.cpp</itemPath>
+      <itemPath>src/Studio.cpp</itemPath>
+      <itemPath>src/Train.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
       <itemPath>src/math3d.cpp</itemPath>
     </logicalFolder>

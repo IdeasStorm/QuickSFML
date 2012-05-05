@@ -9,16 +9,21 @@
 #define	STUDIO_H
 #include <SFML/Graphics.hpp>
 #include "GLScene.h"
+#include <list>
+#include "Box.h"
+
+using namespace std;
 
 class Studio : public GLScene {
 public:
     Studio();
     Studio(const Studio& orig);
-    void Update(const sf::Input input);
+    void Update(const sf::Input& input);
     void LoadComponents();
     
     virtual ~Studio();
 private:
+    
 
 };
 

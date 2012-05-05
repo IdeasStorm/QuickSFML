@@ -23,7 +23,7 @@ public:
     GLScene(char* title="");
     GLScene(const GLScene& orig);
     
-    virtual void LoadComponents()=0;
+    virtual void LoadComponents();
     virtual bool LoadContent();
     int InitGL();
     

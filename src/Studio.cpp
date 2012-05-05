@@ -20,6 +20,8 @@ void Studio::LoadComponents(){
     
 }
 
-void Studio::Update(const sf::Input input){
-    
+void Studio::Update(const sf::Input& input){
+    if (input.IsKeyDown(sf::Key::N)) {
+        components.push_back(new Box());
+    }
 }

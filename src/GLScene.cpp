@@ -90,7 +90,7 @@ int GLScene::Run() {
         list<GLDrawable*>::iterator i;
         
         camera.UpdateCamera(Input,window.GetWidth()/2,window.GetHeight()/2);
-        
+        Update(Input);
         for (i=components.begin();i!=components.end();i++){            
             ((GLDrawable*)(*i))->Update(Input);
             ((GLDrawable*)(*i))->filter = filter;

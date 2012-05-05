@@ -10,12 +10,15 @@
 #include <GL/glew.h>
 #include "Model.h"
 #include "MyScene.h"
+#include "Studio.h"
 
 using namespace std;
 
 
 int main() {
     // Create the main window
-    MyScene scene("Metro Simulation");
-    return scene.Run();
+    GLScene *scene;
+    //scene = new MyScene("Metro Simulation");
+    scene = new Studio();
+    return scene->Run();
 }
