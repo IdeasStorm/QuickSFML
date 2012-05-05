@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/src/SpherWord32.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/src/math3d.o \
+	${OBJECTDIR}/src/GLScene.o \
 	${OBJECTDIR}/src/Drawable.o \
 	${OBJECTDIR}/src/Ground.o \
 	${OBJECTDIR}/src/Box.o \
@@ -87,6 +88,11 @@ ${OBJECTDIR}/src/math3d.o: src/math3d.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
 	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags glew`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/math3d.o src/math3d.cpp
+
+${OBJECTDIR}/src/GLScene.o: src/GLScene.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} $@.d
+	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags glew`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/GLScene.o src/GLScene.cpp
 
 ${OBJECTDIR}/src/Drawable.o: src/Drawable.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
