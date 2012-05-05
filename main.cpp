@@ -8,12 +8,14 @@
 #define TRUE true
 #define FALSE false
 
+#include "Model.h"
 #include <SFML/Graphics.hpp>
 #include <Drawable.h>
 #include "Box.h"
 #include "Ground.h"
 #include <list>
 #include "glframe.h"
+
 using namespace std;
 
 list<DrawableGL*> components;
@@ -38,24 +40,15 @@ GLuint filter; // Which Filter To Use
 GLuint texture[3]; // Storage For 3 Textures
 
 
-
+Model *model;
 
 void LoadComponents(){   
 
-    /*
-    Box* box = new Box(sf::Vector3f(0,0,-5), sf::Vector3f(1,1,1),elements::OpenBox);
-    Box* box2 = new Box(sf::Vector3f(-5,0,-5), sf::Vector3f(1,1,1),elements::OpenBox);
-    
-    Box* box = new Box(Vector3(0,0,-5), Vector3(1,1,1),elements::OpenBox);
-
-    box->setTexture("./Data/NeHe.bmp");
-    components.push_back(box);
-    //components.push_back(new Ground);
-    */
     Ground *g = new Ground();
     g->box_texture = "./Data/NeHe.bmp";
     components.push_back(g);
     
+    model = new Model("monkey.3ds");
     
     list<DrawableGL*>::iterator i;
     for (i=components.begin();i!=components.end();i++){
@@ -119,6 +112,9 @@ int InitGL() // All Setup For OpenGL Goes Here
     glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse); // Setup The Diffuse Light
     glLightfv(GL_LIGHT1, GL_POSITION, LightPosition); // Position The Light
     glEnable(GL_LIGHT1); // Enable Light One
+    
+    model->CreateVBO();
+    
     return TRUE; // Initialization Went OK
 }
 
@@ -127,7 +123,6 @@ int DrawGLScene() // Here's Where We Do All The Drawing
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear The Screen And The Depth Buffer
         
     glLoadIdentity(); // Reset The View
-
         
     list<DrawableGL*>::iterator i;
     
@@ -136,7 +131,11 @@ int DrawGLScene() // Here's Where We Do All The Drawing
     for (i=components.begin();i!=components.end();i++){
         ((DrawableGL*)(*i))->Draw();
     }
-
+    
+    glTranslated(5,0,0);
+    model->Draw();
+    glTranslated(-5,0,0);
+    
     xrot += xspeed;
     yrot += yspeed;
     return TRUE; // Keep Going
@@ -198,21 +197,18 @@ int main() {
                 }
             }
         }
-
+        App.SetCursorPosition(App.GetWidth()/2,App.GetHeight()/2);
         //Handle movement keys
-        App.SetCursorPosition(400,300);
         const sf::Input& Input = App.GetInput();
-        
-        //App.SetCursorPosition( sf::VideoMode.Width/2,sf::VideoMode.Height/2);
-        
+
         list<DrawableGL*>::iterator i;
-        float a = Input.GetMouseX(); 
-        camera.UpdateCamera(Input);
+        
+        camera.UpdateCamera(Input,App.GetWidth()/2,App.GetHeight()/2);
+        
         for (i=components.begin();i!=components.end();i++){            
             ((DrawableGL*)(*i))->Update(Input);
             ((DrawableGL*)(*i))->filter = filter;
         }
-
 
         // Turn VSYNC on so that animations run at a more reasonable speed on new CPU's/GPU's.
         App.UseVerticalSync(vsync);
