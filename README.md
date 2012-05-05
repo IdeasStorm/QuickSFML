@@ -22,3 +22,10 @@ Quick Start Guide
 - create a new class derived from class "GLScene"
 - override LoadComponents() method and call the base at the end of it
 - override Update(input) to set your Update logic (using keyboard+mouse)
+- run your instance in main.cpp
+```
+  int main() {
+    MyClass instance(args);
+    return instance.Run();
+  }
+```
