@@ -75,6 +75,7 @@ public:
     }
     
    void setTexture(string path) {
+        textureEnabled = true;
         texture_path = path;
         LoadContent();
     }
@@ -98,6 +99,7 @@ public:
        yrot  = yaw;
        zrot  = roll;
    }
+   
 private:
 
     

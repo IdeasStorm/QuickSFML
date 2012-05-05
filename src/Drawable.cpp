@@ -10,6 +10,7 @@
 GLDrawable::GLDrawable() {
     //ctor
     filter = 0;
+    textureEnabled = false;
 }
 
 GLDrawable::~GLDrawable() {

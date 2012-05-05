@@ -10,11 +10,12 @@
 
 Box::Box() {
     init();
-    my_elements = elements::FrontOpened;
+    my_elements = elements::All;
 }
 
 void Box::init(){
     axis_angle = false;
+    rotation = 0;
     xspeed = 0;
     yspeed = 0;
     xrot=0;
@@ -87,7 +88,8 @@ void Box::Draw(){
         glRotatef(yrot,0,1,0);
         glRotatef(zrot,0,0,1);
     }
-    glBindTexture(GL_TEXTURE_2D, texture[filter]);
+    if (textureEnabled) 
+        glBindTexture(GL_TEXTURE_2D, texture[filter]);
 
     GLfloat d = halfSize.z ;
     GLfloat h = halfSize.y ;

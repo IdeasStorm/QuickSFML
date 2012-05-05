@@ -21,9 +21,15 @@ void Studio::LoadComponents(){
 }
 
 void Studio::Update(const sf::Input& input){
-    if (input.IsKeyDown(sf::Key::N)) {
+    static bool was_down = false;
+    
+    if (input.IsKeyDown(sf::Key::N) )  {
+        was_down = true;
+    } else if (was_down) {
+        was_down = false;
         Box *box = new Box();
-        box->LoadContent();
+        box->setTexture("Data/NeHe.bmp");
+        box->DisableTexture();
         components.push_back(box);
     }
 }
