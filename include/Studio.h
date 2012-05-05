@@ -22,6 +22,12 @@ public:
     void LoadComponents();
     
     virtual ~Studio();
+    
+    void SetCurrentComponent(list<GLDrawable*>::iterator);
+    void NextComponent();
+    void PrevComponent();
+    
+    list<GLDrawable*>::iterator currentComponent;
 private:
     
 
