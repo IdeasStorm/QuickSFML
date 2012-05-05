@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/src/math3d.o \
 	${OBJECTDIR}/src/GLScene.o \
+	${OBJECTDIR}/src/Train.o \
 	${OBJECTDIR}/src/Studio.o \
 	${OBJECTDIR}/src/MyScene.o \
 	${OBJECTDIR}/src/Drawable.o \
@@ -95,6 +96,11 @@ ${OBJECTDIR}/src/GLScene.o: src/GLScene.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/GLScene.o src/GLScene.cpp
+
+${OBJECTDIR}/src/Train.o: src/Train.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Train.o src/Train.cpp
 
 ${OBJECTDIR}/src/Studio.o: src/Studio.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
