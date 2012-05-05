@@ -34,6 +34,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/src/Model.o \
 	${OBJECTDIR}/src/SpherWord32.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/src/math3d.o \
@@ -66,6 +67,11 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/metro-simulation: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/metro-simulation ${OBJECTFILES} ${LDLIBSOPTIONS} 
+
+${OBJECTDIR}/src/Model.o: src/Model.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Model.o src/Model.cpp
 
 ${OBJECTDIR}/src/SpherWord32.o: src/SpherWord32.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src

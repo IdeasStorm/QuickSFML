@@ -8,12 +8,14 @@
 #define TRUE true
 #define FALSE false
 
+#include "Model.h"
 #include <SFML/Graphics.hpp>
 #include <Drawable.h>
 #include "Box.h"
 #include "Ground.h"
 #include <list>
 #include "glframe.h"
+
 using namespace std;
 
 list<Drawable*> components;
@@ -37,12 +39,16 @@ GLfloat LightPosition[] = {0.0f, 0.0f, 2.0f, 1.0f};
 GLuint filter; // Which Filter To Use
 GLuint texture[3]; // Storage For 3 Textures
 
+
+Model *model;
+
 void LoadComponents(){   
 
     Ground *g = new Ground();
     g->box_texture = "./Data/NeHe.bmp";
     components.push_back(g);
     
+    model = new Model("monkey.3ds");
     
     list<Drawable*>::iterator i;
     for (i=components.begin();i!=components.end();i++){
@@ -106,6 +112,9 @@ int InitGL() // All Setup For OpenGL Goes Here
     glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse); // Setup The Diffuse Light
     glLightfv(GL_LIGHT1, GL_POSITION, LightPosition); // Position The Light
     glEnable(GL_LIGHT1); // Enable Light One
+    
+    model->CreateVBO();
+    
     return TRUE; // Initialization Went OK
 }
 
@@ -114,8 +123,7 @@ int DrawGLScene() // Here's Where We Do All The Drawing
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear The Screen And The Depth Buffer
         
     glLoadIdentity(); // Reset The View
-
-        
+       
     list<Drawable*>::iterator i;
     
     glLoadIdentity(); // Reset The View
@@ -123,7 +131,11 @@ int DrawGLScene() // Here's Where We Do All The Drawing
     for (i=components.begin();i!=components.end();i++){
         ((Drawable*)(*i))->Draw();
     }
-
+    
+    glTranslated(5,0,0);
+    model->Draw();
+    glTranslated(-5,0,0);
+    
     xrot += xspeed;
     yrot += yspeed;
     return TRUE; // Keep Going
