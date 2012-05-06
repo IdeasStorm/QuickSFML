@@ -71,34 +71,51 @@ void Studio::Update(const sf::Input& input){
     }
     
     sf::Vector3f *field;
+    bool scale = false;
+    bool rotation = false;
     if (input.IsKeyDown(sf::Key::LShift)) {
+        scale = true;
         field = &(((*currentComponent))->halfSize);
+    }else if (input.IsKeyDown(sf::Key::LAlt)){
+        field = new sf::Vector3f();
+        rotation = true;
     }else {
         field = &(((*currentComponent))->position);
     }
     if (input.IsKeyDown(sf::Key::Right)) {
         *field += sf::Vector3f(s,0,0);
-        (((Box*)(*currentComponent))->position) += sf::Vector3f(s,0,0);
+        if (scale)
+            (((Box*)(*currentComponent))->position) += sf::Vector3f(s,0,0);
     }
     if (input.IsKeyDown(sf::Key::Left)) {
         *field += sf::Vector3f(-s,0,0);
-        (((Box*)(*currentComponent))->position) += sf::Vector3f(-s,0,0);
+        if (scale)
+            (((Box*)(*currentComponent))->position) += sf::Vector3f(-s,0,0);
     }
     if (input.IsKeyDown(sf::Key::Up)) {
         *field += sf::Vector3f(0,0,s);
-        (((Box*)(*currentComponent))->position) += sf::Vector3f(0,0,s);
+        if (scale)
+            (((Box*)(*currentComponent))->position) += sf::Vector3f(0,0,s);
     }
     if (input.IsKeyDown(sf::Key::Down)) {
         *field += sf::Vector3f(0,0,-s);
-        (((Box*)(*currentComponent))->position) += sf::Vector3f(0,0,-s);
+        if (scale)
+            (((Box*)(*currentComponent))->position) += sf::Vector3f(0,0,-s);
     }
     if (input.IsKeyDown(sf::Key::PageUp)) {
         *field += sf::Vector3f(0,s,0);
-        (((Box*)(*currentComponent))->position) += sf::Vector3f(0,s,0);
+        if (scale)
+            (((Box*)(*currentComponent))->position) += sf::Vector3f(0,s,0);
     }
     if (input.IsKeyDown(sf::Key::PageDown)) {
         *field += sf::Vector3f(0,-s,0);
-        (((Box*)(*currentComponent))->position) += sf::Vector3f(0,-s,0);
+        if (scale)
+            (((Box*)(*currentComponent))->position) += sf::Vector3f(0,-s,0);
+    }
+    if (rotation) {
+        (*currentComponent)->xrot += field->x;
+        (*currentComponent)->yrot += field->y;
+        (*currentComponent)->zrot += field->z;
     }
     GLScene::Update(input);
 }
