@@ -30,7 +30,6 @@
       <itemPath>src/Light.cpp</itemPath>
       <itemPath>src/Model.cpp</itemPath>
       <itemPath>src/MyScene.cpp</itemPath>
-      <itemPath>src/SpherWord32.cpp</itemPath>
       <itemPath>src/Studio.cpp</itemPath>
       <itemPath>src/Train.cpp</itemPath>
       <itemPath>main.cpp</itemPath>

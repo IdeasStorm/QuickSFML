@@ -35,7 +35,6 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/src/Model.o \
-	${OBJECTDIR}/src/SpherWord32.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/src/math3d.o \
 	${OBJECTDIR}/src/GLScene.o \
@@ -76,11 +75,6 @@ ${OBJECTDIR}/src/Model.o: src/Model.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
 	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags glew`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Model.o src/Model.cpp
-
-${OBJECTDIR}/src/SpherWord32.o: src/SpherWord32.cpp 
-	${MKDIR} -p ${OBJECTDIR}/src
-	${RM} $@.d
-	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags glew`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/SpherWord32.o src/SpherWord32.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
