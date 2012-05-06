@@ -30,7 +30,7 @@ class Model : public GLDrawable
         void GLInit();
         
     protected:
-        inline void draw();
+        void draw();
     private:
         void GetFaces();
         unsigned int m_TotalFaces;
