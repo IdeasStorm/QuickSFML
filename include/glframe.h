@@ -40,7 +40,7 @@ void UpdateCamera(const sf::Input& input,float a , float b )
     }
 
     
-    RotateLocalX(Mouse[1]*0.001f);
+//    RotateLocalX(Mouse[1]*0.001f);
     RotateLocalY((-Mouse[0])*0.001f);
 
   if (input.IsKeyDown(sf::Key::A))
@@ -48,9 +48,9 @@ void UpdateCamera(const sf::Input& input,float a , float b )
   if (input.IsKeyDown(sf::Key::D))
     MoveRight(-0.1);
   if (input.IsKeyDown(sf::Key::W))
-    MoveForward(0.1);
+    MoveForward(0.5);
   if (input.IsKeyDown(sf::Key::S))
-    MoveForward(-0.1);
+    MoveForward(-0.5);
   if (input.IsKeyDown(sf::Key::Q)){
     RotateLocalY(0.01);
     MoveRight(0.01);
