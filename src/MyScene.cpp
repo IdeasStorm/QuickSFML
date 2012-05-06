@@ -19,7 +19,7 @@ MyScene::~MyScene() {
 
 void MyScene::LoadComponents(){
     update_child_controls = true;
-    camera.SetOrigin(0,5,20);
+    camera.SetOrigin(0,0,0);
    // Ground *g = new Ground();
 
     //g->box_texture = "./Data/Wall/images.jpg";
@@ -32,14 +32,14 @@ void MyScene::LoadComponents(){
 
     Model * train_1=new Model("straba_m_mod_02.3ds");
     //train_1->setTexture("./Data/NeHe.bmp");
-    
-    train_1->position = sf::Vector3f(-5,0,-30);
-    train_1->setRotation(sf::Vector3f(1,0,0),-90);
+    train_1-> position = sf::Vector3f(-5,0,-15);
+    train_1-> setRotation(sf::Vector3f(1,0,0),-45);
     
     Model * train_2=new Model("straba_m_mod_02.3ds");
     //train_2->setTexture("./Data/NeHe.bmp");
     train_2->position= sf::Vector3f(5,0,-15);
-    train_2->setRotation(sf::Vector3f(1,0,0),-90);
+    train_2->setRotation(sf::Vector3f(1,0,0),-45);
+    
     
     //components.push_back(g);
     components.push_back(leftWall);
