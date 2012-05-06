@@ -134,7 +134,7 @@ int GLScene::InitGL() // All Setup For OpenGL Goes Here
     // setup lighting for each component
     list<GLDrawable*>::iterator i;
     for (i=components.begin();i!=components.end();i++){
-        ((GLDrawable*)(*i))->SetupLighting();
+        ((GLDrawable*)(*i))->GLInit();
     }
     glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient); // Setup The Ambient Light
     glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse); // Setup The Diffuse Light

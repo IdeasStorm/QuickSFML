@@ -40,7 +40,7 @@ bool Model::LoadContent() {
     return true;
 }
 
-void Model::SetupLighting()
+void Model::GLInit()
 {
          assert(m_model != NULL);
        
@@ -90,7 +90,7 @@ void Model::SetupLighting()
         //return true;
 }
 
-void Model::Draw()
+void Model::draw()
 {
       assert(m_TotalFaces != 0);
         glTranslatef(5,0,0)      ;

@@ -25,10 +25,12 @@ class Model : public GLDrawable
 {
     public :
         Model(std::string filename);  
-        void Draw();
         bool LoadContent();
         void Update(const sf::Input &input);
-        void SetupLighting();
+        void GLInit();
+        
+    protected:
+        inline void draw();
     private:
         void GetFaces();
         unsigned int m_TotalFaces;
