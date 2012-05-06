@@ -72,9 +72,9 @@ void Studio::Update(const sf::Input& input){
     
     sf::Vector3f *field;
     if (input.IsKeyDown(sf::Key::LShift)) {
-        field = &(((Box*)(*currentComponent))->halfSize);
+        field = &(((*currentComponent))->halfSize);
     }else {
-        field = &(((Box*)(*currentComponent))->position);
+        field = &(((*currentComponent))->position);
     }
     if (input.IsKeyDown(sf::Key::Right)) {
         *field += sf::Vector3f(s,0,0);
