@@ -37,12 +37,12 @@ void Model::GetFaces()
 }
 
 bool Model::LoadContent() {
-    
+    return true;
 }
 
 void Model::SetupLighting()
 {
-          assert(m_model != NULL);
+         assert(m_model != NULL);
        
         // Calculate the number of faces we have in total
         GetFaces();

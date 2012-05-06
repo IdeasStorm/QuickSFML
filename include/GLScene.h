@@ -14,6 +14,7 @@
 #include <SFML/System.hpp>
 #include "Drawable.h"
 #include "glframe.h"
+#include <stdio.h>
 using namespace std;
 
 class GLScene {

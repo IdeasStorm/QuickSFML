@@ -19,7 +19,7 @@ public:
     Studio(const Studio& orig);
     void Update(const sf::Input& input);
     void LoadComponents();
-    
+    void WriteCode();
     virtual ~Studio();
     
     void SetCurrentComponent(list<GLDrawable*>::iterator);

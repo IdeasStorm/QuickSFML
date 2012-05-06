@@ -30,7 +30,8 @@ GLScene::~GLScene() {
 int GLScene::Run() {
     // Create the main window
  
-    InitGL();
+    if (!InitGL())
+        printf("Warning : Content not Loaded ");
     
     ReSizeGLScene(800, 600);
 
