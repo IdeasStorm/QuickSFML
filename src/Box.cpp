@@ -76,17 +76,7 @@ void Box::Update(const sf::Input& input ){
     
 }
 
-void Box::Draw(){
-
-    glTranslatef(position.x,position.y,position.z);
-
-    if (axis_angle) {
-        glRotatef(rotation, rotationAxis.x,rotationAxis.y,rotationAxis.z);
-    } else {
-        glRotatef(xrot,1,0,0);
-        glRotatef(yrot,0,1,0);
-        glRotatef(zrot,0,0,1);
-    }
+void Box::draw(){
     
     //TODO make better mechanism
     if (textureEnabled) {

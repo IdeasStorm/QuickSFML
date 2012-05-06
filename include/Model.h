@@ -24,20 +24,23 @@
 class Model : public GLDrawable
 {
     public :
-        void setPosition(float , float ,float);
-        void setRotation( GLfloat rotation,float , float ,float) ;
-        void setTexture(string path) ;
+
         Model(std::string filename);  
+
         void Draw();
         void Update(const sf::Input &input);
         void SetupLighting();
         
+
+        bool LoadContent();
+        
+        void GLInit();
+        
+    protected:
+        //inline void draw();
+
     private:
         void GetFaces();
-        sf::Vector3f position;
-        sf::Vector3f rotationAxis;
-        string texture_path;
-        GLfloat rotation; //  Rotation
         
         unsigned int m_TotalFaces;
         Lib3dsFile * m_model;

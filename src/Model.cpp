@@ -37,7 +37,15 @@ void Model::GetFaces()
         }
 }
 
-void Model::SetupLighting()
+
+//void Model::SetupLighting()
+
+
+bool Model::LoadContent() {
+    return true;
+}
+
+void Model::GLInit()
 
 {
          assert(m_model != NULL);
@@ -88,33 +96,8 @@ void Model::SetupLighting()
         //return true;
 }
 
-void Model::setPosition(float x,float y , float z)
-
-{
-    position.x = x ;
-    position.y = y ;
-    position.z = z ;
-}
-
-void Model::setRotation(GLfloat rotation,float x, float y,float z) 
-
-{
-   rotationAxis.x = x;
-   rotationAxis.y = y;
-   rotationAxis.z = z;
-   this->rotation = rotation;
-}
-
-
-void Model::setTexture(string path) 
-{
-    textureEnabled = true;
-    texture_path = path;
-    LoadContent();
-}
-   
-
 void Model::Draw()
+
 {
         assert(m_TotalFaces != 0);
         glTranslatef(position.x,position.y,position.z) ;

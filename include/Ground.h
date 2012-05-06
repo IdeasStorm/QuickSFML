@@ -21,6 +21,11 @@ public:
     virtual ~Ground();
     
     string box_texture;
+    
+protected:
+    inline void draw() {
+        
+    }
 private:
     GLfloat rot;
 

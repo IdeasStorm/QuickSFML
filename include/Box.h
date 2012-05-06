@@ -46,7 +46,6 @@ public:
     void Update(const sf::Input& input);
     bool LoadContent();
 
-    void Draw();
     void SetComponents(Element elements);
     virtual ~Box();
 
@@ -84,44 +83,13 @@ public:
        my_elements = element;
    }
    
-   sf::Vector3f position;
    sf::Vector3f halfSize;
    
-   void setRotation(sf::Vector3f axis, GLfloat rotation) {
-       axis_angle = true;
-       rotationAxis  = axis;
-       this->rotation = rotation;
-   }
-   
-   void setRotation(GLfloat yaw,GLfloat pitch,GLfloat roll){
-       axis_angle = false;
-       xrot  = pitch;
-       yrot  = yaw;
-       zrot  = roll;
-   }
-   
-private:
-
-    
-    sf::Vector3f rotationAxis;
-    GLfloat rotation; //  Rotation
-
-    bool axis_angle; // rotation based on axis and angle
-    
-    void setAxisRotation() {
-        axis_angle = true;
+protected:
+    void draw();
+    inline void scale() {
+        // does nothing, the box is self scaling object
     }
-    
-    void setYawPitchRollRotation() {
-        axis_angle = false;
-    }
-    
-    // Yaw, pitch, Roll
-
-    GLfloat xrot; // X Rotation
-    GLfloat yrot; // Y Rotation
-    GLfloat zrot; // Z Rotation
-       
 private:
     Element my_elements;
     string texture_path;
