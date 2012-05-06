@@ -34,7 +34,7 @@ public:
     int Run();
     GLvoid ReSizeGLScene(GLsizei width, GLsizei height);
     sf::Window window;
-    
+    bool update_child_controls;
     
     virtual ~GLScene();
 protected:

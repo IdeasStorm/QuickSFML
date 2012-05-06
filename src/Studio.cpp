@@ -100,7 +100,7 @@ void Studio::Update(const sf::Input& input){
         *field += sf::Vector3f(0,-s,0);
         (((Box*)(*currentComponent))->position) += sf::Vector3f(0,-s,0);
     }
-    
+    GLScene::Update(input);
 }
 
 void Studio::SetCurrentComponent(list<GLDrawable*>::iterator comp) {

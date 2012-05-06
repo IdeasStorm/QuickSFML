@@ -18,6 +18,7 @@ GLScene::GLScene(char* title) : window(sf::VideoMode(800, 600, 32), title) {
     filter = 0;
     fullscreen = FALSE; // Fullscreen Flag Set To Fullscreen Mode By Default
     vsync = TRUE; // Turn VSYNC on/off
+    update_child_controls = false;
 }
 
 GLScene::GLScene(const GLScene& orig) {
@@ -206,7 +207,8 @@ void GLScene::LoadComponents() {
 void GLScene::Update(const sf::Input& input) {
     list<GLDrawable*>::iterator i;
     for (i=components.begin();i!=components.end();i++){            
-        ((GLDrawable*)(*i))->Update(input);
+        if (update_child_controls)
+                ((GLDrawable*)(*i))->Update(input);
         ((GLDrawable*)(*i))->filter = filter;
     }
 }

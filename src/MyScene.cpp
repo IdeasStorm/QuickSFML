@@ -17,6 +17,7 @@ MyScene::~MyScene() {
 }
 
 void MyScene::LoadComponents(){
+    update_child_controls = true;
     Ground *g = new Ground();
     g->box_texture = "./Data/NeHe.bmp";
     Model * model=new Model("monkey.3ds");
