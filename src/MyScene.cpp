@@ -29,8 +29,8 @@ void MyScene::LoadComponents(){
 
     leftWall->setTexture("./Data/Wall/wall-texture-high-resolution.jpg");
     Edge->setTexture("./Data/Wall/wall-texture-high-resolution.jpg");
-  */
-    Model * model=new Model("./AVEENG/AVEENG/AVEENG_L.3DS");
+  */ 
+    Model * model=new Model("AVEENG_L.3DS");
     //Model * model=new Model("AVEENG_L.3DS");
     //components.push_back(g);
   //  components.push_back(leftWall);
