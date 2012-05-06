@@ -66,8 +66,7 @@
             <linkerOptionItem>-lsfml-graphics -lsfml-system -lsfml-window</linkerOptionItem>
             <linkerLibLibItem>3ds-1</linkerLibLibItem>
             <linkerLibLibItem>3ds</linkerLibLibItem>
-            <linkerLibLibItem>3ds</linkerLibLibItem>
-            <linkerOptionItem>`pkg-config --libs glew`</linkerOptionItem>
+            <linkerOptionItem>-lGLEW</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
@@ -83,6 +82,9 @@
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
+          <incDir>
+            <pElem>include</pElem>
+          </incDir>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>

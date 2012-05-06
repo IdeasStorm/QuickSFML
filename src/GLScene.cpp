@@ -5,6 +5,8 @@
  * Created on May 5, 2012, 2:08 PM
  */
 
+#include <GL/glew.h>
+
 #include "GLScene.h"
 
 GLScene::GLScene(char* title) : window(sf::VideoMode(800, 600, 32), title) {    
@@ -120,7 +122,7 @@ int GLScene::InitGL() // All Setup For OpenGL Goes Here
     {
         return FALSE; // If Texture Didn't Load Return FALSE
     }
-   
+    glewInit();
     glEnable(GL_TEXTURE_2D); // Enable Texture Mapping
     glShadeModel(GL_SMOOTH); // Enable Smooth Shading
     glClearColor(0.0f, 0.0f, 0.0f, 0.5f); // Black Background
