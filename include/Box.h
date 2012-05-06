@@ -83,7 +83,6 @@ public:
        my_elements = element;
    }
    
-   sf::Vector3f halfSize;
    
 protected:
     void draw();
