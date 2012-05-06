@@ -17,6 +17,8 @@ MyScene::MyScene(const MyScene& orig) {
 MyScene::~MyScene() {
 }
 
+Model * train_1;
+
 void MyScene::LoadComponents(){
     update_child_controls = true;
     camera.SetOrigin(0,0,0);
@@ -30,15 +32,15 @@ void MyScene::LoadComponents(){
     leftWall->setTexture("./Data/Wall/wall-texture-high-resolution.jpg");
     Edge->setTexture("./Data/Wall/wall-texture-high-resolution.jpg");
 
-    Model * train_1=new Model("straba_m_mod_02.3ds");
+    train_1=new Model("straba_m_mod_02.3ds");
     //train_1->setTexture("./Data/NeHe.bmp");
     train_1-> position = sf::Vector3f(-5,0,-15);
-    train_1-> setRotation(sf::Vector3f(1,0,0),-45);
+    //train_1-> setRotation(sf::Vector3f(1,0,0),-45);
     
     Model * train_2=new Model("straba_m_mod_02.3ds");
     //train_2->setTexture("./Data/NeHe.bmp");
     train_2->position= sf::Vector3f(5,0,-15);
-    train_2->setRotation(sf::Vector3f(1,0,0),-45);
+    //train_2->setRotation(sf::Vector3f(1,0,0),-45);
     
     
     //components.push_back(g);
@@ -52,5 +54,7 @@ void MyScene::LoadComponents(){
 }
 
 void MyScene::Update(const sf::Input& input) {
-
+    if (input.IsKeyDown(sf::Key::Z)){
+        train_1->xrot++;
+    }
 }

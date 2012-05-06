@@ -52,6 +52,12 @@ public:
     void setYawPitchRollRotation() {
         axis_angle = false;
     }
+    
+    // Yaw, pitch, Roll
+
+    GLfloat xrot; // X Rotation
+    GLfloat yrot; // Y Rotation
+    GLfloat zrot; // Z Rotation
 protected:
     list<GLDrawable*> components;
     GLuint texture[3]; // Storage For 3 Textures
@@ -64,11 +70,6 @@ protected:
     
     
     
-    // Yaw, pitch, Roll
-
-    GLfloat xrot; // X Rotation
-    GLfloat yrot; // Y Rotation
-    GLfloat zrot; // Z Rotation
     
     // overridable internal helpers 
     
