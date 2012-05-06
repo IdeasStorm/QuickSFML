@@ -27,6 +27,7 @@ void Studio::Update(const sf::Input& input){
     static bool T_was_down = false;
     static bool eq_was_down = false;
     static bool minus_was_down = false;
+    static bool F5_was_down = false;
     
     if (input.IsKeyDown(sf::Key::N) )  {
         N_was_down = true;
@@ -79,6 +80,7 @@ void Studio::Update(const sf::Input& input){
     }else if (input.IsKeyDown(sf::Key::LAlt)){
         field = new sf::Vector3f();
         rotation = true;
+        s = 1;
     }else {
         field = &(((*currentComponent))->position);
     }
@@ -117,6 +119,14 @@ void Studio::Update(const sf::Input& input){
         (*currentComponent)->yrot += field->y;
         (*currentComponent)->zrot += field->z;
     }
+    
+    
+    if (input.IsKeyDown(sf::Key::F5))  {
+        F5_was_down = true;
+    } else if (F5_was_down) {
+        F5_was_down = false;
+        WriteCode();
+    }
     GLScene::Update(input);
 }
 
@@ -145,5 +155,18 @@ void Studio::PrevComponent() {
 }
 
 void Studio::WriteCode(){
-    
+    list<GLDrawable*>::iterator i;
+    int c = 0;
+    printf("//=====================GENERATED CODE========================\n");
+    for (i=components.begin();i!=components.end();i++){
+        GLDrawable *e = *i;
+        printf("//========================box%d=====================================\n",c);
+        printf("Box *box%d = new Box(); \n",c);
+        printf("box%d->position = Vector3f(%f,%f,%f); \n",c,e->position.x,e->position.y,e->position.z);
+        printf("box%d->position = Vector3f(%f,%f,%f); \n",c,e->halfSize.x,e->halfSize.y,e->halfSize.z);
+        printf("box%d->setRotation(%f,%f,%f); \n",c,e->xrot,e->yrot,e->zrot);
+        printf("components.push_back(box%d); \n",c);
+        printf("//==================================================================\n");
+        c++;
+    }
 }
