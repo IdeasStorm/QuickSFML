@@ -163,7 +163,7 @@ void Studio::WriteCode(){
         printf("//========================box%d=====================================\n",c);
         printf("Box *box%d = new Box(); \n",c);
         printf("box%d->position = Vector3f(%f,%f,%f); \n",c,e->position.x,e->position.y,e->position.z);
-        printf("box%d->position = Vector3f(%f,%f,%f); \n",c,e->halfSize.x,e->halfSize.y,e->halfSize.z);
+        printf("box%d->halfSize = Vector3f(%f,%f,%f); \n",c,e->halfSize.x,e->halfSize.y,e->halfSize.z);
         printf("box%d->setRotation(%f,%f,%f); \n",c,e->xrot,e->yrot,e->zrot);
         printf("components.push_back(box%d); \n",c);
         printf("//==================================================================\n");
