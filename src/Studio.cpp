@@ -62,24 +62,61 @@ void Studio::Update(const sf::Input& input){
         eq_was_down = false;
         NextComponent();
     }
+    
+    float s = 0.1f;
+    if (input.IsKeyDown(sf::Key::LControl)) {
+        s *=0.1f;
+    }
+    
+    sf::Vector3f *field;
+    if (input.IsKeyDown(sf::Key::LShift)) {
+        field = &(((Box*)(*currentComponent))->halfSize);
+    }else {
+        field = &(((Box*)(*currentComponent))->position);
+    }
+    if (input.IsKeyDown(sf::Key::Right)) {
+        *field += sf::Vector3f(s,0,0);
+        (((Box*)(*currentComponent))->position) += sf::Vector3f(s,0,0);
+    }
+    if (input.IsKeyDown(sf::Key::Left)) {
+        *field += sf::Vector3f(-s,0,0);
+        (((Box*)(*currentComponent))->position) += sf::Vector3f(-s,0,0);
+    }
+    if (input.IsKeyDown(sf::Key::Up)) {
+        *field += sf::Vector3f(0,0,s);
+        (((Box*)(*currentComponent))->position) += sf::Vector3f(0,0,s);
+    }
+    if (input.IsKeyDown(sf::Key::Down)) {
+        *field += sf::Vector3f(0,0,-s);
+        (((Box*)(*currentComponent))->position) += sf::Vector3f(0,0,-s);
+    }
+    if (input.IsKeyDown(sf::Key::PageUp)) {
+        *field += sf::Vector3f(0,s,0);
+        (((Box*)(*currentComponent))->position) += sf::Vector3f(0,s,0);
+    }
+    if (input.IsKeyDown(sf::Key::PageDown)) {
+        *field += sf::Vector3f(0,-s,0);
+        (((Box*)(*currentComponent))->position) += sf::Vector3f(0,-s,0);
+    }
+    
 }
 
 void Studio::SetCurrentComponent(list<GLDrawable*>::iterator comp) {
     if (currentComponent != components.end())
-        (*currentComponent)->textureEnabled = false;
+        (*currentComponent)->textureEnabled = true;
     currentComponent = comp;
-    (*currentComponent)->textureEnabled = true;
+    (*currentComponent)->textureEnabled = false;
 }
 
 void Studio::NextComponent(){
-   if (currentComponent != components.end())
-    (*currentComponent)->textureEnabled = false;
+   //if (currentComponent != components.end())
+    (*currentComponent)->textureEnabled = true;
     currentComponent++;
     (*currentComponent)->textureEnabled = false;
 }
 void Studio::PrevComponent() {
-   if (currentComponent != components.end())
-    (*currentComponent)->textureEnabled = false;
+   //if (currentComponent != components.end())
+    (*currentComponent)->textureEnabled = true;
     currentComponent--;
     (*currentComponent)->textureEnabled = false;
 }

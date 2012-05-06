@@ -26,7 +26,7 @@ public:
     int InitGL();
     
     virtual void Draw();
-    virtual void Update(const sf::Input &input)=0;
+    virtual void Update(const sf::Input &input);
     virtual void SetupLighting(){
         
     }

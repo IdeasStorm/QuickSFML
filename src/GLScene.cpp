@@ -86,14 +86,11 @@ int GLScene::Run() {
         //Handle movement keys
         const sf::Input& Input = window.GetInput();
 
-        list<GLDrawable*>::iterator i;
+        
         
         camera.UpdateCamera(Input,window.GetWidth()/2,window.GetHeight()/2);
         Update(Input);
-        for (i=components.begin();i!=components.end();i++){            
-            ((GLDrawable*)(*i))->Update(Input);
-            ((GLDrawable*)(*i))->filter = filter;
-        }
+        
 
         // Turn VSYNC on so that animations run at a more reasonable speed on new CPU's/GPU's.
         window.UseVerticalSync(vsync);
@@ -201,5 +198,13 @@ void GLScene::LoadComponents() {
     list<GLDrawable*>::iterator i;
     for (i=components.begin();i!=components.end();i++){
         ((GLDrawable*)(*i))->LoadComponents();
+    }
+}
+
+void GLScene::Update(const sf::Input& input) {
+    list<GLDrawable*>::iterator i;
+    for (i=components.begin();i!=components.end();i++){            
+        ((GLDrawable*)(*i))->Update(input);
+        ((GLDrawable*)(*i))->filter = filter;
     }
 }
