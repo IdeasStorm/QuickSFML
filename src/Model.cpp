@@ -99,8 +99,8 @@ void Model::GLInit()
 void Model::draw()
 {
         assert(m_TotalFaces != 0);
-        glTranslatef(position.x,position.y,position.z) ;
-        glRotatef(rotation,rotationAxis.x,rotationAxis.y,rotationAxis.z);
+   //     glTranslatef(position.x,position.y,position.z) ;
+     //   glRotatef(rotation,rotationAxis.x,rotationAxis.y,rotationAxis.z);
         
         //TODO make better mechanism
         if (textureEnabled) {
