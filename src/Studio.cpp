@@ -34,8 +34,6 @@ void Studio::Update(const sf::Input& input){
         N_was_down = false;
         Box *box = new Box();
         box->setTexture("Data/NeHe.bmp");
-        box->DisableTexture();
-        box->setTexture("Data/NeHe.bmp");
         components.push_back(box);
         // setting this element as current
         list<GLDrawable*>::iterator end = components.end();
