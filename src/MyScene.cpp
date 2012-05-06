@@ -32,12 +32,12 @@ void MyScene::LoadComponents(){
 
     Model * train_1=new Model("straba_m_mod_02.3ds");
     //train_1->setTexture("./Data/NeHe.bmp");
-    train_1-> position = sf::Vector3f(-5,0,-15);
+    train_1-> position = sf::Vector3f(-5,0,0);
     train_1-> setRotation(sf::Vector3f(1,0,0),-45);
     
     Model * train_2=new Model("straba_m_mod_02.3ds");
     //train_2->setTexture("./Data/NeHe.bmp");
-    train_2->position= sf::Vector3f(5,0,-15);
+    train_2->position= sf::Vector3f(5,0,0);
     train_2->setRotation(sf::Vector3f(1,0,0),-45);
     
     
