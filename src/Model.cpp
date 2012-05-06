@@ -20,6 +20,7 @@ Model::Model(std::string filename)
     {
             throw strcat("Unable to load ", filename.c_str());
     }
+    position.x = position.y = position.z = rotation = 0 ;
 }
 
 void Model::GetFaces()
@@ -36,11 +37,8 @@ void Model::GetFaces()
         }
 }
 
-bool Model::LoadContent() {
-    return true;
-}
-
 void Model::SetupLighting()
+
 {
          assert(m_model != NULL);
        
@@ -90,10 +88,47 @@ void Model::SetupLighting()
         //return true;
 }
 
+void Model::setPosition(float x,float y , float z)
+
+{
+    position.x = x ;
+    position.y = y ;
+    position.z = z ;
+}
+
+void Model::setRotation(GLfloat rotation,float x, float y,float z) 
+
+{
+   rotationAxis.x = x;
+   rotationAxis.y = y;
+   rotationAxis.z = z;
+   this->rotation = rotation;
+}
+
+
+void Model::setTexture(string path) 
+{
+    textureEnabled = true;
+    texture_path = path;
+    LoadContent();
+}
+   
+
 void Model::Draw()
 {
-      assert(m_TotalFaces != 0);
-        glTranslatef(5,0,0)      ;
+        assert(m_TotalFaces != 0);
+        glTranslatef(position.x,position.y,position.z) ;
+        glRotatef(rotation,rotationAxis.x,rotationAxis.y,rotationAxis.z);
+        
+        //TODO make better mechanism
+        if (textureEnabled) {
+            glEnable(GL_TEXTURE_2D);
+            glBindTexture(GL_TEXTURE_2D, texture[filter]);
+        }
+        else {
+            glDisable(GL_TEXTURE_2D);
+        }
+        
         // Enable vertex and normal arrays
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_NORMAL_ARRAY);
