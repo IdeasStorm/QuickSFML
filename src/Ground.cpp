@@ -5,10 +5,6 @@
  * Created on May 2, 2012, 8:17 PM
  */
 
-#include <GL/gl.h>
-#include <SFML/Window/Input.hpp>
-#include <stdlib.h>
-
 #include "Ground.h"
 #include "Box.h"
 

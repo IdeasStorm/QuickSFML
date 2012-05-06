@@ -6,7 +6,6 @@
  */
 
 #include "Box.h"
-#include "glframe.h"
 
 Box::Box() {
     init();

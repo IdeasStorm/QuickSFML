@@ -9,7 +9,6 @@
 #define	STUDIO_H
 #include <SFML/Graphics.hpp>
 #include "GLScene.h"
-#include <list>
 #include "Box.h"
 
 using namespace std;

@@ -12,8 +12,6 @@
 #define FALSE false
 
 #include <SFML/System.hpp>
-#include <SFML/Graphics.hpp>
-#include <list>
 #include "Drawable.h"
 #include "glframe.h"
 using namespace std;

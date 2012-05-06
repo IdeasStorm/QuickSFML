@@ -8,20 +8,10 @@
 
 #include "Model.h"
 
-#include <lib3ds/file.h>
-#include <lib3ds/mesh.h>
-
-#include <iostream>
-#include <string>
-#include <cstring>
-#include <cassert>
-//#include <GL/glu.h>
-
-#include <SFML/Graphics.hpp>
-
 
 Model::Model(std::string filename)
 {
+    m_VertexVBO = 0;
     m_TotalFaces = 0;
     m_model=lib3ds_file_load("monkey.3ds");
         //m_model = lib3ds_file_load(filename.c_str());
@@ -46,7 +36,11 @@ void Model::GetFaces()
         }
 }
 
-bool Model::LoadContent()
+bool Model::LoadContent() {
+    
+}
+
+void Model::SetupLighting()
 {
           assert(m_model != NULL);
        
@@ -93,10 +87,10 @@ bool Model::LoadContent()
         lib3ds_file_free(m_model);
         m_model = NULL;
         // :)
-        return true;
+        //return true;
 }
 
-void Model::Draw() const
+void Model::Draw()
 {
       assert(m_TotalFaces != 0);
         glTranslatef(5,0,0)      ;
@@ -123,3 +117,4 @@ void Model::Draw() const
 
 void Model::Update(const sf::Input& input)
 {}
+

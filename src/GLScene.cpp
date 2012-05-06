@@ -6,7 +6,6 @@
  */
 
 #include "GLScene.h"
-using namespace std;
 
 GLScene::GLScene(char* title) : window(sf::VideoMode(800, 600, 32), title) {    
     GLfloat LightAmbient[] ={0.5f, 0.5f, 0.5f, 1.0f};

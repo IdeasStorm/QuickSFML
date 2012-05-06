@@ -8,7 +8,7 @@
 #ifndef BOX_H
 #define	BOX_H
 #include "Drawable.h"
-#include "core.h"
+
 using namespace std;
 namespace elements {
         enum Element{

@@ -7,20 +7,28 @@
 
 #ifndef MODEL_H
 #define	MODEL_H
-
-#include <string>
 #include <GL/glew.h>
-#include <SFML/Graphics.hpp>
 #include <lib3ds/file.h>
+#include <lib3ds/mesh.h>
+
 #include "Drawable.h"
+
+#include <iostream>
+#include <string>
+#include <cstring>
+#include <cassert>
+#include <string>
+
+
 
 class Model : public GLDrawable
 {
     public :
         Model(std::string filename);  
-        void Draw() const;
+        void Draw();
         bool LoadContent();
         void Update(const sf::Input &input);
+        void SetupLighting();
     private:
         void GetFaces();
         unsigned int m_TotalFaces;
