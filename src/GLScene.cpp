@@ -16,7 +16,7 @@ GLScene::GLScene(char* title) : window(sf::VideoMode(800, 600, 32), title) {
     memcpy(this->LightAmbient, LightAmbient, sizeof LightAmbient);
     memcpy(this->LightDiffuse, LightDiffuse, sizeof LightDiffuse);
     memcpy(this->LightPosition, LightPosition, sizeof LightPosition);
-    
+    light = true;
     filter = 0;
     fullscreen = FALSE; // Fullscreen Flag Set To Fullscreen Mode By Default
     vsync = TRUE; // Turn VSYNC on/off
