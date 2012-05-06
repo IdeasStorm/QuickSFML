@@ -5,6 +5,7 @@
  * Created on May 5, 2012, 7:44 PM
  */
 
+
 #include "Studio.h"
 
 Studio::Studio() {
@@ -36,7 +37,10 @@ void Studio::Update(const sf::Input& input){
         box->DisableTexture();
         box->setTexture("Data/NeHe.bmp");
         components.push_back(box);
-        SetCurrentComponent(components.begin());
+        // setting this element as current
+        list<GLDrawable*>::iterator end = components.end();
+        end--;
+        SetCurrentComponent(end);
     }
     
     if (input.IsKeyDown(sf::Key::T) )  {
@@ -49,7 +53,7 @@ void Studio::Update(const sf::Input& input){
         components.push_back(box);
     }
     
-    if (input.IsKeyDown(sf::Key::Subtract) )  {
+    if (input.IsKeyDown(sf::Key::Dash) )  {
         minus_was_down = true;
     } else if (minus_was_down) {
         minus_was_down = false;
@@ -109,14 +113,18 @@ void Studio::SetCurrentComponent(list<GLDrawable*>::iterator comp) {
 }
 
 void Studio::NextComponent(){
-   //if (currentComponent != components.end())
-    (*currentComponent)->textureEnabled = true;
+   
+    list<GLDrawable*>::iterator prev = currentComponent;
     currentComponent++;
+    if (currentComponent == components.end())
+        currentComponent = components.begin();
+    (*prev)->textureEnabled = true;
     (*currentComponent)->textureEnabled = false;
 }
 void Studio::PrevComponent() {
-   //if (currentComponent != components.end())
     (*currentComponent)->textureEnabled = true;
+    if (currentComponent == components.begin())
+        currentComponent = components.end();
     currentComponent--;
     (*currentComponent)->textureEnabled = false;
 }
