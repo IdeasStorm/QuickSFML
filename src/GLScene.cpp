@@ -174,7 +174,9 @@ void GLScene::Draw() // Here's Where We Do All The Drawing
     glLoadIdentity(); // Reset The View
     camera.ApplyCamera();
     for (i=components.begin();i!=components.end();i++){
+        glPushMatrix();
         ((GLDrawable*)(*i))->Draw();
+        glPopMatrix();
     }
     
     glTranslated(5,0,0);
