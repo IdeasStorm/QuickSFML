@@ -13,7 +13,7 @@ Model::Model(std::string filename)
 {
     m_VertexVBO = 0;
     m_TotalFaces = 0;
-    m_model=lib3ds_file_load("./Data/straba_m_mod_02.3ds");
+    m_model=lib3ds_file_load("straba_m_mod_02.3ds");
         //m_model = lib3ds_file_load(filename.c_str());
         // If loading the model failed, we throw an exception
         if(!m_model)
