@@ -96,8 +96,7 @@ void Model::GLInit()
         //return true;
 }
 
-void Model::Draw()
-
+void Model::draw()
 {
         assert(m_TotalFaces != 0);
         glTranslatef(position.x,position.y,position.z) ;

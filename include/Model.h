@@ -27,7 +27,7 @@ class Model : public GLDrawable
 
         Model(std::string filename);  
 
-        void Draw();
+//        void Draw();
         void Update(const sf::Input &input);
         void SetupLighting();
         
@@ -37,7 +37,8 @@ class Model : public GLDrawable
         void GLInit();
         
     protected:
-        //inline void draw();
+
+        void draw();
 
     private:
         void GetFaces();
