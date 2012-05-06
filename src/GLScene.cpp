@@ -140,7 +140,7 @@ int GLScene::InitGL() // All Setup For OpenGL Goes Here
     glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse); // Setup The Diffuse Light
     glLightfv(GL_LIGHT1, GL_POSITION, LightPosition); // Position The Light
     glEnable(GL_LIGHT1); // Enable Light One
-    
+    glEnable(GL_LIGHTING);
 //    model->CreateVBO();
     
     return TRUE; // Initialization Went OK
