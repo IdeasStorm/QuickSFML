@@ -34,7 +34,7 @@ void MyScene::LoadComponents(){
 
     train_1=new Model("straba_m_mod_02.3ds");
     //train_1->setTexture("./Data/NeHe.bmp");
-    train_1-> position = sf::Vector3f(-5,0,-15);
+    train_1-> position = sf::Vector3f(10,0,0);
     //train_1-> setRotation(sf::Vector3f(1,0,0),-45);
     
     Model * train_2=new Model("straba_m_mod_02.3ds");
@@ -57,4 +57,11 @@ void MyScene::Update(const sf::Input& input) {
     if (input.IsKeyDown(sf::Key::Z)){
         train_1->xrot++;
     }
+    if (input.IsKeyDown(sf::Key::X)){
+        train_1->yrot++;
+    }
+    if (input.IsKeyDown(sf::Key::C)){
+        train_1->zrot++;
+    }
+    
 }
