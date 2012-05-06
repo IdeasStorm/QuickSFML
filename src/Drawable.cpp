@@ -56,6 +56,7 @@ void GLDrawable::GLInit() {
 }
 
 void GLDrawable::Draw() {
+    
     translate();
     rotate();
     scale();
