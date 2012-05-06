@@ -126,3 +126,7 @@ void Studio::PrevComponent() {
     currentComponent--;
     (*currentComponent)->textureEnabled = false;
 }
+
+void Studio::WriteCode(){
+    
+}
