@@ -49,7 +49,7 @@ aiVector3D scene_min, scene_max, scene_center;
 std::map<std::string, GLuint*> textureIdMap;	// map image filenames to textureIds
 GLuint*		textureIds;							// pointer to texture Array
 
-static const std::string basepath = "../Data/OBJ/";
+static const std::string basepath = "./Data/OBJ/";
 static const std::string modelname = "spider.obj";
 
 // Create an instance of the Importer class
@@ -455,6 +455,8 @@ int main()
     // Create the main window
     sf::Window App(sf::VideoMode(800, 600, 32), "SFML/NeHe OpenGL");
 
+    Import3DFromFile(basepath+modelname);
+            
     InitGL();
     ReSizeGLScene(800, 600);
 
