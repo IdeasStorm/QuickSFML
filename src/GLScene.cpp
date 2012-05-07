@@ -87,6 +87,8 @@ int GLScene::Run() {
                 }
             }
         }
+        
+        
         window.SetCursorPosition(window.GetWidth()/2,window.GetHeight()/2);
         //Handle movement keys
         const sf::Input& Input = window.GetInput();

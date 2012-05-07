@@ -7,14 +7,18 @@
 
 #ifndef TRAIN_H
 #define	TRAIN_H
+#include "Model.h"
 #include "Drawable.h"
 
-class Train : public GLDrawable {
+
+class Train : public Model {
 public:
-    Train();
-    Train(const Train& orig);
+    Train(std::string filename);
+    virtual void Update(const sf::Input &input);
     virtual ~Train();
+    GLfloat MoveForward ;
 private:
+
 
 };
 

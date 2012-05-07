@@ -1,4 +1,4 @@
-        /* 
+ /* 
  * File:   Drawable.cpp
  * Author: mhdsyrwan
  * 
@@ -18,7 +18,6 @@ GLDrawable::GLDrawable() {
     position.x = 0 ;
     position.y = 0 ;
     position.z = 0 ;
-    MoveForward = position.z ;
     xrot=0;
     yrot=0;
     zrot=0;
@@ -62,7 +61,6 @@ void GLDrawable::GLInit() {
 void GLDrawable::Draw() {
     
     translate();
-    glTranslatef(0,0,MoveForward);
     rotate();
     scale();
     draw();
@@ -80,8 +78,7 @@ void GLDrawable::scale() {
 }
 
 void GLDrawable::translate() {
-//    glTranslatef(position.x,position.y,MoveForward);
-      glTranslatef(position.x,position.y,position.z);
+    glTranslatef(position.x,position.y,position.z);
 }
 
 void GLDrawable::rotate() {
@@ -92,4 +89,9 @@ void GLDrawable::rotate() {
         glRotatef(yrot,0,1,0);
         glRotatef(zrot,0,0,1);
     }
+}
+
+void Update(const sf::Input &input)
+{
+    
 }

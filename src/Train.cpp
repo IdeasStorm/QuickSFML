@@ -1,18 +1,23 @@
 /* 
  * File:   Train.cpp
- * Author: mhdsyrwan
+ * Author: yaman
  * 
  * Created on May 5, 2012, 9:44 PM
  */
 
 #include "Train.h"
 
-Train::Train() {
+
+Train::Train(std::string filename): Model(filename)
+{
+    
 }
 
-Train::Train(const Train& orig) {
+void Train::Update(const sf::Input &input)
+{
+    position.x = MoveForward;
 }
-
+        
 Train::~Train() {
 }
 

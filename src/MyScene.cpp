@@ -10,6 +10,7 @@
 #include "Ground.h"
 #include "Box.h"
 #include "Light.h"
+#include "Train.h"
 
 
 MyScene::MyScene(const MyScene& orig) {
@@ -18,8 +19,10 @@ MyScene::MyScene(const MyScene& orig) {
 MyScene::~MyScene() {
 }
 
-Model * train_1;
+Train * train_1;
+Train * train_2;
 Light * test ;
+
 void MyScene::LoadComponents(){
     update_child_controls = true;
     camera.SetOrigin(0,5,10);
@@ -36,11 +39,11 @@ void MyScene::LoadComponents(){
     leftWall->setTexture("./Data/Wall/wall-texture-high-resolution.jpg");
     Edge->setTexture("./Data/Wall/wall-texture-high-resolution.jpg");
 
-    train_1=new Model("./Data/Model/straba_m_mod_02.3ds");
+    train_1=new Train("./Data/Model/straba_m_mod_02.3ds");
     train_1-> position = sf::Vector3f(-5,0,-15);
     train_1-> setRotation(sf::Vector3f(1,0,0),-90);
     
-    Model * train_2=new Model("./Data/Model/straba_m_mod_02.3ds");
+    train_2= new Train("./Data/Model/straba_m_mod_02.3ds");
     train_2->position= sf::Vector3f(5,0,-15);
     train_2->setRotation(sf::Vector3f(1,0,0),-90);
 
@@ -69,6 +72,7 @@ void MyScene::LoadComponents(){
 }
 
 void MyScene::Update(const sf::Input& input) {
+    
     if (input.IsKeyDown(sf::Key::Z)){
         train_1->MoveForward -=0.5;
         camera.MoveForward(+0.5);
@@ -92,4 +96,5 @@ void MyScene::Update(const sf::Input& input) {
         test->position = sf::Vector3f(10,10,10);
         test->SetupLighting();
     }
+    GLScene::Update(input);
 }

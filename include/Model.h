@@ -26,23 +26,21 @@ class Model : public GLDrawable
     public :
 
         Model(std::string filename);  
-
 //        void Draw();
-        void Update(const sf::Input &input);
+        virtual void Update(const sf::Input &input);
         void SetupLighting();
         
 
         bool LoadContent();
         
         void GLInit();
-        
     protected:
 
         void draw();
 
     private:
         void GetFaces();
-        
+
         unsigned int m_TotalFaces;
         Lib3dsFile * m_model;
         GLuint m_VertexVBO, m_NormalVBO;

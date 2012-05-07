@@ -131,5 +131,6 @@ void Model::draw()
 }
 
 void Model::Update(const sf::Input& input)
-{}
-
+{
+    
+}

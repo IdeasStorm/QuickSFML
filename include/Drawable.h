@@ -19,7 +19,7 @@ public:
     virtual bool LoadContent();
     void Draw();
 
-    virtual void Update(const sf::Input &input)=0;
+    virtual void Update(const sf::Input &input) =0;
     virtual void GLInit();
     GLuint* GetTextures();
     virtual void LoadComponents();
@@ -52,9 +52,7 @@ public:
     void setYawPitchRollRotation() {
         axis_angle = false;
     }
-    
-    // Yaw, pitch, Roll
-    GLfloat MoveForward; // X Rotation
+     
     GLfloat xrot; // X Rotation
     GLfloat yrot; // Y Rotation
     GLfloat zrot; // Z Rotation
