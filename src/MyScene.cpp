@@ -45,13 +45,15 @@ void MyScene::LoadComponents(){
     train_2->position= sf::Vector3f(5,0,-15);
     train_2->setRotation(sf::Vector3f(1,0,0),-90);
 
-    
-    
+    Model * ligth1 = new Model("Street lamp N150708.3DS");
+    ligth1->position = sf::Vector3f(20,20,-40);
+    ligth1->setRotation(sf::Vector3f(1,0,0),-90);
     //components.push_back(g);
     components.push_back(leftWall);
     components.push_back(Edge);
     components.push_back(train_1);
     components.push_back(train_2);
+    components.push_back(ligth1);
 //   components.push_back(ground);
  
     GLScene::LoadComponents();
