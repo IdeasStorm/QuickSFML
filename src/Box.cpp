@@ -98,7 +98,7 @@ void Box::draw(){
         glTexCoord2f(0.0f, 0.0f);
         glVertex3f(-w, -h, d);
         glTexCoord2f(1.0f, 0.0f);
-        glVertex3f(w, -h, d);
+       // glVertex3f(w, -h, d);
         glTexCoord2f(1.0f, 1.0f);
         glVertex3f(w, h, d);
         glTexCoord2f(0.0f, 1.0f);
@@ -210,4 +210,4 @@ void Box::SetComponents(elements::Element elements) {
 
 bool elements::has(Element elements, Element test){
     return ((elements & test) == test);
-}
+}////

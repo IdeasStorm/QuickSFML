@@ -17,7 +17,7 @@ public:
     virtual ~GLDrawable();
 
     virtual bool LoadContent();
-    void Draw();
+    virtual void Draw();
 
     virtual void Update(const sf::Input &input)=0;
     virtual void GLInit();
@@ -76,7 +76,7 @@ protected:
     virtual void scale();
     virtual void translate();
     virtual void rotate();
-    virtual void draw() = 0;
+    virtual void draw()=0;
 private:
 };
 #endif	/* DRAWABLE_H */

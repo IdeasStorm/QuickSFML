@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/src/Model.o \
+	${OBJECTDIR}/src/Model3d.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/src/math3d.o \
 	${OBJECTDIR}/src/GLScene.o \
@@ -61,7 +62,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-lGLU -lGL -lsfml-graphics -lsfml-system -lsfml-window -l3ds-1 -l3ds -lGLEW
+LDLIBSOPTIONS=-lGLU -lGL -lsfml-graphics -lsfml-system -lsfml-window -l3ds-1 -l3ds -lGLEW `pkg-config --libs IL` `pkg-config --libs assimp`  
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -74,57 +75,62 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/metro-simulation: ${OBJECTFILES}
 ${OBJECTDIR}/src/Model.o: src/Model.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Model.o src/Model.cpp
+	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags IL` `pkg-config --cflags assimp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Model.o src/Model.cpp
+
+${OBJECTDIR}/src/Model3d.o: src/Model3d.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} $@.d
+	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags IL` `pkg-config --cflags assimp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Model3d.o src/Model3d.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags IL` `pkg-config --cflags assimp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
 
 ${OBJECTDIR}/src/math3d.o: src/math3d.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/math3d.o src/math3d.cpp
+	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags IL` `pkg-config --cflags assimp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/math3d.o src/math3d.cpp
 
 ${OBJECTDIR}/src/GLScene.o: src/GLScene.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/GLScene.o src/GLScene.cpp
+	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags IL` `pkg-config --cflags assimp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/GLScene.o src/GLScene.cpp
 
 ${OBJECTDIR}/src/Train.o: src/Train.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Train.o src/Train.cpp
+	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags IL` `pkg-config --cflags assimp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Train.o src/Train.cpp
 
 ${OBJECTDIR}/src/Studio.o: src/Studio.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Studio.o src/Studio.cpp
+	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags IL` `pkg-config --cflags assimp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Studio.o src/Studio.cpp
 
 ${OBJECTDIR}/src/MyScene.o: src/MyScene.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/MyScene.o src/MyScene.cpp
+	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags IL` `pkg-config --cflags assimp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/MyScene.o src/MyScene.cpp
 
 ${OBJECTDIR}/src/Drawable.o: src/Drawable.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Drawable.o src/Drawable.cpp
+	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags IL` `pkg-config --cflags assimp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Drawable.o src/Drawable.cpp
 
 ${OBJECTDIR}/src/Ground.o: src/Ground.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Ground.o src/Ground.cpp
+	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags IL` `pkg-config --cflags assimp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Ground.o src/Ground.cpp
 
 ${OBJECTDIR}/src/Box.o: src/Box.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Box.o src/Box.cpp
+	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags IL` `pkg-config --cflags assimp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Box.o src/Box.cpp
 
 ${OBJECTDIR}/src/Light.o: src/Light.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Light.o src/Light.cpp
+	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags IL` `pkg-config --cflags assimp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Light.o src/Light.cpp
 
 # Subprojects
 .build-subprojects:

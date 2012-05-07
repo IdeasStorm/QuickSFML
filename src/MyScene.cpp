@@ -9,6 +9,7 @@
 #include "MyScene.h"
 #include "Ground.h"
 #include "Box.h"
+#include "Model3d.h"
 
 
 MyScene::MyScene(const MyScene& orig) {
@@ -18,12 +19,17 @@ MyScene::~MyScene() {
 }
 
 Model * train_1;
+Model3d * model3d;
 
 void MyScene::LoadComponents(){
     update_child_controls = true;
     camera.SetOrigin(0,0,0);
+    
+    
+    model3d = new Model3d("spider.obj");
+    
    // Ground *g = new Ground();
-
+    
     //g->box_texture = "./Data/Wall/images.jpg";
     Box *leftWall = new Box(sf::Vector3f (-20,5,-50),sf::Vector3f (1,10,50));
     Box *Edge = new Box(sf::Vector3f (20,-3,-50),sf::Vector3f (5,1,50));
@@ -43,13 +49,14 @@ void MyScene::LoadComponents(){
     //train_2->setRotation(sf::Vector3f(1,0,0),-45);
     
     
+    
     //components.push_back(g);
-    components.push_back(leftWall);
-    components.push_back(Edge);
-    components.push_back(train_1);
-    components.push_back(train_2);
+//    components.push_back(leftWall);
+//    components.push_back(Edge);
+//    components.push_back(train_1);
+//    components.push_back(train_2);
+    components.push_back(model3d);
 //   components.push_back(ground);
- 
     GLScene::LoadComponents();
 }
 

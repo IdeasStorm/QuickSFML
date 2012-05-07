@@ -48,7 +48,7 @@ bool Model::LoadContent() {
 void Model::GLInit()
 
 {
-         assert(m_model != NULL);
+        assert(m_model != NULL);
        
         // Calculate the number of faces we have in total
         GetFaces();
