@@ -56,7 +56,7 @@ public:
 protected:
     void Draw();
     
-    void GLInt();
+    void GLInit();
     void Update(const sf::Input &input);
     bool LoadContent();
     void DisableTexture() {        

@@ -9,8 +9,10 @@
 #include <fstream>
 Model3d::Model3d(const std::string& pFile) 
 {
-    //basepath = "./Data";
-    std::ifstream fin(pFile.c_str());
+    basepath = "./Data/OBJ/";
+    modelname= pFile;
+    std::string temp(basepath+modelname);
+    std::ifstream fin(temp.c_str());
 	if(!fin.fail())
 	{
 		fin.close();
@@ -20,7 +22,7 @@ Model3d::Model3d(const std::string& pFile)
 		abort();
 	}
 
-	scene = importer.ReadFile( pFile, aiProcessPreset_TargetRealtime_Quality);
+	scene = importer.ReadFile( temp, aiProcessPreset_TargetRealtime_Quality);
 
 	// If the import failed, report it
 	if( !scene)
@@ -65,7 +67,8 @@ int Model3d::LoadGLTextures(const aiScene* scene)
 		while (texFound == AI_SUCCESS)
 		{
 			texFound = scene->mMaterials[m]->GetTexture(aiTextureType_DIFFUSE, texIndex, &path);
-			textureIdMap[path.data] = NULL; //fill map with textures, pointers still NULL yet
+			
+                        textureIdMap[path.data] = NULL; //fill map with textures, pointers still NULL yet
 			texIndex++;
 		}
 	}
@@ -99,7 +102,7 @@ int Model3d::LoadGLTextures(const aiScene* scene)
 
 
 		ilBindImage(imageIds[i]); /* Binding of DevIL image name */
-	
+                filename = "SpiderTex.jpg";
                 std::string fileloc = basepath + filename;	/* Loading of image */
 		success = ilLoadImage(fileloc.c_str());
 
@@ -146,7 +149,7 @@ int Model3d::LoadGLTextures(const aiScene* scene)
 
 
 
-void Model3d::GLInt()
+void Model3d::GLInit()
 {
 if (!LoadGLTextures(scene))
 	{
@@ -154,26 +157,26 @@ if (!LoadGLTextures(scene))
 	}
 
 
-	glEnable(GL_TEXTURE_2D);
-	glShadeModel(GL_SMOOTH);		 // Enables Smooth Shading
-	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
-	glClearDepth(1.0f);				// Depth Buffer Setup
-	glEnable(GL_DEPTH_TEST);		// Enables Depth Testing
-	glDepthFunc(GL_LEQUAL);			// The Type Of Depth Test To Do
-	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	// Really Nice Perspective Calculation
+//	glEnable(GL_TEXTURE_2D);
+//	glShadeModel(GL_SMOOTH);		 // Enables Smooth Shading
+//	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
+//	glClearDepth(1.0f);				// Depth Buffer Setup
+//	glEnable(GL_DEPTH_TEST);		// Enables Depth Testing
+//	glDepthFunc(GL_LEQUAL);			// The Type Of Depth Test To Do
+//	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	// Really Nice Perspective Calculation
+//
+//
+//	glEnable(GL_LIGHTING);
+//	glEnable(GL_LIGHT0);    // Uses default lighting parameters
+//	glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
+//	glEnable(GL_NORMALIZE);
+//
+////	glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient);
+////	glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);
+////	glLightfv(GL_LIGHT1, GL_POSITION, LightPosition);
+//	glEnable(GL_LIGHT1);
 
-
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);    // Uses default lighting parameters
-	glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
-	glEnable(GL_NORMALIZE);
-
-//	glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient);
-//	glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);
-//	glLightfv(GL_LIGHT1, GL_POSITION, LightPosition);
-	glEnable(GL_LIGHT1);
-
-	//glColorMaterial(GL_FRONT_AND_BACK, GL_DIFFUSE);
+	glColorMaterial(GL_FRONT_AND_BACK, GL_DIFFUSE);
 
 
 	return ;					// Initialization Went OK
@@ -192,13 +195,8 @@ Model3d::~Model3d() {
 
 void Model3d::Draw()
 {
-//    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Clear The Screen And The Depth Buffer
-//    glLoadIdentity();				// Reset The View
-    // box.Draw();
-
-    drawAiScene(scene);
+    recursive_render(scene, scene->mRootNode, 0.5);
 
 //    xrot+=xspeed;
 //    yrot+=yspeed;
-//    return TRUE;					// Keep Going
 }
