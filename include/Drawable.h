@@ -56,6 +56,8 @@ public:
     GLfloat xrot; // X Rotation
     GLfloat yrot; // Y Rotation
     GLfloat zrot; // Z Rotation
+    
+    bool self_control;
 protected:
     list<GLDrawable*> components;
     GLuint texture[3]; // Storage For 3 Textures
