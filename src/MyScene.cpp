@@ -53,7 +53,7 @@ void MyScene::LoadComponents(){
     //components.push_back(g);
 //    components.push_back(leftWall);
 //    components.push_back(Edge);
-//    components.push_back(train_1);
+    components.push_back(train_1);
 //    components.push_back(train_2);
     components.push_back(model3d);
 //   components.push_back(ground);
