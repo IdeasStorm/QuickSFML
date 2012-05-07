@@ -28,6 +28,7 @@ void Studio::Update(const sf::Input& input){
     static bool eq_was_down = false;
     static bool minus_was_down = false;
     static bool F5_was_down = false;
+    camera.EnableMouse = false ;
     
     Box *t = new Box(sf::Vector3f(0,0,0),sf::Vector3f(1,1,1));
     components.push_back(t);
@@ -37,7 +38,7 @@ void Studio::Update(const sf::Input& input){
         N_was_down = false;
         Box *box = new Box();
         box->setTexture("Data/NeHe.bmp");
-        components.push_back(box);
+        components.push_back(box);    
         // setting this element as current
         list<GLDrawable*>::iterator end = components.end();
         end--;
