@@ -41,8 +41,7 @@ int InitGL();
 protected:
     list<GLDrawable*> components;
     int cameraEnable ;
-    GLFrame camera ;
-    GLFrame camera2 ;
+    GLFrame camera,camera2,camera3 ;
 
     
 private:
