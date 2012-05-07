@@ -62,15 +62,9 @@ protected:
     list<GLDrawable*> components;
     GLuint texture[3]; // Storage For 3 Textures
     
-        
     sf::Vector3f rotationAxis;
     GLfloat rotation; //  Rotation
-
-    bool axis_angle; // rotation based on axis and angle
-    
-    
-    
-    
+    bool axis_angle; // rotation based on axis and angle       
     // overridable internal helpers 
     
     virtual void scale();

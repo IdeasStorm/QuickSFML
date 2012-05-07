@@ -63,9 +63,8 @@ void UpdateCamera(const sf::Input& input,float a , float b )
    // Mouse[3] = Mouse[1] ;
 }
           
-        // Default position and orientation. At the origin, looking
-        // down the positive Z axis (right handed coordinate system).
-GLFrame(void) {
+void Default()
+{
     first = true ;
     Mouse[0] = 0; Mouse[1] = 0; Mouse[2] = 0;Mouse[3] = 0;
     // At origin
@@ -76,6 +75,11 @@ GLFrame(void) {
 
     // Forward is -Z (default OpenGL)
     vForward[0] = 0.0f; vForward[1] = 0.0f; vForward[2] = -1.0f;
+}
+        // Default position and orientation. At the origin, looking
+        // down the positive Z axis (right handed coordinate system).
+GLFrame(void) {
+    Default();
 }
 
 

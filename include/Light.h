@@ -17,7 +17,7 @@ public:
     Light(const Light& orig);
     void SetupLighting();
     virtual ~Light();
-private:
+//private:
     Vector3f position;
     GLfloat w;
     sf::Color diffuse;

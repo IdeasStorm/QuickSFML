@@ -24,7 +24,7 @@ public:
     
     virtual void LoadComponents();
     virtual bool LoadContent();
-    int InitGL();
+int InitGL();
     
     virtual void Draw();
     virtual void Update(const sf::Input &input);
