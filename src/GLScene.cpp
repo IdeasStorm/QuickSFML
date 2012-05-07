@@ -91,8 +91,10 @@ int GLScene::Run() {
         const sf::Input& Input = window.GetInput();
 
         
-        
-        camera.UpdateCamera(Input,window.GetWidth()/2,window.GetHeight()/2);
+        if (cameraEnable == 1 )
+                camera.UpdateCamera(Input,window.GetWidth()/2,window.GetHeight()/2);
+        else if (cameraEnable == 2)
+                camera2.UpdateCamera(Input,window.GetWidth()/2,window.GetHeight()/2);
         Update(Input);
         
 
@@ -122,6 +124,7 @@ int GLScene::InitGL() // All Setup For OpenGL Goes Here
     {
         return FALSE; // If Texture Didn't Load Return FALSE
     }
+    cameraEnable = 1 ;
     glewInit();
     glEnable(GL_TEXTURE_2D); // Enable Texture Mapping
     glShadeModel(GL_SMOOTH); // Enable Smooth Shading
@@ -176,7 +179,11 @@ void GLScene::Draw() // Here's Where We Do All The Drawing
     list<GLDrawable*>::iterator i;
     
     glLoadIdentity(); // Reset The View
-    camera.ApplyCamera();
+    if (cameraEnable == 1)
+        camera.ApplyCamera();
+    else if (cameraEnable ==2)
+        camera2.ApplyCamera();
+    
     for (i=components.begin();i!=components.end();i++){
         glPushMatrix();
         ((GLDrawable*)(*i))->Draw();

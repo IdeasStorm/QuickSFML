@@ -22,6 +22,9 @@ Model * train_1;
 void MyScene::LoadComponents(){
     update_child_controls = true;
     camera.SetOrigin(0,5,10);
+    camera2.SetOrigin(25,25,25);
+    camera2.RotateLocalX(0.5);
+    camera2.RotateLocalY(0.3);
    // Ground *g = new Ground();
 
     //g->box_texture = "./Data/Wall/images.jpg";
@@ -56,13 +59,18 @@ void MyScene::LoadComponents(){
 
 void MyScene::Update(const sf::Input& input) {
     if (input.IsKeyDown(sf::Key::Z)){
-        train_1->xrot++;
+        train_1->MoveForward -=0.5;
+        camera.MoveForward(+0.5);
     }
     if (input.IsKeyDown(sf::Key::X)){
-        train_1->yrot++;
+        train_1->MoveForward +=0.5;
+        camera.MoveForward(-0.5);
     }
-    if (input.IsKeyDown(sf::Key::C)){
-        train_1->zrot++;
+    if (input.IsKeyDown(sf::Key::Num1)){
+        cameraEnable = 1 ;
+    }
+    if (input.IsKeyDown(sf::Key::Num2)){
+        cameraEnable = 2 ;
     }
     
 }

@@ -44,16 +44,16 @@ void UpdateCamera(const sf::Input& input,float a , float b )
     RotateLocalY((-Mouse[0])*0.001f);
 
   if (input.IsKeyDown(sf::Key::A))
-    MoveRight(0.1);
+    MoveRight(0.5);
   if (input.IsKeyDown(sf::Key::D))
-    MoveRight(-0.1);
+    MoveRight(-0.5);
   if (input.IsKeyDown(sf::Key::W))
     MoveForward(0.5);
   if (input.IsKeyDown(sf::Key::S))
     MoveForward(-0.5);
   if (input.IsKeyDown(sf::Key::Q)){
-    RotateLocalY(0.01);
-    MoveRight(0.01);
+    RotateLocalY(0.05);
+    MoveRight(0.05);
   }
   if (input.IsKeyDown(sf::Key::E)){
     RotateLocalY(-0.01);

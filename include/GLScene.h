@@ -42,7 +42,9 @@ protected:
     list<GLDrawable*> components;
 
 
+    int cameraEnable ;
     GLFrame camera ;
+    GLFrame camera2 ;
 private:
     
     

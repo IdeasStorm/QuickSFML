@@ -54,7 +54,7 @@ public:
     }
     
     // Yaw, pitch, Roll
-
+    GLfloat MoveForward; // X Rotation
     GLfloat xrot; // X Rotation
     GLfloat yrot; // Y Rotation
     GLfloat zrot; // Z Rotation

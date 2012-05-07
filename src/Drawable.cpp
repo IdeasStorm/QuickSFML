@@ -15,6 +15,10 @@ GLDrawable::GLDrawable() {
     textureEnabled = false;
     axis_angle = false;
     rotation = 0;
+    position.x = 0 ;
+    position.y = 0 ;
+    position.z = 0 ;
+    MoveForward = position.z ;
     xrot=0;
     yrot=0;
     zrot=0;
@@ -58,6 +62,7 @@ void GLDrawable::GLInit() {
 void GLDrawable::Draw() {
     
     translate();
+    glTranslatef(0,0,MoveForward);
     rotate();
     scale();
     draw();
@@ -75,7 +80,8 @@ void GLDrawable::scale() {
 }
 
 void GLDrawable::translate() {
-    glTranslatef(position.x,position.y,position.z);
+//    glTranslatef(position.x,position.y,MoveForward);
+      glTranslatef(position.x,position.y,position.z);
 }
 
 void GLDrawable::rotate() {
