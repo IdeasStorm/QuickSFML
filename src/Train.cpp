@@ -15,7 +15,7 @@ Train::Train(std::string filename): Model(filename)
 
 void Train::Update(const sf::Input &input)
 {
-    position.x = MoveForward;
+    position.z = MoveForward;
 }
         
 Train::~Train() {

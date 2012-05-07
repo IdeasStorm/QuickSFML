@@ -28,10 +28,13 @@ Light::~Light() {
 }
 
 void Light::SetupLighting() {
+    
     glEnable(GL_LIGHT0);
+    GLfloat temp[]={position.x,position.y,position.z,1};
+    glLightfv(GL_LIGHT0,GL_POSITION,temp);
     glLightfv(GL_LIGHT0,GL_AMBIENT,vec4(ambient));
-    glLightfv(GL_LIGHT0,GL_AMBIENT,vec4(ambient));
-    glLightfv(GL_LIGHT0,GL_AMBIENT,vec4(ambient));
+    glLightfv(GL_LIGHT0,GL_DIFFUSE,vec4(diffuse));
+    glLightfv(GL_LIGHT0,GL_SPECULAR,vec4(specular));
     
 }
 

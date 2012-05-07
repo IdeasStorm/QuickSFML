@@ -60,6 +60,7 @@ private:
     GLfloat LightAmbient[4];
     GLfloat LightDiffuse[4];
     GLfloat LightPosition[4];
+    GLfloat LightSpecular[4];
 
     GLuint filter; // Which Filter To Use
 GLuint texture[3]; // Storage For 3 Textures

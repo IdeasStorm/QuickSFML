@@ -21,7 +21,7 @@ MyScene::~MyScene() {
 
 Train * train_1;
 Train * train_2;
-Light * test ;
+Light * test ;Light * test2 ;
 
 void MyScene::LoadComponents(){
     update_child_controls = true;
@@ -54,11 +54,12 @@ void MyScene::LoadComponents(){
     //ligth1->setRotation(sf::Vector3f(0,1,0),45);
     
     test  = new Light();
-    test->position = sf::Vector3f(20,20,-40);
-    test->ambient = sf::Color(0,0,0);
-    test->diffuse = sf::Color(0,0,0);
-    test->specular = sf::Color(0,0,0);
+    test->position = sf::Vector3f(17.0f, 3.0f, -20.0f);
+    test->ambient = sf::Color(1,1,1);
+    test->diffuse = sf::Color(1,1,1);
+    test->specular = sf::Color(1,1,1);
     test->w = 0 ;
+
     
     //components.push_back(g);
     components.push_back(leftWall);
@@ -93,7 +94,7 @@ void MyScene::Update(const sf::Input& input) {
         test->SetupLighting();
     }
     if (input.IsKeyDown(sf::Key::Y)){
-        test->position = sf::Vector3f(10,10,10);
+        //test->position = sf::Vector3f(0,0,0,1);
         test->SetupLighting();
     }
     GLScene::Update(input);

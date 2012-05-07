@@ -10,10 +10,16 @@
 #include "GLScene.h"
 
 GLScene::GLScene(char* title) : window(sf::VideoMode(800, 600, 32), title) {    
-    GLfloat LightAmbient[] ={0.5f, 0.5f, 0.5f, 1.0f};
-    GLfloat LightDiffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
-    GLfloat LightPosition[] = {0.0f, 0.0f, 2.0f, 1.0f};
+ //   GLfloat LightAmbient[] ={1.0f, 1.0f, 0.0f, 1.0f};
+   // GLfloat LightDiffuse[] = {1.0f, 0.0f, 0.0f, 1.0f};
+    //GLfloat lightSpecular[] = {1.0f, 1.0f, 0.0f, 1.0f};
+    //GLfloat LightPosition[] = {0.0f, 0.0f, 2.0f, 1.0f};
     //GLfloat LightPosition[] = {20.0f, 20.0f, -40.0f, 1.0f};
+        GLfloat LightAmbient[] ={0.5f, 0.5f, 0.5f, 1.0f};
+    GLfloat LightDiffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
+    //GLfloat LightPosition[] = {0.0f, 0.0f, 2.0f, 1.0f};
+    GLfloat LightPosition[] = {0.0f, 0.0f, 0.0f, 0.0f};
+    
     memcpy(this->LightAmbient, LightAmbient, sizeof LightAmbient);
     memcpy(this->LightDiffuse, LightDiffuse, sizeof LightDiffuse);
     memcpy(this->LightPosition, LightPosition, sizeof LightPosition);
@@ -142,12 +148,12 @@ int GLScene::InitGL() // All Setup For OpenGL Goes Here
     for (i=components.begin();i!=components.end();i++){
         ((GLDrawable*)(*i))->GLInit();
     }
-    glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient); // Setup The Ambient Light
-    glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse); // Setup The Diffuse Light
-    glLightfv(GL_LIGHT1, GL_POSITION, LightPosition); // Position The Light
-    glEnable(GL_LIGHT1); // Enable Light One
+    glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient); // Setup The Ambient Light
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse); // Setup The Diffuse Light
+    glLightfv(GL_LIGHT0, GL_SPECULAR, LightSpecular); // Setup The Diffuse Light
+    glLightfv(GL_LIGHT0, GL_POSITION, LightPosition); // Position The Light
+    glEnable(GL_LIGHT0); // Enable Light One
     glEnable(GL_LIGHTING);
-//    model->CreateVBO();
     
     return TRUE; // Initialization Went OK
 }
@@ -167,7 +173,7 @@ GLvoid GLScene::ReSizeGLScene(GLsizei width, GLsizei height) // Resize And Initi
     glLoadIdentity(); // Reset The Projection Matrix
 
     // Calculate The Aspect Ratio Of The Window    
-    gluPerspective(45.0f,(GLfloat) 800 / (GLfloat) 600, 0.1f, 100.0f);
+    gluPerspective(45.0f,(GLfloat) 800 / (GLfloat) 600, 0.1f, 500.0f);
 
     glMatrixMode(GL_MODELVIEW); // Select The Modelview Matrix
     glLoadIdentity(); // Reset The Modelview Matrix
