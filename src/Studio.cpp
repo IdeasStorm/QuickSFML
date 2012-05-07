@@ -29,6 +29,8 @@ void Studio::Update(const sf::Input& input){
     static bool minus_was_down = false;
     static bool F5_was_down = false;
     
+    Box *t = new Box(sf::Vector3f(0,0,0),sf::Vector3f(1,1,1));
+    components.push_back(t);
     if (input.IsKeyDown(sf::Key::N) )  {
         N_was_down = true;
     } else if (N_was_down) {

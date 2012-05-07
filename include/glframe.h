@@ -27,7 +27,7 @@ protected:
     bool first;
     
 public:
-        bool EnableMove ;
+        bool EnableMove,EnableMouse ;
 void ApplyCamera()
 {
     ApplyCameraTransform();
@@ -37,18 +37,19 @@ void UpdateCamera(const sf::Input& input,float a , float b )
 {
     if (!EnableMove)
         return ;
-    
-    if (first){
-        Mouse[0] = 0 ;
-        Mouse[1] = 0 ;
-        first = false ;
-    }else{
-        Mouse[0] = input.GetMouseX() - a;
-        Mouse[1] = input.GetMouseY() - b;
+    if (EnableMouse){
+        if (first){
+            Mouse[0] = 0 ;
+            Mouse[1] = 0 ;
+            first = false ;
+        }else{
+            Mouse[0] = input.GetMouseX() - a;
+            Mouse[1] = input.GetMouseY() - b;
+        }
+
+        RotateLocalX(Mouse[1]*0.001f);
+        RotateLocalY((-Mouse[0])*0.001f);
     }
-    
-    RotateLocalX(Mouse[1]*0.001f);
-    RotateLocalY((-Mouse[0])*0.001f);
 
   if (input.IsKeyDown(sf::Key::A))
     MoveRight(0.5);
@@ -84,7 +85,7 @@ void Default()
 GLFrame(void) {
     Origin[0] = Origin[1] = Origin[2] = 0;
   
-    first = EnableMove = true ;
+    first = EnableMove = EnableMouse = true ;
     Mouse[0] = 0; Mouse[1] = 0; Mouse[2] = 0;Mouse[3] = 0;
     // At origin
     vOrigin[0] = Origin[0]; vOrigin[1] = Origin[1]; vOrigin[2] = Origin[2]; 
