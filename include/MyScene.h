@@ -16,6 +16,7 @@ public:
     void Update(const sf::Input& input);
     void LoadComponents();
     virtual ~MyScene();
+
 private:
 
 };

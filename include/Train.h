@@ -10,11 +10,10 @@
 #include "Model.h"
 #include "Drawable.h"
 
-
 class Train : public Model {
 public:
     Train(std::string filename);
-    virtual void Update(const sf::Input &input);
+     void Update(const sf::Input &input);
     virtual ~Train();
     GLfloat MoveForward ;
 private:

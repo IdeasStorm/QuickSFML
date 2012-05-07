@@ -15,14 +15,19 @@ class GLFrame
 {
     
 protected:
+    M3DVector3f Origin;	// Where am I?
+    M3DVector3f Forward;	// Where am I going?
+    M3DVector3f Up;		// Which way is up?
+    
     M3DVector3f vOrigin;	// Where am I?
     M3DVector3f vForward;	// Where am I going?
     M3DVector3f vUp;		// Which way is up?
+    
     M3DVector4f Mouse ;
-//    float OldMouseX =0, OldMouseY =0, MouseX=0,MouseY=0 ;
     bool first;
+    
 public:
-        
+        bool EnableMove ;
 void ApplyCamera()
 {
     ApplyCameraTransform();
@@ -30,6 +35,9 @@ void ApplyCamera()
          
 void UpdateCamera(const sf::Input& input,float a , float b )
 {
+    if (!EnableMove)
+        return ;
+    
     if (first){
         Mouse[0] = 0 ;
         Mouse[1] = 0 ;
@@ -38,7 +46,6 @@ void UpdateCamera(const sf::Input& input,float a , float b )
         Mouse[0] = input.GetMouseX() - a;
         Mouse[1] = input.GetMouseY() - b;
     }
-
     
     RotateLocalX(Mouse[1]*0.001f);
     RotateLocalY((-Mouse[0])*0.001f);
@@ -62,13 +69,25 @@ void UpdateCamera(const sf::Input& input,float a , float b )
   //  Mouse[2] = Mouse[0] ;
    // Mouse[3] = Mouse[1] ;
 }
-          
+
 void Default()
 {
-    first = true ;
+    Mouse[0] = 0; Mouse[1] = 0; Mouse[2] = 0;Mouse[3] = 0;
+    
+    vOrigin[0] = Origin[0]; vOrigin[1] = Origin[1]; vOrigin[2] = Origin[2]; 
+    vUp[0] = Up[0]; vUp[1] = Up[1]; vUp[2] = Up[2];
+    vForward[0] = Forward[0]; vForward[1] = Forward[1]; vForward[2] = Forward[2];
+}       
+
+// Default position and orientation. At the origin, looking
+// down the positive Z axis (right handed coordinate system).
+GLFrame(void) {
+    Origin[0] = Origin[1] = Origin[2] = 0;
+  
+    first = EnableMove = true ;
     Mouse[0] = 0; Mouse[1] = 0; Mouse[2] = 0;Mouse[3] = 0;
     // At origin
-    vOrigin[0] = 0.0f; vOrigin[1] = 0.0f; vOrigin[2] = 0.0f; 
+    vOrigin[0] = Origin[0]; vOrigin[1] = Origin[1]; vOrigin[2] = Origin[2]; 
 
     // Up is up (+Y)
     vUp[0] = 0.0f; vUp[1] = 1.0f; vUp[2] = 0.0f;
@@ -76,28 +95,41 @@ void Default()
     // Forward is -Z (default OpenGL)
     vForward[0] = 0.0f; vForward[1] = 0.0f; vForward[2] = -1.0f;
 }
-        // Default position and orientation. At the origin, looking
-        // down the positive Z axis (right handed coordinate system).
-GLFrame(void) {
-    Default();
-}
 
+void ApplyDefault()
+{
+    Up[0] = vUp[0] ; Up[1] = vUp[1] ; Up[2] = vUp[2] ;
+    Forward[0] = vForward[0] ; Forward[1] = vForward[1] ; Forward[2] = vForward[2] ;
+    Origin[0] = vOrigin[0] ; Origin[1] = vOrigin[1] ; Origin[2] = vOrigin[2] ;
+}
 
 /////////////////////////////////////////////////////////////
 // Set Location
-inline void SetOrigin(const M3DVector3f vPoint) {
-                m3dCopyVector3(vOrigin, vPoint); }
+inline void SetOrigin(const M3DVector3f vPoint) 
+{
+    m3dCopyVector3(Origin, vPoint);
+    m3dCopyVector3(vOrigin, vPoint); 
+}
 
-inline void SetOrigin(float x, float y, float z) { 
-                vOrigin[0] = x; vOrigin[1] = y; vOrigin[2] = z; }
+inline void SetOrigin(float x, float y, float z) 
+{ 
+    Origin[0] = x; Origin[1] = y; Origin[2] = z; 
+    vOrigin[0] = x; vOrigin[1] = y; vOrigin[2] = z; 
+}
 
-        inline void GetOrigin(M3DVector3f vPoint) {
+        inline void GetvOrigin(M3DVector3f vPoint) {
                 m3dCopyVector3(vPoint, vOrigin); }
 
-        inline float GetOriginX(void) { return vOrigin[0]; }
-        inline float GetOriginY(void) { return vOrigin[1]; } 
-        inline float GetOriginZ(void) { return vOrigin[2]; }
+        inline float GetvOriginX(void) { return vOrigin[0]; }
+        inline float GetvOriginY(void) { return vOrigin[1]; } 
+        inline float GetvOriginZ(void) { return vOrigin[2]; }
 
+    inline void GetOrigin(M3DVector3f vPoint) {
+    m3dCopyVector3(vPoint, Origin); }
+
+    inline float GetOriginX(void) { return Origin[0]; }
+    inline float GetOriginY(void) { return Origin[1]; } 
+    inline float GetOriginZ(void) { return Origin[2]; }
 /////////////////////////////////////////////////////////////
 // Set Forward Direction
 inline void SetForwardVector(const M3DVector3f vDirection) {

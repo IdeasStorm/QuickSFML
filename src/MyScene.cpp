@@ -14,6 +14,8 @@
 
 
 MyScene::MyScene(const MyScene& orig) {
+    
+
 }
 
 MyScene::~MyScene() {
@@ -25,10 +27,18 @@ Light * test ;Light * test2 ;
 
 void MyScene::LoadComponents(){
     update_child_controls = true;
-    camera.SetOrigin(0,5,10);
+    
+    camera.SetOrigin(0,5,20);
+    camera.ApplyDefault();
+    
     camera2.SetOrigin(25,25,25);
     camera2.RotateLocalX(0.5);
     camera2.RotateLocalY(0.3);
+    camera2.ApplyDefault() ;
+    camera2.EnableMove = false ;
+    
+    cameraEnable =2 ;
+    
    // Ground *g = new Ground();
 
     //g->box_texture = "./Data/Wall/images.jpg";
@@ -42,10 +52,12 @@ void MyScene::LoadComponents(){
     train_1=new Train("./Data/Model/straba_m_mod_02.3ds");
     train_1-> position = sf::Vector3f(-5,0,-15);
     train_1-> setRotation(sf::Vector3f(1,0,0),-90);
+    train_1->self_control = true ;
     
     train_2= new Train("./Data/Model/straba_m_mod_02.3ds");
     train_2->position= sf::Vector3f(5,0,-15);
     train_2->setRotation(sf::Vector3f(1,0,0),-90);
+    train_2->self_control = true ;
 
     Model * ligth1 = new Model("./Data/Model/Lamppost N090508.3ds");
     ligth1->position = sf::Vector3f(17,3,-20);
@@ -84,11 +96,11 @@ void MyScene::Update(const sf::Input& input) {
     }
     if (input.IsKeyDown(sf::Key::Num1)){
         cameraEnable = 1 ;
-        //camera.Default();
+        camera.Default();
     }
     if (input.IsKeyDown(sf::Key::Num2)){
         cameraEnable = 2 ;
-        //camera2.Default();
+        camera2.Default();
     }
     if (input.IsKeyDown(sf::Key::T)){
         test->SetupLighting();
