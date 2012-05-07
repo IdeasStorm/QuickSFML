@@ -22,6 +22,7 @@ GLDrawable::GLDrawable() {
     yrot=0;
     zrot=0;
     halfSize=sf::Vector3f(1,1,1);
+    self_control = false;
 }
 
 GLDrawable::~GLDrawable() {
@@ -89,9 +90,4 @@ void GLDrawable::rotate() {
         glRotatef(yrot,0,1,0);
         glRotatef(zrot,0,0,1);
     }
-}
-
-void Update(const sf::Input &input)
-{
-    
 }

@@ -226,7 +226,7 @@ void GLScene::LoadComponents() {
 void GLScene::Update(const sf::Input& input) {
     list<GLDrawable*>::iterator i;
     for (i=components.begin();i!=components.end();i++){            
-        if (update_child_controls)
+        if (update_child_controls && ((GLDrawable*)(*i))->self_control )
                 ((GLDrawable*)(*i))->Update(input);
         ((GLDrawable*)(*i))->filter = filter;
     }
