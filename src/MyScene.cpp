@@ -11,7 +11,7 @@
 #include "Box.h"
 #include "Light.h"
 #include "Train.h"
-
+#include "Stairs.h"
 
 MyScene::MyScene(const MyScene& orig) {
     
@@ -110,11 +110,14 @@ void MyScene::LoadComponents(){
         test->specular = sf::Color(1,1,1);
         test->w = 0 ;
 
+    Stairs * stair = new Stairs(sf::Vector3f (20,0,0),sf::Vector3f (5,1,1),10);            
+    
     components.push_back(leftWall);
     components.push_back(Edge);
     components.push_back(train_1);
     components.push_back(train_2);
     components.push_back(ground);
+    components.push_back(stair);
     GLScene::LoadComponents();
 }
 

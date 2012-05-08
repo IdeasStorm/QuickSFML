@@ -202,9 +202,6 @@ void GLScene::Draw() // Here's Where We Do All The Drawing
         glPopMatrix();
     }
     
-    glTranslated(5,0,0);
-//    model->Draw();
-    glTranslated(-5,0,0);
     
     xrot += xspeed;
     yrot += yspeed;
