@@ -5,7 +5,6 @@
  * Created on May 4, 2012, 3:44 PM
  */
 
-#include <GL/gl.h>
 
 #include "Light.h"
 
