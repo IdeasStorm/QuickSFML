@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{69E48248-4FC4-4422-8BF0-8ACD8003D939}</ProjectGuid>
+    <ProjectGuid>{A6735785-B0E2-4AEE-B442-3238C97377D0}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>MetroSimulation</RootNamespace>
+    <RootNamespace>lib3dslib</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -49,14 +49,11 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>SFML_DYNAMIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\SFML\include;$(SolutionDir)\..\include;$(SolutionDir)\..\LIBRARY\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\..\LIBRARY\lib;C:\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;lib3ds.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -77,36 +74,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\Box.h" />
-    <ClInclude Include="..\..\include\core.h" />
-    <ClInclude Include="..\..\include\Drawable.h" />
-    <ClInclude Include="..\..\include\glframe.h" />
-    <ClInclude Include="..\..\include\GLScene.h" />
-    <ClInclude Include="..\..\include\Ground.h" />
-    <ClInclude Include="..\..\include\Light.h" />
-    <ClInclude Include="..\..\include\math3d.h" />
-    <ClInclude Include="..\..\include\Model.h" />
-    <ClInclude Include="..\..\include\MyScene.h" />
-    <ClInclude Include="..\..\include\precision.h" />
-    <ClInclude Include="..\..\include\Stairs.h" />
-    <ClInclude Include="..\..\include\Studio.h" />
-    <ClInclude Include="..\..\include\Train.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\main.cpp" />
-    <ClCompile Include="..\..\src\Box.cpp" />
-    <ClCompile Include="..\..\src\core.cpp" />
-    <ClCompile Include="..\..\src\Drawable.cpp" />
-    <ClCompile Include="..\..\src\GLScene.cpp" />
-    <ClCompile Include="..\..\src\Ground.cpp" />
-    <ClCompile Include="..\..\src\Light.cpp" />
-    <ClCompile Include="..\..\src\math3d.cpp" />
-    <ClCompile Include="..\..\src\Model.cpp" />
-    <ClCompile Include="..\..\src\MyScene.cpp" />
-    <ClCompile Include="..\..\src\SpherWord32.cpp" />
-    <ClCompile Include="..\..\src\Stairs.cpp" />
-    <ClCompile Include="..\..\src\Studio.cpp" />
-    <ClCompile Include="..\..\src\Train.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
