@@ -23,15 +23,12 @@ void Studio::LoadComponents(){
 }
 
 void Studio::Update(const sf::Input& input){
-    static bool N_was_down = false;
-    static bool T_was_down = false;
+    static bool N_was_down = false;    
     static bool eq_was_down = false;
     static bool minus_was_down = false;
     static bool F5_was_down = false;
-    camera.EnableMouse = false ;
+    camera.EnableMouse = true ;
     
-    Box *t = new Box(sf::Vector3f(0,0,0),sf::Vector3f(1,1,1));
-    components.push_back(t);
     if (input.IsKeyDown(sf::Key::N) )  {
         N_was_down = true;
     } else if (N_was_down) {
@@ -43,16 +40,6 @@ void Studio::Update(const sf::Input& input){
         list<GLDrawable*>::iterator end = components.end();
         end--;
         SetCurrentComponent(end);
-    }
-    
-    if (input.IsKeyDown(sf::Key::T) )  {
-        T_was_down = true;
-    } else if (T_was_down) {
-        T_was_down = false;
-        Box *box = new Box();
-        box->setTexture("Data/NeHe.bmp");
-        box->DisableTexture();
-        components.push_back(box);
     }
     
     if (input.IsKeyDown(sf::Key::Dash) )  {
@@ -87,6 +74,7 @@ void Studio::Update(const sf::Input& input){
     }else {
         field = &(((*currentComponent))->position);
     }
+    
     if (input.IsKeyDown(sf::Key::Right)) {
         *field += sf::Vector3f(s,0,0);
         if (scale)
@@ -160,7 +148,10 @@ void Studio::PrevComponent() {
 void Studio::WriteCode(){
     list<GLDrawable*>::iterator i;
     int c = 0;
-    printf("//=====================GENERATED CODE========================\n");
+    printf("//============THIS FILE IS GENERATED FROM USER INPUT================\n");
+    printf("#include \"gen_init.h\" ");
+    printf("//=====================GENERATED CODE===============================\n");
+    printf("void loadUserComponents() {");
     for (i=components.begin();i!=components.end();i++){
         GLDrawable *e = *i;
         printf("//========================box%d=====================================\n",c);
@@ -172,4 +163,5 @@ void Studio::WriteCode(){
         printf("//==================================================================\n");
         c++;
     }
+    printf("}");
 }

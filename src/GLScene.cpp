@@ -12,10 +12,10 @@
 GLScene::GLScene(char* title) : window(sf::VideoMode(800, 600, 32), title) {    
  //   GLfloat LightAmbient[] ={1.0f, 1.0f, 0.0f, 1.0f};
    // GLfloat LightDiffuse[] = {1.0f, 0.0f, 0.0f, 1.0f};
-    //GLfloat lightSpecular[] = {1.0f, 1.0f, 0.0f, 1.0f};
+    GLfloat lightSpecular[] = {1.0f, 1.0f, 0.0f, 1.0f};
     //GLfloat LightPosition[] = {0.0f, 0.0f, 2.0f, 1.0f};
     //GLfloat LightPosition[] = {20.0f, 20.0f, -40.0f, 1.0f};
-        GLfloat LightAmbient[] ={0.5f, 0.5f, 0.5f, 1.0f};
+    GLfloat LightAmbient[] ={0.5f, 0.5f, 0.5f, 1.0f};
     GLfloat LightDiffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
     //GLfloat LightPosition[] = {0.0f, 0.0f, 2.0f, 1.0f};
     GLfloat LightPosition[] = {0.0f, 0.0f, 0.0f, 0.0f};
@@ -23,6 +23,7 @@ GLScene::GLScene(char* title) : window(sf::VideoMode(800, 600, 32), title) {
     memcpy(this->LightAmbient, LightAmbient, sizeof LightAmbient);
     memcpy(this->LightDiffuse, LightDiffuse, sizeof LightDiffuse);
     memcpy(this->LightPosition, LightPosition, sizeof LightPosition);
+    memcpy(this->LightSpecular, lightSpecular, sizeof lightSpecular);
     light = true;
     filter = 0;
     fullscreen = FALSE; // Fullscreen Flag Set To Fullscreen Mode By Default
@@ -137,7 +138,7 @@ int GLScene::InitGL() // All Setup For OpenGL Goes Here
     cameraEnable = 1 ;
     glewInit();
     glEnable(GL_TEXTURE_2D); // Enable Texture Mapping
-    glShadeModel(GL_SMOOTH); // Enable Smooth Shading
+    //glShadeModel(GL_SMOOTH); // Enable Smooth Shading
     glClearColor(0.0f, 0.0f, 0.0f, 0.5f); // Black Background
     glClearDepth(1.0f); // Depth Buffer Setup
     glEnable(GL_DEPTH_TEST); // Enables Depth Testing
@@ -151,7 +152,7 @@ int GLScene::InitGL() // All Setup For OpenGL Goes Here
     }
     glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient); // Setup The Ambient Light
     glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse); // Setup The Diffuse Light
-    glLightfv(GL_LIGHT0, GL_SPECULAR, LightSpecular); // Setup The Diffuse Light
+    //glLightfv(GL_LIGHT0, GL_SPECULAR, LightSpecular); // Setup The Diffuse Light
     glLightfv(GL_LIGHT0, GL_POSITION, LightPosition); // Position The Light
     glEnable(GL_LIGHT0); // Enable Light One
     glEnable(GL_LIGHTING);

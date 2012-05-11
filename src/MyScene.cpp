@@ -84,7 +84,7 @@ void MyScene::LoadComponents(){
     
     //Fence->setRotation(0,1,0);
     components.push_back(Fence);
-
+/*
     for (int i=-5 ;i<10 ;i++)
     {
         Model * ligth1 = new Model("./Data/Model/Lamppost N090508.3ds");
@@ -102,14 +102,14 @@ void MyScene::LoadComponents(){
         light2->w = 0 ;
         lights.push_front(light2);
     }
-    
+  
         test  = new Light();
         test->position = sf::Vector3f(0,10,-50);
         test->ambient = sf::Color(1,1,1);
         test->diffuse = sf::Color(1,1,1);
         test->specular = sf::Color(1,1,1);
         test->w = 0 ;
-
+**/  
     Stairs * stair = new Stairs(sf::Vector3f (20,0,0),sf::Vector3f (5,1,1),10);            
     
     components.push_back(leftWall);
