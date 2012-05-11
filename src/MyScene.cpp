@@ -110,14 +110,17 @@ void MyScene::LoadComponents(){
         test->specular = sf::Color(1,1,1);
         test->w = 0 ;
 
-    Stairs * stair = new Stairs(sf::Vector3f (20,0,0),sf::Vector3f (5,1,1),10);            
+    Stairs * stair;
+    stair = new Stairs(sf::Vector3f (10,-2,50),sf::Vector3f (3.5,1,1),10);
+    //stair->setTexture("./Data/Wall/wall-texture-high-resolution.jpg");    
+    stair->yrot = 90;
     
     components.push_back(leftWall);
     components.push_back(Edge);
     components.push_back(train_1);
     components.push_back(train_2);
     components.push_back(ground);
-    components.push_back(stair);
+    components.push_back(stair);   
     GLScene::LoadComponents();
 }
 
@@ -142,7 +145,7 @@ void MyScene::Update(const sf::Input& input) {
     if (input.IsKeyDown(sf::Key::Num3)){
         cameraEnable = 3 ;
         camera3.Default();
-    }
+    }        
     list<Light*>::iterator i;
     if (input.IsKeyDown(sf::Key::T)){
         for (i=lights.begin();i!=lights.end();i++){
