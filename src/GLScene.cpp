@@ -144,11 +144,11 @@ int GLScene::InitGL() // All Setup For OpenGL Goes Here
     for (i=components.begin();i!=components.end();i++){
         ((GLDrawable*)(*i))->GLInit();
     }
-    glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient); // Setup The Ambient Light
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse); // Setup The Diffuse Light
-    glLightfv(GL_LIGHT0, GL_SPECULAR, LightSpecular); // Setup The Diffuse Light
-    glLightfv(GL_LIGHT0, GL_POSITION, LightPosition); // Position The Light
-    glEnable(GL_LIGHT0); // Enable Light One
+//    glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient); // Setup The Ambient Light
+//    glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse); // Setup The Diffuse Light
+//    glLightfv(GL_LIGHT0, GL_SPECULAR, LightSpecular); // Setup The Diffuse Light
+//    glLightfv(GL_LIGHT0, GL_POSITION, LightPosition); // Position The Light
+    //glEnable(GL_LIGHT0); // Enable Light One
     glEnable(GL_LIGHTING);
     
     return TRUE; // Initialization Went OK

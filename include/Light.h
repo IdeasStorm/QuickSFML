@@ -13,6 +13,7 @@ using namespace sf;
 
 class Light {
 public:
+    bool ligthEnable ;
     Light();
     Light(const Light& orig);
     void SetupLighting();

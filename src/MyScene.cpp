@@ -24,6 +24,7 @@ MyScene::~MyScene() {
 Train * train_1;
 Train * train_2;
 Light * light2 ,*test;
+bool lightTest ;
 list<Light *> lights; 
 void MyScene::LoadComponents(){
     update_child_controls = true;
@@ -44,7 +45,7 @@ void MyScene::LoadComponents(){
     camera3.EnableMove = true ;
     camera3.EnableMouse = false ;
     cameraEnable = &camera3;
-    
+   
    // Ground *g = new Ground();
 
     //g->box_texture = "./Data/Wall/images.jpg";
@@ -73,7 +74,7 @@ void MyScene::LoadComponents(){
     Tele->position = sf::Vector3f(40,6,50);
     Tele->halfSize = sf::Vector3f(0.3,0.3,0.3);
     Tele->setRotation(sf::Vector3f(1,0,0),-90);
-    components.push_back(Tele);
+
     
     Model * Fence = new Model("./Data/Model/fence-K009.3DS");
     Fence->position = sf::Vector3f(2,0,50);
@@ -83,41 +84,44 @@ void MyScene::LoadComponents(){
     //Fence->setRotation(sf::Vector3f(0,0,1),0);
     
     //Fence->setRotation(0,1,0);
-    components.push_back(Fence);
+
 
     for (int i=-5 ;i<10 ;i++)
     {
-        Model * ligth1 = new Model("./Data/Model/Lamppost N090508.3ds");
-        ligth1->position = sf::Vector3f(25,6,-20*i);
+    }
+    
+    Model * ligth1 = new Model("./Data/Model/Lamppost N090508.3ds");
+        ligth1->position = sf::Vector3f(25,6,-20);
         ligth1->halfSize = sf::Vector3f(0.2,0.2,0.2);
         ligth1->setRotation(sf::Vector3f(1,0,0),-90);
         //ligth1->setRotation(sf::Vector3f(0,0,1),-180);
         components.push_back(ligth1);
         
-        light2  = new Light();
-        light2->position = ligth1->position;
+    light2  = new Light();
+        light2->position = sf::Vector3f(25,6,-20);
         light2->ambient = sf::Color(1,1,1);
         light2->diffuse = sf::Color(1,1,1);
         light2->specular = sf::Color(1,1,1);
         light2->w = 0 ;
         lights.push_front(light2);
-    }
-    
+        
         test  = new Light();
-        test->position = sf::Vector3f(0,10,-50);
+        test->position = sf::Vector3f(25,6,-20);
         test->ambient = sf::Color(1,1,1);
         test->diffuse = sf::Color(1,1,1);
-        test->specular = sf::Color(1,1,1);
+        test->specular = sf::Color(0,0,0);
         test->w = 0 ;
 
     Stairs * stair = new Stairs(sf::Vector3f (20,0,0),sf::Vector3f (5,1,1),10);            
     
-    components.push_back(leftWall);
-    components.push_back(Edge);
-    components.push_back(train_1);
-    components.push_back(train_2);
+    //components.push_back(leftWall);
+    //components.push_back(Edge);
+    //components.push_back(train_1);
+    //components.push_back(train_2);
     components.push_back(ground);
-    components.push_back(stair);
+    //components.push_back(stair);
+    //components.push_back(Fence);
+    //components.push_back(Tele);
     GLScene::LoadComponents();
 }
 
@@ -144,8 +148,9 @@ void MyScene::Update(const sf::Input& input) {
         camera3.Default();
     }
     list<Light*>::iterator i;
-    if (input.IsKeyDown(sf::Key::T)){
+    if (input.IsKeyDown(sf::Key::T)){           
         for (i=lights.begin();i!=lights.end();i++){
+            ((Light*)(*i))->ligthEnable != ((Light*)(*i))->ligthEnable;
             ((Light*)(*i))->SetupLighting();
         }
     }
