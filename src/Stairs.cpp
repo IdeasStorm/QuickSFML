@@ -5,6 +5,8 @@
  * Created on May 8, 2012, 12:34 AM
  */
 
+#include <GL/glew.h>
+
 #include "Stairs.h"
 #include "Box.h"
 
@@ -30,7 +32,7 @@ Stairs::Stairs(sf::Vector3f position, sf::Vector3f halfsize, int stairNum)
     init();
     this->position = position;
     this->halfSize = halfsize;
-    this->stairNum = stairNum;
+    this->stairNum = stairNum;    
     initBoxes();
 }
 
@@ -112,24 +114,37 @@ void Stairs::draw(){
     thisCord.x=position.x;
     thisCord.y=position.y;
     thisCord.z=position.z;
-    
+    glPushMatrix();
+    //glRotatef(90,0,1,0);
    
+    //rotate();
     list<Box*>::iterator i; 
-    for (i=boxList.begin();i!=boxList.end();i++){
+     
+    for (i=boxList.begin();i!=boxList.end();i++){        
+        
+        glPushMatrix();
+        
+        //glRotatef(90,position.x,thisCord,position.z);
         ((Box*)(*i))->Draw();
-        thisCord.y+=2*halfSize.y;
-        thisCord.z+=2*halfSize.z;        
-        glTranslatef(-thisCord.x,-thisCord.y,-thisCord.z);
+        glPopMatrix();
+        //thisCord.y+=2*halfSize.y;
+//        thisCord.z+=2*halfSize.z;        
+//        glTranslatef(-thisCord.x,-thisCord.y,-thisCord.z);
     }
+    
+    glPopMatrix();
     
 }
 
 bool Stairs::LoadContent() {
-    list<Box*>::iterator i; 
-    for (i=boxList.begin();i!=boxList.end();i++){
-        ((Box*)(*i))->setTexture("./Data/Wall/brown_wall_texture_by_fantasystock-d34un9s.jpg");        
-    }
     
+    if(textureEnabled)
+    {    
+        list<Box*>::iterator i; 
+        for (i=boxList.begin();i!=boxList.end();i++){
+            ((Box*)(*i))->setTexture(texture_path);        
+        }
+    }
     return true;
 }
 
