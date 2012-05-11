@@ -43,7 +43,7 @@ void MyScene::LoadComponents(){
     camera3.ApplyDefault() ;
     camera3.EnableMove = true ;
     camera3.EnableMouse = false ;
-    cameraEnable =3 ;
+    cameraEnable = &camera3;
     
    // Ground *g = new Ground();
 
@@ -132,15 +132,15 @@ void MyScene::Update(const sf::Input& input) {
         camera.MoveForward(-0.5);
     }
     if (input.IsKeyDown(sf::Key::Num1)){
-        cameraEnable = 1 ;
+        cameraEnable = &camera;
         camera.Default();
     }
     if (input.IsKeyDown(sf::Key::Num2)){
-        cameraEnable = 2 ;
+        cameraEnable = &camera2 ;
         camera2.Default();
     }
     if (input.IsKeyDown(sf::Key::Num3)){
-        cameraEnable = 3 ;
+        cameraEnable = &camera3 ;
         camera3.Default();
     }
     list<Light*>::iterator i;

@@ -36,9 +36,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/src/Model.o \
 	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/src/GLScene.o \
 	${OBJECTDIR}/src/Stairs.o \
 	${OBJECTDIR}/src/math3d.o \
-	${OBJECTDIR}/src/GLScene.o \
 	${OBJECTDIR}/src/Train.o \
 	${OBJECTDIR}/src/Studio.o \
 	${OBJECTDIR}/src/MyScene.o \
@@ -82,6 +82,11 @@ ${OBJECTDIR}/main.o: main.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
 
+${OBJECTDIR}/src/GLScene.o: src/GLScene.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/GLScene.o src/GLScene.cpp
+
 ${OBJECTDIR}/src/Stairs.o: src/Stairs.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
@@ -91,11 +96,6 @@ ${OBJECTDIR}/src/math3d.o: src/math3d.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/math3d.o src/math3d.cpp
-
-${OBJECTDIR}/src/GLScene.o: src/GLScene.cpp 
-	${MKDIR} -p ${OBJECTDIR}/src
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/GLScene.o src/GLScene.cpp
 
 ${OBJECTDIR}/src/Train.o: src/Train.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src

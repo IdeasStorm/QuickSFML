@@ -98,13 +98,8 @@ int GLScene::Run() {
         window.SetCursorPosition(window.GetWidth()/2,window.GetHeight()/2);
         //Handle movement keys
         const sf::Input& Input = window.GetInput();
-        
-        if (cameraEnable == 1 )
-                camera.UpdateCamera(Input,window.GetWidth()/2,window.GetHeight()/2);
-        else if (cameraEnable == 2)
-                camera2.UpdateCamera(Input,window.GetWidth()/2,window.GetHeight()/2);
-        else if (cameraEnable == 3)
-                camera3.UpdateCamera(Input,window.GetWidth()/2,window.GetHeight()/2);
+
+        (*cameraEnable).UpdateCamera(Input,window.GetWidth()/2,window.GetHeight()/2);
         Update(Input);
         
 
@@ -134,7 +129,7 @@ int GLScene::InitGL() // All Setup For OpenGL Goes Here
     {
         return FALSE; // If Texture Didn't Load Return FALSE
     }
-    cameraEnable = 1 ;
+    cameraEnable = &camera ;
     glewInit();
     glEnable(GL_TEXTURE_2D); // Enable Texture Mapping
     glShadeModel(GL_SMOOTH); // Enable Smooth Shading
@@ -189,12 +184,8 @@ void GLScene::Draw() // Here's Where We Do All The Drawing
     list<GLDrawable*>::iterator i;
     
     glLoadIdentity(); // Reset The View
-    if (cameraEnable == 1)
-        camera.ApplyCamera();
-    else if (cameraEnable ==2)
-        camera2.ApplyCamera();
-    else if (cameraEnable ==3)
-        camera3.ApplyCamera();
+
+    (*cameraEnable).ApplyCamera();
     
     for (i=components.begin();i!=components.end();i++){
         glPushMatrix();

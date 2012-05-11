@@ -40,9 +40,8 @@ int InitGL();
     virtual ~GLScene();
 protected:
     list<GLDrawable*> components;
-    int cameraEnable ;
     GLFrame camera,camera2,camera3 ;
-
+    GLFrame *cameraEnable ;
     
 private:
     
