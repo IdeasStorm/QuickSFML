@@ -12,6 +12,7 @@
 #include "Light.h"
 #include "Train.h"
 #include "Stairs.h"
+#include "SkyBox.h"
 
 MyScene::MyScene(const MyScene& orig) {
     
@@ -115,13 +116,17 @@ void MyScene::LoadComponents(){
     //stair->setTexture("./Data/Wall/wall-texture-high-resolution.jpg");    
     stair->yrot = 90;
 
+    SkyBox * skyBox = new SkyBox();    
+    skyBox->setTextures("./Data/city/")    ;
     
+    components.push_back(skyBox);
     components.push_back(leftWall);
     components.push_back(Edge);
     components.push_back(train_1);
     components.push_back(train_2);
     components.push_back(ground);
     components.push_back(stair);   
+   // components.push_back(skyBox);
     GLScene::LoadComponents();
 }
 
