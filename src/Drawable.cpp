@@ -91,3 +91,7 @@ void GLDrawable::rotate() {
         glRotatef(zrot,0,0,1);
     }
 }
+
+void GLDrawable::WriteInstanceCreation(FILE* outfile,string name) {
+    fprintf(outfile,"%s *%s = new %s();\n",this->getClass().data(),name.data(),this->getClass().data());
+}

@@ -49,7 +49,7 @@ public:
     void init();
     void Update(const sf::Input& input);
     bool LoadContent();
-
+    void WriteInstanceCreation(FILE* outfile,string name);
     void SetComponents(Element elements);
     virtual ~Box();
 

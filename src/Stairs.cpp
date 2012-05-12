@@ -161,3 +161,9 @@ GLDrawable* Stairs::Clone() {
         cloned->setRotation(yrot,xrot,zrot);
     return cloned;
 }
+
+void Stairs::WriteInstanceCreation(FILE *outfile,string name) {
+    fprintf(outfile,"Stairs *%s = new Stairs(Vector3f(%f,%f,%f),Vector3f(%f,%f,%f),%d);\n",name.data(),
+            position.x,position.y,position.z,
+            halfSize.x,halfSize.y,halfSize.z,stairNum);
+}

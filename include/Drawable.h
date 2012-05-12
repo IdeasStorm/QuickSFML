@@ -9,6 +9,8 @@
 #define	DRAWABLE_H
 #include <SFML/Graphics.hpp>
 #include <list>
+#include <iostream>
+#include <fstream>
 using namespace std;
 
 class GLDrawable {
@@ -25,10 +27,12 @@ public:
     virtual void LoadComponents();
     bool textureEnabled;
     GLuint filter; // Which Filter To Use
-    inline virtual string getClass()=0;
+    virtual string getClass()=0;
     virtual void DisableTexture() {
         textureEnabled = false;
     }
+    
+    virtual void WriteInstanceCreation(FILE* outfile,string name);
     
     virtual GLDrawable* Clone()=0;
     

@@ -227,3 +227,9 @@ GLDrawable* Box::Clone() {
     }
     return cloned;
 }
+
+void Box::WriteInstanceCreation(FILE* outfile, string name){
+    GLDrawable::WriteInstanceCreation(outfile, name);
+    //if (textureEnabled)
+        fprintf(outfile,"%s->setTexture(\"%s\");\n",name.data(),texture_path.data());
+}

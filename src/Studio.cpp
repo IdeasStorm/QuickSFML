@@ -8,6 +8,7 @@
 #include "user_input.h"
 #include "Model.h"
 #include "Studio.h"
+#include "Stairs.h"
 
 Studio::Studio() {
     currentComponent = components.end();
@@ -211,8 +212,10 @@ void Studio::WriteCode(){
     for (i=components.begin();i!=components.end();i++){
         GLDrawable *e = *i;
         fprintf(outfile,"//========================box%d=====================================\n",c);
-        fprintf(outfile,"Box *box%d = new Box(); \n",c);
-        fprintf(outfile,"box%d->setTexture(\"Data/NeHe.bmp\");\n",c);
+
+        std::string str = "box";
+        str += (char)('0' + c);
+        e->WriteInstanceCreation(outfile, str);
         fprintf(outfile,"box%d->position = Vector3f(%f,%f,%f); \n",c,e->position.x,e->position.y,e->position.z);
         fprintf(outfile,"box%d->halfSize = Vector3f(%f,%f,%f); \n",c,e->halfSize.x,e->halfSize.y,e->halfSize.z);
         fprintf(outfile,"box%d->setRotation(%f,%f,%f); \n",c,e->xrot,e->yrot,e->zrot);
