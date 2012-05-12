@@ -9,7 +9,7 @@
 #include "Model.h"
 #include "Studio.h"
 #include "Stairs.h"
-
+#include <sstream>
 Studio::Studio() {
     currentComponent = components.end();
 }
@@ -85,9 +85,8 @@ void Studio::Update(const sf::Input& input){
         box->setTexture("Data/NeHe.bmp");
         components.push_back(box);    
         // setting this element as current
-        list<GLDrawable*>::iterator end = components.end();
-        end--;
-        SetCurrentComponent(end);
+        SetCurrentComponent(components.begin());
+        PrevComponent();
     }
     
     if (input.IsKeyDown(sf::Key::M) )  {
@@ -99,9 +98,8 @@ void Studio::Update(const sf::Input& input){
         model->GLInit();
         components.push_back(model);
         // setting this element as current
-        list<GLDrawable*>::iterator end = components.end();
-        end--;
-        SetCurrentComponent(end);
+        SetCurrentComponent(components.begin());
+        PrevComponent();
     }
     
     if (input.IsKeyDown(sf::Key::Dash) )  {
@@ -244,8 +242,11 @@ void Studio::WriteCode(){
         GLDrawable *e = *i;
         fprintf(outfile,"//========================box%d=====================================\n",c);
 
-        std::string str = "box";
-        str += (char)('0' + c);
+        std::string str;
+        std::stringstream out;
+        out << "box" << c;
+        str = out.str();
+        
         e->WriteInstanceCreation(outfile, str);
         fprintf(outfile,"box%d->position = Vector3f(%f,%f,%f); \n",c,e->position.x,e->position.y,e->position.z);
         fprintf(outfile,"box%d->halfSize = Vector3f(%f,%f,%f); \n",c,e->halfSize.x,e->halfSize.y,e->halfSize.z);
