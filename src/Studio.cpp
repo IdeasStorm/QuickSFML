@@ -31,7 +31,23 @@ void Studio::Update(const sf::Input& input){
     static bool eq_was_down = false;
     static bool minus_was_down = false;
     static bool F5_was_down = false;
+    static bool del_was_down = false;
     camera.EnableMouse = true ;
+    
+    if (input.IsKeyDown(sf::Key::Delete) )  {
+        del_was_down = true;
+    } else if (del_was_down) {
+        del_was_down = false;
+        components.remove(*currentComponent);
+        // setting this element as current
+        if (!components.empty()) {
+                list<GLDrawable*>::iterator end = components.end();
+                end--;
+                SetCurrentComponent(end);
+        }else {
+            *currentComponent = NULL;
+        }
+    }
     
     if (input.IsKeyDown(sf::Key::N) )  {
         N_was_down = true;
@@ -140,7 +156,9 @@ void Studio::Update(const sf::Input& input){
 }
 
 void Studio::SetCurrentComponent(list<GLDrawable*>::iterator comp) {
-    if (currentComponent != components.end())
+    if (components.empty())
+        return;
+    if (currentComponent != components.end() && (*currentComponent)!=NULL)
         (*currentComponent)->textureEnabled = true;
     currentComponent = comp;
     (*currentComponent)->textureEnabled = false;
