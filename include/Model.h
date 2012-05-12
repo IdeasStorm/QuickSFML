@@ -21,30 +21,33 @@
 
 using namespace std;
 
-class Model : public GLDrawable
-{
-    public :
+class Model : public GLDrawable {
+public:
 
-        Model(std::string filename);  
-//        void Draw();
-        virtual void Update(const sf::Input &input);
-        void SetupLighting();
-        
-        GLDrawable* Clone();
+    Model(std::string filename);
+    //        void Draw();
+    virtual void Update(const sf::Input &input);
+    void SetupLighting();
 
-        bool LoadContent();
-        
-        void GLInit();
-    protected:
-        string filename;
-        void draw();
+    GLDrawable* Clone();
 
-    private:
-        void GetFaces();
+    bool LoadContent();
 
-        unsigned int m_TotalFaces;
-        Lib3dsFile * m_model;
-        GLuint m_VertexVBO, m_NormalVBO;
+    void GLInit();
+
+    inline string getClass() {
+        return "Model";
+    }
+protected:
+    string filename;
+    void draw();
+
+private:
+    void GetFaces();
+
+    unsigned int m_TotalFaces;
+    Lib3dsFile * m_model;
+    GLuint m_VertexVBO, m_NormalVBO;
 };
 
 #endif	/* MODEL_H */

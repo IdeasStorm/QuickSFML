@@ -43,6 +43,9 @@ public:
 
     GLDrawable* Clone();
 
+    inline virtual string getClass(){
+        return "Box";
+    }
     void init();
     void Update(const sf::Input& input);
     bool LoadContent();

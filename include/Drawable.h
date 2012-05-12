@@ -25,7 +25,7 @@ public:
     virtual void LoadComponents();
     bool textureEnabled;
     GLuint filter; // Which Filter To Use
-
+    inline virtual string getClass()=0;
     virtual void DisableTexture() {
         textureEnabled = false;
     }

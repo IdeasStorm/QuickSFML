@@ -40,6 +40,9 @@ public:
 
     void SetComponents();
    
+    inline static string getClass(){
+        return "Stairs";
+    }
 
     void setDepth(GLfloat depth) {
         this->halfSize.z = depth / 2.0f;

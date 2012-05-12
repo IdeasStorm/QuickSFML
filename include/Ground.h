@@ -18,6 +18,9 @@ public:
     Ground(const Ground& orig);
     void LoadComponents();
     void Update(const sf::Input&);
+    inline string getClass(){
+        return "Ground";
+    }
     virtual ~Ground();
     
     string box_texture;
