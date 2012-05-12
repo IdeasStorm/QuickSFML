@@ -5,7 +5,8 @@
  * Created on May 5, 2012, 7:44 PM
  */
 
-
+#include "user_input.h"
+#include "Model.h"
 #include "Studio.h"
 
 Studio::Studio() {
@@ -19,11 +20,14 @@ Studio::~Studio() {
 }
 
 void Studio::LoadComponents(){
-    
+    cameraEnable = 1;
+    loadUserComponents(components);
+    currentComponent = components.begin();
 }
 
 void Studio::Update(const sf::Input& input){
-    static bool N_was_down = false;    
+    static bool N_was_down = false;
+    static bool M_was_down = false;    
     static bool eq_was_down = false;
     static bool minus_was_down = false;
     static bool F5_was_down = false;
@@ -36,6 +40,20 @@ void Studio::Update(const sf::Input& input){
         Box *box = new Box();
         box->setTexture("Data/NeHe.bmp");
         components.push_back(box);    
+        // setting this element as current
+        list<GLDrawable*>::iterator end = components.end();
+        end--;
+        SetCurrentComponent(end);
+    }
+    
+    if (input.IsKeyDown(sf::Key::M) )  {
+        M_was_down = true;
+    } else if (M_was_down) {
+        M_was_down = false;
+        Model *model = new Model("./Data/Model/straba_m_mod_02.3ds");
+        model->LoadContent();
+        model->GLInit();
+        components.push_back(model);
         // setting this element as current
         list<GLDrawable*>::iterator end = components.end();
         end--;
@@ -106,9 +124,9 @@ void Studio::Update(const sf::Input& input){
             (((*currentComponent))->position) += sf::Vector3f(0,-s,0);
     }
     if (rotation) {
-        (*currentComponent)->xrot += field->x;
+        (*currentComponent)->xrot += field->z;
         (*currentComponent)->yrot += field->y;
-        (*currentComponent)->zrot += field->z;
+        (*currentComponent)->zrot += field->x;
     }
     
     
@@ -147,21 +165,29 @@ void Studio::PrevComponent() {
 
 void Studio::WriteCode(){
     list<GLDrawable*>::iterator i;
+    FILE *outfile;
+    
+    char *mode = "w";
+    char outputFilename[] = "include/user_input.h";
+    outfile = fopen(outputFilename, mode);
+    
     int c = 0;
-    printf("//============THIS FILE IS GENERATED FROM USER INPUT================\n");
-    printf("#include \"gen_init.h\" ");
-    printf("//=====================GENERATED CODE===============================\n");
-    printf("void loadUserComponents() {");
+    fprintf(outfile,"//============THIS FILE IS GENERATED FROM USER INPUT================\n");
+    fprintf(outfile,"#include \"gen_init.h\" \n");
+    fprintf(outfile,"//=====================GENERATED CODE===============================\n");
+    fprintf(outfile,"void loadUserComponents(list<GLDrawable*>& components) {\n");
     for (i=components.begin();i!=components.end();i++){
         GLDrawable *e = *i;
-        printf("//========================box%d=====================================\n",c);
-        printf("Box *box%d = new Box(); \n",c);
-        printf("box%d->position = Vector3f(%f,%f,%f); \n",c,e->position.x,e->position.y,e->position.z);
-        printf("box%d->halfSize = Vector3f(%f,%f,%f); \n",c,e->halfSize.x,e->halfSize.y,e->halfSize.z);
-        printf("box%d->setRotation(%f,%f,%f); \n",c,e->xrot,e->yrot,e->zrot);
-        printf("components.push_back(box%d); \n",c);
-        printf("//==================================================================\n");
+        fprintf(outfile,"//========================box%d=====================================\n",c);
+        fprintf(outfile,"Box *box%d = new Box(); \n",c);
+        fprintf(outfile,"box%d->setTexture(\"Data/NeHe.bmp\");\n",c);
+        fprintf(outfile,"box%d->position = Vector3f(%f,%f,%f); \n",c,e->position.x,e->position.y,e->position.z);
+        fprintf(outfile,"box%d->halfSize = Vector3f(%f,%f,%f); \n",c,e->halfSize.x,e->halfSize.y,e->halfSize.z);
+        fprintf(outfile,"box%d->setRotation(%f,%f,%f); \n",c,e->xrot,e->yrot,e->zrot);
+        fprintf(outfile,"components.push_back(box%d); \n",c);
+        fprintf(outfile,"//==================================================================\n");
         c++;
     }
-    printf("}");
+    fprintf(outfile,"}");
+    fclose(outfile);
 }

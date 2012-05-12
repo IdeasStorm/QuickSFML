@@ -19,36 +19,37 @@ using namespace std;
 
 class GLScene {
 public:
-    GLScene(char* title="");
+    GLScene(char* title = "");
     GLScene(const GLScene& orig);
-    
+
     virtual void LoadComponents();
     virtual bool LoadContent();
-int InitGL();
-    
+    int InitGL();
+
     virtual void Draw();
     virtual void Update(const sf::Input &input);
-    virtual void SetupLighting(){
-        
+
+    virtual void SetupLighting() {
+
     }
-    
+
     int Run();
     GLvoid ReSizeGLScene(GLsizei width, GLsizei height);
     sf::Window window;
     bool update_child_controls;
-    
+
     virtual ~GLScene();
 protected:
     list<GLDrawable*> components;
-    int cameraEnable ;
-    GLFrame camera,camera2,camera3 ;
+    int cameraEnable;
+    GLFrame camera, camera2, camera3;
 
-    
+
 private:
-    
-    
-    bool fullscreen ; // Fullscreen Flag Set To Fullscreen Mode By Default
-    bool vsync ; // Turn VSYNC on/off
+
+
+    bool fullscreen; // Fullscreen Flag Set To Fullscreen Mode By Default
+    bool vsync; // Turn VSYNC on/off
     bool light; // Lighting ON/OFF ( NEW )
 
     GLfloat xrot; // X Rotation
@@ -62,7 +63,7 @@ private:
     GLfloat LightSpecular[4];
 
     GLuint filter; // Which Filter To Use
-GLuint texture[3]; // Storage For 3 Textures
+    GLuint texture[3]; // Storage For 3 Textures
 
 };
 

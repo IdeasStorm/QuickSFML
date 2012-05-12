@@ -14,8 +14,10 @@
       <itemPath>include/Stairs.h</itemPath>
       <itemPath>include/Studio.h</itemPath>
       <itemPath>include/Train.h</itemPath>
+      <itemPath>include/gen_init.h</itemPath>
       <itemPath>include/glframe.h</itemPath>
       <itemPath>include/math3d.h</itemPath>
+      <itemPath>include/user_input.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"

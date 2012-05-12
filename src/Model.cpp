@@ -42,7 +42,12 @@ void Model::GetFaces()
 
 
 bool Model::LoadContent() {
-    return true;
+    // Calculate the number of faces we have in total
+    GetFaces();
+    if (m_TotalFaces > 0)
+        return true;
+    else
+        return false;
 }
 
 void Model::GLInit()
@@ -50,8 +55,6 @@ void Model::GLInit()
 {
          assert(m_model != NULL);
        
-        // Calculate the number of faces we have in total
-        GetFaces();
        
         // Allocate memory for our vertices and normals
         Lib3dsVector * vertices = new Lib3dsVector[m_TotalFaces * 3];
