@@ -153,3 +153,11 @@ GLDrawable* Model::Clone() {
     cloned->textureEnabled = textureEnabled;
     return cloned;
 }
+
+void Model::WriteInstanceCreation(FILE* outfile, string name) {
+    fprintf(outfile,"%s *%s = new %s(\"%s\");\n",
+            this->getClass().data(),
+            name.data(),this->getClass().data(),
+            this->filename.data()
+    );
+}

@@ -35,6 +35,7 @@ public:
 
     void GLInit();
 
+    void WriteInstanceCreation(FILE *outfile, string name);
     inline string getClass() {
         return "Model";
     }
