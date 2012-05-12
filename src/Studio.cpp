@@ -214,6 +214,12 @@ void Studio::ProcessComponent(GLDrawable *component){
     if (tag == "Train") {
         // here you can cast to your type and modify ads you want
     }
+    else if (tag == "building") {
+        Texture tex("./Data/NeHe.bmp");
+        tex.id = elements::Sides;
+        ((Box*)component)->textures.push_back(tex);
+        ((Box*)component)->textureEnabled = true;
+    }
 }
 
 void Studio::WriteCode(){
@@ -239,6 +245,7 @@ void Studio::WriteCode(){
         fprintf(outfile,"box%d->position = Vector3f(%f,%f,%f); \n",c,e->position.x,e->position.y,e->position.z);
         fprintf(outfile,"box%d->halfSize = Vector3f(%f,%f,%f); \n",c,e->halfSize.x,e->halfSize.y,e->halfSize.z);
         fprintf(outfile,"box%d->setRotation(%f,%f,%f); \n",c,e->yrot,e->xrot,e->zrot);
+        fprintf(outfile,"box%d->tag = \"%s\" ; \n",c,e->tag.data());
         fprintf(outfile,"components.push_back(box%d); \n",c);
         fprintf(outfile,"//==================================================================\n");
         c++;

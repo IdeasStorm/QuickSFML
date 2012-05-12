@@ -78,9 +78,9 @@ public:
         return halfSize.y * 2;
     }
     
-   void setTexture(string path) {
-        textureEnabled = true;
+   void setTexture(const string& path) {
         texture_path = path;
+        textureEnabled = true;
         LoadContent();
     }
  
@@ -96,13 +96,20 @@ protected:
     }
     
     inline void applyFaceTexture(Element e) {
-        if (textures.empty())
-            return ;
+        if (!textureEnabled || textures.empty()) 
+            return;
+        bool found = false;
         list<Texture>::iterator i;
         for (i=textures.begin();i!=textures.end();i++){
-            if (elements::has(i->id,e))
-                glBindTexture(GL_TEXTURE_2D, i->getPtr(filter));;
+            if (elements::has(i->id,e)) {
+                glEnable(GL_TEXTURE_2D);
+                glBindTexture(GL_TEXTURE_2D, i->getPtr(filter));
+                found = true;
+                break;
+            }
         }
+        if (!found)
+            glDisable(GL_TEXTURE_2D);
     }
 private:
     Element my_elements;
