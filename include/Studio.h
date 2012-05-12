@@ -27,7 +27,7 @@ public:
     void SetCurrentComponent(list<GLDrawable*>::iterator);
     void NextComponent();
     void PrevComponent();
-    
+    void ProcessComponent(GLDrawable *component);
     list<GLDrawable*>::iterator currentComponent;
 private:
     

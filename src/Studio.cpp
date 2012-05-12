@@ -24,6 +24,10 @@ void Studio::LoadComponents(){
     cameraEnable = 1;
     loadUserComponents(components);
     currentComponent = components.begin();
+    list<GLDrawable*>::iterator i;
+    for (i=components.begin();i!=components.end();i++){
+        ProcessComponent((GLDrawable*)(*i));
+    }
 }
 
 void Studio::Update(const sf::Input& input){
@@ -203,6 +207,13 @@ void Studio::PrevComponent() {
         currentComponent = components.end();
     currentComponent--;
     (*currentComponent)->textureEnabled = false;
+}
+
+void Studio::ProcessComponent(GLDrawable *component){
+    string tag = component->tag;// the tag to look for
+    if (tag == "Train") {
+        // here you can cast to your type and modify ads you want
+    }
 }
 
 void Studio::WriteCode(){
