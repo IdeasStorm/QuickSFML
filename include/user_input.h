@@ -13,7 +13,7 @@ components.push_back(box0);
 //==================================================================
 //========================box1=====================================
 Box *box1 = new Box();
-//box1->setTexture("Data/NeHe.bmp");
+box1->setTexture("Data/NeHe.bmp");
 box1->position = Vector3f(1.900000,-1.300000,11.700008); 
 box1->halfSize = Vector3f(7.899995,5.599997,4.499998); 
 box1->setRotation(0.000000,0.000000,0.000000); 

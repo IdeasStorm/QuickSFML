@@ -215,6 +215,11 @@ void Studio::ProcessComponent(GLDrawable *component){
         // here you can cast to your type and modify ads you want
     }
     else if (tag == "building") {
+        // you should remove default textures
+        list<Texture> newlist;
+        ((Box*)component)->textures = newlist;
+        
+        // loading textures
         Texture tex("./Data/NeHe.bmp");
         tex.id = elements::Sides;
         ((Box*)component)->textures.push_back(tex);

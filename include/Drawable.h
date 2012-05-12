@@ -27,10 +27,11 @@ public:
             return -1;
         }
     }
-    Texture(string texture_path) : filename(texture_path){
+    Texture(const string &texture_path) : filename(texture_path){
         if (!LoadContent())
             printf("Warning : Texture not loaded");
     }
+    
     inline bool LoadContent() {
         // Load The Bitmap, Check For Errors, If Bitmap's Not Found Quit
         sf::Image Image;
