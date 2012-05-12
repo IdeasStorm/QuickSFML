@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/src/Stairs.o \
 	${OBJECTDIR}/src/math3d.o \
 	${OBJECTDIR}/src/GLScene.o \
+	${OBJECTDIR}/src/SkyBox.o \
 	${OBJECTDIR}/src/Train.o \
 	${OBJECTDIR}/src/Studio.o \
 	${OBJECTDIR}/src/MyScene.o \
@@ -96,6 +97,11 @@ ${OBJECTDIR}/src/GLScene.o: src/GLScene.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/GLScene.o src/GLScene.cpp
+
+${OBJECTDIR}/src/SkyBox.o: src/SkyBox.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/SkyBox.o src/SkyBox.cpp
 
 ${OBJECTDIR}/src/Train.o: src/Train.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
