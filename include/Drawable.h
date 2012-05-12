@@ -65,6 +65,8 @@ public:
     GLfloat zrot; // Z Rotation
 
     bool self_control;
+    
+    string tag;
 protected:
     list<GLDrawable*> components;
     GLuint texture[3]; // Storage For 3 Textures
