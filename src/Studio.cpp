@@ -245,7 +245,7 @@ void Studio::WriteCode(){
         fprintf(outfile,"box%d->position = Vector3f(%f,%f,%f); \n",c,e->position.x,e->position.y,e->position.z);
         fprintf(outfile,"box%d->halfSize = Vector3f(%f,%f,%f); \n",c,e->halfSize.x,e->halfSize.y,e->halfSize.z);
         fprintf(outfile,"box%d->setRotation(%f,%f,%f); \n",c,e->yrot,e->xrot,e->zrot);
-        fprintf(outfile,"box%d->tag = \"%s\" ; \n",c,e->tag.data());
+        fprintf(outfile,"box%d->tag = \"%s\"; \n",c,e->tag.data());
         fprintf(outfile,"components.push_back(box%d); \n",c);
         fprintf(outfile,"//==================================================================\n");
         c++;

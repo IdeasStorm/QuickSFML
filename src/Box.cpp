@@ -12,19 +12,19 @@ Box::Box() {
     my_elements = elements::All;
 }
 
-void Box::init(){
+void Box::init() {
     axis_angle = false;
     rotation = 0;
     xspeed = 0;
     yspeed = 0;
-    xrot=0;
-    yrot=0;
-    zrot=0;
-    this->halfSize=sf::Vector3f(1,1,1);
+    xrot = 0;
+    yrot = 0;
+    zrot = 0;
+    this->halfSize = sf::Vector3f(1, 1, 1);
     my_elements = elements::All;
 }
 
-Box::Box(sf::Vector3f position){
+Box::Box(sf::Vector3f position) {
     init();
     this->position = position;
 }
@@ -49,12 +49,11 @@ Box::Box(const Box& orig) {
 Box::~Box() {
 }
 
+void Box::Update(const sf::Input& input) {
 
-void Box::Update(const sf::Input& input ){
-    
 
-//    if (input.IsKeyDown(sf::Key::PageDown)) {
-  //      z += 0.02f;
+    //    if (input.IsKeyDown(sf::Key::PageDown)) {
+    //      z += 0.02f;
     //}
 
     if (input.IsKeyDown(sf::Key::Up)) {
@@ -71,19 +70,19 @@ void Box::Update(const sf::Input& input ){
     }
     xrot += xspeed;
     yrot += yspeed;
-    
+
     rotation += xspeed;
-    
+
 }
 
-void Box::draw(){
-    
-    GLfloat d = halfSize.z ;
-    GLfloat h = halfSize.y ;
-    GLfloat w = halfSize.x ;
-    
+void Box::draw() {
+
+    GLfloat d = halfSize.z;
+    GLfloat h = halfSize.y;
+    GLfloat w = halfSize.x;
+
     glDisable(GL_TEXTURE_2D);
-    if (elements::has(my_elements,elements::Front)) {
+    if (elements::has(my_elements, elements::Front)) {
         // Front Face
         applyFaceTexture(elements::Front);
         glBegin(GL_QUADS);
@@ -98,9 +97,9 @@ void Box::draw(){
         glVertex3f(-w, h, d);
         glEnd();
     }
-    
-    
-    if (elements::has(my_elements,elements::Back)) {
+
+
+    if (elements::has(my_elements, elements::Back)) {
         // Back Face
         applyFaceTexture(elements::Back);
         glBegin(GL_QUADS);
@@ -115,8 +114,8 @@ void Box::draw(){
         glVertex3f(w, -h, -d);
         glEnd();
     }
-    
-    if (elements::has(my_elements,elements::Top)) {
+
+    if (elements::has(my_elements, elements::Top)) {
         // Top Face
         applyFaceTexture(elements::Top);
         glBegin(GL_QUADS);
@@ -131,8 +130,8 @@ void Box::draw(){
         glVertex3f(w, h, -d);
         glEnd();
     }
-    
-    if (elements::has(my_elements,elements::Bottom)) {
+
+    if (elements::has(my_elements, elements::Bottom)) {
         // Bottom Face
         applyFaceTexture(elements::Bottom);
         glBegin(GL_QUADS);
@@ -142,13 +141,13 @@ void Box::draw(){
         glTexCoord2f(0.0f, 1.0f);
         glVertex3f(w, -h, -d);
         glTexCoord2f(0.0f, 0.0f);
-        glVertex3f(w, -h , d);
+        glVertex3f(w, -h, d);
         glTexCoord2f(1.0f, 0.0f);
         glVertex3f(-w, -h, d);
         glEnd();
     }
-    
-    if (elements::has(my_elements,elements::Right)) {
+
+    if (elements::has(my_elements, elements::Right)) {
         // Right face
         applyFaceTexture(elements::Right);
         glBegin(GL_QUADS);
@@ -164,7 +163,7 @@ void Box::draw(){
         glEnd();
     }
 
-    if (elements::has(my_elements,elements::Left)) {
+    if (elements::has(my_elements, elements::Left)) {
         // Left Face
         applyFaceTexture(elements::Left);
         glBegin(GL_QUADS);
@@ -180,7 +179,7 @@ void Box::draw(){
         glEnd();
     }
 
-    
+
 }
 
 bool Box::LoadContent() {
@@ -191,11 +190,11 @@ void Box::SetComponents(elements::Element elements) {
     this->my_elements = elements;
 }
 
-bool elements::has(Element elements, Element test){
+bool elements::has(Element elements, Element test) {
     return ((elements & test) == test);
 }
 
-bool elements::has(GLuint elements, Element test){
+bool elements::has(GLuint elements, Element test) {
     return ((elements & test) == test);
 }
 
@@ -204,19 +203,19 @@ GLDrawable* Box::Clone() {
     cloned->position = position;
     cloned->halfSize = halfSize;
     if (axis_angle)
-        cloned->setRotation(rotationAxis,rotation);
+        cloned->setRotation(rotationAxis, rotation);
     else
-        cloned->setRotation(yrot,xrot,zrot);
-    if (textureEnabled){
+        cloned->setRotation(yrot, xrot, zrot);
+    if (textureEnabled) {
         cloned->setTexture(texture_path);
-    }else {
+    } else {
         cloned->texture_path = texture_path;
     }
     return cloned;
 }
 
-void Box::WriteInstanceCreation(FILE* outfile, string name){
+void Box::WriteInstanceCreation(FILE* outfile, string name) {
     GLDrawable::WriteInstanceCreation(outfile, name);
     //if (textureEnabled)
-        fprintf(outfile,"%s->setTexture(\"%s\");\n",name.data(),texture_path.data());
+    fprintf(outfile, "%s->setTexture(\"%s\");\n", name.data(), texture_path.data());
 }
