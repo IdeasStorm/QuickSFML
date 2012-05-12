@@ -79,9 +79,10 @@ public:
     }
     
    void setTexture(const string& path) {
-        texture_path = path;
         textureEnabled = true;
-        LoadContent();
+        Texture tex(path);
+        tex.id = elements::All;
+        textures.push_back(tex);
     }
  
    void setElements(Element element) {
