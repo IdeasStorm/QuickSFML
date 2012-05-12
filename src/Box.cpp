@@ -94,6 +94,7 @@ void Box::draw(){
     
     if (elements::has(my_elements,elements::Front)) {
         // Front Face
+        applyFaceTexture(elements::Front);
         glNormal3f(0.0f, 0.0f, 1.0f);
         glTexCoord2f(0.0f, 0.0f);
         glVertex3f(-w, -h, d);
@@ -107,6 +108,7 @@ void Box::draw(){
     
     if (elements::has(my_elements,elements::Back)) {
         // Back Face
+        applyFaceTexture(elements::Back);
         glNormal3f(0.0f, 0.0f, -1.0f);
         glTexCoord2f(1.0f, 0.0f);
         glVertex3f(-w, -h, -d);
@@ -120,6 +122,7 @@ void Box::draw(){
     
     if (elements::has(my_elements,elements::Top)) {
         // Top Face
+        applyFaceTexture(elements::Top);
         glNormal3f(0.0f, 1.0f, 0.0f);
         glTexCoord2f(0.0f, 1.0f);
         glVertex3f(-w, h, -d);
@@ -133,6 +136,7 @@ void Box::draw(){
     
     if (elements::has(my_elements,elements::Bottom)) {
         // Bottom Face
+        applyFaceTexture(elements::Bottom);
         glNormal3f(0.0f, -1.0f, 0.0f);
         glTexCoord2f(1.0f, 1.0f);
         glVertex3f(-w, -h, -d);
@@ -146,6 +150,7 @@ void Box::draw(){
     
     if (elements::has(my_elements,elements::Right)) {
         // Right face
+        applyFaceTexture(elements::Right);
         glNormal3f(1.0f, 0.0f, 0.0f);
         glTexCoord2f(1.0f, 0.0f);
         glVertex3f(w, -h, -d);
@@ -159,6 +164,7 @@ void Box::draw(){
 
     if (elements::has(my_elements,elements::Left)) {
         // Left Face
+        applyFaceTexture(elements::Left);
         glNormal3f(-1.0f, 0.0f, 0.0f);
         glTexCoord2f(0.0f, 0.0f);
         glVertex3f(-w, -h, -d);
@@ -209,6 +215,10 @@ void Box::SetComponents(elements::Element elements) {
 }
 
 bool elements::has(Element elements, Element test){
+    return ((elements & test) == test);
+}
+
+bool elements::has(GLuint elements, Element test){
     return ((elements & test) == test);
 }
 

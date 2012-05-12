@@ -29,6 +29,7 @@ namespace elements {
         BackOpened = All & (~Back)  
     };
     bool has(Element elements,Element test);
+    bool has(GLuint elements,Element test);
 }
 using namespace elements;
 
@@ -87,11 +88,21 @@ public:
        my_elements = element;
    }
    
-   
+   list<Texture> textures;
 protected:
     void draw();
     inline void scale() {
         // does nothing, the box is self scaling object
+    }
+    
+    inline void applyFaceTexture(Element e) {
+        if (textures.empty())
+            return ;
+        list<Texture>::iterator i;
+        for (i=textures.begin();i!=textures.end();i++){
+            if (elements::has(i->id,e))
+                glBindTexture(GL_TEXTURE_2D, i->getPtr(filter));;
+        }
     }
 private:
     Element my_elements;
