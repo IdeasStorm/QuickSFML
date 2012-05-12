@@ -9,6 +9,7 @@
 
 #include "Stairs.h"
 #include "Box.h"
+#include "glframe.h"
 
 Stairs::Stairs() {
     init();
@@ -149,4 +150,14 @@ bool Stairs::LoadContent() {
 }
 
 void Stairs::SetComponents() {
+}
+
+
+GLDrawable* Stairs::Clone() {
+    Stairs* cloned = new Stairs(position,halfSize,stairNum);
+    if (axis_angle)
+        cloned->setRotation(rotationAxis,rotation);
+    else
+        cloned->setRotation(yrot,xrot,zrot);
+    return cloned;
 }

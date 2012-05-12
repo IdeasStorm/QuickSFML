@@ -32,6 +32,7 @@ public:
     Stairs(const Stairs& orig);    
     virtual ~Stairs();
     
+    GLDrawable* Clone();
     void init();
     void initBoxes();
     void Update(const sf::Input& input);

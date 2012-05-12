@@ -11,6 +11,7 @@
 
 Model::Model(std::string filename)
 {
+    this->filename = filename;
     m_VertexVBO = 0;
     m_TotalFaces = 0;
     m_model=lib3ds_file_load(filename.data());
@@ -22,6 +23,7 @@ Model::Model(std::string filename)
     }
     position.x = position.y = position.z = rotation = 0 ;
 }
+
 
 void Model::GetFaces()
 {
@@ -136,4 +138,18 @@ void Model::draw()
 void Model::Update(const sf::Input& input)
 {
     
+}
+
+GLDrawable* Model::Clone() {
+    Model* cloned = new Model(filename);
+    cloned->LoadContent();
+    cloned->GLInit();
+    cloned->position = position;
+    cloned->halfSize = halfSize;
+    if (axis_angle)
+        cloned->setRotation(rotationAxis,rotation);
+    else
+        cloned->setRotation(yrot,xrot,zrot);
+    cloned->textureEnabled = textureEnabled;
+    return cloned;
 }

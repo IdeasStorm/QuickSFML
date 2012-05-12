@@ -19,7 +19,7 @@
 #include <cassert>
 #include <string>
 
-
+using namespace std;
 
 class Model : public GLDrawable
 {
@@ -30,12 +30,13 @@ class Model : public GLDrawable
         virtual void Update(const sf::Input &input);
         void SetupLighting();
         
+        GLDrawable* Clone();
 
         bool LoadContent();
         
         void GLInit();
     protected:
-
+        string filename;
         void draw();
 
     private:

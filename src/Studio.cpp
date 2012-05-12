@@ -32,7 +32,21 @@ void Studio::Update(const sf::Input& input){
     static bool minus_was_down = false;
     static bool F5_was_down = false;
     static bool del_was_down = false;
+    static bool V_was_down = false;
+    
     camera.EnableMouse = true ;
+    
+    if (input.IsKeyDown(sf::Key::V) )  {
+        V_was_down = true;
+    } else if (V_was_down) {
+        V_was_down = false;
+        GLDrawable* drawable = (*currentComponent)->Clone();
+        components.push_back(drawable);    
+        // setting this element as current
+        list<GLDrawable*>::iterator end = components.end();
+        end--;
+        SetCurrentComponent(end);
+    }
     
     if (input.IsKeyDown(sf::Key::Delete) )  {
         del_was_down = true;

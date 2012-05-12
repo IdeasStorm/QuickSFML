@@ -211,3 +211,19 @@ void Box::SetComponents(elements::Element elements) {
 bool elements::has(Element elements, Element test){
     return ((elements & test) == test);
 }
+
+GLDrawable* Box::Clone() {
+    Box* cloned = new Box();
+    cloned->position = position;
+    cloned->halfSize = halfSize;
+    if (axis_angle)
+        cloned->setRotation(rotationAxis,rotation);
+    else
+        cloned->setRotation(yrot,xrot,zrot);
+    if (textureEnabled){
+        cloned->setTexture(texture_path);
+    }else {
+        cloned->texture_path = texture_path;
+    }
+    return cloned;
+}
