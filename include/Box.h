@@ -80,6 +80,7 @@ public:
     
    void setTexture(const string& path) {
         textureEnabled = true;
+        texture_path = path;
         Texture tex(path);
         tex.id = elements::All;
         textures.push_back(tex);
