@@ -17,7 +17,7 @@ GLfloat* vec4(sf::Color color){
     return res;
 }
 
-Light::Light():GLDrawable(){
+Light::Light(){
     ligthEnable = true ;
 }
 
@@ -59,8 +59,8 @@ GLDrawable* Light::Clone() {
 
 void Light::SetupLighting() {
     
-//    if (ligthEnable)
-//    {
+    if (ligthEnable)
+    {
         GLfloat temp[]={position.x,position.y,position.z,w};
         glLightfv(GL_LIGHT0,GL_POSITION,temp);
     //    glLightfv(GL_LIGHT0,GL_AMBIENT,vec4(ambient));
@@ -70,7 +70,7 @@ void Light::SetupLighting() {
         
         glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 45.0);
         GLfloat spot_direction[] = { 0.0, -1.0, 0.0 };
-        glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 2.0);
+        //glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, 2.0);
         glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, spot_direction);
         glEnable(GL_LIGHT0); 
         
@@ -82,8 +82,8 @@ void Light::SetupLighting() {
 //        glColor3f(1.0, 1.0, 1.0);
 //        glDisable(GL_COLOR_MATERIAL);
 
-  //  }else
-   //     glDisable(GL_LIGHT0);
+    }else
+        glDisable(GL_LIGHT0);
     
 }
 

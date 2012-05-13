@@ -57,6 +57,10 @@ public:
             MoveForward(0.5);
         if (input.IsKeyDown(sf::Key::S))
             MoveForward(-0.5);
+        if (input.IsKeyDown(sf::Key::O))
+            MoveUp(-0.5);
+        if (input.IsKeyDown(sf::Key::P))
+            MoveUp(+0.5);
         if (EnableMouse)
             return;
         if (input.IsKeyDown(sf::Key::PageUp))
@@ -353,10 +357,10 @@ public:
     inline void ApplyCameraTransform(bool bRotOnly = false) {
         M3DMatrix44f m;
 
-        GetCameraOrientation(m);
+   //     GetCameraOrientation(m);
 
         // Camera Transform   
-        glMultMatrixf(m);
+     //   glMultMatrixf(m);
 
         // If Rotation only, then do not do the translation
 //        if (!bRotOnly)

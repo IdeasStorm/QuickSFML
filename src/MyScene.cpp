@@ -30,7 +30,7 @@ list<Light *> lights;
 void MyScene::LoadComponents(){
     update_child_controls = true;
     
-    camera.SetOrigin(30,15,70);
+    camera.SetOrigin(30,15,150);
     camera.ApplyDefault();
     
     camera2.SetOrigin(25,25,25);
@@ -198,13 +198,11 @@ void MyScene::Update(const sf::Input& input) {
     if (input.IsKeyDown(sf::Key::Num3)){
         cameraEnable = &camera3 ;
         camera3.Default();
-    }        
+    }
 
-    if (input.IsKeyDown(sf::Key::T)){           
-        for (i=lights.begin();i!=lights.end();i++){
-            ((Light*)(*i))->ligthEnable != ((Light*)(*i))->ligthEnable;
-            ((Light*)(*i))->SetupLighting();
-        }
+    for (i=lights.begin();i!=lights.end();i++){
+        ((Light*)(*i))->SetupLighting();
     }
     GLScene::Update(input);
+
 }

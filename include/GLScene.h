@@ -45,7 +45,6 @@ protected:
     GLFrame camera,camera2,camera3 ;
     GLFrame *cameraEnable ;
 
-
 private:
 
 
