@@ -5,6 +5,8 @@
  * Created on May 1, 2012, 11:33 PM
  */
 
+#include <GL/glew.h>
+
 #include "Box.h"
 
 Box::Box() {
@@ -80,20 +82,25 @@ void Box::draw() {
     GLfloat d = halfSize.z;
     GLfloat h = halfSize.y;
     GLfloat w = halfSize.x;
-
+    if (tag == "skyBox") {
+        glDisable(GL_LIGHTING);
+        glPushAttrib(GL_ENABLE_BIT);
+    }else {
+        glEnable(GL_LIGHTING);   
+    }
     glDisable(GL_TEXTURE_2D);
     if (elements::has(my_elements, elements::Front)) {
         // Front Face
         applyFaceTexture(elements::Front);
         glBegin(GL_QUADS);
         glNormal3f(0.0f, 0.0f, 1.0f);
-        glTexCoord2f(0.0f, 0.0f);
-        glVertex3f(-w, -h, d);
-        glTexCoord2f(1.0f, 0.0f);
-        glVertex3f(w, -h, d);
-        glTexCoord2f(1.0f, 1.0f);
-        glVertex3f(w, h, d);
         glTexCoord2f(0.0f, 1.0f);
+        glVertex3f(-w, -h, d);
+        glTexCoord2f(1.0f, 1.0f);
+        glVertex3f(w, -h, d);
+        glTexCoord2f(1.0f, 0.0f);
+        glVertex3f(w, h, d);
+        glTexCoord2f(0.0f, 0.0f);
         glVertex3f(-w, h, d);
         glEnd();
     }
@@ -104,13 +111,13 @@ void Box::draw() {
         applyFaceTexture(elements::Back);
         glBegin(GL_QUADS);
         glNormal3f(0.0f, 0.0f, -1.0f);
-        glTexCoord2f(1.0f, 0.0f);
-        glVertex3f(-w, -h, -d);
         glTexCoord2f(1.0f, 1.0f);
+        glVertex3f(-w, -h, -d);
+        glTexCoord2f(1.0f, 0.0f);
         glVertex3f(-w, h, -d);
-        glTexCoord2f(0.0f, 1.0f);
-        glVertex3f(w, h, -d);
         glTexCoord2f(0.0f, 0.0f);
+        glVertex3f(w, h, -d);
+        glTexCoord2f(0.0f, 1.0f);
         glVertex3f(w, -h, -d);
         glEnd();
     }
@@ -120,13 +127,16 @@ void Box::draw() {
         applyFaceTexture(elements::Top);
         glBegin(GL_QUADS);
         glNormal3f(0.0f, 1.0f, 0.0f);
-        glTexCoord2f(0.0f, 1.0f);
-        glVertex3f(-w, h, -d);
         glTexCoord2f(0.0f, 0.0f);
-        glVertex3f(-w, h, d);
+        glVertex3f(-w, h, -d);
         glTexCoord2f(1.0f, 0.0f);
-        glVertex3f(w, h, d);
+        
+        glVertex3f(-w, h, d);
         glTexCoord2f(1.0f, 1.0f);
+                        
+        glVertex3f(w, h, d);
+        glTexCoord2f(0.0f, 1.0f);
+        
         glVertex3f(w, h, -d);
         glEnd();
     }
@@ -136,13 +146,14 @@ void Box::draw() {
         applyFaceTexture(elements::Bottom);
         glBegin(GL_QUADS);
         glNormal3f(0.0f, -1.0f, 0.0f);
-        glTexCoord2f(1.0f, 1.0f);
-        glVertex3f(-w, -h, -d);
-        glTexCoord2f(0.0f, 1.0f);
-        glVertex3f(w, -h, -d);
         glTexCoord2f(0.0f, 0.0f);
-        glVertex3f(w, -h, d);
+        glVertex3f(-w, -h, -d);
         glTexCoord2f(1.0f, 0.0f);
+        glVertex3f(w, -h, -d);
+        glTexCoord2f(1.0f, 1.0f);
+        glVertex3f(w, -h, d);
+        glTexCoord2f(0.0f, 1.0f);
+        
         glVertex3f(-w, -h, d);
         glEnd();
     }
@@ -152,13 +163,14 @@ void Box::draw() {
         applyFaceTexture(elements::Right);
         glBegin(GL_QUADS);
         glNormal3f(1.0f, 0.0f, 0.0f);
-        glTexCoord2f(1.0f, 0.0f);
-        glVertex3f(w, -h, -d);
         glTexCoord2f(1.0f, 1.0f);
+        glVertex3f(w, -h, -d);
+        glTexCoord2f(1.0f, 0.0f);
         glVertex3f(w, h, -d);
-        glTexCoord2f(0.0f, 1.0f);
-        glVertex3f(w, h, d);
         glTexCoord2f(0.0f, 0.0f);
+        glVertex3f(w, h, d);
+        glTexCoord2f(0.0f, 1.0f);
+        
         glVertex3f(w, -h, d);
         glEnd();
     }
@@ -168,17 +180,20 @@ void Box::draw() {
         applyFaceTexture(elements::Left);
         glBegin(GL_QUADS);
         glNormal3f(-1.0f, 0.0f, 0.0f);
-        glTexCoord2f(0.0f, 0.0f);
-        glVertex3f(-w, -h, -d);
-        glTexCoord2f(1.0f, 0.0f);
-        glVertex3f(-w, -h, d);
         glTexCoord2f(1.0f, 1.0f);
-        glVertex3f(-w, h, d);
+        glVertex3f(-w, -h, -d);
         glTexCoord2f(0.0f, 1.0f);
+        glVertex3f(-w, -h, d);
+        glTexCoord2f(0.0f, 0.0f);
+        glVertex3f(-w, h, d);
+        glTexCoord2f(1.0f, 0.0f);
+        
         glVertex3f(-w, h, -d);
         glEnd();
     }
-
+    if (tag == "skyBox") {
+        glPopAttrib();
+    }
 
 }
 
@@ -216,6 +231,6 @@ GLDrawable* Box::Clone() {
 
 void Box::WriteInstanceCreation(FILE* outfile, string name) {
     GLDrawable::WriteInstanceCreation(outfile, name);
-    //if (textureEnabled)
-    fprintf(outfile, "%s->setTexture(\"%s\");\n", name.data(), texture_path.data());
+    if (!texture_path.empty())
+        fprintf(outfile, "%s->setTexture(\"%s\");\n", name.data(), texture_path.data());
 }

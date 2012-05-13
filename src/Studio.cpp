@@ -21,7 +21,7 @@ Studio::~Studio() {
 }
 
 void Studio::LoadComponents(){
-    cameraEnable = 1;
+    cameraEnable = 2;
     loadUserComponents(components);
     currentComponent = components.begin();
     list<GLDrawable*>::iterator i;
@@ -222,6 +222,30 @@ void Studio::ProcessComponent(GLDrawable *component){
         tex.id = elements::Sides;
         ((Box*)component)->textures.push_back(tex);
         ((Box*)component)->textureEnabled = true;
+    }
+    else if (tag == "skyBox") {
+        list<Texture> newlist;
+        ((Box*)component)->textures = newlist;
+        Texture tex("./Data/city/top.jpg");
+        tex.id = elements::Top;
+        ((Box*)component)->textures.push_back(tex);
+        
+        Texture tex1("./Data/city/front.jpg");
+        tex1.id = elements::Front;
+        ((Box*)component)->textures.push_back(tex1);
+        Texture tex2("./Data/city/left.jpg");
+        tex2.id = elements::Left;
+        ((Box*)component)->textures.push_back(tex2);
+        Texture tex3("./Data/city/right.jpg");
+        tex3.id = elements::Right;
+        ((Box*)component)->textures.push_back(tex3);
+        ((Box*)component)->textureEnabled = true;
+        
+        Texture tex4("./Data/city/back.jpg");
+        tex4.id = elements::Back;
+        ((Box*)component)->textures.push_back(tex4);
+        ((Box*)component)->textureEnabled = true;
+        
     }
 }
 

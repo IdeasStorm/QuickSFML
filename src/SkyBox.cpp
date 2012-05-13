@@ -74,10 +74,10 @@ bool SkyBox::LoadContent()
 }
 
 void SkyBox::draw(){
-    glPushMatrix();
+    
  
     // Reset and transform the matrix.
-    glLoadIdentity();
+    //glLoadIdentity();
 
     glPushAttrib(GL_ENABLE_BIT);
     glEnable(GL_TEXTURE_2D);
@@ -145,7 +145,6 @@ void SkyBox::draw(){
 // 
     // Restore enable bits and matrix
     glPopAttrib();
-    glPopMatrix();
     
     glEnd();
 }

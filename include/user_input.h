@@ -23,9 +23,9 @@ components.push_back(box1);
 //========================box2=====================================
 Box *box2 = new Box();
 box2->setTexture("Data/NeHe.bmp");
-box2->position = Vector3f(8.799997,-1.300000,-23.900055); 
-box2->halfSize = Vector3f(4.799998,13.900017,5.199997); 
-box2->setRotation(0.000000,0.000000,0.000000); 
+box2->position = Vector3f(6.599996,-1.300000,-23.800055); 
+box2->halfSize = Vector3f(6.199996,13.900017,5.299997); 
+box2->setRotation(0.000000,-29.000000,-4.000000); 
 box2->tag = "building"; 
 components.push_back(box2); 
 //==================================================================
@@ -153,5 +153,22 @@ box16->halfSize = Vector3f(8.899998,10.400003,7.599995);
 box16->setRotation(0.000000,0.000000,0.000000); 
 box16->tag = "building"; 
 components.push_back(box16); 
+//==================================================================
+//========================box17=====================================
+Box *box17 = new Box();
+box17->position = Vector3f(-2.299998,24.000053,12.900013); 
+box17->halfSize = Vector3f(68.499527,54.999733,68.099533); 
+box17->setRotation(0.000000,0.000000,0.000000); 
+box17->tag = "skyBox"; 
+components.push_back(box17); 
+//==================================================================
+//========================box18=====================================
+Box *box18 = new Box();
+box18->setTexture("Data/NeHe.bmp");
+box18->position = Vector3f(-3.599999,-7.699995,-6.299996); 
+box18->halfSize = Vector3f(1.000000,1.000000,1.000000); 
+box18->setRotation(0.000000,0.000000,0.000000); 
+box18->tag = "skyBox"; 
+components.push_back(box18); 
 //==================================================================
 }
