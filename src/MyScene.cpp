@@ -120,8 +120,8 @@ void MyScene::LoadComponents(){
     SkyBox * skyBox = new SkyBox();    
     skyBox->setTextures("./Data/city/")    ;
     
-    Sphere *sphere=new Sphere(sf::Vector3f(10,0,40),5);
-    
+    Sphere *sphere=new Sphere(sf::Vector3f(10,10,40),15);
+    sphere->setTexture("./Data/Wall/brown_wall_texture_by_fantasystock-d34un9s.jpg");
     //components.push_back(skyBox);
     components.push_back(sphere);
     components.push_back(leftWall);

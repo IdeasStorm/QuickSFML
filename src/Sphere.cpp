@@ -89,8 +89,8 @@ void Sphere::Update(const sf::Input& input ){
 }
 
 void Sphere::draw(){
-    int lats=10;
-    int longs=10;
+    int lats=this->halfSize.x*3;
+    int longs=this->halfSize.x*3;
     int i, j;
     glDisable(GL_TEXTURE_2D);
     for(i = 0; i <= lats; i++) {
@@ -101,120 +101,31 @@ void Sphere::draw(){
         double lat1 = M_PI * (-0.5 + (double) i / lats);
         double z1 = sin(lat1);
         double zr1 = cos(lat1);
-
+        applyFaceTexture();
         glBegin(GL_QUAD_STRIP);
         for(j = 0; j <= longs; j++) {
             double lng = 2 * M_PI * (double) (j - 1) / longs;
             double x = cos(lng);
             double y = sin(lng);
-
-            glNormal3f(x * zr0, y * zr0, z0);
-            glVertex3f(x * zr0, y * zr0, z0);
-            glNormal3f(x * zr1, y * zr1, z1);
-            glVertex3f(x * zr1, y * zr1, z1);
+            if(j%2)
+            {
+                glTexCoord2f(0.0,0.0);
+                glNormal3f(x * zr0, y * zr0, z0);
+                glVertex3f(x * zr0, y * zr0, z0);
+                glTexCoord2f(1.0,0.0);
+                glNormal3f(x * zr1, y * zr1, z1);
+                glVertex3f(x * zr1, y * zr1, z1);
+            }
+            else
+            {
+                glTexCoord2f(1.0,1.0);
+                glNormal3f(x * zr0, y * zr0, z0);
+                glVertex3f(x * zr0, y * zr0, z0);
+                glTexCoord2f(0.0,1.0);
+                glNormal3f(x * zr1, y * zr1, z1);
+                glVertex3f(x * zr1, y * zr1, z1);
+            }
         }
         glEnd();
-    }
-    
-//    GLfloat d = halfSize.z ;
-//    GLfloat h = halfSize.y ;
-//    GLfloat w = halfSize.x ;
-//    
-//    glDisable(GL_TEXTURE_2D);
-//    if (elements::has(my_elements,elements::Front)) {
-//        // Front Face
-//        applyFaceTexture(elements::Front);
-//        glBegin(GL_QUADS);
-//        glNormal3f(0.0f, 0.0f, 1.0f);
-//        glTexCoord2f(0.0f, 0.0f);
-//        glVertex3f(-w, -h, d);
-//        glTexCoord2f(1.0f, 0.0f);
-//        glVertex3f(w, -h, d);
-//        glTexCoord2f(1.0f, 1.0f);
-//        glVertex3f(w, h, d);
-//        glTexCoord2f(0.0f, 1.0f);
-//        glVertex3f(-w, h, d);
-//        glEnd();
-//    }
-//    
-//    
-//    if (elements::has(my_elements,elements::Back)) {
-//        // Back Face
-//        applyFaceTexture(elements::Back);
-//        glBegin(GL_QUADS);
-//        glNormal3f(0.0f, 0.0f, -1.0f);
-//        glTexCoord2f(1.0f, 0.0f);
-//        glVertex3f(-w, -h, -d);
-//        glTexCoord2f(1.0f, 1.0f);
-//        glVertex3f(-w, h, -d);
-//        glTexCoord2f(0.0f, 1.0f);
-//        glVertex3f(w, h, -d);
-//        glTexCoord2f(0.0f, 0.0f);
-//        glVertex3f(w, -h, -d);
-//        glEnd();
-//    }
-//    
-//    if (elements::has(my_elements,elements::Top)) {
-//        // Top Face
-//        applyFaceTexture(elements::Top);
-//        glBegin(GL_QUADS);
-//        glNormal3f(0.0f, 1.0f, 0.0f);
-//        glTexCoord2f(0.0f, 1.0f);
-//        glVertex3f(-w, h, -d);
-//        glTexCoord2f(0.0f, 0.0f);
-//        glVertex3f(-w, h, d);
-//        glTexCoord2f(1.0f, 0.0f);
-//        glVertex3f(w, h, d);
-//        glTexCoord2f(1.0f, 1.0f);
-//        glVertex3f(w, h, -d);
-//        glEnd();
-//    }
-//    
-//    if (elements::has(my_elements,elements::Bottom)) {
-//        // Bottom Face
-//        applyFaceTexture(elements::Bottom);
-//        glBegin(GL_QUADS);
-//        glNormal3f(0.0f, -1.0f, 0.0f);
-//        glTexCoord2f(1.0f, 1.0f);
-//        glVertex3f(-w, -h, -d);
-//        glTexCoord2f(0.0f, 1.0f);
-//        glVertex3f(w, -h, -d);
-//        glTexCoord2f(0.0f, 0.0f);
-//        glVertex3f(w, -h , d);
-//        glTexCoord2f(1.0f, 0.0f);
-//        glVertex3f(-w, -h, d);
-//        glEnd();
-//    }
-//    
-//    if (elements::has(my_elements,elements::Right)) {
-//        // Right face
-//        applyFaceTexture(elements::Right);
-//        glBegin(GL_QUADS);
-//        glNormal3f(1.0f, 0.0f, 0.0f);
-//        glTexCoord2f(1.0f, 0.0f);
-//        glVertex3f(w, -h, -d);
-//        glTexCoord2f(1.0f, 1.0f);
-//        glVertex3f(w, h, -d);
-//        glTexCoord2f(0.0f, 1.0f);
-//        glVertex3f(w, h, d);
-//        glTexCoord2f(0.0f, 0.0f);
-//        glVertex3f(w, -h, d);
-//        glEnd();
-//    }
-//
-//    if (elements::has(my_elements,elements::Left)) {
-//        // Left Face
-//        applyFaceTexture(elements::Left);
-//        glBegin(GL_QUADS);
-//        glNormal3f(-1.0f, 0.0f, 0.0f);
-//        glTexCoord2f(0.0f, 0.0f);
-//        glVertex3f(-w, -h, -d);
-//        glTexCoord2f(1.0f, 0.0f);
-//        glVertex3f(-w, -h, d);
-//        glTexCoord2f(1.0f, 1.0f);
-//        glVertex3f(-w, h, d);
-//        glTexCoord2f(0.0f, 1.0f);
-//        glVertex3f(-w, h, -d);
-//        glEnd();
-//    }
+    }    
 }

@@ -46,6 +46,8 @@ public:
         texture_path = path;
         textureEnabled = true;
         LoadContent();
+        Texture tex(path);        
+        textures.push_back(tex);
     } 
    
    list<Texture> textures;
