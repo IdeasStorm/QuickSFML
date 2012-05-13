@@ -12,7 +12,7 @@
 using namespace std;
 using namespace sf;
 
-class Light {
+class Light : public GLDrawable {
 public:
     bool ligthEnable ;
     Light();
@@ -28,8 +28,8 @@ public:
         return "Light";
     }
 //private:
-    Vector3f position;
     GLfloat w;
+    float angle ;
     sf::Color diffuse;
     sf::Color ambient;
     sf::Color specular;

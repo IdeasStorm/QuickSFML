@@ -19,6 +19,7 @@ GLfloat* vec4(sf::Color color){
 
 Light::Light(){
     ligthEnable = true ;
+    angle = 45.0 ;
 }
 
 Light::Light(const Light& orig) {
@@ -68,7 +69,7 @@ void Light::SetupLighting() {
 //        glLightfv(GL_LIGHT0,GL_SPECULAR,vec4(specular));
 
         
-        glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 45.0);
+        glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, angle);
         GLfloat spot_direction[] = { 0.0, -1.0, 0.0 };
         //glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, 2.0);
         glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, spot_direction);
