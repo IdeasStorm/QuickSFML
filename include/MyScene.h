@@ -9,6 +9,7 @@
 #define	MYSCENE_H
 #include "GLScene.h"
 
+
 class MyScene : public GLScene {
 public:
     MyScene(char* title = "SFML/OpenGL") : GLScene(title) {};

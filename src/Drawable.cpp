@@ -64,6 +64,7 @@ void GLDrawable::Draw() {
     translate();
     rotate();
     scale();
+        
     draw();
     // end of user draw logic
     if (components.empty())

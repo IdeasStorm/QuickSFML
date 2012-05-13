@@ -11,6 +11,7 @@
 #include <GL/glew.h>
 #include "Drawable.h"
 #include "Box.h"
+#include "Light.h"
 #include "Model.h"
 using namespace sf;
 using namespace std;

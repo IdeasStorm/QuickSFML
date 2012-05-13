@@ -8,18 +8,29 @@
 #ifndef LIGHT_H
 #define	LIGHT_H
 #include <SFML/Graphics.hpp>
+#include "Drawable.h"
 using namespace std;
 using namespace sf;
 
-class Light {
+class Light : public GLDrawable {
 public:
+    bool ligthEnable ;
     Light();
     Light(const Light& orig);
     void SetupLighting();
     virtual ~Light();
+    void init();
+    void Update(const sf::Input& input);
+    bool LoadContent();
+    GLDrawable* Clone();
+    void draw() ;
+    inline virtual string getClass(){
+        return "Light";
+    }
 //private:
-    Vector3f position;
     GLfloat w;
+    float angle ;
+    GLfloat spot_direction[] ;
     sf::Color diffuse;
     sf::Color ambient;
     sf::Color specular;

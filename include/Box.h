@@ -98,8 +98,8 @@ protected:
     }
     
     inline void applyFaceTexture(Element e) {
-        //if (!textureEnabled || textures.empty()) 
-          //  return;
+        if (!textureEnabled || textures.empty()) 
+            return;
         bool found = false;
         list<Texture>::iterator i;
         for (i=textures.begin();i!=textures.end();i++){

@@ -82,6 +82,7 @@ void Box::draw() {
     GLfloat d = halfSize.z;
     GLfloat h = halfSize.y;
     GLfloat w = halfSize.x;
+
     if (tag == "skyBox") {
         glDisable(GL_LIGHTING);
         glPushAttrib(GL_ENABLE_BIT);
@@ -89,6 +90,7 @@ void Box::draw() {
         glEnable(GL_LIGHTING);   
     }
     glDisable(GL_TEXTURE_2D);
+
     if (elements::has(my_elements, elements::Front)) {
         // Front Face
         applyFaceTexture(elements::Front);

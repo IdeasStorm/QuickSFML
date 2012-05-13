@@ -21,7 +21,7 @@ Studio::~Studio() {
 }
 
 void Studio::LoadComponents(){
-    cameraEnable = 2;
+    //cameraEnable = 2;
     loadUserComponents(components);
     currentComponent = components.begin();
     list<GLDrawable*>::iterator i;
@@ -32,6 +32,7 @@ void Studio::LoadComponents(){
 
 void Studio::Update(const sf::Input& input){
     static bool N_was_down = false;
+    static bool I_was_down = false;
     static bool M_was_down = false;    
     static bool eq_was_down = false;
     static bool minus_was_down = false;
@@ -87,6 +88,23 @@ void Studio::Update(const sf::Input& input){
         // setting this element as current
         SetCurrentComponent(components.begin());
         PrevComponent();
+    }
+
+    if (input.IsKeyDown(sf::Key::I) )  {
+        I_was_down = true;
+    } else if (I_was_down) {
+        I_was_down = false;
+        Light *light = new Light();
+        components.push_back(light);    
+        light->position = sf::Vector3f(0,20,0);
+        light->ambient = sf::Color(1,1,1);
+        light->diffuse = sf::Color(1,1,1);
+        light->specular = sf::Color(1,1,1);
+        light->w = 1 ;
+        // setting this element as current
+        list<GLDrawable*>::iterator end = components.end();
+        end--;
+        SetCurrentComponent(end);
     }
     
     if (input.IsKeyDown(sf::Key::M) )  {

@@ -10,6 +10,7 @@
 #include <SFML/Graphics.hpp>
 #include "GLScene.h"
 #include "Box.h"
+#include "Light.h"
 #include <iostream>
 #include <fstream>
 

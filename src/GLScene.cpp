@@ -93,13 +93,9 @@ int GLScene::Run() {
         //Handle movement keys
         const sf::Input& Input = window.GetInput();
 
-        
-        if (cameraEnable == 1 )
-                camera.UpdateCamera(Input,window.GetWidth()/2,window.GetHeight()/2);
-        else if (cameraEnable == 2)
-                camera2.UpdateCamera(Input,window.GetWidth()/2,window.GetHeight()/2);
-        else if (cameraEnable == 3)
-                camera3.UpdateCamera(Input,window.GetWidth()/2,window.GetHeight()/2);
+
+        (*cameraEnable).UpdateCamera(Input,window.GetWidth()/2,window.GetHeight()/2);
+
         Update(Input);
         
 
@@ -129,7 +125,7 @@ int GLScene::InitGL() // All Setup For OpenGL Goes Here
     {
         return FALSE; // If Texture Didn't Load Return FALSE
     }
-    cameraEnable = 1 ;
+    cameraEnable = &camera ;
     glewInit();
     glEnable(GL_TEXTURE_2D); // Enable Texture Mapping
     glShadeModel(GL_SMOOTH); // Enable Smooth Shading
@@ -144,12 +140,12 @@ int GLScene::InitGL() // All Setup For OpenGL Goes Here
     for (i=components.begin();i!=components.end();i++){
         ((GLDrawable*)(*i))->GLInit();
     }
-    glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient); // Setup The Ambient Light
-    glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse); // Setup The Diffuse Light
-    glLightfv(GL_LIGHT1, GL_POSITION, LightPosition); // Position The Light
-    glEnable(GL_LIGHT1); // Enable Light One
+
+    //glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient); // Setup The Ambient Light
+    //glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse); // Setup The Diffuse Light
+    //glLightfv(GL_LIGHT1, GL_POSITION, LightPosition); // Position The Light
+    //glEnable(GL_LIGHT1); // Enable Light One
     glEnable(GL_LIGHTING);
-//    model->CreateVBO();
     
     return TRUE; // Initialization Went OK
 }
@@ -184,12 +180,8 @@ void GLScene::Draw() // Here's Where We Do All The Drawing
     list<GLDrawable*>::iterator i;
     
     glLoadIdentity(); // Reset The View
-    if (cameraEnable == 1)
-        camera.ApplyCamera();
-    else if (cameraEnable ==2)
-        camera2.ApplyCamera();
-    else if (cameraEnable ==3)
-        camera3.ApplyCamera();
+
+    (*cameraEnable).ApplyCamera();
     
     for (i=components.begin();i!=components.end();i++){
         glPushMatrix();
