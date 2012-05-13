@@ -46,7 +46,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/src/Drawable.o \
 	${OBJECTDIR}/src/Ground.o \
 	${OBJECTDIR}/src/Box.o \
-	${OBJECTDIR}/src/Light.o
+	${OBJECTDIR}/src/Light.o \
+	${OBJECTDIR}/src/Sphere.o
 
 
 # C Compiler Flags
@@ -137,6 +138,11 @@ ${OBJECTDIR}/src/Light.o: src/Light.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
 	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Light.o src/Light.cpp
+
+${OBJECTDIR}/src/Sphere.o: src/Sphere.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} $@.d
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Sphere.o src/Sphere.cpp
 
 # Subprojects
 .build-subprojects:

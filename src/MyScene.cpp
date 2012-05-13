@@ -13,6 +13,7 @@
 #include "Train.h"
 #include "Stairs.h"
 #include "SkyBox.h"
+#include "Sphere.h"
 
 MyScene::MyScene(const MyScene& orig) {
     
@@ -112,14 +113,16 @@ void MyScene::LoadComponents(){
     light2->specular = sf::Color(1,1,1);
     light2->w = 1 ;
     lights.push_front(light2);
-    //light2->SetupLighting();
-     
-
-
     
     SkyBox * skyBox = new SkyBox();    
     skyBox->setTextures("./Data/city/");
 
+    Sphere *sphere=new Sphere(sf::Vector3f(10,10,40),15);
+    sphere->setTexture("./Data/Wall/brown_wall_texture_by_fantasystock-d34un9s.jpg");
+    
+    
+    
+    components.push_back(sphere);
     components.push_back(light2);
     //components.push_back(skyBox);
     components.push_back(stair); 
@@ -129,8 +132,6 @@ void MyScene::LoadComponents(){
     components.push_back(train_1);
     //components.push_back(train_2);
     components.push_back(ground);
-      
-   // components.push_back(skyBox);
 
     GLScene::LoadComponents();
 }
