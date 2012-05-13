@@ -14,6 +14,7 @@
 #include "Stairs.h"
 #include "SkyBox.h"
 #include "Sphere.h"
+#include "Cylinder.h"
 
 MyScene::MyScene(const MyScene& orig) {
     
@@ -120,8 +121,10 @@ void MyScene::LoadComponents(){
     Sphere *sphere=new Sphere(sf::Vector3f(10,10,40),15);
     sphere->setTexture("./Data/Wall/brown_wall_texture_by_fantasystock-d34un9s.jpg");
     
-    
-    
+    Cylinder *cy=new Cylinder(sf::Vector3f(10,10,40),3,6);
+    cy->setTexture("./Data/Wall/wall-texture-high-resolution.jpg");
+    cy->xrot=90;
+    components.push_back(cy);
     components.push_back(sphere);
     components.push_back(light2);
     //components.push_back(skyBox);
