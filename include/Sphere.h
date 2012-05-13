@@ -60,18 +60,13 @@ protected:
    inline void applyFaceTexture() {
         if (!textureEnabled || textures.empty()) 
             return;
-        bool found = false;
         list<Texture>::iterator i;
         for (i=textures.begin();i!=textures.end();i++){
-            //if (elements::has(i->id,e)) {
                 glEnable(GL_TEXTURE_2D);
-                glBindTexture(GL_TEXTURE_2D, i->getPtr(filter));
-                found = true;
+                glBindTexture(GL_TEXTURE_2D, i->getPtr(filter));                
                 break;
-            //}
         }
-        if (!found)
-            glDisable(GL_TEXTURE_2D);
+        
     }
 private:    
     string texture_path;
