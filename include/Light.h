@@ -30,6 +30,7 @@ public:
 //private:
     GLfloat w;
     float angle ;
+    GLfloat spot_direction[] ;
     sf::Color diffuse;
     sf::Color ambient;
     sf::Color specular;

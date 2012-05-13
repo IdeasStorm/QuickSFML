@@ -120,6 +120,7 @@ void MyScene::LoadComponents(){
     SkyBox * skyBox = new SkyBox();    
     skyBox->setTextures("./Data/city/");
 
+    components.push_back(light2);
     //components.push_back(skyBox);
     components.push_back(stair); 
     components.push_back(leftWall);
@@ -201,7 +202,7 @@ void MyScene::Update(const sf::Input& input) {
     }
 
     for (i=lights.begin();i!=lights.end();i++){
-        ((Light*)(*i))->SetupLighting();
+     //   ((Light*)(*i))->SetupLighting();
     }
     GLScene::Update(input);
 

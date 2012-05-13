@@ -31,6 +31,7 @@ void Studio::LoadComponents(){
 
 void Studio::Update(const sf::Input& input){
     static bool N_was_down = false;
+    static bool I_was_down = false;
     static bool M_was_down = false;    
     static bool eq_was_down = false;
     static bool minus_was_down = false;
@@ -83,6 +84,18 @@ void Studio::Update(const sf::Input& input){
         Box *box = new Box();
         box->setTexture("Data/NeHe.bmp");
         components.push_back(box);    
+        // setting this element as current
+        list<GLDrawable*>::iterator end = components.end();
+        end--;
+        SetCurrentComponent(end);
+    }
+
+    if (input.IsKeyDown(sf::Key::I) )  {
+        I_was_down = true;
+    } else if (I_was_down) {
+        I_was_down = false;
+        Light *light = new Light();
+        components.push_back(light);    
         // setting this element as current
         list<GLDrawable*>::iterator end = components.end();
         end--;

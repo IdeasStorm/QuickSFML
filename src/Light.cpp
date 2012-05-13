@@ -20,6 +20,9 @@ GLfloat* vec4(sf::Color color){
 Light::Light(){
     ligthEnable = true ;
     angle = 45.0 ;
+    spot_direction[0] = 0.0 ;
+    spot_direction[1] = -1.0 ;
+    spot_direction[2] = 0.0 ;
 }
 
 Light::Light(const Light& orig) {
@@ -39,6 +42,7 @@ bool Light::LoadContent()
 }
 void Light::draw() 
 {
+    SetupLighting() ;
 }
 
 GLDrawable* Light::Clone() {
@@ -68,9 +72,11 @@ void Light::SetupLighting() {
 //        glLightfv(GL_LIGHT0,GL_DIFFUSE,vec4(diffuse));
 //        glLightfv(GL_LIGHT0,GL_SPECULAR,vec4(specular));
 
-        
+        spot_direction[0] = 0.0 ;
+        spot_direction[1] = -1.0 ;
+        spot_direction[2] = 0.0 ;
+    
         glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, angle);
-        GLfloat spot_direction[] = { 0.0, -1.0, 0.0 };
         //glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, 2.0);
         glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, spot_direction);
         glEnable(GL_LIGHT0); 
