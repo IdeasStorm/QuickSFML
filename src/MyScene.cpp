@@ -201,9 +201,9 @@ void MyScene::Update(const sf::Input& input) {
         camera3.Default();
     }
 
-    for (i=lights.begin();i!=lights.end();i++){
+//    for (i=lights.begin();i!=lights.end();i++){
      //   ((Light*)(*i))->SetupLighting();
-    }
+  //  }
     GLScene::Update(input);
 
 }

@@ -96,6 +96,11 @@ void Studio::Update(const sf::Input& input){
         I_was_down = false;
         Light *light = new Light();
         components.push_back(light);    
+        light->position = sf::Vector3f(0,20,0);
+        light->ambient = sf::Color(1,1,1);
+        light->diffuse = sf::Color(1,1,1);
+        light->specular = sf::Color(1,1,1);
+        light->w = 1 ;
         // setting this element as current
         list<GLDrawable*>::iterator end = components.end();
         end--;
