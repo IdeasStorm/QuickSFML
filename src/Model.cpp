@@ -11,6 +11,7 @@
 
 Model::Model(std::string filename)
 {
+    this->filename = filename;
     m_VertexVBO = 0;
     m_TotalFaces = 0;
     m_model=lib3ds_file_load(filename.data());
@@ -22,6 +23,7 @@ Model::Model(std::string filename)
     }
     position.x = position.y = position.z = rotation = 0 ;
 }
+
 
 void Model::GetFaces()
 {
@@ -42,7 +44,12 @@ void Model::GetFaces()
 
 
 bool Model::LoadContent() {
-    return true;
+    // Calculate the number of faces we have in total
+    GetFaces();
+    if (m_TotalFaces > 0)
+        return true;
+    else
+        return false;
 }
 
 void Model::GLInit()
@@ -50,8 +57,6 @@ void Model::GLInit()
 {
          assert(m_model != NULL);
        
-        // Calculate the number of faces we have in total
-        GetFaces();
        
         // Allocate memory for our vertices and normals
         Lib3dsVector * vertices = new Lib3dsVector[m_TotalFaces * 3];
@@ -133,4 +138,26 @@ void Model::draw()
 void Model::Update(const sf::Input& input)
 {
     
+}
+
+GLDrawable* Model::Clone() {
+    Model* cloned = new Model(filename);
+    cloned->LoadContent();
+    cloned->GLInit();
+    cloned->position = position;
+    cloned->halfSize = halfSize;
+    if (axis_angle)
+        cloned->setRotation(rotationAxis,rotation);
+    else
+        cloned->setRotation(yrot,xrot,zrot);
+    cloned->textureEnabled = textureEnabled;
+    return cloned;
+}
+
+void Model::WriteInstanceCreation(FILE* outfile, string name) {
+    fprintf(outfile,"%s *%s = new %s(\"%s\");\n",
+            this->getClass().data(),
+            name.data(),this->getClass().data(),
+            this->filename.data()
+    );
 }

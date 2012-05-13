@@ -29,6 +29,7 @@ namespace elements {
         BackOpened = All & (~Back)  
     };
     bool has(Element elements,Element test);
+    bool has(GLuint elements,Element test);
 }
 using namespace elements;
 
@@ -41,11 +42,15 @@ public:
     Box(sf::Vector3f position, sf::Vector3f halfsize,Element my_elements);
     Box(const Box& orig);
 
+    GLDrawable* Clone();
 
+    inline virtual string getClass(){
+        return "Box";
+    }
     void init();
     void Update(const sf::Input& input);
     bool LoadContent();
-
+    void WriteInstanceCreation(FILE* outfile,string name);
     void SetComponents(Element elements);
     virtual ~Box();
 
@@ -73,21 +78,40 @@ public:
         return halfSize.y * 2;
     }
     
-   void setTexture(string path) {
+   void setTexture(const string& path) {
         textureEnabled = true;
         texture_path = path;
-        LoadContent();
+        Texture tex(path);
+        tex.id = elements::All;
+        textures.push_back(tex);
     }
  
    void setElements(Element element) {
        my_elements = element;
    }
    
-   
+   list<Texture> textures;
 protected:
     void draw();
     inline void scale() {
         // does nothing, the box is self scaling object
+    }
+    
+    inline void applyFaceTexture(Element e) {
+        if (!textureEnabled || textures.empty()) 
+            return;
+        bool found = false;
+        list<Texture>::iterator i;
+        for (i=textures.begin();i!=textures.end();i++){
+            if (elements::has(i->id,e)) {
+                glEnable(GL_TEXTURE_2D);
+                glBindTexture(GL_TEXTURE_2D, i->getPtr(filter));
+                found = true;
+                break;
+            }
+        }
+        if (!found)
+            glDisable(GL_TEXTURE_2D);
     }
 private:
     Element my_elements;

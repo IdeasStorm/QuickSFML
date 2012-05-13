@@ -22,23 +22,27 @@
 #include <list>
 using namespace std;
 
-class Stairs : public GLDrawable
-{
+class Stairs : public GLDrawable {
 public:
     Stairs();
     Stairs(sf::Vector3f position);
-    Stairs(sf::Vector3f position, sf::Vector3f halfsize);  
-    Stairs(sf::Vector3f position, sf::Vector3f halfsize,int stairNum);  
-    Stairs(const Stairs& orig);    
+    Stairs(sf::Vector3f position, sf::Vector3f halfsize);
+    Stairs(sf::Vector3f position, sf::Vector3f halfsize, int stairNum);
+    Stairs(const Stairs& orig);
     virtual ~Stairs();
-    
+
+    GLDrawable* Clone();
+    void WriteInstanceCreation(FILE *outfile,string name);
     void init();
     void initBoxes();
     void Update(const sf::Input& input);
     bool LoadContent();
 
     void SetComponents();
-   
+
+    inline string getClass() {
+        return "Stairs";
+    }
 
     void setDepth(GLfloat depth) {
         this->halfSize.z = depth / 2.0f;
@@ -63,18 +67,18 @@ public:
     GLfloat getHeight() const {
         return halfSize.y * 2;
     }
-    
-   void setTexture(string path) {
+
+    void setTexture(string path) {
         textureEnabled = true;
         texture_path = path;
         LoadContent();
     }
- 
+
 protected:
     void draw();
-    
+
 private:
-    int stairNum;   
+    int stairNum;
     string texture_path;
     list<Box*> boxList;
 };

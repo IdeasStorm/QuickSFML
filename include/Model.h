@@ -19,31 +19,36 @@
 #include <cassert>
 #include <string>
 
+using namespace std;
 
+class Model : public GLDrawable {
+public:
 
-class Model : public GLDrawable
-{
-    public :
+    Model(std::string filename);
+    //        void Draw();
+    virtual void Update(const sf::Input &input);
+    void SetupLighting();
 
-        Model(std::string filename);  
-//        void Draw();
-        virtual void Update(const sf::Input &input);
-        void SetupLighting();
-        
+    GLDrawable* Clone();
 
-        bool LoadContent();
-        
-        void GLInit();
-    protected:
+    bool LoadContent();
 
-        void draw();
+    void GLInit();
 
-    private:
-        void GetFaces();
+    void WriteInstanceCreation(FILE *outfile, string name);
+    inline string getClass() {
+        return "Model";
+    }
+protected:
+    string filename;
+    void draw();
 
-        unsigned int m_TotalFaces;
-        Lib3dsFile * m_model;
-        GLuint m_VertexVBO, m_NormalVBO;
+private:
+    void GetFaces();
+
+    unsigned int m_TotalFaces;
+    Lib3dsFile * m_model;
+    GLuint m_VertexVBO, m_NormalVBO;
 };
 
 #endif	/* MODEL_H */

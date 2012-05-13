@@ -10,6 +10,8 @@
 #include <SFML/Graphics.hpp>
 #include "GLScene.h"
 #include "Box.h"
+#include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -25,7 +27,7 @@ public:
     void SetCurrentComponent(list<GLDrawable*>::iterator);
     void NextComponent();
     void PrevComponent();
-    
+    void ProcessComponent(GLDrawable *component);
     list<GLDrawable*>::iterator currentComponent;
 private:
     

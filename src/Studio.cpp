@@ -5,8 +5,10 @@
  * Created on May 5, 2012, 7:44 PM
  */
 
-
+#include "user_input.h"
+#include "Model.h"
 #include "Studio.h"
+#include "Stairs.h"
 
 Studio::Studio() {
     currentComponent = components.end();
@@ -19,19 +21,61 @@ Studio::~Studio() {
 }
 
 void Studio::LoadComponents(){
-    
+    loadUserComponents(components);
+    currentComponent = components.begin();
+    list<GLDrawable*>::iterator i;
+    for (i=components.begin();i!=components.end();i++){
+        ProcessComponent((GLDrawable*)(*i));
+    }
 }
 
 void Studio::Update(const sf::Input& input){
     static bool N_was_down = false;
-    static bool T_was_down = false;
+    static bool M_was_down = false;    
     static bool eq_was_down = false;
     static bool minus_was_down = false;
     static bool F5_was_down = false;
-    camera.EnableMouse = false ;
+    static bool del_was_down = false;
+    static bool V_was_down = false;
+    static bool T_was_down = false;
     
-    Box *t = new Box(sf::Vector3f(0,0,0),sf::Vector3f(1,1,1));
-    components.push_back(t);
+    camera.EnableMouse = true ;
+    
+    if (input.IsKeyDown(sf::Key::T) )  {
+        T_was_down = true;
+    } else if (T_was_down) {
+        T_was_down = false;
+        cout << "Enter a tag for the current Element: ";
+        cin >> (*currentComponent)->tag;
+    }
+    
+    if (input.IsKeyDown(sf::Key::V) )  {
+        V_was_down = true;
+    } else if (V_was_down) {
+        V_was_down = false;
+        GLDrawable* drawable = (*currentComponent)->Clone();
+        components.push_back(drawable);    
+        // setting this element as current
+        list<GLDrawable*>::iterator end = components.end();
+        end--;
+        SetCurrentComponent(end);
+    }
+    
+    if (input.IsKeyDown(sf::Key::Delete) )  {
+        del_was_down = true;
+    } else if (del_was_down) {
+        del_was_down = false;
+        components.remove(*currentComponent);
+        // setting this element as current
+        if (!components.empty()) {
+                list<GLDrawable*>::iterator end = components.end();
+                end--;
+                SetCurrentComponent(end);
+        }else {
+            *currentComponent = NULL;
+        }
+    }
+    
     if (input.IsKeyDown(sf::Key::N) )  {
         N_was_down = true;
     } else if (N_was_down) {
@@ -45,14 +89,18 @@ void Studio::Update(const sf::Input& input){
         SetCurrentComponent(end);
     }
     
-    if (input.IsKeyDown(sf::Key::T) )  {
-        T_was_down = true;
-    } else if (T_was_down) {
-        T_was_down = false;
-        Box *box = new Box();
-        box->setTexture("Data/NeHe.bmp");
-        box->DisableTexture();
-        components.push_back(box);
+    if (input.IsKeyDown(sf::Key::M) )  {
+        M_was_down = true;
+    } else if (M_was_down) {
+        M_was_down = false;
+        Model *model = new Model("./Data/Model/straba_m_mod_02.3ds");
+        model->LoadContent();
+        model->GLInit();
+        components.push_back(model);
+        // setting this element as current
+        list<GLDrawable*>::iterator end = components.end();
+        end--;
+        SetCurrentComponent(end);
     }
     
     if (input.IsKeyDown(sf::Key::Dash) )  {
@@ -87,6 +135,7 @@ void Studio::Update(const sf::Input& input){
     }else {
         field = &(((*currentComponent))->position);
     }
+    
     if (input.IsKeyDown(sf::Key::Right)) {
         *field += sf::Vector3f(s,0,0);
         if (scale)
@@ -118,9 +167,9 @@ void Studio::Update(const sf::Input& input){
             (((*currentComponent))->position) += sf::Vector3f(0,-s,0);
     }
     if (rotation) {
-        (*currentComponent)->xrot += field->x;
+        (*currentComponent)->xrot += field->z;
         (*currentComponent)->yrot += field->y;
-        (*currentComponent)->zrot += field->z;
+        (*currentComponent)->zrot += field->x;
     }
     
     
@@ -134,7 +183,9 @@ void Studio::Update(const sf::Input& input){
 }
 
 void Studio::SetCurrentComponent(list<GLDrawable*>::iterator comp) {
-    if (currentComponent != components.end())
+    if (components.empty())
+        return;
+    if (currentComponent != components.end() && (*currentComponent)!=NULL)
         (*currentComponent)->textureEnabled = true;
     currentComponent = comp;
     (*currentComponent)->textureEnabled = false;
@@ -157,19 +208,52 @@ void Studio::PrevComponent() {
     (*currentComponent)->textureEnabled = false;
 }
 
+void Studio::ProcessComponent(GLDrawable *component){
+    string tag = component->tag;// the tag to look for
+    if (tag == "Train") {
+        // here you can cast to your type and modify ads you want
+    }
+    else if (tag == "building") {
+        // you should remove default textures
+        list<Texture> newlist;
+        ((Box*)component)->textures = newlist;
+        
+        // loading textures
+        Texture tex("./Data/NeHe.bmp");
+        tex.id = elements::Sides;
+        ((Box*)component)->textures.push_back(tex);
+        ((Box*)component)->textureEnabled = true;
+    }
+}
+
 void Studio::WriteCode(){
     list<GLDrawable*>::iterator i;
+    FILE *outfile;
+    
+    char *mode = "w";
+    char outputFilename[] = "include/user_input.h";
+    outfile = fopen(outputFilename, mode);
+    
     int c = 0;
-    printf("//=====================GENERATED CODE========================\n");
+    fprintf(outfile,"//============THIS FILE IS GENERATED FROM USER INPUT================\n");
+    fprintf(outfile,"#include \"gen_init.h\" \n");
+    fprintf(outfile,"//=====================GENERATED CODE===============================\n");
+    fprintf(outfile,"void loadUserComponents(list<GLDrawable*>& components) {\n");
     for (i=components.begin();i!=components.end();i++){
         GLDrawable *e = *i;
-        printf("//========================box%d=====================================\n",c);
-        printf("Box *box%d = new Box(); \n",c);
-        printf("box%d->position = Vector3f(%f,%f,%f); \n",c,e->position.x,e->position.y,e->position.z);
-        printf("box%d->halfSize = Vector3f(%f,%f,%f); \n",c,e->halfSize.x,e->halfSize.y,e->halfSize.z);
-        printf("box%d->setRotation(%f,%f,%f); \n",c,e->xrot,e->yrot,e->zrot);
-        printf("components.push_back(box%d); \n",c);
-        printf("//==================================================================\n");
+        fprintf(outfile,"//========================box%d=====================================\n",c);
+
+        std::string str = "box";
+        str += (char)('0' + c);
+        e->WriteInstanceCreation(outfile, str);
+        fprintf(outfile,"box%d->position = Vector3f(%f,%f,%f); \n",c,e->position.x,e->position.y,e->position.z);
+        fprintf(outfile,"box%d->halfSize = Vector3f(%f,%f,%f); \n",c,e->halfSize.x,e->halfSize.y,e->halfSize.z);
+        fprintf(outfile,"box%d->setRotation(%f,%f,%f); \n",c,e->yrot,e->xrot,e->zrot);
+        fprintf(outfile,"box%d->tag = \"%s\"; \n",c,e->tag.data());
+        fprintf(outfile,"components.push_back(box%d); \n",c);
+        fprintf(outfile,"//==================================================================\n");
         c++;
     }
+    fprintf(outfile,"}");
+    fclose(outfile);
 }
