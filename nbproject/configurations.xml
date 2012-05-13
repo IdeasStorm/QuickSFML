@@ -12,6 +12,8 @@
       <itemPath>include/Model.h</itemPath>
       <itemPath>include/MyScene.h</itemPath>
       <itemPath>include/SkyBox.h</itemPath>
+      <itemPath>src/Sphere.cpp</itemPath>
+      <itemPath>include/Sphere.h</itemPath>
       <itemPath>include/Stairs.h</itemPath>
       <itemPath>include/Studio.h</itemPath>
       <itemPath>include/Train.h</itemPath>

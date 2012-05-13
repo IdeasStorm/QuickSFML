@@ -13,6 +13,7 @@
 #include "Train.h"
 #include "Stairs.h"
 #include "SkyBox.h"
+#include "Sphere.h"
 
 MyScene::MyScene(const MyScene& orig) {
     
@@ -119,7 +120,10 @@ void MyScene::LoadComponents(){
     SkyBox * skyBox = new SkyBox();    
     skyBox->setTextures("./Data/city/")    ;
     
-    components.push_back(skyBox);
+    Sphere *sphere=new Sphere(sf::Vector3f(10,0,40),5);
+    
+    //components.push_back(skyBox);
+    components.push_back(sphere);
     components.push_back(leftWall);
     components.push_back(Edge);
     components.push_back(train_1);
