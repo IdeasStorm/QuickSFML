@@ -9,13 +9,14 @@
 #define	LIGHT_H
 #include <SFML/Graphics.hpp>
 #include "Drawable.h"
+#include "Sphere.h"
 using namespace std;
 using namespace sf;
 
-class Light : public GLDrawable {
+class Light :  public Sphere{
 public:
     bool ligthEnable ;
-    Light();
+    Light(sf::Vector3f pos , float ang);
     Light(const Light& orig);
     void SetupLighting();
     virtual ~Light();
@@ -30,7 +31,7 @@ public:
 //private:
     GLfloat w;
     float angle ;
-    GLfloat spot_direction[] ;
+    GLfloat spot_direction[3] ;
     sf::Color diffuse;
     sf::Color ambient;
     sf::Color specular;

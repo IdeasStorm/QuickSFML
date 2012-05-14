@@ -16,13 +16,10 @@ GLfloat* vec4(sf::Color color){
     res[3] = color.a;
     return res;
 }
-
-Light::Light(){
+Light::Light(sf::Vector3f pos, float ang): Sphere(pos,20){
+ //   Sphere::setTexture("./Data/Wall/wall-texture-high-resolution.jpg");
     ligthEnable = true ;
-    angle = 45.0 ;
-    spot_direction[0] = 0.0 ;
-    spot_direction[1] = -1.0 ;
-    spot_direction[2] = 0.0 ;
+    angle = ang ;
 }
 
 Light::Light(const Light& orig) {
@@ -36,12 +33,17 @@ void Light::init()
 }
 void Light::Update(const sf::Input& input)
 {
+    spot_direction[0] = 0.0 ;
+    spot_direction[1] = 1.0 ;
+    spot_direction[2] = 0.0 ;
 }
 bool Light::LoadContent()
 {
+    
 }
 void Light::draw() 
 {
+    Sphere::draw();
     SetupLighting() ;
 }
 
@@ -72,10 +74,6 @@ void Light::SetupLighting() {
 //        glLightfv(GL_LIGHT0,GL_DIFFUSE,vec4(diffuse));
 //        glLightfv(GL_LIGHT0,GL_SPECULAR,vec4(specular));
 
-        spot_direction[0] = 0.0 ;
-        spot_direction[1] = -1.0 ;
-        spot_direction[2] = 0.0 ;
-    
         glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, angle);
         //glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, 2.0);
         glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, spot_direction);
