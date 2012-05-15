@@ -43,6 +43,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/src/Train.o \
 	${OBJECTDIR}/src/Studio.o \
 	${OBJECTDIR}/src/MyScene.o \
+	${OBJECTDIR}/src/Cylinder.o \
 	${OBJECTDIR}/src/Drawable.o \
 	${OBJECTDIR}/src/Ground.o \
 	${OBJECTDIR}/src/Box.o \
@@ -118,6 +119,11 @@ ${OBJECTDIR}/src/MyScene.o: src/MyScene.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/MyScene.o src/MyScene.cpp
+
+${OBJECTDIR}/src/Cylinder.o: src/Cylinder.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Cylinder.o src/Cylinder.cpp
 
 ${OBJECTDIR}/src/Drawable.o: src/Drawable.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src

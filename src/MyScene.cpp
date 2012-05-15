@@ -14,6 +14,7 @@
 #include "Stairs.h"
 #include "SkyBox.h"
 #include "Sphere.h"
+#include "Cylinder.h"
 
 MyScene::MyScene(const MyScene& orig) {
     
@@ -25,9 +26,9 @@ MyScene::~MyScene() {
 
 Train * train_1;
 Train * train_2;
-Light * light2 ,*test;
+Light * light2;
+Sphere *sphere ;
 bool lightTest ;
-list<Light *> lights; 
 void MyScene::LoadComponents(){
     update_child_controls = true;
     
@@ -48,8 +49,8 @@ void MyScene::LoadComponents(){
     camera3.EnableMouse = false ;
     cameraEnable = &camera;
         
-        Stairs * stair;
-    stair = new Stairs(sf::Vector3f (10,-2,50),sf::Vector3f (3.5,1,1),10);
+    Stairs * stair;
+    stair = new Stairs(sf::Vector3f (10,-2,-20),sf::Vector3f (3.5,1,1),10);
     //stair->setTexture("./Data/Wall/wall-texture-high-resolution.jpg");    
     stair->yrot = 90;
     
@@ -87,50 +88,37 @@ void MyScene::LoadComponents(){
     //Fence->setRotation(sf::Vector3f(1,0,0),-90);
     Fence->setRotation(sf::Vector3f(0,1,0),-90);
     //Fence->setRotation(sf::Vector3f(0,0,1),0);
-    
-    //Fence->setRotation(0,1,0);
 
 
     for (int i=-5 ;i<10 ;i++)
     {
     }
-    
-  /*  Model * ligth1 = new Model("./Data/Model/Lamppost N090508.3ds");
-    ligth1->position = sf::Vector3f(25,6,-20);
-    ligth1->halfSize = sf::Vector3f(0.2,0.2,0.2);
-    ligth1->setRotation(sf::Vector3f(1,0,0),-90);
-    //ligth1->setRotation(sf::Vector3f(0,0,1),-180);
-    //components.push_back(ligth1);*/
-    
-    Box *box3 = new Box(sf::Vector3f (25,6,-20),sf::Vector3f(0.5,8.1,0.5));
-    box3->setTexture("Data/NeHe.bmp");
 
-        
-    light2  = new Light();
-    light2->position = sf::Vector3f(25,30,-15);
+    light2  = new Light(sf::Vector3f(25,30,-15),45);
     light2->ambient = sf::Color(1,1,1);
     light2->diffuse = sf::Color(1,1,1);
     light2->specular = sf::Color(1,1,1);
+    GLfloat temp[] = {0,-1,0} ;
+    light2->spot_direction[0] = temp[0] ;
+    light2->spot_direction[1] = temp[1] ;
+    light2->spot_direction[2] = temp[2] ;
     light2->w = 1 ;
-    lights.push_front(light2);
     
     SkyBox * skyBox = new SkyBox();    
     skyBox->setTextures("./Data/city/");
-
-    Sphere *sphere=new Sphere(sf::Vector3f(10,10,40),15);
-    sphere->setTexture("./Data/Wall/brown_wall_texture_by_fantasystock-d34un9s.jpg");
     
+    Cylinder *cy=new Cylinder(sf::Vector3f(10,10,40),3,6);
+    cy->setTexture("./Data/Wall/wall-texture-high-resolution.jpg");
+    cy->xrot=90;
     
-    
-    components.push_back(sphere);
+    components.push_back(cy);
     components.push_back(light2);
     //components.push_back(skyBox);
     components.push_back(stair); 
     components.push_back(leftWall);
-    //components.push_back(box3); 
     components.push_back(Edge);
     components.push_back(train_1);
-    //components.push_back(train_2);
+    components.push_back(train_2);
     components.push_back(ground);
 
     GLScene::LoadComponents();
@@ -144,46 +132,22 @@ void MyScene::Update(const sf::Input& input) {
         list<Light*>::iterator i;
     if (input.IsKeyDown(sf::Key::Y)){
         light2->position.y += 1 ;
-                for (i=lights.begin();i!=lights.end();i++){
-            ((Light*)(*i))->ligthEnable != ((Light*)(*i))->ligthEnable;
-            ((Light*)(*i))->SetupLighting();
-        }
     }
     if (input.IsKeyDown(sf::Key::H)){
         light2->position.y -= 1 ;
-                for (i=lights.begin();i!=lights.end();i++){
-            ((Light*)(*i))->ligthEnable != ((Light*)(*i))->ligthEnable;
-            ((Light*)(*i))->SetupLighting();
-        }
     }
     if (input.IsKeyDown(sf::Key::J)){
         light2->position.x += 1 ;
-                for (i=lights.begin();i!=lights.end();i++){
-            ((Light*)(*i))->ligthEnable != ((Light*)(*i))->ligthEnable;
-            ((Light*)(*i))->SetupLighting();
-        }
     }
     if (input.IsKeyDown(sf::Key::G)){
         light2->position.x -= 1 ;
-                for (i=lights.begin();i!=lights.end();i++){
-            ((Light*)(*i))->ligthEnable != ((Light*)(*i))->ligthEnable;
-            ((Light*)(*i))->SetupLighting();
-        }
     }
     if (input.IsKeyDown(sf::Key::U)){
         light2->position.z += 1 ;
-                for (i=lights.begin();i!=lights.end();i++){
-            ((Light*)(*i))->ligthEnable != ((Light*)(*i))->ligthEnable;
-            ((Light*)(*i))->SetupLighting();
-        }
     }
 
     if (input.IsKeyDown(sf::Key::I)){
         light2->position.z -= 1 ;
-                for (i=lights.begin();i!=lights.end();i++){
-            ((Light*)(*i))->ligthEnable != ((Light*)(*i))->ligthEnable;
-            ((Light*)(*i))->SetupLighting();
-        }
     }
     if (input.IsKeyDown(sf::Key::X)){
         train_1->MoveForward +=0.5;

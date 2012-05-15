@@ -5,6 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>include/Box.h</itemPath>
+      <itemPath>include/Cylinder.h</itemPath>
       <itemPath>include/Drawable.h</itemPath>
       <itemPath>include/GLScene.h</itemPath>
       <itemPath>include/Ground.h</itemPath>
@@ -12,7 +13,6 @@
       <itemPath>include/Model.h</itemPath>
       <itemPath>include/MyScene.h</itemPath>
       <itemPath>include/SkyBox.h</itemPath>
-      <itemPath>src/Sphere.cpp</itemPath>
       <itemPath>include/Sphere.h</itemPath>
       <itemPath>include/Stairs.h</itemPath>
       <itemPath>include/Studio.h</itemPath>
@@ -30,6 +30,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>src/Box.cpp</itemPath>
+      <itemPath>src/Cylinder.cpp</itemPath>
       <itemPath>src/Drawable.cpp</itemPath>
       <itemPath>src/GLScene.cpp</itemPath>
       <itemPath>src/Ground.cpp</itemPath>
@@ -37,6 +38,7 @@
       <itemPath>src/Model.cpp</itemPath>
       <itemPath>src/MyScene.cpp</itemPath>
       <itemPath>src/SkyBox.cpp</itemPath>
+      <itemPath>src/Sphere.cpp</itemPath>
       <itemPath>src/Stairs.cpp</itemPath>
       <itemPath>src/Studio.cpp</itemPath>
       <itemPath>src/Train.cpp</itemPath>
