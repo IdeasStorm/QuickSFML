@@ -26,7 +26,7 @@ MyScene::~MyScene() {
 
 Train * train_1;
 Train * train_2;
-Light * light2 , *light1,*light3;
+Light * light2 , *light1;
 Sphere *sphere ;
 bool lightTest ;
 void MyScene::LoadComponents(){
@@ -100,17 +100,11 @@ void MyScene::LoadComponents(){
     light2->specular = sf::Color(0,0,0);
     light2->setDirection(sf::Vector3f(0,0,1));
     light2->w = 1 ;
-
-        
-    light3  = new Light(sf::Vector3f(0,30,+55),45,true);
-    light3->ambient = sf::Color(1,1,1);
-    light3->diffuse = sf::Color(1,1,1);
-    light3->specular = sf::Color(0,0,0);
-    light3->w =1 ;
+    light2->lightNum +=1 ;
     
     light1  = new Light(sf::Vector3f(0,10,-33),45,true);
-    light1->ambient = sf::Color(1,1,0);
-    light1->diffuse = sf::Color(1,1,0);
+    light1->ambient = sf::Color(1,1,1);
+    light1->diffuse = sf::Color(1,1,1);
     light1->specular = sf::Color(0,0,0);
     light1->w =1 ;
     
@@ -123,8 +117,7 @@ void MyScene::LoadComponents(){
     
     components.push_back(cy);
     components.push_back(light1);
-    //components.push_back(light2);
-    //components.push_back(light3);
+    components.push_back(light2);
     
     components.push_back(stair); 
     components.push_back(leftWall);

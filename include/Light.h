@@ -33,9 +33,11 @@ public:
 //private:
     GLfloat w;
     float angle ;
+    GLenum lightNum;
     GLfloat spot_direction[3] ;
     sf::Color diffuse;
     sf::Color ambient;
+    static int count ; 
     sf::Color specular;
     bool EnableSphere ;
     Sphere *sphere ;

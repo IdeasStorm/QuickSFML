@@ -43,6 +43,7 @@ void Light::init()
     EnableSphere = true ;
     ligthEnable = true ;
     angle = 45;
+    lightNum = GL_LIGHT0 ;
     spot_direction[0] = 0.0 ;
     spot_direction[1] = -1.0 ;
     spot_direction[2] = 0.0 ;
@@ -94,27 +95,25 @@ void Light::GLInit() {
     if (ligthEnable)
     {
         GLfloat temp[]={position.x,position.y,position.z,w};
-        glLightfv(GL_LIGHT0,GL_POSITION,temp);
-        glLightfv(GL_LIGHT0,GL_AMBIENT,vec4(ambient));
-        glLightfv(GL_LIGHT0,GL_DIFFUSE,vec4(diffuse));
-        glLightfv(GL_LIGHT0,GL_SPECULAR,vec4(specular));
-
-        glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, angle);
+        
+        
+        glLightfv(lightNum,GL_POSITION,temp);
+        glLightfv(lightNum,GL_AMBIENT,vec4(ambient));
+        glLightfv(lightNum,GL_DIFFUSE,vec4(diffuse));
+        glLightfv(lightNum,GL_SPECULAR,vec4(specular));
+        glLightf(lightNum, GL_SPOT_CUTOFF, angle);
         //TODO
         //glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, 2.0);
-
-
-        glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, spot_direction);
-        glEnable(GL_LIGHT0); 
+        glLightfv(lightNum, GL_SPOT_DIRECTION, spot_direction);
+        glEnable(lightNum); 
         
         GLfloat colours [] = { 1.0, 1.0, 1.0, 0.0 };
         //glEnable ( GL_COLOR_MATERIAL ) ; 
         ///glColorMaterial ( GL_FRONT_AND_BACK, GL_SPECULAR ) ; 
         //glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION,colours ) ;
         //glDisable(GL_COLOR_MATERIAL);
-
     }else
-        glDisable(GL_LIGHT0);
+        glDisable(lightNum);
     
 }
 
