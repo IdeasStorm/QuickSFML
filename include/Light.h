@@ -17,11 +17,12 @@ class Light :  public GLDrawable{
 public:
     bool ligthEnable ;
     Light();
-    Light(sf::Vector3f pos , float ang);
+    Light(sf::Vector3f pos , float ang,bool);
     Light(const Light& orig);
     void GLInit();
     virtual ~Light();
     void init();
+    void setDirection(sf::Vector3f);
     void Update(const sf::Input& input);
     bool LoadContent();
     GLDrawable* Clone();
