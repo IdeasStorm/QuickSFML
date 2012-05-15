@@ -113,7 +113,6 @@ void MyScene::LoadComponents(){
     
     components.push_back(cy);
     components.push_back(light2);
-    //components.push_back(skyBox);
     components.push_back(stair); 
     components.push_back(leftWall);
     components.push_back(Edge);

@@ -13,12 +13,13 @@
 using namespace std;
 using namespace sf;
 
-class Light :  public Sphere{
+class Light :  public GLDrawable{
 public:
     bool ligthEnable ;
+    Light();
     Light(sf::Vector3f pos , float ang);
     Light(const Light& orig);
-    void SetupLighting();
+    void GLInit();
     virtual ~Light();
     void init();
     void Update(const sf::Input& input);
@@ -35,7 +36,8 @@ public:
     sf::Color diffuse;
     sf::Color ambient;
     sf::Color specular;
-    
+    bool EnableSphere ;
+    Sphere *sphere ;
 
 };
 
