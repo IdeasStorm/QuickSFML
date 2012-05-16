@@ -18,7 +18,7 @@ using namespace std;
 int main() {
     // Create the main window
     GLScene *scene;
-    //  scene = new MyScene("Metro Simulation");
+    //scene = new MyScene("Metro Simulation");
     scene = new Studio();
     return scene->Run();
 }

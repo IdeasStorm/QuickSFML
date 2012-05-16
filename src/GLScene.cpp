@@ -22,6 +22,7 @@ GLScene::GLScene(char* title) : window(sf::VideoMode(800, 600, 32), title) {
     fullscreen = FALSE; // Fullscreen Flag Set To Fullscreen Mode By Default
     vsync = TRUE; // Turn VSYNC on/off
     update_child_controls = false;
+    default_lighting = true;
 }
 
 GLScene::GLScene(const GLScene& orig) {
@@ -141,12 +142,13 @@ int GLScene::InitGL() // All Setup For OpenGL Goes Here
         ((GLDrawable*)(*i))->GLInit();
     }
 
-    //glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient); // Setup The Ambient Light
-    //glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse); // Setup The Diffuse Light
-    //glLightfv(GL_LIGHT1, GL_POSITION, LightPosition); // Position The Light
-    //glEnable(GL_LIGHT1); // Enable Light One
+    if (default_lighting) {
+        glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient); // Setup The Ambient Light
+        glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse); // Setup The Diffuse Light
+        glLightfv(GL_LIGHT0, GL_POSITION, LightPosition); // Position The Light
+        glEnable(GL_LIGHT0); // Enable Light One
+    }
     glEnable(GL_LIGHTING);
-    
     return TRUE; // Initialization Went OK
 }
 
