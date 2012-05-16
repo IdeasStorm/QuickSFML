@@ -16,10 +16,20 @@ GLfloat* vec4(sf::Color color){
     res[3] = color.a;
     return res;
 }
-Light::Light(sf::Vector3f pos, float ang): Sphere(pos,20){
- //   Sphere::setTexture("./Data/Wall/wall-texture-high-resolution.jpg");
-    ligthEnable = true ;
+Light::Light():GLDrawable(){
+    init();
+
+}
+
+Light::Light(sf::Vector3f pos, float ang , bool enableSphere): GLDrawable(){
+
+    init();
+    EnableSphere = enableSphere ;
+    if (EnableSphere)
+        sphere = new Sphere(position,20);
+    position = pos ;
     angle = ang ;
+
 }
 
 Light::Light(const Light& orig) {
@@ -30,21 +40,38 @@ Light::~Light() {
 
 void Light::init()
 {
-}
-void Light::Update(const sf::Input& input)
-{
+    EnableSphere = true ;
+    ligthEnable = true ;
+    angle = 45;
+    lightNum = GL_LIGHT0 ;
+    //lightNum += 1;
     spot_direction[0] = 0.0 ;
-    spot_direction[1] = 1.0 ;
+    spot_direction[1] = -1.0 ;
     spot_direction[2] = 0.0 ;
 }
-bool Light::LoadContent()
+
+void Light::setDirection(sf::Vector3f dir)
 {
+    spot_direction[0] = dir.x ;
+    spot_direction[1] = dir.y ;
+    spot_direction[2] = dir.z ;
+}
+
+void Light::Update(const sf::Input& input)
+{
+
     
 }
+bool Light::LoadContent()
+{   
+}
+
 void Light::draw() 
 {
-    Sphere::draw();
-    SetupLighting() ;
+    
+    GLInit();
+    if (EnableSphere)
+        sphere->Draw();
 }
 
 GLDrawable* Light::Clone() {
@@ -64,31 +91,30 @@ GLDrawable* Light::Clone() {
      */
 }
 
-void Light::SetupLighting() {
+void Light::GLInit() {
     
     if (ligthEnable)
     {
         GLfloat temp[]={position.x,position.y,position.z,w};
-        glLightfv(GL_LIGHT0,GL_POSITION,temp);
-    //    glLightfv(GL_LIGHT0,GL_AMBIENT,vec4(ambient));
-//        glLightfv(GL_LIGHT0,GL_DIFFUSE,vec4(diffuse));
-//        glLightfv(GL_LIGHT0,GL_SPECULAR,vec4(specular));
-
-        glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, angle);
+        
+        
+        glLightfv(lightNum,GL_POSITION,temp);
+        glLightfv(lightNum,GL_AMBIENT,vec4(ambient));
+        glLightfv(lightNum,GL_DIFFUSE,vec4(diffuse));
+        glLightfv(lightNum,GL_SPECULAR,vec4(specular));
+        glLightf(lightNum, GL_SPOT_CUTOFF, angle);
+        //TODO
         //glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, 2.0);
-        glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, spot_direction);
-        glEnable(GL_LIGHT0); 
+        glLightfv(lightNum, GL_SPOT_DIRECTION, spot_direction);
+        glEnable(lightNum); 
         
-        GLfloat colours [] = { 1.0, 1.0, 0.0, 0.0 };
-//        glEnable ( GL_COLOR_MATERIAL ) ; 
-        glColorMaterial ( GL_FRONT_AND_BACK, GL_SPECULAR ) ; 
+        GLfloat colours [] = { 1.0, 1.0, 1.0, 0.0 };
+        //glEnable ( GL_COLOR_MATERIAL ) ; 
+        ///glColorMaterial ( GL_FRONT_AND_BACK, GL_SPECULAR ) ; 
         //glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION,colours ) ;
-        
-//        glColor3f(1.0, 1.0, 1.0);
-//        glDisable(GL_COLOR_MATERIAL);
-
+        //glDisable(GL_COLOR_MATERIAL);
     }else
-        glDisable(GL_LIGHT0);
+        glDisable(lightNum);
     
 }
 

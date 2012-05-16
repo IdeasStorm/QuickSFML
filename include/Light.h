@@ -13,14 +13,16 @@
 using namespace std;
 using namespace sf;
 
-class Light :  public Sphere{
+class Light :  public GLDrawable{
 public:
     bool ligthEnable ;
-    Light(sf::Vector3f pos , float ang);
+    Light();
+    Light(sf::Vector3f pos , float ang,bool EnableSphere);
     Light(const Light& orig);
-    void SetupLighting();
+    void GLInit();
     virtual ~Light();
     void init();
+    void setDirection(sf::Vector3f);
     void Update(const sf::Input& input);
     bool LoadContent();
     GLDrawable* Clone();
@@ -31,11 +33,14 @@ public:
 //private:
     GLfloat w;
     float angle ;
+    GLenum lightNum;
+    //static GLenum lightNum = GL_LIGHT0;
     GLfloat spot_direction[3] ;
     sf::Color diffuse;
     sf::Color ambient;
     sf::Color specular;
-    
+    bool EnableSphere ;
+    Sphere *sphere ;
 
 };
 
