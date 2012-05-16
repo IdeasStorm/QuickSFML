@@ -61,16 +61,15 @@ void MyScene::LoadComponents(){
     Edge->setTexture("./Data/Wall/wall-texture-high-resolution.jpg");
     ground->setTexture("./Data/Wall/brown_wall_texture_by_fantasystock-d34un9s.jpg");
     
-    train_1=new Train("./Data/Model/straba_m_mod_02.3ds");
-    train_1-> position = sf::Vector3f(-10,3,-15);
-    train_1->halfSize  = sf::Vector3f(2,2,2);
-    train_1-> setRotation(sf::Vector3f(1,0,0),-90);
-    train_1->self_control = true ;
+    train_1=new Train("./Data/Train/1/train1.3ds");
+    train_1->position = sf::Vector3f(-5,3,-15);
+    train_1->halfSize  = sf::Vector3f(0.1,0.1,0.1);
+    train_1->setRotation(sf::Vector3f(1,0,0),-90);
     train_1->self_control = true ;
     
-    train_2= new Train("./Data/Model/straba_m_mod_02.3ds");
-    train_2->position= sf::Vector3f(10,3,-15);
-    train_2->halfSize  = sf::Vector3f(2,2,2);
+    train_2= new Train("./Data/Train/1/train1.3ds");
+    train_2->position= sf::Vector3f(15,3,-15);
+    train_2->halfSize  = sf::Vector3f(0.1,0.1,0.1);
     train_2->setRotation(sf::Vector3f(1,0,0),-90);
     train_2->self_control = true ;
     
@@ -112,7 +111,7 @@ void MyScene::LoadComponents(){
     
     components.push_back(cy);
     components.push_back(light1);
-    components.push_back(light2);
+    //components.push_back(light2);
     
     components.push_back(stair); 
     components.push_back(leftWall);

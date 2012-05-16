@@ -23,6 +23,8 @@ Studio::~Studio() {
 void Studio::LoadComponents(){
     //cameraEnable = 2;
     loadUserComponents(components);
+
+
     currentComponent = components.begin();
     list<GLDrawable*>::iterator i;
     for (i=components.begin();i!=components.end();i++){
@@ -110,7 +112,8 @@ void Studio::Update(const sf::Input& input){
         M_was_down = true;
     } else if (M_was_down) {
         M_was_down = false;
-        Model *model = new Model("./Data/Model/straba_m_mod_02.3ds");
+        Model *model = new Model("./Data/Train/1/train1.3ds");
+
         model->LoadContent();
         model->GLInit();
         components.push_back(model);
