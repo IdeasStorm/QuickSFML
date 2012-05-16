@@ -91,6 +91,9 @@ int Model3d::LoadGLTextures(const aiScene* scene)
 
 		ilBindImage(imageIds[i]); /* Binding of DevIL image name */
                 //filename = "SpiderTex.jpg";
+                
+                // removing backward slash
+                if (filename.empty()) continue;
                 std::replace( filename.begin(), filename.end(), '\\', '/');
                 
                 std::string fileloc = basepath + filename;	/* Loading of image */
