@@ -55,7 +55,7 @@ bool Model::LoadContent() {
 void Model::GLInit()
 
 {
-         assert(m_model != NULL);
+        assert(m_model != NULL);
        
        
         // Allocate memory for our vertices and normals

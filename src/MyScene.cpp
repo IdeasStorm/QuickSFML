@@ -16,11 +16,16 @@
 #include "Sphere.h"
 #include "Cylinder.h"
 
+#include "Model3d.h"
+
+
+
 MyScene::MyScene(const MyScene& orig) {
 }
 
 MyScene::~MyScene() {
 }
+
 
 Train * train_1;
 Train * train_2;
@@ -51,6 +56,7 @@ void MyScene::LoadComponents(){
     stair = new Stairs(sf::Vector3f (10,-2,-20),sf::Vector3f (3.5,1,1),10);
     //stair->setTexture("./Data/Wall/wall-texture-high-resolution.jpg");    
     stair->yrot = 90;
+
     
     //g->box_texture = "./Data/Wall/images.jpg";
     Box *leftWall = new Box(sf::Vector3f (-20,6,-50),sf::Vector3f (1,10,150));
