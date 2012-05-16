@@ -9,6 +9,7 @@
 #include "Model.h"
 #include "Studio.h"
 #include "Stairs.h"
+#include "Cylinder.h"
 #include <sstream>
 Studio::Studio() {
     currentComponent = components.end();
@@ -35,6 +36,7 @@ void Studio::LoadComponents(){
 void Studio::Update(const sf::Input& input){
     static bool N_was_down = false;
     static bool I_was_down = false;
+    static bool C_was_down = false;
     static bool M_was_down = false;    
     static bool eq_was_down = false;
     static bool minus_was_down = false;
@@ -87,6 +89,19 @@ void Studio::Update(const sf::Input& input){
         Box *box = new Box();
         box->setTexture("Data/NeHe.bmp");
         components.push_back(box);    
+        // setting this element as current
+        SetCurrentComponent(components.begin());
+        PrevComponent();
+    }
+    
+    
+    if (input.IsKeyDown(sf::Key::C) )  {
+        C_was_down = true;
+    } else if (C_was_down) {
+        C_was_down = false;
+        Cylinder *cy=new Cylinder();
+        cy->setTexture("Data/NeHe.bmp");
+        components.push_back(cy);    
         // setting this element as current
         SetCurrentComponent(components.begin());
         PrevComponent();
