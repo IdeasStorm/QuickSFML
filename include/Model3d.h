@@ -198,8 +198,7 @@ void recursive_render (const struct aiScene *sc, const struct aiNode* nd, float 
         // update transform
         m.Transpose();
         glPushMatrix();
-        printf("#");
-        print_array(m);
+        
         glMultMatrixf((float*)&m);
 
         // draw all meshes assigned to this node
