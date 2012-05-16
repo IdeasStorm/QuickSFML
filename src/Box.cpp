@@ -240,3 +240,4 @@ void Box::WriteInstanceCreation(FILE* outfile, string name) {
     if (!texture_path.empty())
         fprintf(outfile, "%s->setTexture(\"%s\");\n", name.data(), texture_path.data());
 }
+

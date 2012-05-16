@@ -30,6 +30,7 @@ public:
     inline virtual string getClass(){
         return "Light";
     }
+    void WriteInstanceCreation(FILE *outfile,string name);
 //private:
     GLfloat w;
     float angle ;

@@ -16,7 +16,7 @@ public:
     Cylinder(sf::Vector3f position, sf::Vector3f halfsize);
     Cylinder(sf::Vector3f position, GLfloat radius,GLfloat height);    
     Cylinder(const Cylinder& orig);
-    
+    GLDrawable *Clone();
     inline virtual string getClass(){
         return "Cylinder";
     }

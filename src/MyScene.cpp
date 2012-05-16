@@ -16,18 +16,24 @@
 #include "Sphere.h"
 #include "Cylinder.h"
 
+#include "Model3d.h"
+
+
+
 MyScene::MyScene(const MyScene& orig) {
 }
 
 MyScene::~MyScene() {
 }
 
-Train * train_1;
+
+Model3d * train_1;
 Train * train_2;
 Light * light2 , *light1;
 Sphere *sphere ;
 bool lightTest ;
 void MyScene::LoadComponents(){
+    this->default_lighting = true;
     update_child_controls = true;
     
     camera.SetOrigin(30,15,150);
@@ -51,6 +57,7 @@ void MyScene::LoadComponents(){
     stair = new Stairs(sf::Vector3f (10,-2,-20),sf::Vector3f (3.5,1,1),10);
     //stair->setTexture("./Data/Wall/wall-texture-high-resolution.jpg");    
     stair->yrot = 90;
+
     
     //g->box_texture = "./Data/Wall/images.jpg";
     Box *leftWall = new Box(sf::Vector3f (-20,6,-50),sf::Vector3f (1,10,150));
@@ -61,7 +68,7 @@ void MyScene::LoadComponents(){
     Edge->setTexture("./Data/Wall/wall-texture-high-resolution.jpg");
     ground->setTexture("./Data/Wall/brown_wall_texture_by_fantasystock-d34un9s.jpg");
     
-    train_1=new Train("./Data/Train/1/train1.3ds");
+    train_1=new Model3d("train1.3ds");
     train_1->position = sf::Vector3f(-5,3,-15);
     train_1->halfSize  = sf::Vector3f(0.1,0.1,0.1);
     train_1->setRotation(sf::Vector3f(1,0,0),-90);
@@ -125,7 +132,7 @@ void MyScene::LoadComponents(){
 
 void MyScene::Update(const sf::Input& input) {
     if (input.IsKeyDown(sf::Key::Z)){
-        train_1->MoveForward -=0.5;
+//        train_1->MoveForward -=0.5;
         camera.MoveForward(+0.5);
     }
         list<Light*>::iterator i;
@@ -148,7 +155,7 @@ void MyScene::Update(const sf::Input& input) {
         light1->position.z -= 1 ;
     }
     if (input.IsKeyDown(sf::Key::X)){
-        train_1->MoveForward +=0.5;
+ //       train_1->MoveForward +=0.5;
         camera.MoveForward(-0.5);
     }
     if (input.IsKeyDown(sf::Key::Num1)){

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configurationDescriptor version="80">
+<configurationDescriptor version="79">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
@@ -11,6 +11,8 @@
       <itemPath>include/Ground.h</itemPath>
       <itemPath>include/Light.h</itemPath>
       <itemPath>include/Model.h</itemPath>
+      <itemPath>src/Model3d.cpp</itemPath>
+      <itemPath>include/Model3d.h</itemPath>
       <itemPath>include/MyScene.h</itemPath>
       <itemPath>include/SkyBox.h</itemPath>
       <itemPath>include/Sphere.h</itemPath>
@@ -77,6 +79,8 @@
             <linkerLibLibItem>3ds-1</linkerLibLibItem>
             <linkerLibLibItem>3ds</linkerLibLibItem>
             <linkerOptionItem>-lGLEW</linkerOptionItem>
+            <linkerOptionItem>`pkg-config --libs IL`</linkerOptionItem>
+            <linkerOptionItem>`pkg-config --libs assimp`</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
