@@ -9,6 +9,7 @@
 #include "Model.h"
 #include "Studio.h"
 #include "Stairs.h"
+#include "Light.h"
 #include "Cylinder.h"
 #include <sstream>
 Studio::Studio() {
@@ -25,7 +26,17 @@ void Studio::LoadComponents(){
     //cameraEnable = 2;
     loadUserComponents(components);
 
+    Light *light2  = new Light(sf::Vector3f(25,30,-200),90,true);
+    light2->ambient = sf::Color(1,1,1);
+    light2->diffuse = sf::Color(1,1,1);
+    light2->specular = sf::Color(0,0,0);
+    light2->setDirection(sf::Vector3f(0,0,1));
+    light2->w = 1 ;
+    light2->lightNum +=1 ;
+    light2->EnableSphere = false ;
+    components.push_back(light2);
 
+    
     currentComponent = components.begin();
     list<GLDrawable*>::iterator i;
     for (i=components.begin();i!=components.end();i++){

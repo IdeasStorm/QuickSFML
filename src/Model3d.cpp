@@ -9,7 +9,7 @@
 #include <fstream>
 Model3d::Model3d(const std::string& pFile) 
 {
-    basepath = "./Data/OBJ/";
+    basepath = "./Data/Train/1/";
     modelname= pFile;
     std::string temp(basepath+modelname);
     std::ifstream fin(temp.c_str());
@@ -176,10 +176,13 @@ bool Model3d::LoadContent() {
 Model3d::~Model3d() {
 }
 
-void Model3d::Draw()
-{
-    recursive_render(scene, scene->mRootNode, 0.5);
 
-//    xrot+=xspeed;
-//    yrot+=yspeed;
+
+void Model3d::WriteInstanceCreation(FILE* outfile, string name) {
+    fprintf(outfile,"%s *%s = new %s(\"%s\");\n",
+            this->getClass().data(),
+            name.data(),this->getClass().data(),
+            this->modelname.data()
+    );
 }
+        

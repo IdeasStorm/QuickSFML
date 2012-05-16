@@ -51,15 +51,24 @@ public:
     //glLoadIdentity();				// Reset The View
     // box.Draw();
 
-    drawAiScene(scene);
+        drawAiScene(scene);
+        //recursive_render(scene, scene->mRootNode, 0.5);
+
+    }
+    void WriteInstanceCreation(FILE* outfile, string name);
+    inline string getClass() {
+        return "Model";
     }
 protected:
-    void Draw();
+    //void Draw();
     
     void GLInit();
     void Update(const sf::Input &input);
     bool LoadContent();
     void DisableTexture() {        
+    }
+    GLDrawable* Clone(){
+        //TODO put your logic
     }
 private:
     const aiScene* scene;
@@ -171,104 +180,111 @@ void apply_material(const aiMaterial *mtl)
 }
 
 
+void print_array(aiMatrix4x4 m){
+    printf("%f, %f, %f, %f \n%f, %f, %f, %f \n%f, %f, %f, %f \n%f, %f, %f, %f \n",
+            m.a1,m.b1,m.c1,m.d1,
+            m.a2,m.b2,m.c2,m.d2,
+            m.a3,m.b3,m.c3,m.d3,
+            m.a4,m.b4,m.c4,m.d4);
 
+}
 void recursive_render (const struct aiScene *sc, const struct aiNode* nd, float scale)
 {
-	unsigned int i;
-	unsigned int n=0, t;
-	aiMatrix4x4 m = nd->mTransformation;
+        unsigned int i;
+        unsigned int n=0, t;
+        aiMatrix4x4 m = nd->mTransformation;
 
-	m.Scaling(aiVector3D(scale, scale, scale), m);
+        m.Scaling(aiVector3D(scale, scale, scale), m);        
+        // update transform
+        m.Transpose();
+        glPushMatrix();
+        printf("#");
+        print_array(m);
+        glMultMatrixf((float*)&m);
 
-	// update transform
-	m.Transpose();
-	glPushMatrix();
-	glMultMatrixf((float*)&m);
+        // draw all meshes assigned to this node
+        for (; n < nd->mNumMeshes; ++n)
+        {
+                const struct aiMesh* mesh = scene->mMeshes[nd->mMeshes[n]];
+                apply_material(sc->mMaterials[mesh->mMaterialIndex]);
 
-	// draw all meshes assigned to this node
-	for (; n < nd->mNumMeshes; ++n)
-	{
-		const struct aiMesh* mesh = scene->mMeshes[nd->mMeshes[n]];
-		apply_material(sc->mMaterials[mesh->mMaterialIndex]);
-                
                 if (mesh->HasBones()){
                     printf("model has bones ... failed");
                     abort();
                 }
 
-		if(mesh->mNormals == NULL)
-		{
-			glDisable(GL_LIGHTING);
-		}
-		else
-		{
-			glEnable(GL_LIGHTING);
-		}
+                if(mesh->mNormals == NULL)
+                {
+                        glDisable(GL_LIGHTING);
+                }
+                else
+                {
+                        glEnable(GL_LIGHTING);
+                }
 
-		if(mesh->mColors[0] != NULL)
-		{
-			glEnable(GL_COLOR_MATERIAL);
-		}
-		else
-		{
-			glDisable(GL_COLOR_MATERIAL);
-		}
-
-
-
-		for (t = 0; t < mesh->mNumFaces; ++t) {
-			const struct aiFace* face = &mesh->mFaces[t];
-			GLenum face_mode;
-
-			switch(face->mNumIndices)
-			{
-				case 1: face_mode = GL_POINTS; break;
-				case 2: face_mode = GL_LINES; break;
-				case 3: face_mode = GL_TRIANGLES; break;
-				default: face_mode = GL_POLYGON; break;
-			}
-
-			glBegin(face_mode);
-
-			for(i = 0; i < face->mNumIndices; i++)		// go through all vertices in face
-			{
-				int vertexIndex = face->mIndices[i];	// get group index for current index
-				if(mesh->mColors[0] != NULL)
-					Color4f(&mesh->mColors[0][vertexIndex]);
-				if(mesh->mNormals != NULL)
-
-					if(mesh->HasTextureCoords(0))		//HasTextureCoords(texture_coordinates_set)
-					{
-						glTexCoord2f(mesh->mTextureCoords[0][vertexIndex].x, 1 - mesh->mTextureCoords[0][vertexIndex].y); //mTextureCoords[channel][vertex]
-					}
-
-					glNormal3fv(&mesh->mNormals[vertexIndex].x);
-					glVertex3fv(&mesh->mVertices[vertexIndex].x);
-			}
-
-			glEnd();
-
-		}
-
-	}
+                if(mesh->mColors[0] != NULL)
+                {
+                        glEnable(GL_COLOR_MATERIAL);
+                }
+                else
+                {
+                        glDisable(GL_COLOR_MATERIAL);
+                }
 
 
-	// draw all children
-	for (n = 0; n < nd->mNumChildren; ++n)
-	{
-		recursive_render(sc, nd->mChildren[n], scale);
-	}
 
-	glPopMatrix();
+                for (t = 0; t < mesh->mNumFaces; ++t) {
+                        const struct aiFace* face = &mesh->mFaces[t];
+                        GLenum face_mode;
+
+                        switch(face->mNumIndices)
+                        {
+                                case 1: face_mode = GL_POINTS; break;
+                                case 2: face_mode = GL_LINES; break;
+                                case 3: face_mode = GL_TRIANGLES; break;
+                                default: face_mode = GL_POLYGON; break;
+                        }
+
+                        glBegin(face_mode);
+
+                        for(i = 0; i < face->mNumIndices; i++)		// go through all vertices in face
+                        {
+                                int vertexIndex = face->mIndices[i];	// get group index for current index
+                                if(mesh->mColors[0] != NULL)
+                                        Color4f(&mesh->mColors[0][vertexIndex]);
+                                if(mesh->mNormals != NULL)
+
+                                        if(mesh->HasTextureCoords(0))		//HasTextureCoords(texture_coordinates_set)
+                                        {
+                                                glTexCoord2f(mesh->mTextureCoords[0][vertexIndex].x, 1 - mesh->mTextureCoords[0][vertexIndex].y); //mTextureCoords[channel][vertex]
+                                        }
+
+                                        glNormal3fv(&mesh->mNormals[vertexIndex].x);
+                                        glVertex3fv(&mesh->mVertices[vertexIndex].x);
+                        }
+
+                        glEnd();
+
+                }
+
+        }
+
+
+        // draw all children
+        for (n = 0; n < nd->mNumChildren; ++n)
+        {
+                recursive_render(sc, nd->mChildren[n], scale);
+        }
+
+        glPopMatrix();
 }
 
-    
+        
 
 void drawAiScene(const aiScene* scene)
 {
 //	logInfo("drawing objects");
-
-	recursive_render(scene, scene->mRootNode, 0.5);
+	recursive_render(scene, scene->mRootNode, 1);
 
 }
 
