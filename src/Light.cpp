@@ -44,6 +44,7 @@ void Light::init()
     ligthEnable = true ;
     angle = 45;
     lightNum = GL_LIGHT0 ;
+    //lightNum += 1;
     spot_direction[0] = 0.0 ;
     spot_direction[1] = -1.0 ;
     spot_direction[2] = 0.0 ;

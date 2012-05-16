@@ -17,7 +17,7 @@ class Light :  public GLDrawable{
 public:
     bool ligthEnable ;
     Light();
-    Light(sf::Vector3f pos , float ang,bool);
+    Light(sf::Vector3f pos , float ang,bool EnableSphere);
     Light(const Light& orig);
     void GLInit();
     virtual ~Light();
@@ -34,10 +34,10 @@ public:
     GLfloat w;
     float angle ;
     GLenum lightNum;
+    //static GLenum lightNum = GL_LIGHT0;
     GLfloat spot_direction[3] ;
     sf::Color diffuse;
     sf::Color ambient;
-    static int count ; 
     sf::Color specular;
     bool EnableSphere ;
     Sphere *sphere ;

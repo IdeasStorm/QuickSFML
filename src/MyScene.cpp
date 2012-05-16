@@ -17,8 +17,6 @@
 #include "Cylinder.h"
 
 MyScene::MyScene(const MyScene& orig) {
-    
-
 }
 
 MyScene::~MyScene() {
@@ -89,11 +87,6 @@ void MyScene::LoadComponents(){
     Fence->setRotation(sf::Vector3f(0,1,0),-90);
     //Fence->setRotation(sf::Vector3f(0,0,1),0);
 
-
-    for (int i=-5 ;i<10 ;i++)
-    {
-    }
-
     light2  = new Light(sf::Vector3f(25,30,-200),90,true);
     light2->ambient = sf::Color(1,1,1);
     light2->diffuse = sf::Color(1,1,1);
@@ -101,6 +94,8 @@ void MyScene::LoadComponents(){
     light2->setDirection(sf::Vector3f(0,0,1));
     light2->w = 1 ;
     light2->lightNum +=1 ;
+    light2->EnableSphere = false ;
+    
     
     light1  = new Light(sf::Vector3f(0,10,-33),45,true);
     light1->ambient = sf::Color(1,1,1);
@@ -150,7 +145,6 @@ void MyScene::Update(const sf::Input& input) {
     if (input.IsKeyDown(sf::Key::U)){
         light1->position.z += 1 ;
     }
-
     if (input.IsKeyDown(sf::Key::I)){
         light1->position.z -= 1 ;
     }
@@ -169,8 +163,6 @@ void MyScene::Update(const sf::Input& input) {
     if (input.IsKeyDown(sf::Key::Num3)){
         cameraEnable = &camera3 ;
         camera3.Default();
-    }
-        
+    } 
     GLScene::Update(input);
-
 }
