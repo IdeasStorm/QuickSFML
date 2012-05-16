@@ -187,8 +187,9 @@ private:
         unsigned int i;
         unsigned int n = 0, t;
         aiMatrix4x4 m = nd->mTransformation;
-
-        m.Scaling(aiVector3D(scale, scale, scale), m);
+        aiMatrix4x4 m2;
+        aiMatrix4x4::Scaling(aiVector3D(scale, scale, scale), m2);
+        m = m * m2;
         // update transform
         m.Transpose();
         glPushMatrix();
@@ -199,11 +200,6 @@ private:
         for (; n < nd->mNumMeshes; ++n) {
             const struct aiMesh* mesh = scene->mMeshes[nd->mMeshes[n]];
             apply_material(sc->mMaterials[mesh->mMaterialIndex]);
-
-            if (mesh->HasBones()) {
-                printf("model has bones ... failed");
-                abort();
-            }
 
             if (mesh->mNormals == NULL) {
                 glDisable(GL_LIGHTING);
