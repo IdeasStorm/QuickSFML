@@ -39,18 +39,6 @@ int Model3d::LoadGLTextures(const aiScene* scene)
 	
 	ILboolean success;
 
-	/* Before calling ilInit() version should be checked. */
-	if (ilGetInteger(IL_VERSION_NUM) < IL_VERSION)
-	{
-		ILint test = ilGetInteger(IL_VERSION_NUM);
-		/// wrong DevIL version ///
-		std::string err_msg = "Wrong DevIL version. Old devil.dll in system32/SysWow64?";
-		char* cErr_msg = (char *) err_msg.c_str();
-		//abortGLInit(cErr_msg);
-		return -1;
-	}
-
-	ilInit(); /* Initialization of DevIL */
 
 	if (scene->HasTextures()) 
             return false;
@@ -102,20 +90,17 @@ int Model3d::LoadGLTextures(const aiScene* scene)
 
 
 		ilBindImage(imageIds[i]); /* Binding of DevIL image name */
-                filename = "SpiderTex.jpg";
+                //filename = "SpiderTex.jpg";
+                std::replace( filename.begin(), filename.end(), '\\', '/');
+                
                 std::string fileloc = basepath + filename;	/* Loading of image */
-		success = ilLoadImage(fileloc.c_str());
-
-		if (success) /* If no error occured: */
+                
+                sf::Image image;
+                
+		//success = ilLoadImage(fileloc.c_str());
+                ILenum error = ilGetError();
+		if (image.LoadFromFile(fileloc)) /* If no error occured: */
 		{
-			success = ilConvertImage(IL_RGB, IL_UNSIGNED_BYTE); /* Convert every colour component into
-			unsigned byte. If your image contains alpha channel you can replace IL_RGB with IL_RGBA */
-			if (!success)
-			{
-				/* Error occured */
-				//abortGLInit("Couldn't convert image");
-				return -1;
-			}
 			//glGenTextures(numTextures, &textureIds[i]); /* Texture name generation */
 			glBindTexture(GL_TEXTURE_2D, textureIds[i]); /* Binding of texture name */
 			//redefine standard texture values
@@ -123,9 +108,7 @@ int Model3d::LoadGLTextures(const aiScene* scene)
 			interpolation for magnification filter */
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); /* We will use linear
 			interpolation for minifying filter */
-			glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_BPP), ilGetInteger(IL_IMAGE_WIDTH),
-				ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE,
-				ilGetData()); /* Texture specification */
+                        glTexImage2D(GL_TEXTURE_2D, 0, 3, image.GetWidth(), image.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image.GetPixelsPtr());
 		}
 		else
 		{
@@ -157,24 +140,24 @@ if (!LoadGLTextures(scene))
 	}
 
 
-//	glEnable(GL_TEXTURE_2D);
-//	glShadeModel(GL_SMOOTH);		 // Enables Smooth Shading
-//	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
-//	glClearDepth(1.0f);				// Depth Buffer Setup
-//	glEnable(GL_DEPTH_TEST);		// Enables Depth Testing
-//	glDepthFunc(GL_LEQUAL);			// The Type Of Depth Test To Do
-//	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	// Really Nice Perspective Calculation
-//
-//
-//	glEnable(GL_LIGHTING);
-//	glEnable(GL_LIGHT0);    // Uses default lighting parameters
-//	glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
-//	glEnable(GL_NORMALIZE);
-//
-////	glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient);
-////	glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);
-////	glLightfv(GL_LIGHT1, GL_POSITION, LightPosition);
-//	glEnable(GL_LIGHT1);
+	glEnable(GL_TEXTURE_2D);
+	glShadeModel(GL_SMOOTH);		 // Enables Smooth Shading
+	//glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
+	glClearDepth(1.0f);				// Depth Buffer Setup
+	glEnable(GL_DEPTH_TEST);		// Enables Depth Testing
+	glDepthFunc(GL_LEQUAL);			// The Type Of Depth Test To Do
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	// Really Nice Perspective Calculation
+
+
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);    // Uses default lighting parameters
+	glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
+	glEnable(GL_NORMALIZE);
+
+//	glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient);
+//	glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);
+//	glLightfv(GL_LIGHT1, GL_POSITION, LightPosition);
+	glEnable(GL_LIGHT1);
 
 	glColorMaterial(GL_FRONT_AND_BACK, GL_DIFFUSE);
 

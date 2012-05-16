@@ -189,9 +189,12 @@ void recursive_render (const struct aiScene *sc, const struct aiNode* nd, float 
 	for (; n < nd->mNumMeshes; ++n)
 	{
 		const struct aiMesh* mesh = scene->mMeshes[nd->mMeshes[n]];
-
 		apply_material(sc->mMaterials[mesh->mMaterialIndex]);
-
+                
+                if (mesh->HasBones()){
+                    printf("model has bones ... failed");
+                    abort();
+                }
 
 		if(mesh->mNormals == NULL)
 		{
