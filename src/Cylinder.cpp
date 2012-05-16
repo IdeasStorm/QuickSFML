@@ -67,3 +67,18 @@ void Cylinder::draw(){
     }    
     glPopMatrix();
 }
+GLDrawable* Cylinder::Clone() {
+    Cylinder *cloned = new Cylinder();
+    cloned->position = position;
+    cloned->halfSize = halfSize;
+    if (axis_angle)
+        cloned->setRotation(rotationAxis, rotation);
+    else
+        cloned->setRotation(yrot, xrot, zrot);
+    if (textureEnabled) {
+        cloned->setTexture(texture_path);
+    } else {
+        cloned->texture_path = texture_path;
+    }
+    return cloned;
+}
