@@ -14,6 +14,7 @@
 #include <sstream>
 Studio::Studio() {
     currentComponent = components.end();
+    camera.SetOrigin(50,50,100);
 }
 
 Studio::Studio(const Studio& orig) {
@@ -35,7 +36,6 @@ void Studio::LoadComponents(){
     light2->lightNum +=1 ;
     light2->EnableSphere = false ;
     components.push_back(light2);
-
     
     currentComponent = components.begin();
     list<GLDrawable*>::iterator i;

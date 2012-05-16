@@ -8,7 +8,6 @@
 #include <GL/glew.h>
 
 #include "GLScene.h"
-
 GLScene::GLScene(char* title) : window(sf::VideoMode(800, 600, 32), title) {    
     GLfloat LightAmbient[] ={0.5f, 0.5f, 0.5f, 1.0f};
     GLfloat LightDiffuse[] = {1.0f, 1.0f, 1.0f, 1.0f};
