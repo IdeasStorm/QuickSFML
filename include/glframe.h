@@ -53,13 +53,13 @@ public:
         }
 
         if (input.IsKeyDown(sf::Key::A))
-            MoveRight(0.5);
+            MoveRight(1);
         if (input.IsKeyDown(sf::Key::D))
-            MoveRight(-0.5);
+            MoveRight(-1);
         if (input.IsKeyDown(sf::Key::W))
-            MoveForward(0.5);
+            MoveForward(1);
         if (input.IsKeyDown(sf::Key::S))
-            MoveForward(-0.5);
+            MoveForward(-1);
         if (input.IsKeyDown(sf::Key::Q))
             MoveUp(-0.5);
         if (input.IsKeyDown(sf::Key::E))
@@ -90,7 +90,9 @@ public:
     GLFrame(void) {
         Origin[0] = Origin[1] = Origin[2] = 0;
 
-        first = EnableMove = EnableMouse = true;
+        first = true;
+        EnableMove = true;
+        EnableMouse = true;
         Mouse[0] = 0;
         Mouse[1] = 0;
         Mouse[2] = 0;
