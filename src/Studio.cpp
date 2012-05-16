@@ -22,15 +22,7 @@ Studio::~Studio() {
 
 void Studio::LoadComponents(){
     loadUserComponents(components);
-    Light *light2  = new Light(sf::Vector3f(25,30,-200),90,true);
-    light2->ambient = sf::Color(1,1,1);
-    light2->diffuse = sf::Color(1,1,1);
-    light2->specular = sf::Color(0,0,0);
-    light2->setDirection(sf::Vector3f(0,0,1));
-    light2->w = 1 ;
-    light2->lightNum = GL_LIGHT7 ;
-    light2->EnableSphere = false ;
-    components.push_back(light2); 
+
 
     currentComponent = components.begin();
     list<GLDrawable*>::iterator i;
@@ -121,8 +113,7 @@ void Studio::Update(const sf::Input& input){
     } else if (M_was_down) {
         M_was_down = false;
         Model *model = new Model("./Data/Train/1/train1.3ds");
-        model->halfSize  = sf::Vector3f(0.1,0.1,0.1);
-        model->setRotation(sf::Vector3f(1,0,0),-90);
+
         model->LoadContent();
         model->GLInit();
         components.push_back(model);

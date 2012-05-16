@@ -33,6 +33,9 @@ public:
     }
 
     void UpdateCamera(const sf::Input& input, float a, float b) {
+       if (!EnableMouse)
+            return;
+       
         if (!EnableMove)
             return;
         if (EnableMouse) {
@@ -57,26 +60,11 @@ public:
             MoveForward(0.5);
         if (input.IsKeyDown(sf::Key::S))
             MoveForward(-0.5);
-        if (input.IsKeyDown(sf::Key::O))
+        if (input.IsKeyDown(sf::Key::Q))
             MoveUp(-0.5);
-        if (input.IsKeyDown(sf::Key::P))
+        if (input.IsKeyDown(sf::Key::E))
             MoveUp(+0.5);
-        if (EnableMouse)
-            return;
-        if (input.IsKeyDown(sf::Key::PageUp))
-            MoveUp(0.5);
-        if (input.IsKeyDown(sf::Key::PageDown))
-            MoveUp(-0.5);
-        if (input.IsKeyDown(sf::Key::Q)) {
-            RotateLocalY(0.05);
-            MoveRight(0.05);
-        }
-        if (input.IsKeyDown(sf::Key::E)) {
-            RotateLocalY(-0.01);
-            MoveRight(-0.01);
-        }
-        //  Mouse[2] = Mouse[0] ;
-        // Mouse[3] = Mouse[1] ;
+
     }
 
     void Default() {
