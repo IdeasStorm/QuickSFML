@@ -94,7 +94,7 @@ ${OBJECTDIR}/main.o: main.cpp
 ${OBJECTDIR}/src/Stairs.o: src/Stairs.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Stairs.o src/Stairs.cpp
+	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags IL` `pkg-config --cflags assimp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Stairs.o src/Stairs.cpp
 
 ${OBJECTDIR}/src/math3d.o: src/math3d.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
@@ -109,7 +109,7 @@ ${OBJECTDIR}/src/GLScene.o: src/GLScene.cpp
 ${OBJECTDIR}/src/SkyBox.o: src/SkyBox.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/SkyBox.o src/SkyBox.cpp
+	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags IL` `pkg-config --cflags assimp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/SkyBox.o src/SkyBox.cpp
 
 ${OBJECTDIR}/src/Train.o: src/Train.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
@@ -129,7 +129,7 @@ ${OBJECTDIR}/src/MyScene.o: src/MyScene.cpp
 ${OBJECTDIR}/src/Cylinder.o: src/Cylinder.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Cylinder.o src/Cylinder.cpp
+	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags IL` `pkg-config --cflags assimp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Cylinder.o src/Cylinder.cpp
 
 ${OBJECTDIR}/src/Drawable.o: src/Drawable.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
@@ -149,7 +149,7 @@ ${OBJECTDIR}/src/Box.o: src/Box.cpp
 ${OBJECTDIR}/src/Sphere.o: src/Sphere.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Sphere.o src/Sphere.cpp
+	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags IL` `pkg-config --cflags assimp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Sphere.o src/Sphere.cpp
 
 ${OBJECTDIR}/src/Light.o: src/Light.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
