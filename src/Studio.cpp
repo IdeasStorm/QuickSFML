@@ -110,7 +110,9 @@ void Studio::Update(const sf::Input& input){
         M_was_down = true;
     } else if (M_was_down) {
         M_was_down = false;
-        Model *model = new Model("./Data/Model/straba_m_mod_02.3ds");
+        Model *model = new Model("./Data/Train/1/train1.3ds");
+        model->halfSize  = sf::Vector3f(0.1,0.1,0.1);
+        model->setRotation(sf::Vector3f(1,0,0),-90);
         model->LoadContent();
         model->GLInit();
         components.push_back(model);
