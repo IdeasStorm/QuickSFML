@@ -22,7 +22,7 @@ GLScene::GLScene(char* title) : window(sf::VideoMode(800, 600, 32), title) {
     fullscreen = FALSE; // Fullscreen Flag Set To Fullscreen Mode By Default
     vsync = TRUE; // Turn VSYNC on/off
     update_child_controls = false;
-    default_lighting = true;
+    default_lighting = false;
 }
 
 GLScene::GLScene(const GLScene& orig) {
