@@ -15,7 +15,7 @@
 #include "SkyBox.h"
 #include "Sphere.h"
 #include "Cylinder.h"
-
+#include "Railway.h"
 #include "Model3d.h"
 
 
@@ -115,7 +115,9 @@ void MyScene::LoadComponents(){
     Cylinder *cy=new Cylinder(sf::Vector3f(10,10,40),3,6);
     cy->setTexture("./Data/Wall/wall-texture-high-resolution.jpg");
     cy->xrot=90;
-    
+     
+    Railway *ra=new Railway(sf::Vector3f(10,10,10),sf::Vector3f(5,2,100));
+    components.push_back(ra);
     components.push_back(cy);
     components.push_back(light1);
     //components.push_back(light2);

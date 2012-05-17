@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configurationDescriptor version="79">
+<configurationDescriptor version="80">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
@@ -15,6 +15,7 @@
       <itemPath>src/Model3d.cpp</itemPath>
       <itemPath>include/Model3d.h</itemPath>
       <itemPath>include/MyScene.h</itemPath>
+      <itemPath>include/Railway.h</itemPath>
       <itemPath>include/SkyBox.h</itemPath>
       <itemPath>include/Sphere.h</itemPath>
       <itemPath>include/Stairs.h</itemPath>
@@ -41,6 +42,7 @@
       <itemPath>src/Light.cpp</itemPath>
       <itemPath>src/Model.cpp</itemPath>
       <itemPath>src/MyScene.cpp</itemPath>
+      <itemPath>src/Railway.cpp</itemPath>
       <itemPath>src/SkyBox.cpp</itemPath>
       <itemPath>src/Sphere.cpp</itemPath>
       <itemPath>src/Stairs.cpp</itemPath>
