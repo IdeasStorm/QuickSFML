@@ -48,6 +48,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/src/Drawable.o \
 	${OBJECTDIR}/src/Ground.o \
 	${OBJECTDIR}/src/Box.o \
+	${OBJECTDIR}/src/Arch.o \
 	${OBJECTDIR}/src/Sphere.o \
 	${OBJECTDIR}/src/Light.o
 
@@ -145,6 +146,11 @@ ${OBJECTDIR}/src/Box.o: src/Box.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
 	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags IL` `pkg-config --cflags assimp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Box.o src/Box.cpp
+
+${OBJECTDIR}/src/Arch.o: src/Arch.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} $@.d
+	$(COMPILE.cc) -g -Iinclude `pkg-config --cflags IL` `pkg-config --cflags assimp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Arch.o src/Arch.cpp
 
 ${OBJECTDIR}/src/Sphere.o: src/Sphere.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
