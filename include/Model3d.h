@@ -57,7 +57,7 @@ public:
     void WriteInstanceCreation(FILE* outfile, string name);
 
     inline string getClass() {
-        return "Model";
+        return "Model3d";
     }
 protected:
     //void Draw();
