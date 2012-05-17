@@ -44,10 +44,11 @@ void Cylinder::draw() {
     for (i = 0; i < numMajor; ++i) {
         GLfloat z0 = 0.5 * height - i * majorStep;
         GLfloat z1 = z0 - majorStep;
-        if (all)
+        if (all&&textureEnabled)
             applyTexture();
         else
-            applyArroundTexture();
+            if(textureEnabled)
+                applyArroundTexture();
         glBegin(GL_TRIANGLE_STRIP);
         for (j = 0; j <= numMinor; ++j) {
             a = j * minorStep;
@@ -55,11 +56,13 @@ void Cylinder::draw() {
             GLfloat y = radius * sin(a);
 
             glNormal3f(x / radius, y / radius, 0.0);
-            glTexCoord2f(j / (GLfloat) numMinor, i / (GLfloat) numMajor);
+            if(textureEnabled)            
+                glTexCoord2f(j / (GLfloat) numMinor, i / (GLfloat) numMajor);
             glVertex3f(x, y, z0);
 
             glNormal3f(x / radius, y / radius, 0.0);
-            glTexCoord2f(j / (GLfloat) numMinor, (i + 1) / (GLfloat) numMajor);
+            if(textureEnabled)            
+                glTexCoord2f(j / (GLfloat) numMinor, (i + 1) / (GLfloat) numMajor);
             glVertex3f(x, y, z1);
         }
         glEnd();
