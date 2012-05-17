@@ -36,6 +36,7 @@ void Studio::LoadComponents(){
     light2->w = 1 ;
     light2->lightNum +=1 ;
     light2->EnableSphere = false ;
+    light2->tag = "automated";
     components.push_back(light2);
     
     currentComponent = components.begin();
@@ -179,6 +180,10 @@ void Studio::Update(const sf::Input& input){
         s *=0.1f;
     }
     
+    if (input.IsKeyDown(sf::Key::RControl)) {
+        s =1;
+    }
+    
     sf::Vector3f *field;
     bool scale = false;
     bool rotation = false;
@@ -287,7 +292,13 @@ void Studio::ProcessComponent(GLDrawable *component){
     else if (tag == "cave") {
         float r = ((Cylinder*)component)->getRadius();
         Arch * arch  = new Arch(r);
+        arch->tag = "automated";
         arch->position = ((Cylinder*)component)->position - sf::Vector3f(0,0,((Cylinder*)component)->halfSize.y);
+        components.push_back(arch);
+        
+        arch  = new Arch(r);
+        arch->tag = "automated";
+        arch->position = ((Cylinder*)component)->position + sf::Vector3f(0,0,((Cylinder*)component)->halfSize.y);
         components.push_back(arch);
     }
     else if (tag == "skyBox") {
@@ -331,6 +342,7 @@ void Studio::WriteCode(){
     fprintf(outfile,"void loadUserComponents(list<GLDrawable*>& components) {\n");
     for (i=components.begin();i!=components.end();i++){
         GLDrawable *e = *i;
+        if (e->tag == "automated") continue;
         fprintf(outfile,"//========================box%d=====================================\n",c);
 
         std::string str;
