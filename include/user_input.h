@@ -5,7 +5,7 @@ void loadUserComponents(list<GLDrawable*>& components) {
 //========================box0=====================================
 Box *box0 = new Box();
 box0->setTexture("./Data/Wall/brown_wall_texture_by_fantasystock-d34un9s.jpg");
-box0->position = Vector3f(23.000051,-14.800020,2.400000); 
+box0->position = Vector3f(23.000051,-16.460032,2.400000); 
 box0->halfSize = Vector3f(28.100069,-15.800024,199.798782); 
 box0->setRotation(0.000000,0.000000,0.000000); 
 box0->tag = ""; 
@@ -107,5 +107,86 @@ box10->halfSize = Vector3f(1.000000,1.000000,1.000000);
 box10->setRotation(0.000000,0.000000,0.000000); 
 box10->tag = ""; 
 components.push_back(box10); 
+//==================================================================
+//========================box11=====================================
+Light *box11  = new Light(sf::Vector3f(25.000000,30.000000,-200.000000),90,true);
+box11->ambient = sf::Color(1,1,1);
+box11->diffuse = sf::Color(1,1,1);
+box11->specular = sf::Color(0,0,0);
+box11->w = 1 ;
+box11->position = Vector3f(25.000000,30.000000,-200.000000); 
+box11->halfSize = Vector3f(1.000000,1.000000,1.000000); 
+box11->setRotation(0.000000,0.000000,0.000000); 
+box11->tag = ""; 
+components.push_back(box11); 
+//==================================================================
+//========================box12=====================================
+Box *box12 = new Box();
+box12->position = Vector3f(4.359997,-0.200000,16.780027); 
+box12->halfSize = Vector3f(0.200000,0.400000,500.600006); 
+box12->setRotation(0.000000,0.000000,0.000000); 
+box12->tag = ""; 
+components.push_back(box12); 
+//==================================================================
+//========================box13=====================================
+Box *box13 = new Box();
+box13->position = Vector3f(10.660002,-0.200000,16.880028); 
+box13->halfSize = Vector3f(0.200000,0.400000,500.600006); 
+box13->setRotation(0.000000,0.000000,0.000000); 
+box13->tag = ""; 
+components.push_back(box13); 
+//==================================================================
+//========================box14=====================================
+Light *box14  = new Light(sf::Vector3f(25.000000,30.000000,-200.000000),90,true);
+box14->ambient = sf::Color(1,1,1);
+box14->diffuse = sf::Color(1,1,1);
+box14->specular = sf::Color(0,0,0);
+box14->w = 1 ;
+box14->position = Vector3f(25.000000,30.000000,-200.000000); 
+box14->halfSize = Vector3f(1.000000,1.000000,1.000000); 
+box14->setRotation(0.000000,0.000000,0.000000); 
+box14->tag = ""; 
+components.push_back(box14); 
+//==================================================================
+//========================box15=====================================
+Box *box15 = new Box();
+box15->position = Vector3f(33.960056,-0.200000,16.880028); 
+box15->halfSize = Vector3f(0.200000,0.400000,500.600006); 
+box15->setRotation(0.000000,0.000000,0.000000); 
+box15->tag = ""; 
+components.push_back(box15); 
+//==================================================================
+//========================box16=====================================
+Light *box16  = new Light(sf::Vector3f(25.000000,30.000000,-200.000000),90,true);
+box16->ambient = sf::Color(1,1,1);
+box16->diffuse = sf::Color(1,1,1);
+box16->specular = sf::Color(0,0,0);
+box16->w = 1 ;
+box16->position = Vector3f(25.000000,30.000000,-200.000000); 
+box16->halfSize = Vector3f(1.000000,1.000000,1.000000); 
+box16->setRotation(0.000000,0.000000,0.000000); 
+box16->tag = ""; 
+components.push_back(box16); 
+//==================================================================
+//========================box17=====================================
+Box *box17 = new Box();
+box17->setTexture("Data/NeHe.bmp");
+box17->position = Vector3f(40.269974,-0.200000,16.880028); 
+box17->halfSize = Vector3f(0.200000,0.400000,500.600006); 
+box17->setRotation(0.000000,0.000000,0.000000); 
+box17->tag = ""; 
+components.push_back(box17); 
+//==================================================================
+//========================box18=====================================
+Light *box18  = new Light(sf::Vector3f(25.000000,30.000000,-200.000000),90,true);
+box18->ambient = sf::Color(1,1,1);
+box18->diffuse = sf::Color(1,1,1);
+box18->specular = sf::Color(0,0,0);
+box18->w = 1 ;
+box18->position = Vector3f(25.000000,30.000000,-200.000000); 
+box18->halfSize = Vector3f(1.000000,1.000000,1.000000); 
+box18->setRotation(0.000000,0.000000,0.000000); 
+box18->tag = ""; 
+components.push_back(box18); 
 //==================================================================
 }
