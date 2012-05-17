@@ -15,6 +15,7 @@
 #include "Light.h"
 #include "Cylinder.h"
 #include "Model.h"
+#include "Model3d.h"
 using namespace sf;
 using namespace std;
 

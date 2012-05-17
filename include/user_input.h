@@ -12,10 +12,10 @@ box0->tag = "";
 components.push_back(box0); 
 //==================================================================
 //========================box1=====================================
-Model *box1 = new Model("./Data/Train/1/train1.3ds");
-box1->position = Vector3f(7.499994,0.200000,1.200000); 
-box1->halfSize = Vector3f(0.100000,0.300000,0.100000); 
-box1->setRotation(0.000000,-90.000000,180.000000); 
+Model3d *box1 = new Model3d("metro_all.DAE");
+box1->position = Vector3f(7.539995,-0.060000,1.260000); 
+box1->halfSize = Vector3f(0.040000,0.040000,0.160000); 
+box1->setRotation(0.000000,-180.000000,180.000000); 
 box1->tag = ""; 
 components.push_back(box1); 
 //==================================================================
@@ -188,5 +188,17 @@ box18->halfSize = Vector3f(1.000000,1.000000,1.000000);
 box18->setRotation(0.000000,0.000000,0.000000); 
 box18->tag = ""; 
 components.push_back(box18); 
+//==================================================================
+//========================box19=====================================
+Light *box19  = new Light(sf::Vector3f(25.000000,30.000000,-200.000000),90,true);
+box19->ambient = sf::Color(1,1,1);
+box19->diffuse = sf::Color(1,1,1);
+box19->specular = sf::Color(0,0,0);
+box19->w = 1 ;
+box19->position = Vector3f(25.000000,30.000000,-200.000000); 
+box19->halfSize = Vector3f(1.000000,1.000000,1.000000); 
+box19->setRotation(0.000000,0.000000,0.000000); 
+box19->tag = ""; 
+components.push_back(box19); 
 //==================================================================
 }
