@@ -12,7 +12,9 @@
 #include "Light.h"
 #include "Cylinder.h"
 #include "Arch.h"
+#include "Railway.h"
 #include <sstream>
+
 Studio::Studio() {
     currentComponent = components.end();
     camera.SetOrigin(50,50,100);
@@ -58,7 +60,7 @@ void Studio::Update(const sf::Input& input){
     static bool del_was_down = false;
     static bool V_was_down = false;
     static bool T_was_down = false;
-    
+    static bool R_was_down = false;
     camera.EnableMouse = true ;
     
     if (input.IsKeyDown(sf::Key::T) )  {
@@ -114,6 +116,17 @@ void Studio::Update(const sf::Input& input){
         U_was_down = false;
         Arch *arch = new Arch();
         components.push_back(arch);    
+        // setting this element as current
+        SetCurrentComponent(components.begin());
+        PrevComponent();
+    }
+    
+     if (input.IsKeyDown(sf::Key::R) )  {
+        R_was_down = true;
+    } else if (R_was_down) {
+        R_was_down = false;
+        Railway *rail = new Railway(sf::Vector3f(10,10,10),sf::Vector3f(5,2,100));
+        components.push_back(rail);    
         // setting this element as current
         SetCurrentComponent(components.begin());
         PrevComponent();

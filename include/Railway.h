@@ -24,11 +24,7 @@ public:
     
     bool LoadContent() {
     return true;
-    }
-    
-    void Update(const sf::Input &input){
-        
-    }
+    }            
     
     GLDrawable* Clone() {
         Railway* cloned = new Railway();
@@ -50,8 +46,8 @@ public:
     GLDrawable::WriteInstanceCreation(outfile, name);
     if (!texture_path.empty())
         fprintf(outfile, "%s->setTexture(\"%s\");\n", name.data(), texture_path.data());
-    }
-    
+    }    
+    void Update(const sf::Input &input);
     void setDepth(GLfloat depth) {
         this->halfSize.z = depth / 2.0f;
     }
@@ -95,6 +91,9 @@ public:
         }
         
     }
+   
+   void updatePrimitives();
+   
    list<Texture> textures;
 protected:
        void draw(){
@@ -113,10 +112,19 @@ protected:
            }
        }
 private:
+    bool thereIsEdit()
+    {
+        int o=3;
+        if (this->halfSize == this->tempHal&&this->position == this->position)
+            return false;
+        return true;
+    }
     string texture_path;
     Box *left;
     Box *right;
     list<GLDrawable*> cross;
+    sf::Vector3f tempPos;
+    sf::Vector3f tempHal;
 };
 
 #endif	/* RAILWAY_H */
