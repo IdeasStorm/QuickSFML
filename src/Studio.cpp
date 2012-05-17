@@ -11,6 +11,7 @@
 #include "Stairs.h"
 #include "Light.h"
 #include "Cylinder.h"
+#include "Arch.h"
 #include <sstream>
 Studio::Studio() {
     currentComponent = components.end();
@@ -49,6 +50,7 @@ void Studio::Update(const sf::Input& input){
     static bool I_was_down = false;
     static bool C_was_down = false;
     static bool M_was_down = false;    
+    static bool U_was_down = false;
     static bool eq_was_down = false;
     static bool minus_was_down = false;
     static bool F5_was_down = false;
@@ -105,6 +107,16 @@ void Studio::Update(const sf::Input& input){
         PrevComponent();
     }
     
+    if (input.IsKeyDown(sf::Key::U) )  {
+        U_was_down = true;
+    } else if (U_was_down) {
+        U_was_down = false;
+        Arch *arch = new Arch();
+        components.push_back(arch);    
+        // setting this element as current
+        SetCurrentComponent(components.begin());
+        PrevComponent();
+    }
     
     if (input.IsKeyDown(sf::Key::C) )  {
         C_was_down = true;
@@ -181,6 +193,9 @@ void Studio::Update(const sf::Input& input){
         field = &(((*currentComponent))->position);
     }
     
+    if (input.IsKeyDown(sf::Key::O)){
+        *field += sf::Vector3f(s,s,s);
+    }
     if (input.IsKeyDown(sf::Key::Right)) {
         *field += sf::Vector3f(s,0,0);
         if (scale)
@@ -268,6 +283,12 @@ void Studio::ProcessComponent(GLDrawable *component){
         tex.id = elements::Sides;
         ((Box*)component)->textures.push_back(tex);
         ((Box*)component)->textureEnabled = true;
+    }
+    else if (tag == "cave") {
+        float r = ((Cylinder*)component)->getRadius();
+        Arch * arch  = new Arch(r);
+        arch->position = ((Cylinder*)component)->position - sf::Vector3f(0,0,((Cylinder*)component)->halfSize.y);
+        components.push_back(arch);
     }
     else if (tag == "skyBox") {
         list<Texture> newlist;
