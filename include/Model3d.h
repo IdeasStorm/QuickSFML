@@ -28,7 +28,6 @@
 #include <assimp/DefaultLogger.h>
 #include <assimp/LogStream.h>
 //#include <GL/glut.h>
-#include <IL/il.h>
 #include <string>
 #include "Drawable.h"
 
@@ -46,9 +45,6 @@ public:
     void LoadComponents()const;
 
     void draw() {
-        //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Clear The Screen And The Depth Buffer
-        //glLoadIdentity();				// Reset The View
-        // box.Draw();
 
         drawAiScene(scene);
         //recursive_render(scene, scene->mRootNode, 0.5);
@@ -107,7 +103,7 @@ private:
 
     void apply_material(const aiMaterial *mtl) {
         float c[4];
-
+        glPushMatrix();
         GLenum fill_mode;
         int ret1, ret2;
         aiColor4D diffuse;
@@ -172,6 +168,8 @@ private:
             glEnable(GL_CULL_FACE);
         else
             glDisable(GL_CULL_FACE);
+        
+        glPopMatrix();
     }
 
     void print_array(aiMatrix4x4 m) {

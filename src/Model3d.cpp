@@ -28,16 +28,12 @@ Model3d::Model3d(const std::string& pFile)
 	if( !scene)
 	{		
 		abort();
-	}
-
-	// We're done. Everything will be cleaned up by the importer destructor        
+	}       
 }
 
 
 int Model3d::LoadGLTextures(const aiScene* scene)
 {
-	
-	ILboolean success;
 
 
 	if (scene->HasTextures()) 
@@ -64,19 +60,13 @@ int Model3d::LoadGLTextures(const aiScene* scene)
 	int numTextures = textureIdMap.size();
 
 	/* array with DevIL image IDs */
-	ILuint* imageIds = NULL;
-	imageIds = new ILuint[numTextures];
-
-	/* generate DevIL Image IDs */
-	ilGenImages(numTextures, imageIds); /* Generation of numTextures image names */
 
 	/* create and fill array with GL texture ids */
 	textureIds = new GLuint[numTextures];
 	glGenTextures(numTextures, textureIds); /* Texture name generation */
 
 	/* define texture path */
-	//std::string texturepath = "../../../test/models/Obj/";
-
+	
 	/* get iterator */
 	std::map<std::string, GLuint*>::iterator itr = textureIdMap.begin();
 
@@ -87,10 +77,6 @@ int Model3d::LoadGLTextures(const aiScene* scene)
 		std::string filename = (*itr).first;  // get filename
 		(*itr).second =  &textureIds[i];	  // save texture id for filename in map
 		itr++;								  // next texture
-
-
-		ilBindImage(imageIds[i]); /* Binding of DevIL image name */
-                //filename = "SpiderTex.jpg";
                 
                 //skipping empty textures paths
                 if (filename.empty()) continue;
@@ -101,9 +87,7 @@ int Model3d::LoadGLTextures(const aiScene* scene)
                 std::string fileloc = basepath + filename;	/* Loading of image */
                 
                 sf::Image image;
-                
-		//success = ilLoadImage(fileloc.c_str());
-                ILenum error = ilGetError();
+
 		if (image.LoadFromFile(fileloc)) /* If no error occured: */
 		{
 			//glGenTextures(numTextures, &textureIds[i]); /* Texture name generation */
@@ -117,22 +101,13 @@ int Model3d::LoadGLTextures(const aiScene* scene)
 		}
 		else
 		{
-			/* Error occured */
-			//MessageBox(NULL, ("Couldn't load Image: " + fileloc).c_str() , "ERROR", MB_OK | MB_ICONEXCLAMATION);
+			printf("Couldn't load Image");
 		}
 
 
 	}
 
-	ilDeleteImages(numTextures, imageIds); /* Because we have already copied image data into texture data
-	we can release memory used by image. */
-
-	//Cleanup
-	delete [] imageIds;
-	imageIds = NULL;
-
-	//return success;
-	return TRUE;									// Return The Status
+	return TRUE;	// Return The Status
 }
 
 
@@ -141,6 +116,7 @@ void Model3d::GLInit()
 {
 if (!LoadGLTextures(scene))
 	{
+                printf("Couldn't load Image");
 		return;
 	}
 
@@ -152,7 +128,6 @@ if (!LoadGLTextures(scene))
 	glEnable(GL_DEPTH_TEST);		// Enables Depth Testing
 	glDepthFunc(GL_LEQUAL);			// The Type Of Depth Test To Do
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	// Really Nice Perspective Calculation
-
 
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);    // Uses default lighting parameters
