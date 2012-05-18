@@ -80,9 +80,8 @@ void Studio::Update(const sf::Input& input) {
         GLDrawable* drawable = (*currentComponent)->Clone();
         components.push_back(drawable);
         // setting this element as current
-        list<GLDrawable*>::iterator end = components.end();
-        end--;
-        SetCurrentComponent(end);
+        SetCurrentComponent(components.begin());
+        PrevComponent();
     }
 
     if (input.IsKeyDown(sf::Key::Delete)) {
