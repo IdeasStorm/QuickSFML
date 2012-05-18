@@ -7,9 +7,9 @@
 
 #include "Model3d.h"
 #include <fstream>
-Model3d::Model3d(const std::string& pFile) 
+Model3d::Model3d(const std::string& pFile,const std::string& path) 
 {
-    basepath = "./Data/Train/1/";
+    basepath = path;
     modelname= pFile;
     std::string temp(basepath+modelname);
     std::ifstream fin(temp.c_str());
@@ -159,10 +159,11 @@ Model3d::~Model3d() {
 
 
 void Model3d::WriteInstanceCreation(FILE* outfile, string name) {
-    fprintf(outfile,"%s *%s = new %s(\"%s\");\n",
+    fprintf(outfile,"%s *%s = new %s(\"%s\",\"%s\");\n",
             this->getClass().data(),
             name.data(),this->getClass().data(),
-            this->modelname.data()
+            this->modelname.data(),
+            this->basepath.data()
     );
 }
         

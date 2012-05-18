@@ -38,7 +38,7 @@ using namespace std;
 
 class Model3d : public GLDrawable {
 public:
-    Model3d(const std::string& pFile);
+    Model3d(const std::string& pFile,const std::string& path);
     //Model3d(const Model3d& orig);
     ~Model3d();
     int LoadGLTextures(const aiScene* scene);
@@ -55,12 +55,14 @@ public:
     inline string getClass() {
         return "Model3d";
     }
+    bool LoadContent();
+    void GLInit();
+    void Update(const sf::Input &input);
 protected:
     //void Draw();
 
-    void GLInit();
-    void Update(const sf::Input &input);
-    bool LoadContent();
+
+    
 
     void DisableTexture() {
     }

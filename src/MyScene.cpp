@@ -68,7 +68,7 @@ void MyScene::LoadComponents(){
     Edge->setTexture("./Data/Wall/wall-texture-high-resolution.jpg");
     ground->setTexture("./Data/Wall/brown_wall_texture_by_fantasystock-d34un9s.jpg");
     
-    train_1=new Model3d("metro_all.DAE");
+    train_1=new Model3d("metro_all.DAE","");
     train_1->position = sf::Vector3f(-5,3,-15);
     train_1->halfSize  = sf::Vector3f(0.1,0.1,0.1);
     //train_1->setRotation(sf::Vector3f(1,0,0),-90);
