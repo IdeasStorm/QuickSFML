@@ -86,6 +86,12 @@ public:
         textures.push_back(tex);
     }
  
+   void setTexture(const Texture *tex) {
+        textureEnabled = true;    
+        //tex->id = elements::All;
+        textures.push_back(*tex);
+    }
+   
    void setElements(Element element) {
        my_elements = element;
    }

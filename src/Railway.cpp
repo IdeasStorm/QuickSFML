@@ -24,7 +24,9 @@ Railway::Railway() {
     left->setTexture("./Data/Wall/ironforrail.jpg");
     right = new Box(sf::Vector3f (x+sx,y,z),sf::Vector3f (sx/10,sy,sz));
     right->setTexture("./Data/Wall/ironforrail.jpg");
-     int j=0;
+     int j=0;     
+     Texture *tex=new Texture("./Data/Wall/woodenForrail.jpg");
+     tex->id = elements::All;
     for(int i=0;i<n;i++)
     {
         Box *temp;
@@ -36,7 +38,7 @@ Railway::Railway() {
             temp=new Box(sf::Vector3f (x+(sx/2),y-sy,z+j),sf::Vector3f (sx,sy,0.05));
             j++;
         }
-       temp->setTexture("./Data/Wall/woodenForrail.jpg");
+       temp->setTexture(tex);
        cross.push_back(temp);
     }
     this->tempHal = this->halfSize;
