@@ -14,7 +14,6 @@
 
 using namespace std;
 
-
 int main() {
     // Create the main window
     GLScene *scene;

@@ -38,7 +38,7 @@ using namespace std;
 
 class Model3d : public GLDrawable {
 public:
-    Model3d(const std::string& pFile,const std::string& path);
+    Model3d(const std::string& pFile, const std::string& path);
     //Model3d(const Model3d& orig);
     ~Model3d();
     int LoadGLTextures(const aiScene* scene);
@@ -60,9 +60,6 @@ public:
     void Update(const sf::Input &input);
 protected:
     //void Draw();
-
-
-    
 
     void DisableTexture() {
     }
@@ -170,7 +167,7 @@ private:
             glEnable(GL_CULL_FACE);
         else
             glDisable(GL_CULL_FACE);
-        
+
         glPopMatrix();
     }
 
