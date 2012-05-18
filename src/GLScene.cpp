@@ -22,6 +22,9 @@ GLScene::GLScene(char* title) : window(sf::VideoMode(800, 600, 32), title) {
     vsync = TRUE; // Turn VSYNC on/off
     update_child_controls = false;
     default_lighting = false;
+    camera=new GLFrame();    
+    camera2=new GLFrame();
+    camera3=new GLFrame();
 }
 
 GLScene::GLScene(const GLScene& orig) {
@@ -125,7 +128,7 @@ int GLScene::InitGL() // All Setup For OpenGL Goes Here
     {
         return FALSE; // If Texture Didn't Load Return FALSE
     }
-    cameraEnable = new GLFrame(camera);
+    cameraEnable = new GLFrame(*camera);
     //cameraEnable = &camera ;
     glewInit();
     glEnable(GL_TEXTURE_2D); // Enable Texture Mapping
@@ -210,6 +213,8 @@ void GLScene::LoadComponents() {
     for (i=components.begin();i!=components.end();i++){
         ((GLDrawable*)(*i))->LoadComponents();
     }
+   
+    
 }
 
 void GLScene::Update(const sf::Input& input) {

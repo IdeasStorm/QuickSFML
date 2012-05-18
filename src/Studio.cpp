@@ -17,7 +17,7 @@
 
 Studio::Studio() {
     currentComponent = components.end();
-    camera.SetOrigin(50,50,100);
+    camera->SetOrigin(50,50,100);
 }
 
 Studio::Studio(const Studio& orig) {
@@ -61,7 +61,7 @@ void Studio::Update(const sf::Input& input){
     static bool V_was_down = false;
     static bool T_was_down = false;
     static bool R_was_down = false;
-    camera.EnableMouse = true ;
+    camera->EnableMouse = true ;
     
     if (input.IsKeyDown(sf::Key::T) )  {
         T_was_down = true;

@@ -36,22 +36,22 @@ void MyScene::LoadComponents(){
     this->default_lighting = true;
     update_child_controls = true;
     
-    camera.SetOrigin(30,15,150);
-    camera.ApplyDefault();
+    camera->SetOrigin(30,15,150);
+    camera->ApplyDefault();
     
-    camera2.SetOrigin(25,25,25);
-    camera2.RotateLocalX(0.5);
-    camera2.RotateLocalY(0.3);
-    camera2.ApplyDefault() ;
-    camera2.EnableMove = false ;
+    camera2->SetOrigin(25,25,25);
+    camera2->RotateLocalX(0.5);
+    camera2->RotateLocalY(0.3);
+    camera2->ApplyDefault() ;
+    camera2->EnableMove = false ;
     
-    camera3.SetOrigin(10,25,120);
-    camera3.RotateLocalX(0.3);
-    camera3.RotateLocalY(0.1);
-    camera3.ApplyDefault() ;
-    camera3.EnableMove = true ;
-    camera3.EnableMouse = false ;
-    cameraEnable = &camera;
+    camera3->SetOrigin(10,25,120);
+    camera3->RotateLocalX(0.3);
+    camera3->RotateLocalY(0.1);
+    camera3->ApplyDefault() ;
+    camera3->EnableMove = true ;
+    camera3->EnableMouse = false ;
+    cameraEnable = new GLFrame(*camera);
         
     Stairs * stair;
     stair = new Stairs(sf::Vector3f (10,-2,-20),sf::Vector3f (3.5,1,1),10);
@@ -135,7 +135,7 @@ void MyScene::LoadComponents(){
 void MyScene::Update(const sf::Input& input) {
     if (input.IsKeyDown(sf::Key::Z)){
 //        train_1->MoveForward -=0.5;
-        camera.MoveForward(+0.5);
+        camera->MoveForward(+0.5);
     }
         list<Light*>::iterator i;
     if (input.IsKeyDown(sf::Key::Y)){
@@ -158,19 +158,19 @@ void MyScene::Update(const sf::Input& input) {
     }
     if (input.IsKeyDown(sf::Key::X)){
  //       train_1->MoveForward +=0.5;
-        camera.MoveForward(-0.5);
+        camera->MoveForward(-0.5);
     }
     if (input.IsKeyDown(sf::Key::Num1)){
-        cameraEnable = &camera;
-        camera.Default();
+        cameraEnable = new GLFrame(*camera);
+        camera->Default();
     }
     if (input.IsKeyDown(sf::Key::Num2)){
-        cameraEnable = &camera2 ;
-        camera2.Default();
+        cameraEnable = new GLFrame(*camera2) ;
+        camera2->Default();
     }
     if (input.IsKeyDown(sf::Key::Num3)){
-        cameraEnable = &camera3 ;
-        camera3.Default();
+        cameraEnable = new GLFrame(*camera3) ;
+        camera3->Default();
     } 
     GLScene::Update(input);
 }

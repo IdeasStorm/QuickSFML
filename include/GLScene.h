@@ -42,7 +42,7 @@ public:
 protected:
     list<GLDrawable*> components;
 
-    GLFrame camera,camera2,camera3 ;
+    GLFrame *camera,*camera2,*camera3 ;
     GLFrame *cameraEnable ;
     bool default_lighting;
 private:
