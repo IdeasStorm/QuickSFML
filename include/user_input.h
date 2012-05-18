@@ -41,6 +41,7 @@ components.push_back(box3);
 //==================================================================
 //========================box4=====================================
 Box *box4 = new Box();
+box4->setTexture("Data/NeHe.bmp");
 box4->position = Vector3f(4.359997,-0.200000,17.180029); 
 box4->halfSize = Vector3f(0.200000,0.400000,500.600006); 
 box4->setRotation(0.000000,0.000000,0.000000); 
@@ -49,6 +50,7 @@ components.push_back(box4);
 //==================================================================
 //========================box5=====================================
 Box *box5 = new Box();
+box5->setTexture("Data/NeHe.bmp");
 box5->position = Vector3f(10.660002,-0.200000,16.680027); 
 box5->halfSize = Vector3f(0.200000,0.400000,500.600006); 
 box5->setRotation(0.000000,0.000000,0.000000); 
@@ -57,8 +59,9 @@ components.push_back(box5);
 //==================================================================
 //========================box6=====================================
 Box *box6 = new Box();
-box6->position = Vector3f(33.960056,-0.200000,16.480026); 
-box6->halfSize = Vector3f(0.200000,0.400000,500.600006); 
+box6->setTexture("Data/NeHe.bmp");
+box6->position = Vector3f(82.300026,6.899996,-24.100052); 
+box6->halfSize = Vector3f(23.700003,5.899997,157.699890); 
 box6->setRotation(0.000000,0.000000,0.000000); 
 box6->tag = ""; 
 components.push_back(box6); 
@@ -66,36 +69,26 @@ components.push_back(box6);
 //========================box7=====================================
 Box *box7 = new Box();
 box7->setTexture("Data/NeHe.bmp");
-box7->position = Vector3f(40.269974,-0.200000,17.580030); 
-box7->halfSize = Vector3f(0.200000,0.400000,500.600006); 
+box7->position = Vector3f(-37.699974,6.899996,-24.000051); 
+box7->halfSize = Vector3f(23.700003,5.899997,157.699890); 
 box7->setRotation(0.000000,0.000000,0.000000); 
 box7->tag = ""; 
 components.push_back(box7); 
 //==================================================================
 //========================box8=====================================
-Box *box8 = new Box();
-box8->setTexture("Data/NeHe.bmp");
-box8->position = Vector3f(82.300026,6.899996,-24.100052); 
-box8->halfSize = Vector3f(23.700003,5.899997,157.699890); 
+Cylinder *box8 = new Cylinder();
+box8->position = Vector3f(23.190052,-3.900001,-293.793488); 
+box8->halfSize = Vector3f(46.499863,118.099724,21.100044); 
 box8->setRotation(0.000000,0.000000,0.000000); 
-box8->tag = ""; 
+box8->tag = "cave"; 
 components.push_back(box8); 
 //==================================================================
 //========================box9=====================================
-Box *box9 = new Box();
-box9->setTexture("Data/NeHe.bmp");
-box9->position = Vector3f(-37.699974,6.899996,-24.000051); 
-box9->halfSize = Vector3f(23.700003,5.899997,157.699890); 
+Railway *box9 = new Railway();
+box9->position = Vector3f(29.800076,-0.700000,-5.199997); 
+box9->halfSize = Vector3f(2.800002,0.600000,94.900078); 
 box9->setRotation(0.000000,0.000000,0.000000); 
 box9->tag = ""; 
 components.push_back(box9); 
-//==================================================================
-//========================box10=====================================
-Cylinder *box10 = new Cylinder();
-box10->position = Vector3f(23.190052,-3.900001,-293.793488); 
-box10->halfSize = Vector3f(46.499863,118.099724,21.100044); 
-box10->setRotation(0.000000,0.000000,0.000000); 
-box10->tag = "cave"; 
-components.push_back(box10); 
 //==================================================================
 }

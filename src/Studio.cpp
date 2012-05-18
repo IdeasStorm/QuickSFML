@@ -125,7 +125,8 @@ void Studio::Update(const sf::Input& input){
         R_was_down = true;
     } else if (R_was_down) {
         R_was_down = false;
-        Railway *rail = new Railway(sf::Vector3f(10,10,10),sf::Vector3f(5,2,100));
+        Railway *rail = new Railway();
+        //sf::Vector3f(10,10,10),sf::Vector3f(5,2,100)
         components.push_back(rail);    
         // setting this element as current
         SetCurrentComponent(components.begin());

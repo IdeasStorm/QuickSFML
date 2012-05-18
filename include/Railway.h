@@ -126,6 +126,11 @@ private:
     sf::Vector3f tempPos;
     sf::Vector3f tempHal;
 };
-
+//this->halfSize.x == this->tempHal.x&&
+//                this->halfSize.y == this->tempHal.y&&
+//                this->halfSize.z == this->tempHal.z&&
+//                this->position.x == this->position.x&&
+//                this->position.y == this->position.y&&
+//                this->position.z == this->position.z
 #endif	/* RAILWAY_H */
 
