@@ -112,6 +112,34 @@ public:
         vForward[1] = 0.0f;
         vForward[2] = -1.0f;
     }
+    
+    GLFrame(const GLFrame &second) {
+        Origin[0] = second.Origin[0];
+        Origin[1] = second.Origin[1];
+        Origin[2] = second.Origin[2];
+
+        first = true;
+        EnableMove = true;
+        EnableMouse = true;
+        Mouse[0] = second.Mouse[0];
+        Mouse[1] = second.Mouse[1];
+        Mouse[2] = second.Mouse[2];
+        Mouse[3] = second.Mouse[3];
+        // At origin
+        vOrigin[0] = Origin[0];
+        vOrigin[1] = Origin[1];
+        vOrigin[2] = Origin[2];
+
+        // Up is up (+Y)
+        vUp[0] = second.vUp[0];
+        vUp[1] = second.vUp[1];
+        vUp[2] = second.vUp[2];
+
+        // Forward is -Z (default OpenGL)
+        vForward[0] = second.vForward[0];
+        vForward[1] = second.vForward[1];
+        vForward[2] = second.vForward[2];
+    }
 
     void ApplyDefault() {
         Up[0] = vUp[0];

@@ -125,7 +125,8 @@ int GLScene::InitGL() // All Setup For OpenGL Goes Here
     {
         return FALSE; // If Texture Didn't Load Return FALSE
     }
-    cameraEnable = &camera ;
+    cameraEnable = new GLFrame(camera);
+    //cameraEnable = &camera ;
     glewInit();
     glEnable(GL_TEXTURE_2D); // Enable Texture Mapping
     glShadeModel(GL_SMOOTH); // Enable Smooth Shading
