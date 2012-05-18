@@ -153,6 +153,7 @@ void Studio::Update(const sf::Input& input) {
     } else if (Z_was_down) {
         Z_was_down = false;
         Stairs *sta = new Stairs(sf::Vector3f(1,1,1),sf::Vector3f(1,1,1),10);
+        sta->setTexture("Data/NeHe.bmp");
         //sf::Vector3f(10,10,10),sf::Vector3f(5,2,100)
         components.push_back(sta);    
         // setting this element as current

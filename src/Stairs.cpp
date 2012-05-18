@@ -180,13 +180,15 @@ void Stairs::draw(){
     
 }
 
-bool Stairs::LoadContent() {
+bool Stairs::LoadContent() {            
     
     if(textureEnabled)
-    {    
+    {   
+        Texture *tex=new Texture(texture_path);
+        tex->id = elements::All;
         list<Box*>::iterator i; 
         for (i=boxList.begin();i!=boxList.end();i++){
-            ((Box*)(*i))->setTexture(texture_path);        
+            ((Box*)(*i))->setTexture(tex);        
         }
     }
     return true;
@@ -209,5 +211,6 @@ void Stairs::WriteInstanceCreation(FILE *outfile,string name) {
     fprintf(outfile,"Stairs *%s = new Stairs(Vector3f(%f,%f,%f),Vector3f(%f,%f,%f),%d);\n",name.data(),
             position.x,position.y,position.z,
             1.0,1.0,1.0,stairNum);
+    fprintf(outfile, "%s->setTexture(\"%s\");\n", name.data(), texture_path.data());
     //halfSize.x,halfSize.y,halfSize.z
 }
