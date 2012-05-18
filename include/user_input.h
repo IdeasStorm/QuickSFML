@@ -33,7 +33,7 @@ components.push_back(box2);
 //==================================================================
 //========================box3=====================================
 Model3d *box3 = new Model3d("train1.3ds","./Data/Train/1/");
-box3->position = Vector3f(37.100006,0.200000,97.299088); 
+box3->position = Vector3f(37.100006,0.200000,97.199089); 
 box3->halfSize = Vector3f(0.200000,0.200000,0.200000); 
 box3->setRotation(0.000000,0.000000,0.000000); 
 box3->tag = ""; 
@@ -59,7 +59,7 @@ components.push_back(box5);
 //==================================================================
 //========================box6=====================================
 Cylinder *box6 = new Cylinder();
-box6->position = Vector3f(23.190052,-3.900001,-293.793488); 
+box6->position = Vector3f(23.190052,-3.900001,-293.693481); 
 box6->halfSize = Vector3f(46.499863,118.099724,21.100044); 
 box6->setRotation(0.000000,0.000000,0.000000); 
 box6->tag = "cave"; 
@@ -67,7 +67,7 @@ components.push_back(box6);
 //==================================================================
 //========================box7=====================================
 Railway *box7 = new Railway();
-box7->position = Vector3f(29.800076,-0.700000,-5.199997); 
+box7->position = Vector3f(29.800076,-0.700000,-5.499997); 
 box7->halfSize = Vector3f(2.800002,0.600000,94.900078); 
 box7->setRotation(0.000000,0.000000,0.000000); 
 box7->tag = ""; 
@@ -75,7 +75,7 @@ components.push_back(box7);
 //==================================================================
 //========================box8=====================================
 Model3d *box8 = new Model3d("2track_lighting-2.3DS","./Data/Train/2/");
-box8->position = Vector3f(56.199715,-8.400000,-21.830046); 
+box8->position = Vector3f(56.199715,-8.400000,-21.530045); 
 box8->halfSize = Vector3f(0.300000,0.300000,0.300000); 
 box8->setRotation(-90.000000,-0.000000,-0.000000); 
 box8->tag = ""; 
@@ -127,8 +127,8 @@ components.push_back(box13);
 //========================box14=====================================
 Box *box14 = new Box();
 box14->setTexture("Data/NeHe.bmp");
-box14->position = Vector3f(87.060173,27.670036,-177.000000); 
-box14->halfSize = Vector3f(18.559965,14.869987,1.300000); 
+box14->position = Vector3f(87.660164,27.800053,133.199585); 
+box14->halfSize = Vector3f(18.259964,14.999969,-0.900000); 
 box14->setRotation(0.000000,0.000000,0.000000); 
 box14->tag = ""; 
 components.push_back(box14); 
@@ -136,8 +136,8 @@ components.push_back(box14);
 //========================box15=====================================
 Box *box15 = new Box();
 box15->setTexture("Data/NeHe.bmp");
-box15->position = Vector3f(87.660164,27.800053,133.199585); 
-box15->halfSize = Vector3f(18.259964,14.999969,-0.900000); 
+box15->position = Vector3f(-42.139709,27.600052,133.599548); 
+box15->halfSize = Vector3f(18.859966,14.799969,-0.800000); 
 box15->setRotation(0.000000,0.000000,0.000000); 
 box15->tag = ""; 
 components.push_back(box15); 
@@ -145,8 +145,8 @@ components.push_back(box15);
 //========================box16=====================================
 Box *box16 = new Box();
 box16->setTexture("Data/NeHe.bmp");
-box16->position = Vector3f(-42.139709,27.600052,133.699554); 
-box16->halfSize = Vector3f(18.859966,14.799969,-0.800000); 
+box16->position = Vector3f(22.030272,56.479958,133.649582); 
+box16->halfSize = Vector3f(83.029861,14.079969,-0.850000); 
 box16->setRotation(0.000000,0.000000,0.000000); 
 box16->tag = ""; 
 components.push_back(box16); 
@@ -154,28 +154,45 @@ components.push_back(box16);
 //========================box17=====================================
 Box *box17 = new Box();
 box17->setTexture("Data/NeHe.bmp");
-box17->position = Vector3f(22.030272,56.479958,133.649582); 
-box17->halfSize = Vector3f(83.029861,14.079969,-0.850000); 
+box17->position = Vector3f(22.110172,56.860073,-177.100006); 
+box17->halfSize = Vector3f(81.119926,14.259984,1.400000); 
 box17->setRotation(0.000000,0.000000,0.000000); 
 box17->tag = ""; 
 components.push_back(box17); 
 //==================================================================
 //========================box18=====================================
-Box *box18 = new Box();
+Stairs *box18 = new Stairs(Vector3f(-27.620180,42.999897,-198.500381),Vector3f(1.000000,1.000000,1.000000),10);
 box18->setTexture("Data/NeHe.bmp");
-box18->position = Vector3f(22.110172,56.860073,-177.100006); 
-box18->halfSize = Vector3f(81.119926,14.259984,1.400000); 
-box18->setRotation(0.000000,0.000000,0.000000); 
+box18->position = Vector3f(-27.620180,42.999897,-198.500381); 
+box18->halfSize = Vector3f(4.080000,1.200000,0.900000); 
+box18->setRotation(-356.000000,-1.000000,-181.000000); 
 box18->tag = ""; 
 components.push_back(box18); 
 //==================================================================
 //========================box19=====================================
-Stairs *box19 = new Stairs(Vector3f(2.400000,2.899999,1.000000),Vector3f(1.000000,1.000000,1.000000),10);
-box19->setTexture("Data/NeHe.bmp");
-box19->position = Vector3f(2.400000,2.899999,1.000000); 
-box19->halfSize = Vector3f(2.400000,1.000000,1.000000); 
-box19->setRotation(-186.000000,0.000000,0.000000); 
+Railway *box19 = new Railway();
+box19->position = Vector3f(-2.799953,-0.700000,-5.499997); 
+box19->halfSize = Vector3f(2.800002,0.600000,94.900078); 
+box19->setRotation(0.000000,0.000000,0.000000); 
 box19->tag = ""; 
 components.push_back(box19); 
+//==================================================================
+//========================box20=====================================
+Box *box20 = new Box();
+box20->setTexture("Data/NeHe.bmp");
+box20->position = Vector3f(68.800217,29.099993,-190.691025); 
+box20->halfSize = Vector3f(0.800000,13.700016,14.110022); 
+box20->setRotation(0.000000,0.000000,0.000000); 
+box20->tag = ""; 
+components.push_back(box20); 
+//==================================================================
+//========================box21=====================================
+Box *box21 = new Box();
+box21->setTexture("Data/NeHe.bmp");
+box21->position = Vector3f(102.299080,27.700060,-193.101288); 
+box21->halfSize = Vector3f(1.000000,14.700020,14.700020); 
+box21->setRotation(0.000000,0.000000,0.000000); 
+box21->tag = ""; 
+components.push_back(box21); 
 //==================================================================
 }
