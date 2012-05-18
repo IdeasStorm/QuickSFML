@@ -14,6 +14,7 @@
 #include "Arch.h"
 #include "Railway.h"
 #include <sstream>
+#include <Model3d.h>
 
 Studio::Studio() {
     currentComponent = components.end();
@@ -61,6 +62,7 @@ void Studio::Update(const sf::Input& input){
     static bool V_was_down = false;
     static bool T_was_down = false;
     static bool R_was_down = false;
+    static bool P_was_down = false;
     camera->EnableMouse = true ;
     
     if (input.IsKeyDown(sf::Key::T) )  {
@@ -167,6 +169,19 @@ void Studio::Update(const sf::Input& input){
         M_was_down = false;
         Model *model = new Model("./Data/Train/1/train1.3ds");
 
+        model->LoadContent();
+        model->GLInit();
+        components.push_back(model);
+        // setting this element as current
+        SetCurrentComponent(components.begin());
+        PrevComponent();
+    }
+    
+    if (input.IsKeyDown(sf::Key::P) )  {
+        P_was_down = true;
+    } else if (P_was_down) {
+        P_was_down = false;
+        Model3d *model = new Model3d("2track_lighting-2.3DS","./Data/Train/2/");
         model->LoadContent();
         model->GLInit();
         components.push_back(model);
