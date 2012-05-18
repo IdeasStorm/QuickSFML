@@ -94,7 +94,7 @@ components.push_back(box9);
 //========================box10=====================================
 Model3d *box10 = new Model3d("2track_lighting-2.3DS","./Data/Train/2/");
 box10->position = Vector3f(56.199715,-8.199999,-21.830046); 
-box10->halfSize = Vector3f(1.000000,0.300000,0.400000); 
+box10->halfSize = Vector3f(0.300000,0.300000,0.300000); 
 box10->setRotation(-90.000000,-0.000000,-0.000000); 
 box10->tag = ""; 
 components.push_back(box10); 
@@ -102,7 +102,7 @@ components.push_back(box10);
 //========================box11=====================================
 Model3d *box11 = new Model3d("2track_lighting-2.3DS","./Data/Train/2/");
 box11->position = Vector3f(-11.200372,-8.199999,-123.428688); 
-box11->halfSize = Vector3f(1.000000,0.300000,0.400000); 
+box11->halfSize = Vector3f(0.3000000,0.300000,0.300000); 
 box11->setRotation(90.000000,-0.000000,-0.000000); 
 box11->tag = ""; 
 components.push_back(box11); 
