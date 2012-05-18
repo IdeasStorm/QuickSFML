@@ -230,6 +230,11 @@ void Studio::Update(const sf::Input& input){
     if (input.IsKeyDown(sf::Key::O)){
         *field += sf::Vector3f(s,s,s);
     }
+    
+    if (input.IsKeyDown(sf::Key::U)){
+        *field -= sf::Vector3f(s,s,s);
+    }
+    
     if (input.IsKeyDown(sf::Key::Right)) {
         *field += sf::Vector3f(s,0,0);
         if (scale)
