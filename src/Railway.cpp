@@ -32,10 +32,10 @@ Railway::Railway() {
         Box *temp;
        
         if(i<(n/2))
-            temp=new Box(sf::Vector3f (x+(sx/2),y-sy,z-i),sf::Vector3f (sx,sy,0.05));          
+            temp=new Box(sf::Vector3f (x+(sx/2),y-sy,z-i),sf::Vector3f (sx,sy,0.02));          
         else
         { 
-            temp=new Box(sf::Vector3f (x+(sx/2),y-sy,z+j),sf::Vector3f (sx,sy,0.05));
+            temp=new Box(sf::Vector3f (x+(sx/2),y-sy,z+j),sf::Vector3f (sx,sy,0.02));
             j++;
         }
        temp->setTexture(tex);
