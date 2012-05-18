@@ -54,6 +54,7 @@ void Stairs::init(){
     zrot=0;
     textureEnabled = false;
     stairNum = 1;
+    self_control=true;
     this->halfSize=sf::Vector3f(1,1,1);        
 }
 
@@ -75,20 +76,62 @@ void Stairs::initBoxes()
     
     thisSize.z = stairNum*halfSize.z*2;
     
+    thisCord.y = stairNum*halfSize.y*2;
+    thisCord.z = stairNum*halfSize.z*2;
+    int j=0;
     for(int i=0;i<stairNum;i++)
-    {              
+    {       
         thisSize.z-=2*halfSize.z;
-        
-        thisCord.y+=2*halfSize.y;
-        thisCord.z+=2*halfSize.z;
+        if(i<stairNum/2)
+        {            
+            thisCord.y-=2*halfSize.y;
+            thisCord.z-=2*halfSize.z;
+        }
+        else
+        {
+            thisCord.y-=2*halfSize.y;
+            thisCord.z-=2*halfSize.z;
+        }
         
         box=new Box(thisCord,thisSize);        
+        
         boxList.push_back(box);
     }
 }
 
 void Stairs::Update(const sf::Input& input ){
+    Box * box;
     
+    sf::Vector3f thisSize;
+    sf::Vector3f thisCord;
+    
+    thisSize.x=halfSize.x;
+    thisSize.y=halfSize.y;
+    thisSize.z=halfSize.z;    
+    
+    thisCord.x=position.x;
+    thisCord.y=position.y;
+    thisCord.z=position.z;
+    
+    thisSize.z = stairNum*halfSize.z*2;
+    
+    thisCord.y = stairNum*halfSize.y*2;
+    thisCord.z = stairNum*halfSize.z*2;
+    int j=0;
+    
+    list<Box*>::iterator i;
+    for (i=boxList.begin();i!=boxList.end();i++){
+        GLDrawable *e = *i;
+        thisSize.z-=2*halfSize.z;
+                  
+        thisCord.y-=2*halfSize.y;
+        thisCord.z-=2*halfSize.z;
+       
+        //box=new Box(thisCord,thisSize);        
+        e->position = thisCord;
+        e->halfSize = thisSize;
+        //boxList.push_back(box);
+    }
 }
 
 void Stairs::draw(){
@@ -115,7 +158,7 @@ void Stairs::draw(){
     thisCord.x=position.x;
     thisCord.y=position.y;
     thisCord.z=position.z;
-    glPushMatrix();
+    //glPushMatrix();
     //glRotatef(90,0,1,0);
    
     //rotate();
@@ -133,7 +176,7 @@ void Stairs::draw(){
 //        glTranslatef(-thisCord.x,-thisCord.y,-thisCord.z);
     }
     
-    glPopMatrix();
+    //glPopMatrix();
     
 }
 
@@ -165,5 +208,6 @@ GLDrawable* Stairs::Clone() {
 void Stairs::WriteInstanceCreation(FILE *outfile,string name) {
     fprintf(outfile,"Stairs *%s = new Stairs(Vector3f(%f,%f,%f),Vector3f(%f,%f,%f),%d);\n",name.data(),
             position.x,position.y,position.z,
-            halfSize.x,halfSize.y,halfSize.z,stairNum);
+            1.0,1.0,1.0,stairNum);
+    //halfSize.x,halfSize.y,halfSize.z
 }

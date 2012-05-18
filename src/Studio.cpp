@@ -19,6 +19,7 @@
 Studio::Studio() {
     currentComponent = components.end();
     camera->SetOrigin(50, 50, 100);
+    update_child_controls = true;
 }
 
 Studio::Studio(const Studio& orig) {
@@ -63,6 +64,7 @@ void Studio::Update(const sf::Input& input) {
     static bool T_was_down = false;
     static bool R_was_down = false;
     static bool P_was_down = false;
+    static bool Z_was_down = false;
     camera->EnableMouse = true;
 
     if (input.IsKeyDown(sf::Key::T)) {
@@ -146,6 +148,19 @@ void Studio::Update(const sf::Input& input) {
         PrevComponent();
     }
 
+    if (input.IsKeyDown(sf::Key::Z) )  {
+        Z_was_down = true;
+    } else if (Z_was_down) {
+        Z_was_down = false;
+        Stairs *sta = new Stairs(sf::Vector3f(1,1,1),sf::Vector3f(1,1,1),10);
+        //sf::Vector3f(10,10,10),sf::Vector3f(5,2,100)
+        components.push_back(sta);    
+        // setting this element as current
+        SetCurrentComponent(components.begin());
+        PrevComponent();
+    }
+
+    
     if (input.IsKeyDown(sf::Key::I)) {
         I_was_down = true;
     } else if (I_was_down) {
