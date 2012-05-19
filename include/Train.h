@@ -10,6 +10,7 @@
 #include "Model3d.h"
 #include "Drawable.h"
 #include <sys/time.h>
+#include <SFML/Audio.hpp>
 
 class Train : public Model3d {
 public:
@@ -22,6 +23,7 @@ public:
         mass = 1;
         brakes_factor = 0;
         waiting_time = 10;
+        alarm = false;
     }
     void Update(const sf::Input &input);
     virtual ~Train();
@@ -59,6 +61,7 @@ public:
 private:
     float speed;
     float acceleration;   
+    bool alarm;
 };
 
 #endif	/* TRAIN_H */
