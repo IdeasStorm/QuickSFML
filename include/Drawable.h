@@ -117,7 +117,7 @@ public:
     GLfloat zrot; // Z Rotation
 
     bool self_control;
-
+    sf::Clock Clock;
     string tag;
 protected:
     list<GLDrawable*> components;

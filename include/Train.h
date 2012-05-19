@@ -9,6 +9,7 @@
 #define	TRAIN_H
 #include "Model3d.h"
 #include "Drawable.h"
+#include <sys/time.h>
 
 class Train : public Model3d {
 public:
@@ -19,7 +20,8 @@ public:
         acceleration = 0;
         push_force = 0;
         mass = 1;
-        brakes_factor = 0;
+        brakes_factor = 0;     
+        temp=position.z;
     }
     void Update(const sf::Input &input);
     virtual ~Train();
@@ -50,8 +52,8 @@ public:
     }
 private:
     float speed;
-    float acceleration;
-
+    float acceleration;   
+    float temp;
 };
 
 #endif	/* TRAIN_H */
