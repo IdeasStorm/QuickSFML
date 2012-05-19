@@ -20,6 +20,7 @@ public:
         push_force = 0;
         mass = 1;
         brakes_factor = 0;
+        waiting_time = 10;
     }
     void Update(const sf::Input &input);
     virtual ~Train();
@@ -29,6 +30,7 @@ public:
     float push_force;
     
     void Gas(float acc = 0.1) {
+        StopBrakes();
         push_force = 0.1;
     }
     
@@ -48,6 +50,11 @@ public:
     void StopBrakes() {
         brakes_factor = 0;
     }
+    
+    bool IsStopped() {
+        return (fabs(speed) < 0.1);
+    }
+    float waiting_time;
 private:
     float speed;
     float acceleration;
