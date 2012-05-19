@@ -33,11 +33,8 @@ public:
     }
 
     void UpdateCamera(const sf::Input& input, float a, float b) {
-       if (!EnableMouse)
-            return;
        
-        if (!EnableMove)
-            return;
+
         if (EnableMouse) {
             if (first) {
                 Mouse[0] = 0;
@@ -51,19 +48,20 @@ public:
             RotateLocalX(Mouse[1]*0.001f);
             RotateLocalY((-Mouse[0])*0.001f);
         }
-
-        if (input.IsKeyDown(sf::Key::A))
-            MoveRight(1);
-        if (input.IsKeyDown(sf::Key::D))
-            MoveRight(-1);
-        if (input.IsKeyDown(sf::Key::W))
-            MoveForward(1);
-        if (input.IsKeyDown(sf::Key::S))
-            MoveForward(-1);
-        if (input.IsKeyDown(sf::Key::Q))
-            MoveUp(-0.5);
-        if (input.IsKeyDown(sf::Key::E))
-            MoveUp(+0.5);
+       if (EnableMove){
+            if (input.IsKeyDown(sf::Key::A))
+                MoveRight(1);
+            if (input.IsKeyDown(sf::Key::D))
+                MoveRight(-1);
+            if (input.IsKeyDown(sf::Key::W))
+                MoveForward(1);
+            if (input.IsKeyDown(sf::Key::S))
+                MoveForward(-1);
+            if (input.IsKeyDown(sf::Key::Q))
+                MoveUp(-0.5);
+            if (input.IsKeyDown(sf::Key::E))
+                MoveUp(+0.5);
+       }
 
     }
 
@@ -375,20 +373,20 @@ public:
     inline void ApplyCameraTransform(bool bRotOnly = false) {
         M3DMatrix44f m;
 
-   //     GetCameraOrientation(m);
+        GetCameraOrientation(m);
 
         // Camera Transform   
-     //   glMultMatrixf(m);
+        glMultMatrixf(m);
 
         // If Rotation only, then do not do the translation
-//        if (!bRotOnly)
-//            glTranslatef(-vOrigin[0], -vOrigin[1], -vOrigin[2]);
+        if (!bRotOnly)
+            glTranslatef(-vOrigin[0], -vOrigin[1], -vOrigin[2]);
 
-        gluLookAt(vOrigin[0], vOrigin[1], vOrigin[2],
+  /*      gluLookAt(vOrigin[0], vOrigin[1], vOrigin[2],
         vOrigin[0] + vForward[0], 
         vOrigin[1] + vForward[1], 
         vOrigin[2] + vForward[2], 
-        vUp[0], vUp[1], vUp[2]);
+        vUp[0], vUp[1], vUp[2]);*/
          
     }
 

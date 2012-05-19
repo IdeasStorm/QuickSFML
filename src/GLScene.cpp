@@ -25,7 +25,7 @@ GLScene::GLScene(char* title) : window(sf::VideoMode(800, 600, 32), title) {
     camera=new GLFrame();    
     camera2=new GLFrame();
     camera3=new GLFrame();
-    cameraEnable = new GLFrame(*camera);
+    //cameraEnable = new GLFrame(*camera);
 }
 
 GLScene::GLScene(const GLScene& orig) {
@@ -130,7 +130,6 @@ int GLScene::InitGL() // All Setup For OpenGL Goes Here
         return FALSE; // If Texture Didn't Load Return FALSE
     }
     
-    //cameraEnable = &camera ;
     glewInit();
     glEnable(GL_TEXTURE_2D); // Enable Texture Mapping
     glShadeModel(GL_SMOOTH); // Enable Smooth Shading

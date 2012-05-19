@@ -19,6 +19,8 @@
 Studio::Studio() {
     currentComponent = components.end();
     camera->SetOrigin(50, 50, 100);
+    camera->EnableMouse = true ;
+    cameraEnable = camera2 ;
     update_child_controls = true;
 }
 
@@ -29,7 +31,6 @@ Studio::~Studio() {
 }
 
 void Studio::LoadComponents() {
-    //cameraEnable = 2;
     loadUserComponents(components);
 
     Light *light2 = new Light(sf::Vector3f(25, 30, -200), 90, true);
@@ -65,7 +66,6 @@ void Studio::Update(const sf::Input& input) {
     static bool R_was_down = false;
     static bool P_was_down = false;
     static bool Z_was_down = false;
-    camera->EnableMouse = true;
 
     if (input.IsKeyDown(sf::Key::T)) {
         T_was_down = true;
