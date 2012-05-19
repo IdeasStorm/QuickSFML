@@ -50,9 +50,9 @@ public:
         //recursive_render(scene, scene->mRootNode, 0.5);
 
     }
-    void WriteInstanceCreation(FILE* outfile, string name);
+    virtual void WriteInstanceCreation(FILE* outfile, string name);
 
-    inline string getClass() {
+    virtual string getClass() {
         return "Model3d";
     }
     bool LoadContent();

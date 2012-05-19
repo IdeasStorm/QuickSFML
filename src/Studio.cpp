@@ -22,10 +22,11 @@ Studio::Studio()
     camera->SetOrigin(50, 50, 100);
     camera->EnableMouse = true ;
     cameraEnable = camera ;
+    //default_lighting = true;
     update_child_controls = true;
     tex_default = new Texture("./Data/NeHe.bmp");
     tex_wall_brown = new Texture("./Data/Wall/brown_wall.jpg");
-    tex_wall_noised = new Texture("./Data/Wall/wall_some_noise.jpg");
+    tex_wall_noised = new Texture("./Data/Wall/wall_concrete.jpg");
     tex_default->id = tex_wall_brown->id = tex_wall_noised->id = elements::All;
 }
 
@@ -343,7 +344,10 @@ void Studio::PrevComponent() {
 void Studio::ProcessComponent(GLDrawable *component) {
     string tag = component->tag; // the tag to look for
     string class_name = component->getClass(); 
-    if (class_name == "Stairs") {
+    if (class_name == "Train") {
+        ((Train*)(component))->Gas();
+    }
+    else if (class_name == "Stairs") {
         // here you can cast to your type and modify ads you want
         ((Stairs*)(component))->setTexture("./Data/Wall/marble.jpg");
     } else if (tag == "building") {

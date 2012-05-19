@@ -27,6 +27,9 @@ public:
         alarm = false;
     }
     void Update(const sf::Input &input);
+    string getClass(){
+        return "Train";
+    }
     virtual ~Train();
     
     float mass;
