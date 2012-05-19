@@ -96,6 +96,7 @@ public:
    }
    
    list<Texture> textures;
+   float tex_per_face;
 protected:
     void draw();
     inline void scale() {

@@ -397,6 +397,7 @@ void Studio::ProcessComponent(GLDrawable *component) {
     }
     else if (tag == "flagstone") {
         ((Box*) component)->setTexture(tex_wall_brown);
+        ((Box*) component)->tex_per_face = 2* ((Box*) component)->halfSize.x / 10;
     }else {
         if (component->getClass() == "Box")
             ((Box*) component)->setTexture(tex_wall_noised);

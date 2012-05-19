@@ -27,6 +27,9 @@ public:
         alarm = false;
     }
     void Update(const sf::Input &input);
+    void WriteInstanceCreation(FILE* outfile, string name){
+        GLDrawable::WriteInstanceCreation(outfile,name);
+    }
     string getClass(){
         return "Train";
     }
