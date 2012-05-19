@@ -16,18 +16,27 @@
 #include <sstream>
 #include <Model3d.h>
 
-Studio::Studio() {
-    currentComponent = components.end();
+Studio::Studio()
+{
+    currentComponent = components.end();       
     camera->SetOrigin(50, 50, 100);
     camera->EnableMouse = true ;
     cameraEnable = camera ;
     update_child_controls = true;
+    tex_default = new Texture("./Data/NeHe.bmp");
+    tex_wall_brown = new Texture("./Data/Wall/brown_wall.jpg");
+    tex_wall_noised = new Texture("./Data/Wall/wall_some_noise.jpg");
+    tex_default->id = tex_wall_brown->id = tex_wall_noised->id = elements::All;
 }
 
 Studio::Studio(const Studio& orig) {
 }
 
 Studio::~Studio() {
+}
+
+bool Studio::LoadContent() {
+    return GLScene::LoadContent();
 }
 
 void Studio::LoadComponents() {
@@ -114,7 +123,7 @@ void Studio::Update(const sf::Input& input) {
     } else if (N_was_down) {
         N_was_down = false;
         Box *box = new Box();
-        box->setTexture("Data/NeHe.bmp");
+        box->setTexture(tex_default);
         components.push_back(box);
         // setting this element as current
         SetCurrentComponent(components.begin());
@@ -149,7 +158,7 @@ void Studio::Update(const sf::Input& input) {
     } else if (C_was_down) {
         C_was_down = false;
         Cylinder *cy = new Cylinder();
-        cy->setTexture("Data/NeHe.bmp");
+        cy->setTexture("./Data/Wall/tunnel.jpg");
         components.push_back(cy);
         // setting this element as current
         SetCurrentComponent(components.begin());
@@ -161,7 +170,7 @@ void Studio::Update(const sf::Input& input) {
     } else if (Z_was_down) {
         Z_was_down = false;
         Stairs *sta = new Stairs(sf::Vector3f(1,1,1),sf::Vector3f(1,1,1),10);
-        sta->setTexture("Data/NeHe.bmp");
+        sta->setTexture("./Data/NeHe.bmp");
         //sf::Vector3f(10,10,10),sf::Vector3f(5,2,100)
         components.push_back(sta);    
         // setting this element as current
@@ -333,8 +342,10 @@ void Studio::PrevComponent() {
 
 void Studio::ProcessComponent(GLDrawable *component) {
     string tag = component->tag; // the tag to look for
-    if (tag == "Train") {
+    string class_name = component->getClass(); 
+    if (class_name == "Stairs") {
         // here you can cast to your type and modify ads you want
+        ((Stairs*)(component))->setTexture("./Data/Wall/marble.jpg");
     } else if (tag == "building") {
         // you should remove default textures
         list<Texture> newlist;
@@ -380,8 +391,11 @@ void Studio::ProcessComponent(GLDrawable *component) {
         ((Box*) component)->textures.push_back(tex4);
         ((Box*) component)->textureEnabled = true;
     }
-    else if (tag == "cave") {
-        //((Box*) component)->setTexture("./Data/Wall/wall_some_noise.jpg");
+    else if (tag == "flagstone") {
+        ((Box*) component)->setTexture(tex_wall_brown);
+    }else {
+        if (component->getClass() == "Box")
+            ((Box*) component)->setTexture(tex_wall_noised);
     }
 }
 

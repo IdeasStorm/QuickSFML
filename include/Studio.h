@@ -22,6 +22,7 @@ public:
     Studio(const Studio& orig);
     void Update(const sf::Input& input);
     void LoadComponents();
+    bool LoadContent();
     void WriteCode();
     virtual ~Studio();
     
@@ -31,6 +32,9 @@ public:
     void ProcessComponent(GLDrawable *component);
     list<GLDrawable*>::iterator currentComponent;
 private:
+    Texture *tex_wall_noised;
+    Texture *tex_wall_brown;
+    Texture *tex_default;
     
 
 };

@@ -88,7 +88,6 @@ public:
  
    void setTexture(const Texture *tex) {
         textureEnabled = true;    
-        //tex->id = elements::All;
         textures.push_back(*tex);
     }
    
