@@ -20,7 +20,7 @@ Studio::Studio() {
     currentComponent = components.end();
     camera->SetOrigin(50, 50, 100);
     camera->EnableMouse = true ;
-    cameraEnable = camera2 ;
+    cameraEnable = camera ;
     update_child_controls = true;
 }
 
@@ -33,7 +33,7 @@ Studio::~Studio() {
 void Studio::LoadComponents() {
     loadUserComponents(components);
 
-    Light *light2 = new Light(sf::Vector3f(25, 30, -200), 90, true);
+   /* Light *light2 = new Light(sf::Vector3f(25, 30, -200), 90, true);
     light2->ambient = sf::Color(1, 1, 1);
     light2->diffuse = sf::Color(1, 1, 1);
     light2->specular = sf::Color(0, 0, 0);
@@ -43,7 +43,7 @@ void Studio::LoadComponents() {
     light2->EnableSphere = false;
     light2->tag = "automated";
     components.push_back(light2);
-
+*/
     currentComponent = components.begin();
     list<GLDrawable*>::iterator i;
     for (i = components.begin(); i != components.end(); i++) {

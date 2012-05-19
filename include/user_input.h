@@ -20,7 +20,7 @@ box1->tag = "cave";
 components.push_back(box1); 
 //==================================================================
 //========================box2=====================================
-Light *box2  = new Light(sf::Vector3f(25.500002,30.000000,-56.800018),90,true);
+/*Light *box2  = new Light(sf::Vector3f(25.500002,30.000000,-56.800018),90,true);
 box2->ambient = sf::Color(1,1,1);
 box2->diffuse = sf::Color(1,1,1);
 box2->specular = sf::Color(0,0,0);
@@ -29,7 +29,7 @@ box2->position = Vector3f(25.500002,30.000000,-56.800018);
 box2->halfSize = Vector3f(1.000000,1.000000,1.000000); 
 box2->setRotation(0.000000,38.000000,0.000000); 
 box2->tag = ""; 
-components.push_back(box2); 
+components.push_back(box2); */
 //==================================================================
 //========================box3=====================================
 Model3d *box3 = new Model3d("train1.3ds","./Data/Train/1/");
