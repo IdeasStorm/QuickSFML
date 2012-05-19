@@ -86,6 +86,7 @@
             <linkerOptionItem>-lGLEW</linkerOptionItem>
             <linkerOptionItem>`pkg-config --libs IL`</linkerOptionItem>
             <linkerOptionItem>`pkg-config --libs assimp`</linkerOptionItem>
+            <linkerLibFileItem>/usr/local/lib/libsfml-audio.so</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>

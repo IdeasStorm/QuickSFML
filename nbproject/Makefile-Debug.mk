@@ -68,11 +68,13 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-lGLU -lGL -lsfml-graphics -lsfml-system -lsfml-window -l3ds-1 -l3ds -lGLEW `pkg-config --libs IL` `pkg-config --libs assimp`  
+LDLIBSOPTIONS=-lGLU -lGL -lsfml-graphics -lsfml-system -lsfml-window -l3ds-1 -l3ds -lGLEW `pkg-config --libs IL` `pkg-config --libs assimp` /usr/local/lib/libsfml-audio.so  
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
 	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/metro-simulation
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/metro-simulation: /usr/local/lib/libsfml-audio.so
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/metro-simulation: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
