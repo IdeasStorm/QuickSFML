@@ -87,6 +87,12 @@ private:
                 sf::Sound sound;
                 sound.SetBuffer(Buffer);             
                 sound.Play();
+                
+                sound.SetPitch(0.6);
+                sound.SetAttenuation(0.4);
+                sound.SetRelativeToListener(true);
+                sound.SetPosition(this->position);
+                sound.SetMinDistance(100);
                 while (sound.GetStatus() == sf::Sound::Playing)
                     sf::Sleep(0.1f);
             }
