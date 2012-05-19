@@ -119,6 +119,7 @@ private:
 
         if (AI_SUCCESS == mtl->GetTexture(aiTextureType_DIFFUSE, texIndex, &texPath)) {
             //bind texture
+            glEnable(GL_TEXTURE_2D);
             unsigned int texId = *textureIdMap[texPath.data];
             glBindTexture(GL_TEXTURE_2D, texId);
         }
@@ -240,7 +241,6 @@ private:
                         {
                             glTexCoord2f(mesh->mTextureCoords[0][vertexIndex].x, 1 - mesh->mTextureCoords[0][vertexIndex].y); //mTextureCoords[channel][vertex]
                         }
-
                     glNormal3fv(&mesh->mNormals[vertexIndex].x);
                     glVertex3fv(&mesh->mVertices[vertexIndex].x);
                 }
@@ -248,7 +248,7 @@ private:
                 glEnd();
 
             }
-
+            glDisable(GL_TEXTURE_2D);
         }
 
 
