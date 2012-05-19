@@ -9,6 +9,7 @@
 #define	TRAIN_H
 #include "Model3d.h"
 #include "Drawable.h"
+#include <sys/time.h>
 
 class Train : public Model3d {
 public:
@@ -57,8 +58,7 @@ public:
     float waiting_time;
 private:
     float speed;
-    float acceleration;
-
+    float acceleration;   
 };
 
 #endif	/* TRAIN_H */
