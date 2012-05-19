@@ -29,7 +29,7 @@ components.push_back(box2);
 //==================================================================
 //========================box3=====================================
 Box *box3 = new Box();
-box3->setTexture("./Data/Wall/brown_wall_texture_by_fantasystock-d34un9s.jpg");
+box3->setTexture("./Data/Wall/brown_wall.jpg");
 box3->position = Vector3f(133.700241,6.899996,-22.300045); 
 box3->halfSize = Vector3f(63.999985,5.899997,156.799835); 
 box3->setRotation(0.000000,0.000000,0.000000); 
@@ -38,7 +38,7 @@ components.push_back(box3);
 //==================================================================
 //========================box4=====================================
 Box *box4 = new Box();
-box4->setTexture("./Data/Wall/brown_wall_texture_by_fantasystock-d34un9s.jpg");
+box4->setTexture("./Data/Wall/brown_wall.jpg");
 box4->position = Vector3f(-42.059914,6.899996,-23.900068); 
 box4->halfSize = Vector3f(18.739985,5.899997,156.900085); 
 box4->setRotation(0.000000,0.000000,0.000000); 
@@ -47,7 +47,7 @@ components.push_back(box4);
 //==================================================================
 //========================box5=====================================
 Cylinder *box5 = new Cylinder();
-box5->position = Vector3f(23.190052,-3.900001,-292.693481); 
+box5->position = Vector3f(23.190052,-3.900001,-293.893555); 
 box5->halfSize = Vector3f(46.499863,118.099724,21.100044); 
 box5->setRotation(0.000000,0.000000,0.000000); 
 box5->tag = "cave"; 

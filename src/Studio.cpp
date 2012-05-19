@@ -346,6 +346,7 @@ void Studio::ProcessComponent(GLDrawable *component) {
         ((Box*) component)->textures.push_back(tex);
         ((Box*) component)->textureEnabled = true;
     } else if (tag == "cave") {
+        ((Cylinder*) component)->setTexture("./Data/Wall/tunnel.jpg");
         float r = ((Cylinder*) component)->getRadius();
         Arch * arch = new Arch(r);
         arch->tag = "automated";
@@ -379,8 +380,8 @@ void Studio::ProcessComponent(GLDrawable *component) {
         ((Box*) component)->textures.push_back(tex4);
         ((Box*) component)->textureEnabled = true;
     }
-    else if (tag == "flagstone") {
-        ((Box*) component)->setTexture("./Data/Wall/brown_wall_texture_by_fantasystock-d34un9s.jpg");
+    else if (tag == "cave") {
+        //((Box*) component)->setTexture("./Data/Wall/wall_some_noise.jpg");
     }
 }
 
