@@ -378,7 +378,9 @@ void Studio::ProcessComponent(GLDrawable *component) {
         tex4.id = elements::Back;
         ((Box*) component)->textures.push_back(tex4);
         ((Box*) component)->textureEnabled = true;
-
+    }
+    else if (tag == "flagstone") {
+        ((Box*) component)->setTexture("./Data/Wall/brown_wall_texture_by_fantasystock-d34un9s.jpg");
     }
 }
 
