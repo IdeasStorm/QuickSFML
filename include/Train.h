@@ -32,7 +32,7 @@ public:
     
     void Gas(float acc = 0.1) {
         StopBrakes();
-        push_force = 0.1;
+        push_force = acc;
     }
     
     void Restart(float acc = 0.1){
@@ -40,7 +40,7 @@ public:
         Gas(acc);
     }
     
-    void Brakes(float bf = 0.1f){
+    void Brakes(float bf = 0.05f){
         brakes_factor = bf;
     }
     
