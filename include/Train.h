@@ -9,10 +9,11 @@
 #define	TRAIN_H
 #include "Model3d.h"
 #include "Drawable.h"
-#include <sys/time.h>
+#include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-
-class Train : public Model3d {
+#include <SFML/System.hpp>
+class Train : public Model3d , private sf::Thread
+{
 public:
 
     Train() : Model3d("train1.3ds", "./Data/Train/1/") {
@@ -62,7 +63,54 @@ private:
     float speed;
     float acceleration;   
     bool alarm;
+    
+    void ThreadFunction(void* UserData)
+    {
+        sf::SoundBuffer Buffer;
+        if (Buffer.LoadFromFile("./Data/Train/1/ALARM.WAV"))
+            {
+                sf::Sound sound;
+                sound.SetBuffer(Buffer);             
+                sound.Play();
+
+                while (sound.GetStatus() == sf::Sound::Playing)
+                {
+                    sf::Sleep(0.1);
+                }
+            }
+    }
+    virtual void Run()
+    {
+        sf::SoundBuffer Buffer;
+        if (Buffer.LoadFromFile("./Data/Train/1/ALARME.WAV"))
+            {
+                sf::Sound sound;
+                sound.SetBuffer(Buffer);             
+                sound.Play();
+                while (sound.GetStatus() == sf::Sound::Playing)
+                    sf::Sleep(0.1f);
+            }
+    }
+
 };
+
+//
+//class MyThread : public sf::Thread
+//{
+//private :
+//    virtual void Run()
+//    {
+//        sf::SoundBuffer Buffer;
+//        if (Buffer.LoadFromFile("./Data/Train/1/ALARME.WAV"))
+//            {
+//                sf::Sound sound;
+//                sound.SetBuffer(Buffer);             
+//                sound.Play();
+//                while (sound.GetStatus() == sf::Sound::Playing)
+//                    sf::Sleep(0.1f);
+//            }
+//    }
+//};
 
 #endif	/* TRAIN_H */
 
