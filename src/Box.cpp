@@ -82,7 +82,7 @@ void Box::draw() {
     GLfloat d = halfSize.z;
     GLfloat h = halfSize.y;
     GLfloat w = halfSize.x;
-
+    float ratio = w/h;
     if (tag == "skyBox") {
         glDisable(GL_LIGHTING);
         glPushAttrib(GL_ENABLE_BIT);
@@ -135,13 +135,13 @@ void Box::draw() {
         glVertex3f(-w, h, -d);
         
         
-        glTexCoord2f(0.0f, 1.0f);
+        glTexCoord2f(0.0f, 10 * ratio);
         glVertex3f(-w, h, d);
         
                         
-        glTexCoord2f(1.0f, 1.0f);
+        glTexCoord2f(10.0f, 10* ratio);
         glVertex3f(w, h, d);
-        glTexCoord2f(1.0f, 0.0f);
+        glTexCoord2f(10.0f, 0.0f);
         glVertex3f(w, h, -d);
         glEnd();
     }

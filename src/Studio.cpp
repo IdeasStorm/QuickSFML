@@ -67,6 +67,14 @@ void Studio::Update(const sf::Input& input) {
     static bool Z_was_down = false;
     camera->EnableMouse = true;
 
+    if (input.IsKeyDown(sf::Key::F6)){
+        list<GLDrawable*>::iterator i;
+        for (i = components.begin(); i != components.end(); i++) {
+            GLDrawable* e = ((GLDrawable*) (*i));
+            if (e->tag == "record")
+                printf("Recorded (%f, %f, %f)", e->position.x, e->position.y, e->position.z);
+        }
+    }
     if (input.IsKeyDown(sf::Key::T)) {
         T_was_down = true;
     } else if (T_was_down) {

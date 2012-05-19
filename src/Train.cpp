@@ -1,23 +1,22 @@
-/* 
- * File:   Train.cpp
- * Author: yaman
- * 
- * Created on May 5, 2012, 9:44 PM
- */
 
 #include "Train.h"
 
-
-Train::Train(std::string filename): Model(filename)
-{
+void Train::Update(const sf::Input &input) {
+    acceleration = (1/mass) *(push_force - speed * brakes_factor);
+    speed += acceleration;
+    position.z += speed;
     
+    if (position.z > 900 || position.z < -900) {
+        position.z = -position.z;
+        StopGas();
+    }
+    if (position.z < -50 && position.z > -200){
+        StopGas();
+        Brakes();
+    }
+
 }
 
-void Train::Update(const sf::Input &input)
-{
-    position.z = MoveForward;
-}
-        
 Train::~Train() {
-}
 
+}

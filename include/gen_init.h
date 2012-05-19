@@ -18,6 +18,7 @@
 #include "Arch.h"
 #include "Model3d.h"
 #include "Railway.h"
+#include "Train.h" 
 using namespace sf;
 using namespace std;
 
