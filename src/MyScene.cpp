@@ -92,7 +92,7 @@ void MyScene::LoadComponents(){
     //Fence->setRotation(sf::Vector3f(1,0,0),-90);
     Fence->setRotation(sf::Vector3f(0,1,0),-90);
     //Fence->setRotation(sf::Vector3f(0,0,1),0);
-
+/*
     light2  = new Light(sf::Vector3f(25,30,-200),90,true);
     light2->ambient = sf::Color(1,1,1);
     light2->diffuse = sf::Color(1,1,1);
@@ -101,14 +101,14 @@ void MyScene::LoadComponents(){
     light2->w = 1 ;
     light2->lightNum +=1 ;
     light2->EnableSphere = false ;
-    
+ 
     
     light1  = new Light(sf::Vector3f(0,10,-33),45,true);
     light1->ambient = sf::Color(1,1,1);
     light1->diffuse = sf::Color(1,1,1);
     light1->specular = sf::Color(0,0,0);
     light1->w =1 ;
-    
+ */      
     SkyBox * skyBox = new SkyBox();    
     skyBox->setTextures("./Data/city/");
     
@@ -119,7 +119,7 @@ void MyScene::LoadComponents(){
     Railway *ra=new Railway(sf::Vector3f(10,10,10),sf::Vector3f(5,2,100));
     components.push_back(ra);
     components.push_back(cy);
-    components.push_back(light1);
+    //components.push_back(light1);
     //components.push_back(light2);
     
     //components.push_back(stair); 

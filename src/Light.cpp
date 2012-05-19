@@ -92,8 +92,6 @@ void Light::GLInit() {
 
     if (ligthEnable) {
         GLfloat temp[] = {position.x, position.y, position.z, w};
-
-
         glLightfv(lightNum, GL_POSITION, temp);
         glLightfv(lightNum, GL_AMBIENT, vec4(ambient));
         glLightfv(lightNum, GL_DIFFUSE, vec4(diffuse));
