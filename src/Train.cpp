@@ -13,7 +13,7 @@ void Train::Update(const sf::Input &input) {
         position.z = -position.z;
         StopGas();
     }
-    if (position.z < -150 && position.z > -200){
+    if (position.z < -250 && position.z > -300){
         StopGas();
         Brakes();
     }
