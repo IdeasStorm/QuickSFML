@@ -18,8 +18,13 @@
 Studio::Studio()
 {
     currentComponent = components.end();       
-    camera->SetOrigin(50, 50, 100);
+    camera3->SetOrigin(50, 50, 100);
+    camera3->ApplyDefault();
+    camera2->SetOrigin(50,10,0);
+    camera2->EnableMove = false ;
+    camera2->ApplyDefault();
     camera->EnableMouse = true;
+    camera->EnableMove = false;
     cameraEnable = camera ;
     //default_lighting = true;
     update_child_controls = true;
@@ -42,17 +47,17 @@ bool Studio::LoadContent() {
 void Studio::LoadComponents() {
     loadUserComponents(components);
 
-   /* Light *light2 = new Light(sf::Vector3f(25, 30, -200), 90, true);
+    Light *light2 = new Light(sf::Vector3f(25, 30, -200), 90, true);
     light2->ambient = sf::Color(1, 1, 1);
     light2->diffuse = sf::Color(1, 1, 1);
     light2->specular = sf::Color(0, 0, 0);
     light2->setDirection(sf::Vector3f(0, 0, 1));
     light2->w = 1;
-    light2->lightNum += 1;
+    light2->lightNum += GL_LIGHT0;
     light2->EnableSphere = false;
     light2->tag = "automated";
     components.push_back(light2);
-*/
+
     currentComponent = components.begin();
     list<GLDrawable*>::iterator i;
     for (i = components.begin(); i != components.end(); i++) {
@@ -76,6 +81,18 @@ void Studio::Update(const sf::Input& input) {
     static bool P_was_down = false;
     static bool Z_was_down = false;
 
+    camera->SetOrigin(train->position.x+8.3,train->position.y+15,train->position.z);
+    if (input.IsKeyDown(sf::Key::Num1)){
+        cameraEnable = camera ;
+    }
+    if (input.IsKeyDown(sf::Key::Num2)){
+        camera2->Default();
+        cameraEnable = camera2 ;
+    }
+    if (input.IsKeyDown(sf::Key::Num3)){
+        camera3->Default();
+        cameraEnable = camera3 ;
+    }
     if (input.IsKeyDown(sf::Key::F6)){
         list<GLDrawable*>::iterator i;
         for (i = components.begin(); i != components.end(); i++) {
@@ -189,6 +206,7 @@ void Studio::Update(const sf::Input& input) {
         light->diffuse = sf::Color(1, 1, 1);
         light->specular = sf::Color(0, 0, 0);
         light->w = 1;
+        light->lightNum +=1 ;
         // setting this element as current
         list<GLDrawable*>::iterator end = components.end();
         end--;
@@ -344,7 +362,9 @@ void Studio::ProcessComponent(GLDrawable *component) {
     string tag = component->tag; // the tag to look for
     string class_name = component->getClass(); 
     if (class_name == "Train") {
-        ((Train*)(component))->Gas();
+        train = ((Train*)(component)) ;
+        train->Gas();
+        //((Train*)(component)->Gas();
     }
     else if (class_name == "Stairs") {
         // here you can cast to your type and modify ads you want

@@ -32,6 +32,7 @@ public:
     void ProcessComponent(GLDrawable *component);
     list<GLDrawable*>::iterator currentComponent;
 private:
+    Train *train ;
     Texture *tex_wall_noised;
     Texture *tex_wall_brown;
     Texture *tex_default;
