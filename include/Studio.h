@@ -11,6 +11,7 @@
 #include "GLScene.h"
 #include "Box.h"
 #include "Light.h"
+#include "Train.h"
 #include <iostream>
 #include <fstream>
 

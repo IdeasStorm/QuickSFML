@@ -157,7 +157,7 @@ int GLScene::InitGL() // All Setup For OpenGL Goes Here
         glLightfv(GL_LIGHT0, GL_SPECULAR, LightSpecular);
         glEnable(GL_LIGHT0); // Enable Light One
     }
-    //glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHTING);
     return TRUE; // Initialization Went OK
 }
 
