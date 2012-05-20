@@ -6,6 +6,7 @@
  */
 
 #include "Model3d.h"
+#include "Light.h"
 #include <fstream>
 
 Model3d::Model3d(const std::string& pFile, const std::string& path) {
@@ -114,14 +115,24 @@ void Model3d::GLInit() {
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST); // Really Nice Perspective Calculation
 
     glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0); // Uses default lighting parameters
+    
+    Light *light2 = new Light(sf::Vector3f(0, 500, 0), 45, false);
+    light2->ambient = sf::Color(1, 1, 1);
+    light2->diffuse = sf::Color(1, 1, 1);
+    light2->specular = sf::Color(1, 1, 1);
+    light2->setDirection(sf::Vector3f(0, -1, -1));
+    light2->w = 1;
+    light2->lightNum = GL_LIGHT0;
+    light2->GLInit();
+
+    //glEnable(GL_LIGHT0);
     glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
     glEnable(GL_NORMALIZE);
 
     //	glLightfv(GL_LIGHT1, GL_AMBIENT, LightAmbient);
     //	glLightfv(GL_LIGHT1, GL_DIFFUSE, LightDiffuse);
     //	glLightfv(GL_LIGHT1, GL_POSITION, LightPosition);
-    glEnable(GL_LIGHT1);
+    //glEnable(GL_LIGHT1);
 
     glColorMaterial(GL_FRONT_AND_BACK, GL_DIFFUSE);
 

@@ -16,6 +16,7 @@ using namespace sf;
 class Light :  public GLDrawable{
 public:
     bool ligthEnable ;
+    bool EnableDirection ;
     Light();
     Light(sf::Vector3f pos , float ang,bool EnableSphere);
     Light(const Light& orig);
@@ -23,6 +24,7 @@ public:
     virtual ~Light();
     void init();
     void setDirection(sf::Vector3f);
+    GLfloat* vec4(sf::Color color) ;
     void Update(const sf::Input& input);
     bool LoadContent();
     GLDrawable* Clone();

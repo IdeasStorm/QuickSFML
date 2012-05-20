@@ -379,14 +379,14 @@ public:
         glMultMatrixf(m);
 
         // If Rotation only, then do not do the translation
-        if (!bRotOnly)
-            glTranslatef(-vOrigin[0], -vOrigin[1], -vOrigin[2]);
+    //    if (!bRotOnly)
+     //       glTranslatef(-vOrigin[0], -vOrigin[1], -vOrigin[2]);
 
-  /*      gluLookAt(vOrigin[0], vOrigin[1], vOrigin[2],
+        gluLookAt(vOrigin[0], vOrigin[1], vOrigin[2],
         vOrigin[0] + vForward[0], 
         vOrigin[1] + vForward[1], 
         vOrigin[2] + vForward[2], 
-        vUp[0], vUp[1], vUp[2]);*/
+        vUp[0], vUp[1], vUp[2]); 
          
     }
 

@@ -150,6 +150,8 @@ int GLScene::InitGL() // All Setup For OpenGL Goes Here
         ((GLDrawable*)(*i))->GLInit();
     }
 
+        glEnable(GL_LIGHTING);
+        
     if (default_lighting) {
         glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient); // Setup The Ambient Light
         glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse); // Setup The Diffuse Light
@@ -157,7 +159,9 @@ int GLScene::InitGL() // All Setup For OpenGL Goes Here
         glLightfv(GL_LIGHT0, GL_SPECULAR, LightSpecular);
         glEnable(GL_LIGHT0); // Enable Light One
     }
-    glEnable(GL_LIGHTING);
+
+
+  
     return TRUE; // Initialization Went OK
 }
 

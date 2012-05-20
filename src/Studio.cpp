@@ -46,7 +46,7 @@ bool Studio::LoadContent() {
 
 void Studio::LoadComponents() {
     loadUserComponents(components);
-
+/*
     Light *light2 = new Light(sf::Vector3f(25, 30, -200), 90, true);
     light2->ambient = sf::Color(1, 1, 1);
     light2->diffuse = sf::Color(1, 1, 1);
@@ -54,10 +54,10 @@ void Studio::LoadComponents() {
     light2->setDirection(sf::Vector3f(0, 0, 1));
     light2->w = 1;
     light2->lightNum += GL_LIGHT0;
-    light2->EnableSphere = false;
+    light2->EnableSphere = true;
     light2->tag = "automated";
     components.push_back(light2);
-
+*/
     currentComponent = components.begin();
     list<GLDrawable*>::iterator i;
     for (i = components.begin(); i != components.end(); i++) {

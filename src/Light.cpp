@@ -8,7 +8,7 @@
 
 #include "Light.h"
 
-GLfloat* vec4(sf::Color color) {
+GLfloat* Light::vec4(sf::Color color) {
     GLfloat* res = new GLfloat[4];
     res[0] = color.r;
     res[1] = color.g;
@@ -26,6 +26,7 @@ Light::Light(sf::Vector3f pos, float ang, bool enableSphere) : GLDrawable() {
 
     init();
     EnableSphere = enableSphere;
+    
     if (EnableSphere)
         sphere = new Sphere(position, 20);
     position = pos;
@@ -42,6 +43,7 @@ Light::~Light() {
 void Light::init() {
     EnableSphere = true;
     ligthEnable = true;
+    EnableDirection = true ;
     angle = 45;
     lightNum = GL_LIGHT0;
     //lightNum += 1;
@@ -99,7 +101,8 @@ void Light::GLInit() {
         glLightf(lightNum, GL_SPOT_CUTOFF, angle);
         //TODO
         //glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, 2.0);
-        glLightfv(lightNum, GL_SPOT_DIRECTION, spot_direction);
+        if (EnableDirection)
+                glLightfv(lightNum, GL_SPOT_DIRECTION, spot_direction);
         glEnable(lightNum);
 
         GLfloat colours [] = {1.0, 1.0, 1.0, 0.0};
