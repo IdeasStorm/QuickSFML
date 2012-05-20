@@ -5,7 +5,6 @@
  * Created on May 5, 2012, 5:06 PM
  */
 
-#include "Model.h"
 #include "MyScene.h"
 #include "Ground.h"
 #include "Box.h"
@@ -80,13 +79,13 @@ void MyScene::LoadComponents(){
     train_2->setRotation(sf::Vector3f(1,0,0),-90);
     train_2->self_control = true ;
     
-    Model * Tele = new Model("./Data/Model/Telephone 1 N300408.3ds");
+    Model3d * Tele = new Model3d("./Data/Model/Telephone 1 N300408.3ds");
     Tele->position = sf::Vector3f(40,6,50);
     Tele->halfSize = sf::Vector3f(0.3,0.3,0.3);
     Tele->setRotation(sf::Vector3f(1,0,0),-90);
 
     
-    Model * Fence = new Model("./Data/Model/fence-K009.3DS");
+    Model3d * Fence = new Model3d("./Data/Model/fence-K009.3DS");
     Fence->position = sf::Vector3f(2,0,50);
     Fence->halfSize = sf::Vector3f(0.1,0.1,0.1);
     //Fence->setRotation(sf::Vector3f(1,0,0),-90);

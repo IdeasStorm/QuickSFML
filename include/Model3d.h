@@ -38,7 +38,7 @@ using namespace std;
 
 class Model3d : public GLDrawable {
 public:
-    Model3d(const std::string& pFile, const std::string& path);
+    Model3d(const std::string& pFile, const std::string& path = "./");
     //Model3d(const Model3d& orig);
     ~Model3d();
     int LoadGLTextures(const aiScene* scene);

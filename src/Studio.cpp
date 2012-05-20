@@ -6,7 +6,6 @@
  */
 
 #include "user_input.h"
-#include "Model.h"
 #include "Studio.h"
 #include "Stairs.h"
 #include "Light.h"
@@ -200,7 +199,7 @@ void Studio::Update(const sf::Input& input) {
         M_was_down = true;
     } else if (M_was_down) {
         M_was_down = false;
-        Model *model = new Model("./Data/Train/1/train1.3ds");
+        Model3d *model = new Model3d("./Data/Train/1/train1.3ds","./");
 
         model->LoadContent();
         model->GLInit();

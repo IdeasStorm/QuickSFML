@@ -34,7 +34,6 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/src/Model.o \
 	${OBJECTDIR}/src/Model3d.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/src/Stairs.o \
@@ -77,11 +76,6 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/metro-simulation: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/metro-simulation ${OBJECTFILES} ${LDLIBSOPTIONS} 
-
-${OBJECTDIR}/src/Model.o: src/Model.cpp 
-	${MKDIR} -p ${OBJECTDIR}/src
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -Iinclude -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Model.o src/Model.cpp
 
 ${OBJECTDIR}/src/Model3d.o: src/Model3d.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src

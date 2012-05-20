@@ -8,7 +8,6 @@
 #define TRUE true
 #define FALSE false
 #include <GL/glew.h>
-#include "Model.h"
 #include "MyScene.h"
 #include "Studio.h"
 
