@@ -81,7 +81,7 @@ int Model3d::LoadGLTextures(const aiScene* scene) {
 
         if (image.LoadFromFile(fileloc)) /* If no error occured: */ {
             //glGenTextures(numTextures, &textureIds[i]); /* Texture name generation */
-            glBindTexture(GL_TEXTURE_2D, textureIds[i]); /* Binding of texture name */
+            //glBindTexture(GL_TEXTURE_2D, textureIds[i]); /* Binding of texture name */
             //redefine standard texture values
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); /* We will use linear
 			interpolation for magnification filter */

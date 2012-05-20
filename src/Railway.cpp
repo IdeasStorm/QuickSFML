@@ -25,7 +25,7 @@ Railway::Railway() {
     right = new Box(sf::Vector3f (x+sx,y,z),sf::Vector3f (sx/10,sy,sz));
     right->setTexture("./Data/Wall/ironforrail.jpg");
     
-    left->tex_per_face = right->tex_per_face = -1;
+    left->tex_per_face = right->tex_per_face = right->halfSize.z / 4;
      int j=0;     
      Texture *tex=new Texture("./Data/Wall/woodenForrail.jpg");
      tex->id = elements::All;

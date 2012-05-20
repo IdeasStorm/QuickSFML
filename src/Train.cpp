@@ -31,7 +31,20 @@ void Train::Update(const sf::Input &input) {
     }
     if (waiting && clock.GetElapsedTime() > waiting_time-2 && !alarm) {
         alarm=true;
-        Launch();
+       if (Buffer.LoadFromFile("./Data/Train/1/ALARME.WAV"))
+        {
+
+            sound.SetBuffer(Buffer);             
+
+            //sound.SetPitch(0.6);
+            //sound.SetAttenuation(0.4);
+            sound.SetRelativeToListener(true);
+            sound.SetPosition(this->position);
+            sound.SetMinDistance(100);
+            sound.Play();
+            //while (sound.GetStatus() == sf::Sound::Playing)
+              //  sf::Sleep(0.1f);
+        }
     }
 
 }

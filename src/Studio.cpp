@@ -20,7 +20,7 @@ Studio::Studio()
 {
     currentComponent = components.end();       
     camera->SetOrigin(50, 50, 100);
-    camera->EnableMouse = true ;
+    camera->EnableMouse = true;
     cameraEnable = camera ;
     //default_lighting = true;
     update_child_controls = true;

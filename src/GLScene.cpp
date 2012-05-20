@@ -40,6 +40,12 @@ GLScene::~GLScene() {
 int GLScene::Run() {
     // Create the main window
  
+    LoadComponents();
+    if (!LoadContent()) // Jump To Texture Loading Routine
+    {
+        return FALSE; // If Texture Didn't Load Return FALSE
+    }
+    
     if (!InitGL())
         printf("Warning : Content not Loaded ");
     
@@ -129,13 +135,7 @@ int GLScene::Run() {
 
 int GLScene::InitGL() // All Setup For OpenGL Goes Here
 {
-    LoadComponents();
-    if (!LoadContent()) // Jump To Texture Loading Routine
-    {
-        return FALSE; // If Texture Didn't Load Return FALSE
-    }
     
-    glewInit();
     glEnable(GL_TEXTURE_2D); // Enable Texture Mapping
     glShadeModel(GL_SMOOTH); // Enable Smooth Shading
     glClearColor(0.0f, 0.0f, 0.0f, 0.5f); // Black Background
@@ -164,13 +164,14 @@ int GLScene::InitGL() // All Setup For OpenGL Goes Here
 
 GLvoid GLScene::ReSizeGLScene(GLsizei width, GLsizei height) // Resize And Initialize The GL Window
 {
+    
     if (height == 0) // Prevent A Divide By Zero By
     {
         height = 1; // Making Height Equal One
     }
 
     glViewport(0, 0, width, height); // Reset The Current Viewport
-
+    InitGL();
    
     glMatrixMode(GL_PROJECTION); // Select The Projection Matrix
     glLoadIdentity(); // Reset The Projection Matrix

@@ -12,7 +12,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/System.hpp>
-class Train : public Model3d , private sf::Thread
+class Train : public Model3d
 {
 public:
 
@@ -25,6 +25,8 @@ public:
         brakes_factor = 0;
         waiting_time = 10;
         alarm = false;
+        Buffer.LoadFromFile("./Data/Train/1/ALARME.WAV");
+        sound.SetBuffer(Buffer);    
     }
     void Update(const sf::Input &input);
     void WriteInstanceCreation(FILE* outfile, string name){
@@ -69,39 +71,13 @@ private:
     float speed;
     float acceleration;   
     bool alarm;
+    sf::Sound sound;
+    sf::SoundBuffer Buffer;
     
-    void ThreadFunction(void* UserData)
+    void Run()
     {
-        sf::SoundBuffer Buffer;
-        if (Buffer.LoadFromFile("./Data/Train/1/ALARM.WAV"))
-            {
-                sf::Sound sound;
-                sound.SetBuffer(Buffer);             
-                sound.Play();
-
-                while (sound.GetStatus() == sf::Sound::Playing)
-                {
-                    sf::Sleep(0.1);
-                }
-            }
-    }
-    virtual void Run()
-    {
-        sf::SoundBuffer Buffer;
-        if (Buffer.LoadFromFile("./Data/Train/1/ALARME.WAV"))
-            {
-                sf::Sound sound;
-                sound.SetBuffer(Buffer);             
-                sound.Play();
-                
-                sound.SetPitch(0.6);
-                sound.SetAttenuation(0.4);
-                sound.SetRelativeToListener(true);
-                sound.SetPosition(this->position);
-                sound.SetMinDistance(100);
-                while (sound.GetStatus() == sf::Sound::Playing)
-                    sf::Sleep(0.1f);
-            }
+        
+     
     }
 
 };
