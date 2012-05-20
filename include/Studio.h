@@ -38,7 +38,8 @@ private:
     Texture *tex_wall_noised;
     Texture *tex_wall_brown;
     Texture *tex_default;
-    
+    sf::Sound movmetnSound;
+    sf::SoundBuffer movmetnBuffer;
 
 };
 
