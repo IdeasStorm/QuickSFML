@@ -45,6 +45,7 @@ void Light::init() {
     ligthEnable = true;
     EnableDirection = true ;
     angle = 45;
+    EXPONENT = 150 ;
     lightNum = GL_LIGHT0;
     //lightNum += 1;
     spot_direction[0] = 0.0;
@@ -100,7 +101,9 @@ void Light::GLInit() {
         glLightfv(lightNum, GL_SPECULAR, vec4(specular));
         glLightf(lightNum, GL_SPOT_CUTOFF, angle);
         //TODO
-        glLightf(lightNum, GL_SPOT_EXPONENT, 200.0);
+        glLightf(lightNum, GL_SPOT_EXPONENT, EXPONENT);
+
+
         if (EnableDirection)
                 glLightfv(lightNum, GL_SPOT_DIRECTION, spot_direction);
         glEnable(lightNum);

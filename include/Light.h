@@ -37,6 +37,7 @@ public:
     GLfloat w;
     float angle ;
     GLenum lightNum;
+    float EXPONENT ;
     //static GLenum lightNum = GL_LIGHT0;
     GLfloat spot_direction[3] ;
     sf::Color diffuse;

@@ -224,8 +224,9 @@ box25->ambient = sf::Color(1,1,1);
 box25->diffuse = sf::Color(1,1,1);
 box25->specular = sf::Color(0,0,0);
 box25->w = 1 ;
+box25->EXPONENT = 200 ;
 box25->lightNum = GL_LIGHT2;
-box25->setDirection(sf::Vector3f(1000,100,0));
+box25->setDirection(sf::Vector3f(100,100,0));
 box25->position = Vector3f(-8.399998,5.199969,-102.799728); 
 components.push_back(box25); 
 //==================================================================
@@ -235,9 +236,10 @@ box26->ambient = sf::Color(1,1,1);
 box26->diffuse = sf::Color(1,1,1);
 box26->specular = sf::Color(0,0,0);
 box26->w = 1 ;
+box26->EXPONENT = 100 ;
 box26->lightNum = GL_LIGHT3;
 box26->position = Vector3f(-7.999998,5.299992,-114.799881); 
-box26->setDirection(sf::Vector3f(1000,100,0)) ;
+box26->setDirection(sf::Vector3f(100,100,0)) ;
 components.push_back(box26); 
 //==================================================================
 
@@ -249,9 +251,10 @@ box27->ambient = sf::Color(1,1,1);
 box27->diffuse = sf::Color(1,1,1);
 box27->specular = sf::Color(0,0,0);
 box27->w = 1 ;
+box27->EXPONENT =100 ;
 box27->lightNum = GL_LIGHT4;
 box27->position = Vector3f(53.999985,4.699982,-30.600025); 
-box27->setDirection(sf::Vector3f(-1000,100,0));
+box27->setDirection(sf::Vector3f(-1,1,0));
 components.push_back(box27); 
 //==================================================================
 //========================box28=====================================
@@ -260,14 +263,25 @@ box28->ambient = sf::Color(1,1,1);
 box28->diffuse = sf::Color(1,1,1);
 box28->specular = sf::Color(0,0,0);
 box28->w = 1 ;
+box28->EXPONENT = 100 ;
 box28->lightNum = GL_LIGHT5;
 box28->position = Vector3f(54.000000,4.800001,-42.500038); 
-box28->setDirection(sf::Vector3f(-1000,100,0));
+box28->setDirection(sf::Vector3f(-1,1,0));
 components.push_back(box28); 
 //==================================================================
     }
     if (input.IsKeyDown(sf::Key::Num7)) {
-        light->spot_direction[1] += 1 ;
+//========================box31=====================================
+Light *box31  = new Light(sf::Vector3f(25.499977,42.100014,130.800049),90,true);
+box31->ambient = sf::Color(1,1,1);
+box31->diffuse = sf::Color(1,1,1);
+box31->specular = sf::Color(0,0,0);
+box31->w = 1 ;
+box31->lightNum = GL_LIGHT6 ;
+box31->EXPONENT = 200 ;
+box31->setDirection(sf::Vector3f(0,-1,1));
+components.push_back(box31); 
+//==================================================================
     }
     if (input.IsKeyDown(sf::Key::M)) {
         M_was_down = true;
