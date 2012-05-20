@@ -11,6 +11,8 @@ void Train::Update(const sf::Input &input) {
     
     if (position.z > 900 || position.z < -900) {
         position.z = -position.z;
+        comingSound.SetPosition(this->position);
+        comingSound.Play();
         StopGas();
     }
     if (position.z < -250 && position.z > -300){
@@ -21,30 +23,25 @@ void Train::Update(const sf::Input &input) {
         clock.Reset();
         alarm=false;
         waiting = true;
-        printf("\n\n\n                         waiting\n");
+        printf("\n\n\n                         waiting\n");        
         
     }
     if (waiting && clock.GetElapsedTime() > waiting_time) {
         Gas();        
-        waiting = false;
+        waiting = false;        
         printf("                         timed out\n");
     }
-    if (waiting && clock.GetElapsedTime() > waiting_time-2 && !alarm) {
+    if (waiting && clock.GetElapsedTime() > waiting_time-4 && !alarm) {
         alarm=true;
-       if (Buffer.LoadFromFile("./Data/Train/1/ALARME.WAV"))
-        {
-
             sound.SetBuffer(Buffer);             
-
             //sound.SetPitch(0.6);
             //sound.SetAttenuation(0.4);
             sound.SetRelativeToListener(true);
             sound.SetPosition(this->position);
             sound.SetMinDistance(100);
             sound.Play();
-            //while (sound.GetStatus() == sf::Sound::Playing)
-              //  sf::Sleep(0.1f);
-        }
+            movmetnSound.SetPosition(this->position);
+            movmetnSound.Play();
     }
 
 }

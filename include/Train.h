@@ -25,8 +25,13 @@ public:
         brakes_factor = 0;
         waiting_time = 10;
         alarm = false;
-        Buffer.LoadFromFile("./Data/Train/1/ALARME.WAV");
+        Buffer.LoadFromFile("./Data/Train/1/alarm.wav");
         sound.SetBuffer(Buffer);    
+        movmetnBuffer.LoadFromFile("./Data/Train/1/metro.wav");
+        movmetnSound.SetBuffer(movmetnBuffer);       
+        if(!comingBuffer.LoadFromFile("./Data/Train/1/metroComing.wav"))
+            abort();
+        comingSound.SetBuffer(comingBuffer);           
     }
     void Update(const sf::Input &input);
     void WriteInstanceCreation(FILE* outfile, string name){
@@ -73,7 +78,10 @@ private:
     bool alarm;
     sf::Sound sound;
     sf::SoundBuffer Buffer;
-    
+    sf::Sound movmetnSound;
+    sf::SoundBuffer movmetnBuffer;
+    sf::Sound comingSound;
+    sf::SoundBuffer comingBuffer;
     void Run()
     {
         

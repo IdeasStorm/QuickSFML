@@ -32,6 +32,9 @@ Studio::Studio()
     tex_wall_brown = new Texture("./Data/Wall/brown_wall.jpg");
     tex_wall_noised = new Texture("./Data/Wall/wall_concrete.jpg");
     tex_default->id = tex_wall_brown->id = tex_wall_noised->id = elements::All;
+    movmetnBuffer.LoadFromFile("./Data/Train/1/metro.wav");
+    movmetnSound.SetBuffer(movmetnBuffer);
+    movmetnSound.Play();
 }
 
 Studio::Studio(const Studio& orig) {
