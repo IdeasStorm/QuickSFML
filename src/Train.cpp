@@ -11,7 +11,7 @@ void Train::Update(const sf::Input &input) {
     
     if (position.z > 900 || position.z < -900) {
         position.z = -position.z;
-        comingSound.SetPosition(this->position);
+        //comingSound.SetPosition(this->position);
         comingSound.Play();
         StopGas();
     }
@@ -40,7 +40,7 @@ void Train::Update(const sf::Input &input) {
             sound.SetPosition(this->position);
             sound.SetMinDistance(100);
             sound.Play();
-            movmetnSound.SetPosition(this->position);
+            //movmetnSound.SetPosition(this->position);
             movmetnSound.Play();
     }
 
