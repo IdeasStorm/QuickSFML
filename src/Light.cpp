@@ -93,14 +93,14 @@ GLDrawable* Light::Clone() {
 void Light::GLInit() {
 
     if (ligthEnable) {
-        GLfloat temp[] = {position.x, position.y, position.z, w};
+        GLfloat temp[] = {position.x+5, position.y, position.z, w};
         glLightfv(lightNum, GL_POSITION, temp);
         glLightfv(lightNum, GL_AMBIENT, vec4(ambient));
         glLightfv(lightNum, GL_DIFFUSE, vec4(diffuse));
         glLightfv(lightNum, GL_SPECULAR, vec4(specular));
         glLightf(lightNum, GL_SPOT_CUTOFF, angle);
         //TODO
-        //glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, 2.0);
+        glLightf(lightNum, GL_SPOT_EXPONENT, 200.0);
         if (EnableDirection)
                 glLightfv(lightNum, GL_SPOT_DIRECTION, spot_direction);
         glEnable(lightNum);

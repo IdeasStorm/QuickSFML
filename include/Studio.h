@@ -34,6 +34,7 @@ public:
     list<GLDrawable*>::iterator currentComponent;
 private:
     Train *train ;
+    Light *light ;
     Texture *tex_wall_noised;
     Texture *tex_wall_brown;
     Texture *tex_default;

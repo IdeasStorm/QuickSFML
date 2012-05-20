@@ -20,8 +20,8 @@ box1->tag = "cave";
 components.push_back(box1); 
 //==================================================================
 //========================box2=====================================
-Train *box2 = new Train;
-box2->position = Vector3f(37.100006,0.200000,-35.728512); 
+Train *box2 = new Train();
+box2->position = Vector3f(37.100006,0.200000,-185.452362); 
 box2->halfSize = Vector3f(0.200000,0.200000,0.200000); 
 box2->setRotation(0.000000,0.000000,0.000000); 
 box2->tag = "moveable"; 

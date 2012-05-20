@@ -50,17 +50,17 @@ public:
         }
        if (EnableMove){
             if (input.IsKeyDown(sf::Key::A))
-                MoveRight(1);
+                MoveRight(2);
             if (input.IsKeyDown(sf::Key::D))
-                MoveRight(-1);
+                MoveRight(-2);
             if (input.IsKeyDown(sf::Key::W))
-                MoveForward(1);
+                MoveForward(2);
             if (input.IsKeyDown(sf::Key::S))
-                MoveForward(-1);
+                MoveForward(-2);
             if (input.IsKeyDown(sf::Key::Q))
-                MoveUp(-0.5);
+                MoveUp(-2);
             if (input.IsKeyDown(sf::Key::E))
-                MoveUp(+0.5);
+                MoveUp(+2);
        }
 
     }

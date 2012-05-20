@@ -116,6 +116,7 @@ void Model3d::GLInit() {
 
     glEnable(GL_LIGHTING);
     
+    
     Light *light2 = new Light(sf::Vector3f(0, 500, 0), 45, false);
     light2->ambient = sf::Color(1, 1, 1);
     light2->diffuse = sf::Color(1, 1, 1);

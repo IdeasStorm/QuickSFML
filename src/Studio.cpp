@@ -46,7 +46,9 @@ bool Studio::LoadContent() {
 
 void Studio::LoadComponents() {
     loadUserComponents(components);
-/*
+
+    
+    /*
     Light *light2 = new Light(sf::Vector3f(25, 30, -200), 90, true);
     light2->ambient = sf::Color(1, 1, 1);
     light2->diffuse = sf::Color(1, 1, 1);
@@ -200,19 +202,70 @@ void Studio::Update(const sf::Input& input) {
         I_was_down = true;
     } else if (I_was_down) {
         I_was_down = false;
-        Light *light = new Light(sf::Vector3f(0, 20, 0), 45, true);
+        light = new Light(sf::Vector3f(0, 20, 0), 90, true);
         components.push_back(light);
         light->ambient = sf::Color(1, 1, 1);
         light->diffuse = sf::Color(1, 1, 1);
         light->specular = sf::Color(0, 0, 0);
         light->w = 1;
-        light->lightNum +=1 ;
+        light->lightNum = GL_LIGHT1 ;
         // setting this element as current
         list<GLDrawable*>::iterator end = components.end();
         end--;
         SetCurrentComponent(end);
     }
+    if (input.IsKeyDown(sf::Key::Num9)) {
+        //========================box25=====================================
+Light *box25  = new Light(sf::Vector3f(-8.399998,5.199969,-102.799728),90,true);
+box25->ambient = sf::Color(1,1,1);
+box25->diffuse = sf::Color(1,1,1);
+box25->specular = sf::Color(0,0,0);
+box25->w = 1 ;
+box25->lightNum = GL_LIGHT2;
+box25->setDirection(sf::Vector3f(1000,100,0));
+box25->position = Vector3f(-8.399998,5.199969,-102.799728); 
+components.push_back(box25); 
+//==================================================================
+//========================box26=====================================
+Light *box26  = new Light(sf::Vector3f(-7.999998,5.299992,-114.799881),90,true);
+box26->ambient = sf::Color(1,1,1);
+box26->diffuse = sf::Color(1,1,1);
+box26->specular = sf::Color(0,0,0);
+box26->w = 1 ;
+box26->lightNum = GL_LIGHT3;
+box26->position = Vector3f(-7.999998,5.299992,-114.799881); 
+box26->setDirection(sf::Vector3f(1000,100,0)) ;
+components.push_back(box26); 
+//==================================================================
 
+    }
+    if (input.IsKeyDown(sf::Key::Num8)) {
+//========================box27=====================================
+Light *box27  = new Light(sf::Vector3f(53.999985,4.699982,-30.600025),90,true);
+box27->ambient = sf::Color(1,1,1);
+box27->diffuse = sf::Color(1,1,1);
+box27->specular = sf::Color(0,0,0);
+box27->w = 1 ;
+box27->lightNum = GL_LIGHT4;
+box27->position = Vector3f(53.999985,4.699982,-30.600025); 
+box27->setDirection(sf::Vector3f(-1000,100,0));
+components.push_back(box27); 
+//==================================================================
+//========================box28=====================================
+Light *box28  = new Light(sf::Vector3f(54.000000,4.800001,-42.500038),90,true);
+box28->ambient = sf::Color(1,1,1);
+box28->diffuse = sf::Color(1,1,1);
+box28->specular = sf::Color(0,0,0);
+box28->w = 1 ;
+box28->lightNum = GL_LIGHT5;
+box28->position = Vector3f(54.000000,4.800001,-42.500038); 
+box28->setDirection(sf::Vector3f(-1000,100,0));
+components.push_back(box28); 
+//==================================================================
+    }
+    if (input.IsKeyDown(sf::Key::Num7)) {
+        light->spot_direction[1] += 1 ;
+    }
     if (input.IsKeyDown(sf::Key::M)) {
         M_was_down = true;
     } else if (M_was_down) {
