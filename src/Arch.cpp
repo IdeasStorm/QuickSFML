@@ -24,13 +24,17 @@ void Arch::draw() {
     const float PI = 3.14; // have more precession
 
     glBegin(GL_QUAD_STRIP);
-
+    float i = 0;
+    float tex_step = 0.05;
     for (float angle = 0; angle < PI; angle += step) {
         float _x = radius * cos(angle);
         float _y = radius * sin(angle);
-        glVertex3f(_x, _y, 0);
-        glVertex3f(_x, radius, 0);
-
+        
+            glTexCoord2f(i,0);
+            glVertex3f(_x, _y, 0);
+            glTexCoord2f(i,1);
+            glVertex3f(_x, radius, 0);
+            i+=tex_step;
     }
     glEnd();
 }

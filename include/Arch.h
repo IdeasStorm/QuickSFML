@@ -15,7 +15,7 @@ public:
         textureEnabled = true;
         halfSize = sf::Vector3f(1,1,1);
         xrot=yrot=zrot=0;
-        texture_path = "Data/NeHe.bmp";
+        texture_path = "Data/Wall/marble.jpg";
         LoadContent();
     }
     void Update(const sf::Input& input){
