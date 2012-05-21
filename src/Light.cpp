@@ -69,7 +69,7 @@ bool Light::LoadContent() {
 
 void Light::draw() {
 
-    GLInit();
+  //  GLInit();
     if (EnableSphere)
         sphere->Draw();
 }
