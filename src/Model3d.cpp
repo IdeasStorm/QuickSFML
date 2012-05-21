@@ -124,7 +124,7 @@ void Model3d::GLInit() {
     light2->setDirection(sf::Vector3f(0, -1, -1));
     light2->w = 1;
     light2->lightNum = GL_LIGHT0;
-   // light2->GLInit();
+    light2->GLInit();
 
     //glEnable(GL_LIGHT0);
     glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
