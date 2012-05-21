@@ -50,7 +50,8 @@ bool Studio::LoadContent() {
 
 void Studio::LoadComponents() {
     loadUserComponents(components);
-//========================box2=====================================
+/*
+ //========================box2=====================================
 Train *box2 = new Train();
 box2->position = Vector3f(37.100006,0.200000,-143.977386); 
 box2->halfSize = Vector3f(0.200000,0.200000,0.200000); 
@@ -59,7 +60,7 @@ box2->camera = camera ;
 box2->tag = "moveable"; 
 components.push_back(box2); 
 //==================================================================
-
+*/
 //========================box25=====================================
 box25  = new Light(sf::Vector3f(-8.399998,5.199969,-102.799728),90,true);
 box25->ambient = sf::Color(1,1,1);
@@ -117,7 +118,7 @@ box31  = new Light(sf::Vector3f(25.499977,42.100014,130.800049),90,true);
 box31->ambient = sf::Color(1,1,1);
 box31->diffuse = sf::Color(1,1,1);
 box31->specular = sf::Color(0,0,0);
-box31->w = 1 ;
+box31->w =1 ;
 box31->lightNum = GL_LIGHT6 ;
 box31->EXPONENT = 200 ;
 box31->setDirection(sf::Vector3f(0,-1,1));
@@ -159,7 +160,7 @@ void Studio::Update(const sf::Input& input) {
     static bool P_was_down = false;
     static bool Z_was_down = false;
 
-    //camera->SetOrigin(train->position.x+8.3,train->position.y+15,train->position.z);
+    camera->SetOrigin(train->position.x+8.3,train->position.y+15,train->position.z);
     if (input.IsKeyDown(sf::Key::Num1)){
         cameraEnable = camera ;
     }

@@ -43,7 +43,7 @@ void Train::Update(const sf::Input &input) {
             //movmetnSound.SetPosition(this->position);
             movmetnSound.Play();
     }
-    camera->SetOrigin(position.x+8.3,position.y+15,position.z);
+  //  camera->SetOrigin(position.x+8.3,position.y+15,position.z);
 }
 Train::~Train() {
 
