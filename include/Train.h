@@ -16,6 +16,7 @@ class Train : public Model3d
 {
 public:
 
+    GLFrame *camera ;
     Train() : Model3d("train1.3ds", "./Data/Train/1/") {
         self_control = true;
         speed = 0;

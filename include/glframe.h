@@ -14,7 +14,7 @@
 
 class GLFrame {
 protected:
-    M3DVector3f Origin; // Where am I?
+    
     M3DVector3f Forward; // Where am I going?
     M3DVector3f Up; // Which way is up?
 
@@ -26,6 +26,7 @@ protected:
     bool first;
 
 public:
+    M3DVector3f Origin; // Where am I?
     bool EnableMove, EnableMouse;
 
     void ApplyCamera() {

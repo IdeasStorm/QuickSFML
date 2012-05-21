@@ -12,6 +12,7 @@
 #include "Cylinder.h"
 #include "Arch.h"
 #include "Railway.h"
+#include "glframe.h"
 #include <sstream>
 #include <Model3d.h>
 
@@ -49,6 +50,15 @@ bool Studio::LoadContent() {
 
 void Studio::LoadComponents() {
     loadUserComponents(components);
+//========================box2=====================================
+Train *box2 = new Train();
+box2->position = Vector3f(37.100006,0.200000,-143.977386); 
+box2->halfSize = Vector3f(0.200000,0.200000,0.200000); 
+box2->setRotation(0.000000,0.000000,0.000000); 
+box2->camera = camera ;
+box2->tag = "moveable"; 
+components.push_back(box2); 
+//==================================================================
 
 //========================box25=====================================
 box25  = new Light(sf::Vector3f(-8.399998,5.199969,-102.799728),90,true);
@@ -82,7 +92,7 @@ box27->ambient = sf::Color(1,1,1);
 box27->diffuse = sf::Color(1,1,1);
 box27->specular = sf::Color(0,0,0);
 box27->w = 1 ;
-box27->EXPONENT =100 ;
+box27->EXPONENT =150 ;
 box27->lightNum = GL_LIGHT4;
 box27->position = Vector3f(53.999985,4.699982,-30.600025); 
 box27->setDirection(sf::Vector3f(-1,1,0));
@@ -149,7 +159,7 @@ void Studio::Update(const sf::Input& input) {
     static bool P_was_down = false;
     static bool Z_was_down = false;
 
-    camera->SetOrigin(train->position.x+8.3,train->position.y+15,train->position.z);
+    //camera->SetOrigin(train->position.x+8.3,train->position.y+15,train->position.z);
     if (input.IsKeyDown(sf::Key::Num1)){
         cameraEnable = camera ;
     }
