@@ -9,6 +9,7 @@
 #define	TRAIN_H
 #include "Model3d.h"
 #include "Drawable.h"
+//#include "Light.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/System.hpp>
@@ -17,6 +18,7 @@ class Train : public Model3d
 public:
 
     GLFrame *camera ;
+  //  Light *Right , *Lift ;
     Train() : Model3d("train1.3ds", "./Data/Train/1/") {
         self_control = true;
         speed = 0;
