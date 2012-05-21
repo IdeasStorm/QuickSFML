@@ -8,11 +8,9 @@
 #ifndef MODEL3D_H
 #define	MODEL3D_H
 
-
+#include "Light.h"
 #include <SFML/Graphics.hpp>
-
 #include <fstream>
-
 //to map image filenames to textureIds
 #include <string.h>
 #include <map>

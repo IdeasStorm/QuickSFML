@@ -10,6 +10,7 @@
 #include <SFML/Graphics.hpp>
 #include <list>
 #include "glframe.h"
+
 #include <iostream>
 #include <fstream>
 using namespace std;
