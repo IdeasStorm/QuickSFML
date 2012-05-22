@@ -48,6 +48,9 @@ void Light::init() {
     EXPONENT = 150 ;
     lightNum = GL_LIGHT0;
     //lightNum += 1;
+    ambient = sf::Color(0,0,0,1);
+    diffuse = sf::Color(1,1,1);
+    specular = sf::Color(1,1,1,1);
     spot_direction[0] = 0.0;
     spot_direction[1] = -1.0;
     spot_direction[2] = 0.0;

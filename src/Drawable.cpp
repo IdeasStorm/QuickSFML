@@ -70,6 +70,7 @@ void GLDrawable::Draw() {
     if (components.empty())
         return;
     list<GLDrawable*>::iterator i;
+    
     for (i=components.begin();i!=components.end();i++){
         ((GLDrawable*)(*i))->Draw();
     }
