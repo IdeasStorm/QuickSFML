@@ -248,7 +248,7 @@ components.push_back(box32);
 
 //========================box33=====================================
 Model3d *box33 = new Model3d("./Data/Model/bench_conc.3DS","./");
-box33->setTexture("./Data/NeHe.bmp");
+//box33->setTexture("./Data/NeHe.bmp");
 box33->position = Vector3f(76.300003,12.400000,7.700000); 
 box33->halfSize = Vector3f(0.310000,0.410000,-0.290000); 
 box33->setRotation(0.000000,0.000000,0.000000); 
