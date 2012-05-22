@@ -256,6 +256,7 @@ components.push_back(box32);
 //==================================================================
 //========================box33=====================================
 Model3d *box33 = new Model3d("./Data/Model/bench_conc.3DS","./");
+box33->setTexture("./Data/NeHe.bmp");
 box33->position = Vector3f(76.300003,12.400000,7.700000); 
 box33->halfSize = Vector3f(0.310000,0.410000,-0.290000); 
 box33->setRotation(0.000000,0.000000,0.000000); 
@@ -342,4 +343,11 @@ box40->setRotation(0.000000,0.000000,0.000000);
 box40->tag = ""; 
 components.push_back(box40); 
 //==================================================================
+Box *box41 = new Box();
+box41->setTexture("./Data/Textures/OpenCitizenStack.jpg");
+box41->position = Vector3f(173.782730,47.099903,11.800009);
+box41->halfSize = Vector3f(1.400000,10.100002,26.700026);
+box41->setRotation(0.000000,0.000000,0.000000);
+box41->tag = "";
+components.push_back(box41); 
 }
