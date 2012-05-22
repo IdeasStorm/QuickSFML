@@ -50,6 +50,16 @@ bool Studio::LoadContent() {
 
 void Studio::LoadComponents() {
     loadUserComponents(components);
+//========================box2=====================================
+Train *box2 = new Train();
+box2->position = Vector3f(37.100006,0.200000,-169.224396); 
+box2->halfSize = Vector3f(0.200000,0.200000,0.200000); 
+box2->tag = "automated";
+box2->camera = camera ;
+box2->setRotation(0.000000,0.000000,0.000000); 
+components.push_back(box2); 
+//==================================================================
+
 //========================box25=====================================
 box25  = new Light(sf::Vector3f(-8.399998,5.199969,-102.799728),90,true);
 box25->w = 1 ;
@@ -114,7 +124,8 @@ defaultLight->EXPONENT = -2 ;
 defaultLight->lightNum = GL_LIGHT0;
 //defaultLight->ligthEnable = false ;
 components.push_back(defaultLight);
-    
+
+
     currentComponent = components.begin();
     list<GLDrawable*>::iterator i;
     for (i = components.begin(); i != components.end(); i++) {
