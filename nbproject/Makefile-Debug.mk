@@ -45,7 +45,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/src/MyScene.o \
 	${OBJECTDIR}/src/Cylinder.o \
 	${OBJECTDIR}/src/Railway.o \
-	${OBJECTDIR}/src/DigitalClock.o \
 	${OBJECTDIR}/src/Drawable.o \
 	${OBJECTDIR}/src/Ground.o \
 	${OBJECTDIR}/src/Box.o \
@@ -132,11 +131,6 @@ ${OBJECTDIR}/src/Railway.o: src/Railway.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
 	$(COMPILE.cc) -g -Wall -Iinclude `pkg-config --cflags assimp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Railway.o src/Railway.cpp
-
-${OBJECTDIR}/src/DigitalClock.o: src/DigitalClock.cpp 
-	${MKDIR} -p ${OBJECTDIR}/src
-	${RM} $@.d
-	$(COMPILE.cc) -g -Wall -Iinclude `pkg-config --cflags assimp`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/DigitalClock.o src/DigitalClock.cpp
 
 ${OBJECTDIR}/src/Drawable.o: src/Drawable.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src

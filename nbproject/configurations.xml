@@ -7,7 +7,6 @@
       <itemPath>include/Arch.h</itemPath>
       <itemPath>include/Box.h</itemPath>
       <itemPath>include/Cylinder.h</itemPath>
-      <itemPath>include/DigitalClock.h</itemPath>
       <itemPath>include/Drawable.h</itemPath>
       <itemPath>include/GLScene.h</itemPath>
       <itemPath>include/Ground.h</itemPath>
@@ -36,7 +35,6 @@
       <itemPath>src/Arch.cpp</itemPath>
       <itemPath>src/Box.cpp</itemPath>
       <itemPath>src/Cylinder.cpp</itemPath>
-      <itemPath>src/DigitalClock.cpp</itemPath>
       <itemPath>src/Drawable.cpp</itemPath>
       <itemPath>src/GLScene.cpp</itemPath>
       <itemPath>src/Ground.cpp</itemPath>
