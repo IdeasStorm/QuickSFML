@@ -342,4 +342,11 @@ box40->setRotation(0.000000,0.000000,0.000000);
 box40->tag = ""; 
 components.push_back(box40); 
 //==================================================================
+Box *box41 = new Box();
+box41->setTexture("./Data/Textures/OpenCitizenStack.jpg");
+box41->position = Vector3f(173.782730,47.099903,11.800009);
+box41->halfSize = Vector3f(1.400000,10.100002,26.700026);
+box41->setRotation(0.000000,0.000000,0.000000);
+box41->tag = "";
+components.push_back(box41); 
 }
