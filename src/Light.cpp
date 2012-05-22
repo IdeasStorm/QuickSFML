@@ -68,7 +68,6 @@ bool Light::LoadContent() {
 
 void Light::draw() {
 
-  //  GLInit();
     GLfloat temp[] = {position.x, position.y, position.z, w};
     glLightfv(lightNum, GL_POSITION, temp);
     if (EnableSphere)
