@@ -308,46 +308,46 @@ box37->tag = "";
 components.push_back(box37); 
 //==================================================================
 //========================box38=====================================
-Light *box38  = new Light(sf::Vector3f(54.000000,4.800001,-42.500038),90,true);
-box38->ambient = sf::Color(1,1,1);
-box38->diffuse = sf::Color(1,1,1);
-box38->specular = sf::Color(0,0,0);
-box38->w = 1 ;
-box38->position = Vector3f(54.000000,4.800001,-42.500038); 
-box38->halfSize = Vector3f(1.000000,1.000000,1.000000); 
-box38->setRotation(0.000000,0.000000,0.000000); 
-box38->tag = ""; 
-components.push_back(box38); 
-//==================================================================
-//========================box39=====================================
-Light *box39  = new Light(sf::Vector3f(25.499977,42.100014,130.800049),90,true);
-box39->ambient = sf::Color(1,1,1);
-box39->diffuse = sf::Color(1,1,1);
-box39->specular = sf::Color(0,0,0);
-box39->w = 1 ;
-box39->position = Vector3f(25.499977,42.100014,130.800049); 
-box39->halfSize = Vector3f(1.000000,1.000000,1.000000); 
-box39->setRotation(0.000000,0.000000,0.000000); 
-box39->tag = ""; 
-components.push_back(box39); 
-//==================================================================
-//========================box40=====================================
-Light *box40  = new Light(sf::Vector3f(0.000000,500.000000,0.000000),90,true);
-box40->ambient = sf::Color(1,1,1);
-box40->diffuse = sf::Color(1,1,1);
-box40->specular = sf::Color(0,0,0);
-box40->w = 1 ;
-box40->position = Vector3f(0.000000,500.000000,0.000000); 
-box40->halfSize = Vector3f(1.000000,1.000000,1.000000); 
-box40->setRotation(0.000000,0.000000,0.000000); 
-box40->tag = ""; 
-components.push_back(box40); 
+//Light *box38  = new Light(sf::Vector3f(54.000000,4.800001,-42.500038),90,true);
+//box38->ambient = sf::Color(1,1,1);
+//box38->diffuse = sf::Color(1,1,1);
+//box38->specular = sf::Color(0,0,0);
+//box38->w = 1 ;
+//box38->position = Vector3f(54.000000,4.800001,-42.500038); 
+//box38->halfSize = Vector3f(1.000000,1.000000,1.000000); 
+//box38->setRotation(0.000000,0.000000,0.000000); 
+//box38->tag = ""; 
+//components.push_back(box38); 
+////==================================================================
+////========================box39=====================================
+//Light *box39  = new Light(sf::Vector3f(25.499977,42.100014,130.800049),90,true);
+//box39->ambient = sf::Color(1,1,1);
+//box39->diffuse = sf::Color(1,1,1);
+//box39->specular = sf::Color(0,0,0);
+//box39->w = 1 ;
+//box39->position = Vector3f(25.499977,42.100014,130.800049); 
+//box39->halfSize = Vector3f(1.000000,1.000000,1.000000); 
+//box39->setRotation(0.000000,0.000000,0.000000); 
+//box39->tag = ""; 
+//components.push_back(box39); 
+////==================================================================
+////========================box40=====================================
+//Light *box40  = new Light(sf::Vector3f(0.000000,500.000000,0.000000),90,true);
+//box40->ambient = sf::Color(1,1,1);
+//box40->diffuse = sf::Color(1,1,1);
+//box40->specular = sf::Color(0,0,0);
+//box40->w = 1 ;
+//box40->position = Vector3f(0.000000,500.000000,0.000000); 
+//box40->halfSize = Vector3f(1.000000,1.000000,1.000000); 
+//box40->setRotation(0.000000,0.000000,0.000000); 
+//box40->tag = ""; 
+//components.push_back(box40); 
 //==================================================================
 Box *box41 = new Box();
-box41->setTexture("./Data/Textures/OpenCitizenStack.jpg");
+
 box41->position = Vector3f(173.782730,47.099903,11.800009);
 box41->halfSize = Vector3f(1.400000,10.100002,26.700026);
 box41->setRotation(0.000000,0.000000,0.000000);
-box41->tag = "";
+box41->tag = "Ad2";
 components.push_back(box41); 
 }
