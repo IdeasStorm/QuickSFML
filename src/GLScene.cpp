@@ -229,6 +229,7 @@ void GLScene::LoadComponents() {
 }
 
 void GLScene::Update(const sf::Input& input) {
+    glLightfv(GL_LIGHT0, GL_POSITION, LightPosition); // Position The Light
     list<GLDrawable*>::iterator i;
     for (i=components.begin();i!=components.end();i++){            
         if (update_child_controls && ((GLDrawable*)(*i))->self_control )

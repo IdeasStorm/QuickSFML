@@ -20,7 +20,7 @@ Model3d::Model3d(const std::string& pFile, const std::string& path) {
         abort();
     }
 
-    scene = importer.ReadFile(temp, aiProcessPreset_TargetRealtime_Quality);
+    scene = importer.ReadFile(temp, aiProcessPreset_TargetRealtime_Fast);
 
     // If the import failed, report it
     if (!scene) {
