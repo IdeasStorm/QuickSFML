@@ -36,8 +36,7 @@ using namespace std;
 
 class Model3d : public GLDrawable {
 public:
-    Model3d(const std::string& pFile, const std::string& path = "./");
-    //Model3d(const Model3d& orig);
+    Model3d(const std::string& pFile, const std::string& path = "./");    
     ~Model3d();
     int LoadGLTextures(const aiScene* scene);
     void LoadComponents()const;
@@ -138,9 +137,12 @@ private:
 
         if (AI_SUCCESS == mtl->GetTexture(aiTextureType_DIFFUSE, texIndex, &texPath)) {
             //bind texture
-            glEnable(GL_TEXTURE_2D);
-            unsigned int texId = *textureIdMap[texPath.data];
-            glBindTexture(GL_TEXTURE_2D, texId);
+            if(!textureEnabled)
+            {
+                glEnable(GL_TEXTURE_2D);
+                unsigned int texId = *textureIdMap[texPath.data];
+                glBindTexture(GL_TEXTURE_2D, texId);
+            }
         }
 
         set_float4(c, 0.8f, 0.8f, 0.8f, 1.0f);
@@ -267,7 +269,9 @@ private:
                 glEnd();
 
             }
-            glDisable(GL_TEXTURE_2D);
+            if(!textureEnabled) {
+                glDisable(GL_TEXTURE_2D);
+            }
         }
 
 
