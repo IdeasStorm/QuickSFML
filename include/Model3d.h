@@ -69,17 +69,35 @@ private:
     const aiScene* scene;
     GLuint scene_list;
     aiVector3D scene_min, scene_max, scene_center;
-
+    list<Texture> textures;
     // images / texture
     std::map<std::string, GLuint*> textureIdMap; // map image filenames to textureIds
     GLuint* textureIds; // pointer to texture Array
 
     string basepath;
     string modelname;
-
+    string texture_path;
     // Create an instance of the Importer class
     Assimp::Importer importer;
 
+    void setTexture(const string& path) {
+        textureEnabled = true;
+        texture_path = path;
+        Texture tex(path);
+        textures.push_back(tex);
+    }
+    
+   inline void applyFaceTexture() {
+        if (!textureEnabled || textures.empty()) 
+            return;
+        list<Texture>::iterator i;
+        for (i=textures.begin();i!=textures.end();i++){
+                glEnable(GL_TEXTURE_2D);
+                glBindTexture(GL_TEXTURE_2D, i->getPtr(filter));                
+                break;
+        }
+   }
+    
     void Color4f(const aiColor4D *color) {
         glColor4f(color->r, color->g, color->b, color->a);
     }
@@ -260,8 +278,9 @@ private:
 
     void drawAiScene(const aiScene* scene) {
         //	logInfo("drawing objects");
+        applyFaceTexture();
         recursive_render(scene, scene->mRootNode, 1);
-
+        glDisable(GL_TEXTURE_2D);
     }
 
 };
