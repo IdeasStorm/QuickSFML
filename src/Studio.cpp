@@ -50,17 +50,6 @@ bool Studio::LoadContent() {
 
 void Studio::LoadComponents() {
     loadUserComponents(components);
-/*
- //========================box2=====================================
-Train *box2 = new Train();
-box2->position = Vector3f(37.100006,0.200000,-143.977386); 
-box2->halfSize = Vector3f(0.200000,0.200000,0.200000); 
-box2->setRotation(0.000000,0.000000,0.000000); 
-box2->camera = camera ;
-box2->tag = "moveable"; 
-components.push_back(box2); 
-//==================================================================
-*/
 //========================box25=====================================
 box25  = new Light(sf::Vector3f(-8.399998,5.199969,-102.799728),90,true);
 box25->ambient = sf::Color(1,1,1);
@@ -309,8 +298,8 @@ void Studio::Update(const sf::Input& input) {
         M_was_down = true;
     } else if (M_was_down) {
         M_was_down = false;
-        Model3d *model = new Model3d("./Data/Train/1/train1.3ds","./");
-
+        Model3d *model = new Model3d("./Data/Model/new/c75fbe10a2a52aaa9986fd960ecdb4c3/Bench-park1.3DS","./");
+        model->halfSize = sf::Vector3f(0.01,0.01,0.01);
         model->LoadContent();
         model->GLInit();
         components.push_back(model);
