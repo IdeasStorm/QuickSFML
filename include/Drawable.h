@@ -80,7 +80,9 @@ public:
     virtual void LoadComponents();
     bool textureEnabled;
     GLuint filter; // Which Filter To Use
-    virtual string getClass() = 0;
+    virtual string getClass() {
+        return "Drawable";
+    }
 
     virtual void DisableTexture() {
         textureEnabled = false;
