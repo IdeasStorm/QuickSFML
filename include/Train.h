@@ -38,12 +38,9 @@ public:
             abort();
         comingSound.SetBuffer(comingBuffer);           
         
-        light  = new Light(sf::Vector3f(-40.900002,40,position.z + 5),45,true);
-        light->ambient = sf::Color(1,1,1);
-        light->diffuse = sf::Color(1,1,1);
-        light->specular = sf::Color(0,0,0);
-        light->w = 1 ;
-        light->EXPONENT = 2 ;
+        light  = new Light(sf::Vector3f(-40.900002,40,position.z + 50),45,false);
+        light->w = 0 ;
+        light->EXPONENT = 1 ;
         light->setDirection(sf::Vector3f(0,0,1));
         light->lightNum = GL_LIGHT7;
         //left->ligthEnable = false ;
