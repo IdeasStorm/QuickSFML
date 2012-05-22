@@ -21,7 +21,7 @@ components.push_back(box1);
 //==================================================================
 //========================box2=====================================
 Train *box2 = new Train();
-box2->position = Vector3f(37.100006,0.200000,206.565262); 
+box2->position = Vector3f(37.100006,0.200000,-169.224396); 
 box2->halfSize = Vector3f(0.200000,0.200000,0.200000); 
 box2->setRotation(0.000000,0.000000,0.000000); 
 box2->tag = "moveable"; 
@@ -180,80 +180,96 @@ box21->setRotation(0.000000,0.000000,0.000000);
 box21->tag = ""; 
 components.push_back(box21); 
 //==================================================================
-
+//========================box22=====================================
+Box *box22 = new Box();
+box22->position = Vector3f(86.779991,43.799980,25.300020); 
+box22->halfSize = Vector3f(2.799999,2.400000,1.000000); 
+box22->setRotation(0.000000,0.000000,0.000000); 
+box22->tag = "clock"; 
+components.push_back(box22); 
+//==================================================================
+//========================box23=====================================
+Model3d *box23 = new Model3d("./Data/Model/chair/Bus stop N290112.3DS","./");
+box23->position = Vector3f(83.000000,10.000000,-40.000000); 
+box23->halfSize = Vector3f(0.010000,0.010000,0.010000); 
+box23->setRotation(39.000000,0.000000,0.000000); 
+box23->tag = ""; 
+components.push_back(box23); 
+//==================================================================
 //========================box24=====================================
 Box *box24 = new Box();
-box24->position = Vector3f(86.779991,43.799980,25.300020); 
-box24->halfSize = Vector3f(2.799999,2.400000,1.000000); 
-box24->setRotation(0.000000,0.000000,0.000000); 
-box24->tag = "clock"; 
+box24->position = Vector3f(97.399086,45.899796,-26.250048); 
+box24->halfSize = Vector3f(15.800024,7.699995,0.500000); 
+box24->setRotation(0.000000,11.000000,0.000000); 
+box24->tag = "LCD"; 
 components.push_back(box24); 
 //==================================================================
 //========================box25=====================================
-Model3d *box25 = new Model3d("./Data/Model/chair/Bus stop N290112.3DS","./");
-box25->position = Vector3f(83.000000,10.000000,-40.000000); 
-box25->halfSize = Vector3f(0.010000,0.010000,0.010000); 
-box25->setRotation(39.000000,0.000000,0.000000); 
-box25->tag = ""; 
+Box *box25 = new Box();
+box25->position = Vector3f(97.199089,45.899796,-30.150063); 
+box25->halfSize = Vector3f(15.500023,7.699995,0.500000); 
+box25->setRotation(0.000000,171.000000,180.000000); 
+box25->tag = "LCD"; 
 components.push_back(box25); 
 //==================================================================
 //========================box26=====================================
 Box *box26 = new Box();
-box26->position = Vector3f(97.399086,45.899796,-26.250048); 
-box26->halfSize = Vector3f(15.800024,7.699995,0.500000); 
-box26->setRotation(0.000000,11.000000,0.000000); 
-box26->tag = "LCD"; 
+box26->setTexture("./Data/Textures/Ceramic_texture.jpg");
+box26->position = Vector3f(67.999535,71.399635,-27.750053); 
+box26->halfSize = Vector3f(129.795502,1.300000,166.201736); 
+box26->setRotation(0.000000,0.000000,0.000000); 
+box26->tag = ""; 
 components.push_back(box26); 
 //==================================================================
 //========================box27=====================================
-Box *box27 = new Box();
-box27->position = Vector3f(97.199089,45.899796,-30.150063); 
-box27->halfSize = Vector3f(15.500023,7.699995,0.500000); 
-box27->setRotation(0.000000,171.000000,180.000000); 
-box27->tag = "LCD"; 
+Cylinder *box27 = new Cylinder();
+box27->position = Vector3f(97.300003,56.599911,-28.200005); 
+box27->halfSize = Vector3f(0.500000,16.200026,-0.700000); 
+box27->setRotation(1.000000,90.000000,-13.000000); 
+box27->tag = ""; 
 components.push_back(box27); 
 //==================================================================
 //========================box28=====================================
-Box *box28 = new Box();
-box28->setTexture("./Data/Textures/Ceramic_texture.jpg");
-box28->position = Vector3f(67.999535,71.399635,-27.750053); 
-box28->halfSize = Vector3f(129.795502,1.300000,166.201736); 
-box28->setRotation(0.000000,0.000000,0.000000); 
+Model3d *box28 = new Model3d("./Data/Model/chair/Bus stop N161111.3DS","./");
+box28->position = Vector3f(-31.800003,12.800001,-25.000000); 
+box28->halfSize = Vector3f(0.010000,0.010000,0.010000); 
+box28->setRotation(214.000000,0.000000,0.000000); 
 box28->tag = ""; 
 components.push_back(box28); 
 //==================================================================
 //========================box29=====================================
-Cylinder *box29 = new Cylinder();
-box29->position = Vector3f(97.300003,56.599911,-28.200005); 
-box29->halfSize = Vector3f(0.500000,16.200026,-0.700000); 
-box29->setRotation(1.000000,90.000000,-13.000000); 
+Model3d *box29 = new Model3d("./Data/Model/Call box N071211.3DS","./");
+box29->position = Vector3f(112.100006,37.000000,-174.099960); 
+box29->halfSize = Vector3f(0.010000,0.010000,0.010000); 
+box29->setRotation(0.000000,0.000000,0.000000); 
 box29->tag = ""; 
 components.push_back(box29); 
 //==================================================================
 //========================box30=====================================
-Model3d *box30 = new Model3d("./Data/Model/chair/Bus stop N161111.3DS","./");
-box30->position = Vector3f(-31.800003,12.800001,-25.000000); 
+Model3d *box30 = new Model3d("./Data/Model/Bench N272011.3DS","./");
+box30->position = Vector3f(77.000000,13.000000,-88.000000); 
 box30->halfSize = Vector3f(0.010000,0.010000,0.010000); 
-box30->setRotation(214.000000,0.000000,0.000000); 
+box30->setRotation(7.000000,0.000000,0.000000); 
 box30->tag = ""; 
 components.push_back(box30); 
 //==================================================================
 //========================box31=====================================
-Model3d *box31 = new Model3d("./Data/Model/Call box N071211.3DS","./");
-box31->position = Vector3f(112.100006,37.000000,-174.099960); 
-box31->halfSize = Vector3f(0.010000,0.010000,0.010000); 
+Model3d *box31 = new Model3d("./Data/Model/bench_conc.3DS","./");
+box31->position = Vector3f(76.300003,12.400000,7.700000); 
+box31->halfSize = Vector3f(0.310000,0.410000,-0.290000); 
 box31->setRotation(0.000000,0.000000,0.000000); 
 box31->tag = ""; 
 components.push_back(box31); 
 //==================================================================
 //========================box32=====================================
-Model3d *box32 = new Model3d("./Data/Model/Bench N272011.3DS","./");
-box32->position = Vector3f(77.000000,13.000000,-88.000000); 
-box32->halfSize = Vector3f(0.010000,0.010000,0.010000); 
-box32->setRotation(7.000000,0.000000,0.000000); 
-box32->tag = ""; 
+Box *box32 = new Box();
+box32->position = Vector3f(-56.499825,44.799889,8.999998); 
+box32->halfSize = Vector3f(-0.900000,12.600012,19.700037); 
+box32->setRotation(0.000000,0.000000,0.000000); 
+box32->tag = "Ad1"; 
 components.push_back(box32); 
 //==================================================================
+
 //========================box33=====================================
 Model3d *box33 = new Model3d("./Data/Model/bench_conc.3DS","./");
 box33->setTexture("./Data/NeHe.bmp");
@@ -271,83 +287,11 @@ box34->setRotation(0.000000,0.000000,0.000000);
 box34->tag = "Ad1"; 
 components.push_back(box34); 
 //==================================================================
-//========================box35=====================================
-Light *box35  = new Light(sf::Vector3f(-8.399998,5.199969,-102.799728),90,true);
-box35->ambient = sf::Color(1,1,1);
-box35->diffuse = sf::Color(1,1,1);
-box35->specular = sf::Color(0,0,0);
-box35->w = 1 ;
-box35->position = Vector3f(-8.399998,5.199969,-102.799728); 
-box35->halfSize = Vector3f(1.000000,1.000000,1.000000); 
-box35->setRotation(0.000000,0.000000,0.000000); 
-box35->tag = ""; 
-components.push_back(box35); 
-//==================================================================
-//========================box36=====================================
-Light *box36  = new Light(sf::Vector3f(-7.999998,5.299992,-114.799881),90,true);
-box36->ambient = sf::Color(1,1,1);
-box36->diffuse = sf::Color(1,1,1);
-box36->specular = sf::Color(0,0,0);
-box36->w = 1 ;
-box36->position = Vector3f(-7.999998,5.299992,-114.799881); 
-box36->halfSize = Vector3f(1.000000,1.000000,1.000000); 
-box36->setRotation(0.000000,0.000000,0.000000); 
-box36->tag = ""; 
-components.push_back(box36); 
-//==================================================================
-//========================box37=====================================
-Light *box37  = new Light(sf::Vector3f(53.999985,4.699982,-30.600025),90,true);
-box37->ambient = sf::Color(1,1,1);
-box37->diffuse = sf::Color(1,1,1);
-box37->specular = sf::Color(0,0,0);
-box37->w = 1 ;
-box37->position = Vector3f(53.999985,4.699982,-30.600025); 
-box37->halfSize = Vector3f(1.000000,1.000000,1.000000); 
-box37->setRotation(0.000000,0.000000,0.000000); 
-box37->tag = ""; 
-components.push_back(box37); 
-//==================================================================
-//========================box38=====================================
-Light *box38  = new Light(sf::Vector3f(54.000000,4.800001,-42.500038),90,true);
-box38->ambient = sf::Color(1,1,1);
-box38->diffuse = sf::Color(1,1,1);
-box38->specular = sf::Color(0,0,0);
-box38->w = 1 ;
-box38->position = Vector3f(54.000000,4.800001,-42.500038); 
-box38->halfSize = Vector3f(1.000000,1.000000,1.000000); 
-box38->setRotation(0.000000,0.000000,0.000000); 
-box38->tag = ""; 
-components.push_back(box38); 
-//==================================================================
-//========================box39=====================================
-Light *box39  = new Light(sf::Vector3f(25.499977,42.100014,130.800049),90,true);
-box39->ambient = sf::Color(1,1,1);
-box39->diffuse = sf::Color(1,1,1);
-box39->specular = sf::Color(0,0,0);
-box39->w = 1 ;
-box39->position = Vector3f(25.499977,42.100014,130.800049); 
-box39->halfSize = Vector3f(1.000000,1.000000,1.000000); 
-box39->setRotation(0.000000,0.000000,0.000000); 
-box39->tag = ""; 
-components.push_back(box39); 
-//==================================================================
-//========================box40=====================================
-Light *box40  = new Light(sf::Vector3f(0.000000,500.000000,0.000000),90,true);
-box40->ambient = sf::Color(1,1,1);
-box40->diffuse = sf::Color(1,1,1);
-box40->specular = sf::Color(0,0,0);
-box40->w = 1 ;
-box40->position = Vector3f(0.000000,500.000000,0.000000); 
-box40->halfSize = Vector3f(1.000000,1.000000,1.000000); 
-box40->setRotation(0.000000,0.000000,0.000000); 
-box40->tag = ""; 
-components.push_back(box40); 
-//==================================================================
 Box *box41 = new Box();
-box41->setTexture("./Data/Textures/OpenCitizenStack.jpg");
 box41->position = Vector3f(173.782730,47.099903,11.800009);
 box41->halfSize = Vector3f(1.400000,10.100002,26.700026);
 box41->setRotation(0.000000,0.000000,0.000000);
-box41->tag = "";
+box41->tag = "Ad2";
 components.push_back(box41); 
+
 }
