@@ -96,15 +96,22 @@ box31->w =1 ;
 box31->lightNum = GL_LIGHT6 ;
 box31->EXPONENT = 2 ;
 box31->setDirection(sf::Vector3f(0,-1,1));
-//box31->ligthEnable = false ;
+box31->ligthEnable = false ;
 components.push_back(box31); 
-
-    Light *defaultLight = new Light(sf::Vector3f(0, 500, 0), 30, false);
-    defaultLight->setDirection(sf::Vector3f(0, -1, 0));
-    defaultLight->w = 1;
-    defaultLight->lightNum = GL_LIGHT0;
-
-    components.push_back(defaultLight);
+//========================box45=====================================
+box45  = new Light(sf::Vector3f(-56.400009,57.000000,28.000000),90,false);
+box45->w = 1 ;
+box45->lightNum = GL_LIGHT1;
+box45->EXPONENT = 200 ;
+box45->setDirection(sf::Vector3f(0,-1,0));
+components.push_back(box45); 
+//==================================================================
+Light *defaultLight = new Light(sf::Vector3f(0, 500, 0), 30, false);
+defaultLight->setDirection(sf::Vector3f(0, -1, 0));
+defaultLight->w = 1;
+defaultLight->lightNum = GL_LIGHT0;
+//defaultLight->ligthEnable = false ;
+components.push_back(defaultLight);
     
     currentComponent = components.begin();
     list<GLDrawable*>::iterator i;
@@ -128,8 +135,10 @@ void Studio::Update(const sf::Input& input) {
     static bool R_was_down = false;
     static bool P_was_down = false;
     static bool Z_was_down = false;
-
-    camera->SetOrigin(train->position.x+8.3,train->position.y+15,train->position.z);
+    //
+    if (cameraEnable == camera)
+        camera->SetOrigin(train->position.x+8.3,train->position.y+15,train->position.z);
+    
     if (input.IsKeyDown(sf::Key::Num1)){
         cameraEnable = camera ;
     }

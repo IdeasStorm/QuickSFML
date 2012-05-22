@@ -35,7 +35,7 @@ public:
 private:
     Train *train ;
     Light *light ;
-    Light *box25 , *box26,*box27,*box28 ,*box31;
+    Light *box25 , *box26,*box27,*box28 ,*box31 , *box45;
     Texture *tex_wall_noised;
     Texture *tex_wall_brown;
     Texture *tex_default;
