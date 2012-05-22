@@ -66,13 +66,8 @@ void Light::setDirection(sf::Vector3f dir) {
 void Light::Update(const sf::Input& input) {
     GLfloat temp[] = {position.x, position.y, position.z, w};
     glLightfv(lightNum, GL_POSITION, temp);
-    
-    //glLightf(lightNum, GL_SPOT_EXPONENT, EXPONENT);
-
-
     if (EnableDirection){
             glLightfv(lightNum, GL_SPOT_DIRECTION, spot_direction);
-            glLightf(lightNum, GL_SPOT_CUTOFF, angle);
     }
 }
 
