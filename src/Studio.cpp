@@ -51,13 +51,12 @@ bool Studio::LoadContent() {
 void Studio::LoadComponents() {
     loadUserComponents(components);
 //========================box25=====================================
-
 box25  = new Light(sf::Vector3f(-8.399998,5.199969,-102.799728),90,true);
 box25->ambient = sf::Color(1,1,1);
 box25->diffuse = sf::Color(1,1,1);
 box25->specular = sf::Color(0,0,0);
 box25->w = 1 ;
-box25->EXPONENT = 200 ;
+box25->EXPONENT = 2 ;
 box25->lightNum = GL_LIGHT1;
 box25->setDirection(sf::Vector3f(100,15,10));
 box25->position = Vector3f(-8.399998,5.199969,-102.799728);
@@ -70,7 +69,7 @@ box26->ambient = sf::Color(1,1,1);
 box26->diffuse = sf::Color(1,1,1);
 box26->specular = sf::Color(0,0,0);
 box26->w = 1 ;
-box26->EXPONENT = 100 ;
+box26->EXPONENT = 2 ;
 box26->lightNum = GL_LIGHT2;
 box26->position = Vector3f(-7.999998,5.299992,-114.799881); 
 box26->ligthEnable = false ;
@@ -83,7 +82,7 @@ box27->ambient = sf::Color(1,1,1);
 box27->diffuse = sf::Color(1,1,1);
 box27->specular = sf::Color(0,0,0);
 box27->w = 1 ;
-box27->EXPONENT =150 ;
+box27->EXPONENT =2 ;
 box27->lightNum = GL_LIGHT3;
 box27->position = Vector3f(53.999985,4.699982,-30.600025); 
 box27->setDirection(sf::Vector3f(-100,15,0));
@@ -96,7 +95,7 @@ box28->ambient = sf::Color(1,1,1);
 box28->diffuse = sf::Color(1,1,1);
 box28->specular = sf::Color(0,0,0);
 box28->w = 1 ;
-box28->EXPONENT = 200 ;
+box28->EXPONENT = 2 ;
 box28->lightNum = GL_LIGHT4;
 box28->position = Vector3f(54.000000,4.800001,-42.500038); 
 box28->setDirection(sf::Vector3f(-100,15,0));
@@ -110,9 +109,9 @@ box31->diffuse = sf::Color(1,1,1);
 box31->specular = sf::Color(0,0,0);
 box31->w =1 ;
 box31->lightNum = GL_LIGHT5 ;
-box31->EXPONENT = 200 ;
+box31->EXPONENT = 2 ;
 box31->setDirection(sf::Vector3f(0,-1,1));
-box31->ligthEnable = false ;
+//box31->ligthEnable = false ;
 components.push_back(box31); 
 
     Light *light2 = new Light(sf::Vector3f(0, 500, 0), 45, false);
@@ -299,7 +298,7 @@ void Studio::Update(const sf::Input& input) {
         M_was_down = true;
     } else if (M_was_down) {
         M_was_down = false;
-        Model3d *model = new Model3d("./Data/Model/new/c75fbe10a2a52aaa9986fd960ecdb4c3/Bench-park1.3DS","./");
+        Model3d *model = new Model3d("./Data/Model/bench_conc.3DS","./");
         model->halfSize = sf::Vector3f(0.01,0.01,0.01);
         model->LoadContent();
         model->GLInit();
