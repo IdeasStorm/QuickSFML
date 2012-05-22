@@ -29,6 +29,15 @@ GLDrawable::~GLDrawable() {
     //dtor
 }
 
+void GLDrawable::Update(const sf::Input& input){
+    if (components.empty()) return;
+    list<GLDrawable*>::iterator i;
+    for (i=components.begin();i!=components.end();i++){            
+        if (((GLDrawable*)(*i))->self_control )
+                ((GLDrawable*)(*i))->Update(input);
+        ((GLDrawable*)(*i))->filter = filter;
+    }
+}
 
 
 GLuint* GLDrawable::GetTextures() {
@@ -64,13 +73,6 @@ void GLDrawable::Draw() {
     translate();
     rotate();
     scale();
-    glEnable(GL_COLOR_MATERIAL);
-    float specular[4] = {1,1,1,1};
-    float emission[4] = {0,0,0,1};
-    glColor4f(1,1,1,1);
-    glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,specular);
-    glMaterialfv(GL_FRONT_AND_BACK,GL_EMISSION,emission);
-    glColorMaterial(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE);
     glDisable(GL_TEXTURE_2D);
     draw();
     // end of user draw logic

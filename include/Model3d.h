@@ -287,6 +287,13 @@ private:
         //	logInfo("drawing objects");
         applyFaceTexture();
         recursive_render(scene, scene->mRootNode, 1);
+        glEnable(GL_COLOR_MATERIAL);
+        float specular[4] = {1,1,1,1};
+        float emission[4] = {0,0,0,1};
+        glColor4f(1,1,1,1);
+        glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,specular);
+        glMaterialfv(GL_FRONT_AND_BACK,GL_EMISSION,emission);
+        glColorMaterial(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE);
         glDisable(GL_TEXTURE_2D);
     }
 
