@@ -508,17 +508,16 @@ void Studio::ProcessComponent(GLDrawable *component) {
             tex1.id = elements::Front;
             ((Box*) component)->tex_per_face = -1;
             ((Box*) component)->textures.push_back(tex1);
-//            Texture tex2("./Data/city/left.jpg");
-//            tex2.id = elements::Left;
-//            ((Box*) component)->textures.push_back(tex2);
-//            Texture tex3("./Data/city/right.jpg");
-//            tex3.id = elements::Right;
-//            ((Box*) component)->textures.push_back(tex3);
-//            ((Box*) component)->textureEnabled = true;
-//
-//            Texture tex4("./Data/city/back.jpg");
-//            tex4.id = elements::Back;
-//            ((Box*) component)->textures.push_back(tex4);
+            ((Box*) component)->textureEnabled = true;
+        }
+    else
+        if (tag=="Ad1"){
+            list<Texture> newlist;
+            ((Box*) component)->textures = newlist;
+            Texture tex1("./Data/Textures/smoking.jpg");
+            tex1.id = elements::Left;
+            ((Box*) component)->tex_per_face = -1;
+            ((Box*) component)->textures.push_back(tex1);
             ((Box*) component)->textureEnabled = true;
         }
     else {

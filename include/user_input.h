@@ -21,7 +21,7 @@ components.push_back(box1);
 //==================================================================
 //========================box2=====================================
 Train *box2 = new Train();
-box2->position = Vector3f(37.100006,0.200000,-56.234634); 
+box2->position = Vector3f(37.100006,0.200000,206.565262); 
 box2->halfSize = Vector3f(0.200000,0.200000,0.200000); 
 box2->setRotation(0.000000,0.000000,0.000000); 
 box2->tag = "moveable"; 
@@ -230,6 +230,7 @@ components.push_back(box27);
 //==================================================================
 //========================box28=====================================
 Box *box28 = new Box();
+box28->setTexture("./Data/Textures/Ceramic_texture.jpg");
 box28->position = Vector3f(67.999535,71.399635,-27.750053); 
 box28->halfSize = Vector3f(129.795502,1.300000,166.201736); 
 box28->setRotation(0.000000,0.000000,0.000000); 
@@ -260,19 +261,98 @@ box31->setRotation(0.000000,0.000000,0.000000);
 box31->tag = ""; 
 components.push_back(box31); 
 //==================================================================
+//========================box32=====================================
+Model3d *box32 = new Model3d("./Data/Model/Bench N272011.3DS","./");
+box32->position = Vector3f(77.000000,13.000000,-88.000000); 
+box32->halfSize = Vector3f(0.010000,0.010000,0.010000); 
+box32->setRotation(7.000000,0.000000,0.000000); 
+box32->tag = ""; 
+components.push_back(box32); 
+//==================================================================
 //========================box33=====================================
-Model3d *box33 = new Model3d("./Data/Model/Bench N272011.3DS","./");
-box33->position = Vector3f(77.000000,13.000000,-88.000000); 
-box33->halfSize = Vector3f(0.010000,0.010000,0.010000); 
-box33->setRotation(7.000000,0.000000,0.000000); 
+Model3d *box33 = new Model3d("./Data/Model/bench_conc.3DS","./");
+box33->position = Vector3f(76.300003,12.400000,7.700000); 
+box33->halfSize = Vector3f(0.310000,0.410000,-0.290000); 
+box33->setRotation(0.000000,0.000000,0.000000); 
 box33->tag = ""; 
 components.push_back(box33); 
 //==================================================================
-
+//========================box34=====================================
+Box *box34 = new Box();
+box34->position = Vector3f(-56.499825,44.799889,8.999998); 
+box34->halfSize = Vector3f(-0.900000,12.600012,19.700037); 
+box34->setRotation(0.000000,0.000000,0.000000); 
+box34->tag = "Ad1"; 
+components.push_back(box34); 
+//==================================================================
+//========================box35=====================================
+Light *box35  = new Light(sf::Vector3f(-8.399998,5.199969,-102.799728),90,true);
+box35->ambient = sf::Color(1,1,1);
+box35->diffuse = sf::Color(1,1,1);
+box35->specular = sf::Color(0,0,0);
+box35->w = 1 ;
+box35->position = Vector3f(-8.399998,5.199969,-102.799728); 
+box35->halfSize = Vector3f(1.000000,1.000000,1.000000); 
+box35->setRotation(0.000000,0.000000,0.000000); 
+box35->tag = ""; 
+components.push_back(box35); 
+//==================================================================
+//========================box36=====================================
+Light *box36  = new Light(sf::Vector3f(-7.999998,5.299992,-114.799881),90,true);
+box36->ambient = sf::Color(1,1,1);
+box36->diffuse = sf::Color(1,1,1);
+box36->specular = sf::Color(0,0,0);
+box36->w = 1 ;
+box36->position = Vector3f(-7.999998,5.299992,-114.799881); 
+box36->halfSize = Vector3f(1.000000,1.000000,1.000000); 
+box36->setRotation(0.000000,0.000000,0.000000); 
+box36->tag = ""; 
+components.push_back(box36); 
+//==================================================================
+//========================box37=====================================
+Light *box37  = new Light(sf::Vector3f(53.999985,4.699982,-30.600025),90,true);
+box37->ambient = sf::Color(1,1,1);
+box37->diffuse = sf::Color(1,1,1);
+box37->specular = sf::Color(0,0,0);
+box37->w = 1 ;
+box37->position = Vector3f(53.999985,4.699982,-30.600025); 
+box37->halfSize = Vector3f(1.000000,1.000000,1.000000); 
+box37->setRotation(0.000000,0.000000,0.000000); 
+box37->tag = ""; 
+components.push_back(box37); 
+//==================================================================
+//========================box38=====================================
+Light *box38  = new Light(sf::Vector3f(54.000000,4.800001,-42.500038),90,true);
+box38->ambient = sf::Color(1,1,1);
+box38->diffuse = sf::Color(1,1,1);
+box38->specular = sf::Color(0,0,0);
+box38->w = 1 ;
+box38->position = Vector3f(54.000000,4.800001,-42.500038); 
+box38->halfSize = Vector3f(1.000000,1.000000,1.000000); 
+box38->setRotation(0.000000,0.000000,0.000000); 
+box38->tag = ""; 
+components.push_back(box38); 
+//==================================================================
+//========================box39=====================================
+Light *box39  = new Light(sf::Vector3f(25.499977,42.100014,130.800049),90,true);
+box39->ambient = sf::Color(1,1,1);
+box39->diffuse = sf::Color(1,1,1);
+box39->specular = sf::Color(0,0,0);
+box39->w = 1 ;
+box39->position = Vector3f(25.499977,42.100014,130.800049); 
+box39->halfSize = Vector3f(1.000000,1.000000,1.000000); 
+box39->setRotation(0.000000,0.000000,0.000000); 
+box39->tag = ""; 
+components.push_back(box39); 
+//==================================================================
 //========================box40=====================================
-Model3d *box40 = new Model3d("./Data/Model/bench_conc.3DS","./");
-box40->position = Vector3f(76.300003,12.400000,7.700000); 
-box40->halfSize = Vector3f(0.310000,0.410000,-0.290000); 
+Light *box40  = new Light(sf::Vector3f(0.000000,500.000000,0.000000),90,true);
+box40->ambient = sf::Color(1,1,1);
+box40->diffuse = sf::Color(1,1,1);
+box40->specular = sf::Color(0,0,0);
+box40->w = 1 ;
+box40->position = Vector3f(0.000000,500.000000,0.000000); 
+box40->halfSize = Vector3f(1.000000,1.000000,1.000000); 
 box40->setRotation(0.000000,0.000000,0.000000); 
 box40->tag = ""; 
 components.push_back(box40); 
