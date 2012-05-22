@@ -117,10 +117,10 @@ void Model3d::GLInit() {
     glEnable(GL_LIGHTING);
     
 
-    glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
-    glEnable(GL_NORMALIZE);
+    //glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
+    //glEnable(GL_NORMALIZE);
 
-    glColorMaterial(GL_FRONT_AND_BACK, GL_DIFFUSE);
+    //glColorMaterial(GL_FRONT_AND_BACK, GL_DIFFUSE);
 
 
     return; // Initialization Went OK
