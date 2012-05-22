@@ -69,7 +69,7 @@ box25->specular = sf::Color(0,0,0);
 box25->w = 1 ;
 box25->EXPONENT = 200 ;
 box25->lightNum = GL_LIGHT1;
-box25->setDirection(sf::Vector3f(100,100,0));
+box25->setDirection(sf::Vector3f(100,15,10));
 box25->position = Vector3f(-8.399998,5.199969,-102.799728);
 box25->ligthEnable = false ;
 components.push_back(box25); 
@@ -84,7 +84,7 @@ box26->EXPONENT = 100 ;
 box26->lightNum = GL_LIGHT2;
 box26->position = Vector3f(-7.999998,5.299992,-114.799881); 
 box26->ligthEnable = false ;
-box26->setDirection(sf::Vector3f(100,100,0)) ;
+box26->setDirection(sf::Vector3f(100,15,10)) ;
 components.push_back(box26); 
 //==================================================================
 //========================box27=====================================
@@ -96,7 +96,7 @@ box27->w = 1 ;
 box27->EXPONENT =150 ;
 box27->lightNum = GL_LIGHT3;
 box27->position = Vector3f(53.999985,4.699982,-30.600025); 
-box27->setDirection(sf::Vector3f(-1,1,0));
+box27->setDirection(sf::Vector3f(-100,15,0));
 box27->ligthEnable = false ;
 components.push_back(box27);
 //==================================================================
@@ -109,7 +109,7 @@ box28->w = 1 ;
 box28->EXPONENT = 200 ;
 box28->lightNum = GL_LIGHT4;
 box28->position = Vector3f(54.000000,4.800001,-42.500038); 
-box28->setDirection(sf::Vector3f(-1,1,0));
+box28->setDirection(sf::Vector3f(-100,15,0));
 box28->ligthEnable = false ;
 components.push_back(box28); 
 //==================================================================
@@ -124,19 +124,17 @@ box31->EXPONENT = 200 ;
 box31->setDirection(sf::Vector3f(0,-1,1));
 box31->ligthEnable = false ;
 components.push_back(box31); 
-//==================================================================
-    /*
-    Light *light2 = new Light(sf::Vector3f(25, 30, -200), 90, true);
+
+    Light *light2 = new Light(sf::Vector3f(0, 500, 0), 45, false);
     light2->ambient = sf::Color(1, 1, 1);
     light2->diffuse = sf::Color(1, 1, 1);
-    light2->specular = sf::Color(0, 0, 0);
-    light2->setDirection(sf::Vector3f(0, 0, 1));
+    light2->specular = sf::Color(1, 1, 1);
+    light2->setDirection(sf::Vector3f(0, -1, -1));
     light2->w = 1;
-    light2->lightNum += GL_LIGHT0;
-    light2->EnableSphere = true;
-    light2->tag = "automated";
+    light2->lightNum = GL_LIGHT0;
+    //light2->GLInit();
     components.push_back(light2);
-*/
+    
     currentComponent = components.begin();
     list<GLDrawable*>::iterator i;
     for (i = components.begin(); i != components.end(); i++) {

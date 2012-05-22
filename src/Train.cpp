@@ -45,14 +45,11 @@ void Train::Update(const sf::Input &input) {
     }
     
     
-    left->position = sf::Vector3f(-40.900002,0,position.z + 0) ;
-    //right->position = sf::Vector3f(20.900002,30.399998,position.z + 345.799866); 
-    GLfloat temp[] = {-40.900002,0,position.z + 0, 1};
-    //GLfloat temp2[] = {20.900002,30.399998,position.z + 345.799866, 1};
-    glLightfv(left->lightNum, GL_POSITION, temp);
-    //glLightfv(right->lightNum, GL_POSITION, temp2);
+    light->position = sf::Vector3f(-40.900002,10,position.z + 5) ;
     
-  //  camera->SetOrigin(position.x+8.3,position.y+15,position.z);
+    if(camera !=NULL)
+        camera->SetOrigin(position.x+8.3,position.y+15,position.z);
+
 }
 Train::~Train() {
 

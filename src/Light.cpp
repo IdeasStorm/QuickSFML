@@ -61,7 +61,6 @@ void Light::setDirection(sf::Vector3f dir) {
 
 void Light::Update(const sf::Input& input) {
 
-
 }
 
 bool Light::LoadContent() {
@@ -70,8 +69,10 @@ bool Light::LoadContent() {
 void Light::draw() {
 
   //  GLInit();
+    GLfloat temp[] = {position.x, position.y, position.z, w};
+    glLightfv(lightNum, GL_POSITION, temp);
     if (EnableSphere)
-        sphere->Draw();
+       sphere->Draw();
 }
 
 GLDrawable* Light::Clone() {
@@ -94,7 +95,7 @@ GLDrawable* Light::Clone() {
 void Light::GLInit() {
 
     if (ligthEnable) {
-        GLfloat temp[] = {position.x+5, position.y, position.z, w};
+        GLfloat temp[] = {position.x, position.y, position.z, w};
         glLightfv(lightNum, GL_POSITION, temp);
         glLightfv(lightNum, GL_AMBIENT, vec4(ambient));
         glLightfv(lightNum, GL_DIFFUSE, vec4(diffuse));

@@ -17,11 +17,12 @@ class Train : public Model3d
 public:
 
     GLFrame *camera ;
-    Light *right , *left ;
+    Light *light ;
     bool Enablelight ;
     Train(bool enablelight = true ) : Model3d("train1.3ds", "./Data/Train/1/") {
         self_control = true;
         speed = 0;
+        camera = NULL ;
         Enablelight = enablelight ;
         acceleration = 0;
         push_force = 0;
@@ -36,30 +37,18 @@ public:
         if(!comingBuffer.LoadFromFile("./Data/Train/1/metroComing.wav"))
             abort();
         comingSound.SetBuffer(comingBuffer);           
-        Light *right  = new Light(sf::Vector3f(20.900002,30.399998,position.z + 345.799866),90,true);
-        right->ambient = sf::Color(1,1,1);
-        right->diffuse = sf::Color(1,1,1);
-        right->specular = sf::Color(0,0,0);
-        right->lightNum = GL_LIGHT6;
-        right->w = 1 ;
-        right->EXPONENT = 200 ;
-        right->setDirection(sf::Vector3f(0,0,1));
-        right->ligthEnable = false ;
-        right->GLInit();
-        components.push_back(right);
         
-        
-        left  = new Light(sf::Vector3f(-40.900002,0,position.z + 0),90,true);
-        left->ambient = sf::Color(1,1,1);
-        left->diffuse = sf::Color(1,1,1);
-        left->specular = sf::Color(0,0,0);
-        left->w = 1 ;
-        left->EXPONENT = 200 ;
-        left->setDirection(sf::Vector3f(0,0,1));
-        left->lightNum = GL_LIGHT7;
+        light  = new Light(sf::Vector3f(-40.900002,40,position.z + 5),90,true);
+        light->ambient = sf::Color(1,1,1);
+        light->diffuse = sf::Color(1,1,1);
+        light->specular = sf::Color(0,0,0);
+        light->w = 1 ;
+        light->EXPONENT = 200 ;
+        light->setDirection(sf::Vector3f(0,0,1));
+        light->lightNum = GL_LIGHT7;
         //left->ligthEnable = false ;
-        left->GLInit() ;
-        components.push_back(left); 
+        light->GLInit() ;
+        components.push_back(light); 
 
     }
     void Update(const sf::Input &input);
