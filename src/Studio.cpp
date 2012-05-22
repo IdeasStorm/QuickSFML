@@ -513,6 +513,19 @@ void Studio::ProcessComponent(GLDrawable *component) {
             ((Box*) component)->textures.push_back(tex1);
             ((Box*) component)->textureEnabled = true;
         }
+    else
+        if (tag=="Ad2"){
+            list<Texture> newlist;
+            ((Box*) component)->textures = newlist;
+            Texture tex1("./Data/Textures/Open.jpg");
+            tex1.id = elements::All;
+            ((Box*) component)->tex_per_face = -1;
+            ((Box*) component)->textures.push_back(tex1);
+            ((Box*) component)->textureEnabled = true;
+        }
+    
+    
+    
     else {
         if (component->getClass() == "Box")
             ((Box*) component)->setTexture(tex_wall_noised);

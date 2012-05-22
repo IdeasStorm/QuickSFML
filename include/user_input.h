@@ -269,4 +269,29 @@ box32->setRotation(0.000000,0.000000,0.000000);
 box32->tag = "Ad1"; 
 components.push_back(box32); 
 //==================================================================
+
+//========================box33=====================================
+Model3d *box33 = new Model3d("./Data/Model/bench_conc.3DS","./");
+box33->setTexture("./Data/NeHe.bmp");
+box33->position = Vector3f(76.300003,12.400000,7.700000); 
+box33->halfSize = Vector3f(0.310000,0.410000,-0.290000); 
+box33->setRotation(0.000000,0.000000,0.000000); 
+box33->tag = ""; 
+components.push_back(box33); 
+//==================================================================
+//========================box34=====================================
+Box *box34 = new Box();
+box34->position = Vector3f(-56.499825,44.799889,8.999998); 
+box34->halfSize = Vector3f(-0.900000,12.600012,19.700037); 
+box34->setRotation(0.000000,0.000000,0.000000); 
+box34->tag = "Ad1"; 
+components.push_back(box34); 
+//==================================================================
+Box *box41 = new Box();
+box41->position = Vector3f(173.782730,47.099903,11.800009);
+box41->halfSize = Vector3f(1.400000,10.100002,26.700026);
+box41->setRotation(0.000000,0.000000,0.000000);
+box41->tag = "Ad2";
+components.push_back(box41); 
+
 }
