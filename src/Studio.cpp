@@ -56,7 +56,7 @@ box25->ambient = sf::Color(1,1,1);
 box25->diffuse = sf::Color(1,1,1);
 box25->specular = sf::Color(0,0,0);
 box25->w = 1 ;
-box25->EXPONENT = 2 ;
+box25->EXPONENT = 200 ;
 box25->lightNum = GL_LIGHT1;
 box25->setDirection(sf::Vector3f(100,15,10));
 box25->position = Vector3f(-8.399998,5.199969,-102.799728);
@@ -69,7 +69,7 @@ box26->ambient = sf::Color(1,1,1);
 box26->diffuse = sf::Color(1,1,1);
 box26->specular = sf::Color(0,0,0);
 box26->w = 1 ;
-box26->EXPONENT = 2 ;
+box26->EXPONENT = 200 ;
 box26->lightNum = GL_LIGHT2;
 box26->position = Vector3f(-7.999998,5.299992,-114.799881); 
 box26->ligthEnable = false ;
@@ -114,15 +114,15 @@ box31->setDirection(sf::Vector3f(0,-1,1));
 //box31->ligthEnable = false ;
 components.push_back(box31); 
 
-    Light *light2 = new Light(sf::Vector3f(0, 500, 0), 45, false);
-    light2->ambient = sf::Color(1, 1, 1);
-    light2->diffuse = sf::Color(1, 1, 1);
-    light2->specular = sf::Color(1, 1, 1);
-    light2->setDirection(sf::Vector3f(0, -1, -1));
-    light2->w = 1;
-    light2->lightNum = GL_LIGHT0;
+    Light *defaultLight = new Light(sf::Vector3f(0, 500, 0), 30, false);
+    defaultLight->ambient = sf::Color(1, 1, 1);
+    defaultLight->diffuse = sf::Color(1, 1, 1);
+    defaultLight->specular = sf::Color(0,0, 0);
+    defaultLight->setDirection(sf::Vector3f(0, -1, 0));
+    defaultLight->w = 1;
+    defaultLight->lightNum = GL_LIGHT0;
 
-    components.push_back(light2);
+    components.push_back(defaultLight);
     
     currentComponent = components.begin();
     list<GLDrawable*>::iterator i;
@@ -247,7 +247,7 @@ void Studio::Update(const sf::Input& input) {
         SetCurrentComponent(components.begin());
         PrevComponent();
     }
-
+    
     if (input.IsKeyDown(sf::Key::Z) )  {
         Z_was_down = true;
     } else if (Z_was_down) {
@@ -284,6 +284,8 @@ void Studio::Update(const sf::Input& input) {
         box26->ligthEnable = true ;
         box26->GLInit();
     }
+    box25->GLInit();
+    box26->GLInit();
     if (input.IsKeyDown(sf::Key::Num8)) {
         box27->ligthEnable = true ;
         box27->GLInit();

@@ -100,7 +100,7 @@ void Light::GLInit() {
         glLightfv(lightNum, GL_DIFFUSE, vec4(diffuse));
         glLightfv(lightNum, GL_SPECULAR, vec4(specular));
         glLightf(lightNum, GL_SPOT_CUTOFF, angle);
-        //TODO
+
         glLightf(lightNum, GL_SPOT_EXPONENT, EXPONENT);
 
 

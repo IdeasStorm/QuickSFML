@@ -98,7 +98,7 @@ void Box::draw() {
         // Front Face
         applyFaceTexture(elements::Front);
         glBegin(GL_QUADS);
-        glNormal3f(0.0f, 0.0f, 1.0f);
+        //glNormal3f(0.0f, 0.0f, 1.0f);
         glTexCoord2f(0.0f, tpf * ratio_front);
         glVertex3f(-w, -h, d);
         glTexCoord2f(tpf, tpf * ratio_front);
@@ -115,7 +115,7 @@ void Box::draw() {
         // Back Face
         applyFaceTexture(elements::Back);
         glBegin(GL_QUADS);
-        glNormal3f(0.0f, 0.0f, -1.0f);
+        //glNormal3f(0.0f, 0.0f, -1.0f);
         glTexCoord2f(tpf, tpf * ratio_front);
         glVertex3f(-w, -h, -d);
         glTexCoord2f(tpf, 0.0f);
@@ -131,17 +131,11 @@ void Box::draw() {
         // Top Face
         applyFaceTexture(elements::Top);
         glBegin(GL_QUADS);
-        glNormal3f(0.0f, 1.0f, 0.0f);
-        
-        
+        //glNormal3f(0.0f, 1.0f, 0.0f);
         glTexCoord2f(0.0f, 0.0f);
         glVertex3f(-w, h, -d);
-        
-        
         glTexCoord2f(0.0f, tpf * ratio_top);
         glVertex3f(-w, h, d);
-        
-                        
         glTexCoord2f(tpf, tpf* ratio_top);
         glVertex3f(w, h, d);
         glTexCoord2f(tpf, 0.0f);
@@ -153,7 +147,7 @@ void Box::draw() {
         // Bottom Face
         applyFaceTexture(elements::Bottom);
         glBegin(GL_QUADS);
-        glNormal3f(0.0f, -1.0f, 0.0f);
+        //glNormal3f(0.0f, -1.0f, 0.0f);
         glTexCoord2f(0.0f, 0.0f);
         glVertex3f(-w, -h, -d);
         glTexCoord2f(tpf, 0.0f);
@@ -161,7 +155,6 @@ void Box::draw() {
         glTexCoord2f(tpf, tpf * ratio_top);
         glVertex3f(w, -h, d);
         glTexCoord2f(0.0f, tpf * ratio_top);
-        
         glVertex3f(-w, -h, d);
         glEnd();
     }
@@ -170,7 +163,7 @@ void Box::draw() {
         // Right face
         applyFaceTexture(elements::Right);
         glBegin(GL_QUADS);
-        glNormal3f(1.0f, 0.0f, 0.0f);
+        //glNormal3f(1.0f, 0.0f, 0.0f);
         glTexCoord2f(tpf, tpf * ratio_left);
         glVertex3f(w, -h, -d);
         glTexCoord2f(tpf, 0.0f);
@@ -187,15 +180,13 @@ void Box::draw() {
         // Left Face
         applyFaceTexture(elements::Left);
         glBegin(GL_QUADS);
-        glNormal3f(-1.0f, 0.0f, 0.0f);
+        //glNormal3f(-1.0f, 0.0f, 0.0f);
         glTexCoord2f(0.0f, tpf * ratio_left);
         glVertex3f(-w, -h, -d);
         glTexCoord2f(tpf, tpf * ratio_left);
-        
         glVertex3f(-w, -h, d);
         glTexCoord2f(tpf, 0.0f);
         glVertex3f(-w, h, d);
-        
         glTexCoord2f(0.0f, 0.0f);
         glVertex3f(-w, h, -d);
         glEnd();
