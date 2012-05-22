@@ -56,6 +56,14 @@ public:
     bool LoadContent();
     void GLInit();
     void Update(const sf::Input &input);
+    
+     void setTexture(const string& path) {
+        textureEnabled = true;
+        texture_path = path;
+        Texture tex(path);
+        textures.push_back(tex);
+    }
+    
 protected:
     //void Draw();
 
@@ -80,12 +88,7 @@ private:
     // Create an instance of the Importer class
     Assimp::Importer importer;
 
-    void setTexture(const string& path) {
-        textureEnabled = true;
-        texture_path = path;
-        Texture tex(path);
-        textures.push_back(tex);
-    }
+   
     
    inline void applyFaceTexture() {
         if (!textureEnabled || textures.empty()) 
