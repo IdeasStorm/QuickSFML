@@ -51,6 +51,7 @@ bool Studio::LoadContent() {
 void Studio::LoadComponents() {
     loadUserComponents(components);
 //========================box25=====================================
+
 box25  = new Light(sf::Vector3f(-8.399998,5.199969,-102.799728),90,true);
 box25->ambient = sf::Color(1,1,1);
 box25->diffuse = sf::Color(1,1,1);
@@ -121,7 +122,7 @@ components.push_back(box31);
     light2->setDirection(sf::Vector3f(0, -1, -1));
     light2->w = 1;
     light2->lightNum = GL_LIGHT0;
-    //light2->GLInit();
+
     components.push_back(light2);
     
     currentComponent = components.begin();
@@ -498,7 +499,30 @@ void Studio::ProcessComponent(GLDrawable *component) {
     else if (tag == "flagstone") {
         ((Box*) component)->setTexture(tex_wall_brown);
         ((Box*) component)->tex_per_face = 2* ((Box*) component)->halfSize.x / 10;
-    }else {
+        
+    }
+    else
+        if(tag == "LCD") {
+            list<Texture> newlist;
+            ((Box*) component)->textures = newlist;
+            Texture tex1("./Data/Textures/LCD.jpg");
+            tex1.id = elements::Front;
+            ((Box*) component)->tex_per_face = -1;
+            ((Box*) component)->textures.push_back(tex1);
+//            Texture tex2("./Data/city/left.jpg");
+//            tex2.id = elements::Left;
+//            ((Box*) component)->textures.push_back(tex2);
+//            Texture tex3("./Data/city/right.jpg");
+//            tex3.id = elements::Right;
+//            ((Box*) component)->textures.push_back(tex3);
+//            ((Box*) component)->textureEnabled = true;
+//
+//            Texture tex4("./Data/city/back.jpg");
+//            tex4.id = elements::Back;
+//            ((Box*) component)->textures.push_back(tex4);
+            ((Box*) component)->textureEnabled = true;
+        }
+    else {
         if (component->getClass() == "Box")
             ((Box*) component)->setTexture(tex_wall_noised);
     }
