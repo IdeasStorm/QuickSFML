@@ -205,7 +205,7 @@ box24->tag = "clock";
 components.push_back(box24); 
 //==================================================================
 //========================box31=====================================
-Model3d *box31 = new Model3d("./Data/Model/new/6614b7cd4ab0bf54830bfccc9ca3e670/Bus stop N290112.3DS","./");
+Model3d *box31 = new Model3d("./Data/Model/chair/Bus stop N290112.3DS","./");
 box31->position = Vector3f(83.000000,13.000000,-30.000000); 
 box31->halfSize = Vector3f(0.010000,0.010000,0.010000); 
 box31->setRotation(39.000000,0.000000,0.000000); 
