@@ -519,6 +519,7 @@ void Studio::ProcessComponent(GLDrawable *component) {
             ((Box*) component)->textures = newlist;
             Texture tex1("./Data/Textures/LCD.jpg");
             tex1.id = elements::Front;
+            ((Box*) component)->tex_per_face = -1;
             ((Box*) component)->textures.push_back(tex1);
 //            Texture tex2("./Data/city/left.jpg");
 //            tex2.id = elements::Left;
