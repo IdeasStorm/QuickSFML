@@ -69,9 +69,9 @@ protected:
     void DisableTexture() {
     }
 
-    GLDrawable* Clone() {
-        //TODO put your logic
-    }
+    /*GLDrawable* Clone() {
+        
+    }*/
 private:
     const aiScene* scene;
     GLuint scene_list;

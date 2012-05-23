@@ -149,9 +149,10 @@ void SkyBox::draw(){
     glEnd();
 }
 
-GLDrawable* SkyBox::Clone()
-{        
-}
+//GLDrawable* SkyBox::Clone()
+//{    
+//	return;
+//}
 
 bool SkyBox::setTextures(string path)
 {
@@ -172,4 +173,5 @@ bool SkyBox::setTextures(string path)
     {
         texture_path[i].append(".jpg");
     }
+	return true;
 }

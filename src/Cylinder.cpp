@@ -36,7 +36,7 @@ void Cylinder::draw() {
     int numMinor = 100;
     float height = this->halfSize.y * 2;
     float radius = this->halfSize.x;
-
+	float M_PI=3.1415;
     double majorStep = height / numMajor;
     double minorStep = 2.0 * M_PI / numMinor;
     int i, j;

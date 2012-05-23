@@ -5,3 +5,5 @@ Release/
 *.o
 build/
 dist/Debug/GNU-Linux-x86/metro-simulation
+/Metro-Simulation/ipch
+/Metro-Simulation/Metro-Simulation.sdf

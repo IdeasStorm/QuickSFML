@@ -71,8 +71,8 @@ void Light::Update(const sf::Input& input) {
     }
 }
 
-bool Light::LoadContent() {
-}
+//bool Light::LoadContent() {
+//}
 
 void Light::draw() {
 
@@ -80,22 +80,22 @@ void Light::draw() {
        sphere->Draw();
 }
 
-GLDrawable* Light::Clone() {
-    /*Light* cloned = new Light();
-    cloned->position = position;
-    cloned->halfSize = halfSize;
-    if (axis_angle)
-        cloned->setRotation(rotationAxis, rotation);
-    else
-        cloned->setRotation(yrot, xrot, zrot);
-    if (textureEnabled) {
-        cloned->setTexture(texture_path);
-    } else {
-        cloned->texture_path = texture_path;
-    }
-    return cloned;
-     */
-}
+//GLDrawable* Light::Clone() {
+//    /*Light* cloned = new Light();
+//    cloned->position = position;
+//    cloned->halfSize = halfSize;
+//    if (axis_angle)
+//        cloned->setRotation(rotationAxis, rotation);
+//    else
+//        cloned->setRotation(yrot, xrot, zrot);
+//    if (textureEnabled) {
+//        cloned->setTexture(texture_path);
+//    } else {
+//        cloned->texture_path = texture_path;
+//    }
+//    return cloned;
+//     */
+//}
 
 void Light::GLInit() {
 

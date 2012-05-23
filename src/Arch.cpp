@@ -42,6 +42,7 @@ void Arch::draw() {
 bool Arch::LoadContent() {
     if (textureEnabled)
         texture = new Texture(texture_path);
+	return true;
 }
 
 GLDrawable* Arch::Clone() {

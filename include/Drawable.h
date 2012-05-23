@@ -90,7 +90,7 @@ public:
 
     virtual void WriteInstanceCreation(FILE* outfile, string name);
 
-    virtual GLDrawable* Clone() = 0;
+    virtual GLDrawable* Clone();
 
     sf::Vector3f position;
     sf::Vector3f halfSize;

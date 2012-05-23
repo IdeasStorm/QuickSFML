@@ -89,6 +89,7 @@ void Sphere::Update(const sf::Input& input ){
 }
 
 void Sphere::draw(){
+	float M_PI=3.1415;
     int lats=this->halfSize.x*3;
     int longs=this->halfSize.x*3;
     int i, j;

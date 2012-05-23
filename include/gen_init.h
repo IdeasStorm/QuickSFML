@@ -8,7 +8,7 @@
 #ifndef GEN_INIT_H
 #define	GEN_INIT_H
 
-#include <GL/glew.h>
+//#include <GL/glew.h>
 #include "Drawable.h"
 #include "Box.h"
 #include "Stairs.h"
