@@ -36,9 +36,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/src/Model3d.o \
 	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/src/GLScene.o \
 	${OBJECTDIR}/src/Stairs.o \
 	${OBJECTDIR}/src/math3d.o \
-	${OBJECTDIR}/src/GLScene.o \
 	${OBJECTDIR}/src/SkyBox.o \
 	${OBJECTDIR}/src/Train.o \
 	${OBJECTDIR}/src/Studio.o \
@@ -49,8 +49,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/src/Ground.o \
 	${OBJECTDIR}/src/Box.o \
 	${OBJECTDIR}/src/Arch.o \
-	${OBJECTDIR}/src/Sphere.o \
-	${OBJECTDIR}/src/Light.o
+	${OBJECTDIR}/src/Light.o \
+	${OBJECTDIR}/src/Sphere.o
 
 
 # C Compiler Flags
@@ -87,6 +87,11 @@ ${OBJECTDIR}/main.o: main.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -Wall -Iinclude `pkg-config --cflags assimp` `pkg-config --cflags openal`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
 
+${OBJECTDIR}/src/GLScene.o: src/GLScene.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} $@.d
+	$(COMPILE.cc) -g -Wall -Iinclude `pkg-config --cflags assimp` `pkg-config --cflags openal`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/GLScene.o src/GLScene.cpp
+
 ${OBJECTDIR}/src/Stairs.o: src/Stairs.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
@@ -96,11 +101,6 @@ ${OBJECTDIR}/src/math3d.o: src/math3d.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
 	$(COMPILE.cc) -g -Wall -Iinclude `pkg-config --cflags assimp` `pkg-config --cflags openal`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/math3d.o src/math3d.cpp
-
-${OBJECTDIR}/src/GLScene.o: src/GLScene.cpp 
-	${MKDIR} -p ${OBJECTDIR}/src
-	${RM} $@.d
-	$(COMPILE.cc) -g -Wall -Iinclude `pkg-config --cflags assimp` `pkg-config --cflags openal`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/GLScene.o src/GLScene.cpp
 
 ${OBJECTDIR}/src/SkyBox.o: src/SkyBox.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
@@ -152,15 +152,15 @@ ${OBJECTDIR}/src/Arch.o: src/Arch.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -Wall -Iinclude `pkg-config --cflags assimp` `pkg-config --cflags openal`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Arch.o src/Arch.cpp
 
-${OBJECTDIR}/src/Sphere.o: src/Sphere.cpp 
-	${MKDIR} -p ${OBJECTDIR}/src
-	${RM} $@.d
-	$(COMPILE.cc) -g -Wall -Iinclude `pkg-config --cflags assimp` `pkg-config --cflags openal`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Sphere.o src/Sphere.cpp
-
 ${OBJECTDIR}/src/Light.o: src/Light.cpp 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
 	$(COMPILE.cc) -g -Wall -Iinclude `pkg-config --cflags assimp` `pkg-config --cflags openal`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Light.o src/Light.cpp
+
+${OBJECTDIR}/src/Sphere.o: src/Sphere.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} $@.d
+	$(COMPILE.cc) -g -Wall -Iinclude `pkg-config --cflags assimp` `pkg-config --cflags openal`    -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/Sphere.o src/Sphere.cpp
 
 # Subprojects
 .build-subprojects:

@@ -60,7 +60,6 @@ box2->camera = camera ;
 box2->setRotation(0.000000,0.000000,0.000000); 
 components.push_back(box2); 
 //==================================================================
-
 //========================box25=====================================
 box25  = new Light(sf::Vector3f(-8.399998,5.199969,-102.799728),90,true);
 box25->w = 1 ;
@@ -78,6 +77,7 @@ box26->EXPONENT = 2 ;
 box26->lightNum = GL_LIGHT3;
 box26->position = Vector3f(-7.999998,5.299992,-114.799881); 
 box26->ligthEnable = false ;
+box26->tag = "automated"; 
 box26->setDirection(sf::Vector3f(100,15,10)) ;
 components.push_back(box26); 
 //==================================================================
@@ -89,6 +89,7 @@ box27->lightNum = GL_LIGHT4;
 box27->position = Vector3f(53.999985,4.699982,-30.600025); 
 box27->setDirection(sf::Vector3f(-100,15,0));
 box27->ligthEnable = false ;
+box27->tag = "automated"; 
 components.push_back(box27);
 //==================================================================
 //========================box28=====================================
@@ -96,34 +97,36 @@ box28  = new Light(sf::Vector3f(54.000000,4.800001,-42.500038),45,true);
 box28->w = 1 ;
 box28->EXPONENT = -2 ;
 box28->lightNum = GL_LIGHT5;
+box28->tag = "automated"; 
 box28->position = Vector3f(54.000000,4.800001,-42.500038); 
 box28->setDirection(sf::Vector3f(-100,15,0));
 box28->ligthEnable = false ;
 components.push_back(box28); 
 //==================================================================
 //========================box31=====================================
-box31  = new Light(sf::Vector3f(25.499977,42.100014,130.800049),45,true);
+box31  = new Light(sf::Vector3f(25.499977,42.100014,130.800049),45,false);
 box31->w =1 ;
 box31->lightNum = GL_LIGHT6 ;
 box31->EXPONENT = 2 ;
+box31->tag = "automated"; 
 box31->setDirection(sf::Vector3f(0,-1,1));
-box31->ligthEnable = false ;
 components.push_back(box31); 
 //========================box45=====================================
-box45  = new Light(sf::Vector3f(-56.400009,57.000000,28.000000),45,false);
+box45  = new Light(sf::Vector3f(-70.400009,40.000000,15.000000),180,false);
 box45->w = 1 ;
 box45->lightNum = GL_LIGHT1;
-box45->EXPONENT = 2 ;
-box45->setDirection(sf::Vector3f(0,-1,0));
+box45->EXPONENT = 200 ;
+box45->tag = "automated"; 
+box45->setDirection(sf::Vector3f(1,0,0));
 components.push_back(box45); 
 //==================================================================
 Light *defaultLight = new Light(sf::Vector3f(0, 500, 0), 90, false);
 defaultLight->setDirection(sf::Vector3f(0, -1, 0));
-//defaultLight->EnableDirection = true ;
 defaultLight->w = 1;
 defaultLight->EXPONENT = -2 ;
+defaultLight->tag = "automated"; 
 defaultLight->lightNum = GL_LIGHT0;
-//defaultLight->ligthEnable = false ;
+defaultLight->ligthEnable = false ;
 components.push_back(defaultLight);
 
 

@@ -44,7 +44,6 @@ public:
         light->setDirection(sf::Vector3f(0,0,1));
         light->lightNum = GL_LIGHT7;
         //left->ligthEnable = false ;
-        //light->GLInit() ;
         components.push_back(light); 
 
     }
