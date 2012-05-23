@@ -19,7 +19,7 @@ public:
     GLFrame *camera ;
     Light *light ;
     bool Enablelight ;
-    Train(bool enablelight = true ) : Model3d("train1.3ds", "./Data/Train/1/") {
+    Train(bool enablelight = true ) : Model3d("metro.3DS", "./Data/Train/1/") {
         self_control = true;
         speed = 0;
         camera = NULL ;
