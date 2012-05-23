@@ -237,36 +237,36 @@ box28->setRotation(0.000000,0.000000,0.000000);
 box28->tag = "Ad2"; 
 components.push_back(box28); 
 //==================================================================
-//========================box43=====================================
-Model3d *box43 = new Model3d("./Data/Model/bench_conc.3DS","./");
-box43->position = Vector3f(163.000061,12.400000,15.099998); 
-box43->halfSize = Vector3f(0.310000,0.410000,-0.290000); 
-box43->setRotation(0.000000,0.000000,0.000000); 
-box43->tag = "bench"; 
-components.push_back(box43); 
+//========================box29=====================================
+Model3d *box29 = new Model3d("./Data/Model/bench_conc.3DS","./");
+box29->position = Vector3f(163.000061,12.400000,15.099998); 
+box29->halfSize = Vector3f(0.310000,0.410000,-0.290000); 
+box29->setRotation(0.000000,0.000000,0.000000); 
+box29->tag = "bench"; 
+components.push_back(box29); 
 //==================================================================
-//========================box44=====================================
-Model3d *box44 = new Model3d("./Data/Model/bench_conc.3DS","./");
-box44->position = Vector3f(163.000061,12.400000,-55.399986); 
-box44->halfSize = Vector3f(0.310000,0.410000,-0.290000); 
-box44->setRotation(0.000000,0.000000,0.000000); 
-box44->tag = "bench"; 
-components.push_back(box44); 
+//========================box30=====================================
+Model3d *box30 = new Model3d("./Data/Model/bench_conc.3DS","./");
+box30->position = Vector3f(163.000061,12.400000,-55.399986); 
+box30->halfSize = Vector3f(0.310000,0.410000,-0.290000); 
+box30->setRotation(0.000000,0.000000,0.000000); 
+box30->tag = "bench"; 
+components.push_back(box30); 
 //==================================================================
-//========================box45=====================================
-Model3d *box45 = new Model3d("./Data/Model/bench_conc.3DS","./");
-box45->position = Vector3f(163.000061,12.400000,-117.300003); 
-box45->halfSize = Vector3f(0.310000,0.410000,-0.290000); 
-box45->setRotation(0.000000,0.000000,0.000000); 
-box45->tag = "bench"; 
-components.push_back(box45); 
+//========================box31=====================================
+Model3d *box31 = new Model3d("./Data/Model/bench_conc.3DS","./");
+box31->position = Vector3f(163.000061,12.400000,-117.300003); 
+box31->halfSize = Vector3f(0.310000,0.410000,-0.290000); 
+box31->setRotation(0.000000,0.000000,0.000000); 
+box31->tag = "bench"; 
+components.push_back(box31); 
 //==================================================================
-//========================box46=====================================
-Box *box46 = new Box();
-box46->position = Vector3f(174.082748,47.399899,-53.999809); 
-box46->halfSize = Vector3f(1.400000,19.800039,18.299994); 
-box46->setRotation(0.000000,0.000000,0.000000); 
-box46->tag = "Ad3"; 
-components.push_back(box46); 
+//========================box32=====================================
+Box *box32 = new Box();
+box32->position = Vector3f(174.082748,47.399899,-92.099808); 
+box32->halfSize = Vector3f(1.400000,19.800039,18.299994); 
+box32->setRotation(0.000000,0.000000,0.000000); 
+box32->tag = "Ad3"; 
+components.push_back(box32); 
 //==================================================================
 }

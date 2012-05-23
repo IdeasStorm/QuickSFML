@@ -115,10 +115,6 @@ void Light::GLInit() {
         glEnable(lightNum);
 
         GLfloat colours [] = {1.0, 1.0, 1.0, 0.0};
-        //glEnable ( GL_COLOR_MATERIAL ) ; 
-        ///glColorMaterial ( GL_FRONT_AND_BACK, GL_SPECULAR ) ; 
-        //glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION,colours ) ;
-        //glDisable(GL_COLOR_MATERIAL);
     } else
         glDisable(lightNum);
 

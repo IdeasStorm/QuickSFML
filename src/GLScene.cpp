@@ -15,6 +15,7 @@ GLScene::GLScene(char* title) : window(sf::VideoMode(800, 600, 32), title) {
     GLfloat LightSpecular[] = {0.0f, 0.0f, 0.0f, 0.0f};
     GLfloat LightPosition[] = {0.0f, 0.0f, 0.0f, 0.0f};
 
+    lightLeft = false ;
     memcpy(this->LightAmbient, LightAmbient, sizeof LightAmbient);
     memcpy(this->LightDiffuse, LightDiffuse, sizeof LightDiffuse);
     memcpy(this->LightSpecular, LightSpecular, sizeof LightSpecular);

@@ -27,6 +27,7 @@ Studio::Studio()
     camera->EnableMouse = true;
     camera->EnableMove = false;
     cameraEnable = camera ;
+    lightRight = lightLeft = false ;
     //default_lighting = true;
     update_child_controls = true;
     tex_default = new Texture("./Data/NeHe.bmp");
@@ -73,7 +74,7 @@ components.push_back(box25);
 //========================box26=====================================
 box26  = new Light(sf::Vector3f(-7.999998,5.299992,-114.799881),90,true);
 box26->w = 1 ;
-box26->EXPONENT = 2 ;
+box26->EXPONENT = 200 ;
 box26->lightNum = GL_LIGHT3;
 box26->position = Vector3f(-7.999998,5.299992,-114.799881); 
 box26->ligthEnable = false ;
@@ -84,7 +85,7 @@ components.push_back(box26);
 //========================box27=====================================
 box27  = new Light(sf::Vector3f(53.999985,4.699982,-30.600025),90,true);
 box27->w = 1 ;
-box27->EXPONENT =2 ;
+box27->EXPONENT =200 ;
 box27->lightNum = GL_LIGHT4;
 box27->position = Vector3f(53.999985,4.699982,-30.600025); 
 box27->setDirection(sf::Vector3f(-100,15,0));
@@ -95,7 +96,7 @@ components.push_back(box27);
 //========================box28=====================================
 box28  = new Light(sf::Vector3f(54.000000,4.800001,-42.500038),45,true);
 box28->w = 1 ;
-box28->EXPONENT = -2 ;
+box28->EXPONENT = 200 ;
 box28->lightNum = GL_LIGHT5;
 box28->tag = "automated"; 
 box28->position = Vector3f(54.000000,4.800001,-42.500038); 
@@ -287,18 +288,33 @@ void Studio::Update(const sf::Input& input) {
         SetCurrentComponent(end);
     }
     if (input.IsKeyDown(sf::Key::Num9)) {
-        box25->ligthEnable = true ;
-        box25->GLInit();
-        box26->ligthEnable = true ;
-        box26->GLInit();
+        lightLeft = !lightLeft ;
+        if (lightLeft){
+            box25->ligthEnable = true ;
+            box25->GLInit();
+            box26->ligthEnable = true ;
+            box26->GLInit();
+        }else{
+            box25->ligthEnable = false ;
+            box25->GLInit();
+            box26->ligthEnable = false ;
+            box26->GLInit();
+
+        }
     }
-    //box25->GLInit();
-    //box26->GLInit();
     if (input.IsKeyDown(sf::Key::Num8)) {
-        box27->ligthEnable = true ;
-        box27->GLInit();
-        box28->ligthEnable = true ;
-        box28->GLInit();
+        lightRight = !lightRight ;
+        if (lightRight){
+            box27->ligthEnable = true ;
+            box27->GLInit();
+            box28->ligthEnable = true ;
+            box28->GLInit();
+        }else{
+            box27->ligthEnable = false ;
+            box27->GLInit();
+            box28->ligthEnable = false ;
+            box28->GLInit();
+        }
     }
     if (input.IsKeyDown(sf::Key::Num7)) {
         box31->ligthEnable = true ;
