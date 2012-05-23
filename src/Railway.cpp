@@ -21,9 +21,9 @@ Railway::Railway() {
     sz=this->halfSize.z;
     self_control=true;
     left = new Box(sf::Vector3f (x,y,z),sf::Vector3f (sx/10,sy,sz));
-    left->setTexture("./Data/Wall/ironforrail.jpg");
+    //left->setTexture("./Data/Wall/ironforrail.jpg");
     right = new Box(sf::Vector3f (x+sx,y,z),sf::Vector3f (sx/10,sy,sz));
-    right->setTexture("./Data/Wall/ironforrail.jpg");
+    //right->setTexture("./Data/Wall/ironforrail.jpg");
     
     left->tex_per_face = right->tex_per_face = right->halfSize.z / 4;
      int j=0;     

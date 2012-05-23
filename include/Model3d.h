@@ -63,6 +63,10 @@ public:
         textures.push_back(tex);
     }
     
+    void  setTexture(Texture* tex){
+        textureEnabled = true;
+        textures.push_back(*tex);
+    }
 protected:
     //void Draw();
 
@@ -70,7 +74,15 @@ protected:
     }
 
     GLDrawable* Clone() {
-        //TODO put your logic
+        Model3d *cloned = new Model3d(modelname,basepath);
+        if (!texture_path.empty()){
+            cloned->texture_path = texture_path;
+            cloned->textureEnabled = true;
+        }
+        cloned->position = position;
+        cloned->halfSize = halfSize;
+        cloned->setRotation(yrot,xrot,zrot);
+        return cloned;
     }
 private:
     const aiScene* scene;

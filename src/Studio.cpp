@@ -32,6 +32,7 @@ Studio::Studio()
     tex_default = new Texture("./Data/NeHe.bmp");
     tex_wall_brown = new Texture("./Data/Wall/brown_wall.jpg");
     tex_wall_noised = new Texture("./Data/Wall/wall_concrete.jpg");
+    tex_bench = new Texture("./Data/Model/Arch 53-wood 14.jpg");
     tex_default->id = tex_wall_brown->id = tex_wall_noised->id = elements::All;
     movmetnBuffer.LoadFromFile("./Data/Train/1/metro.wav");
     movmetnSound.SetBuffer(movmetnBuffer);
@@ -538,7 +539,11 @@ void Studio::ProcessComponent(GLDrawable *component) {
         }
     
     
-    
+
+    else if (tag == "bench"){
+        Model3d * e = (Model3d*)(component);
+        e->setTexture(tex_bench);
+    }
     else {
         if (component->getClass() == "Box")
             ((Box*) component)->setTexture(tex_wall_noised);

@@ -8,26 +8,27 @@
 #include <GL/glew.h>
 
 #include "GLScene.h"
-GLScene::GLScene(char* title) : window(sf::VideoMode(800, 600, 32), title) {    
-    GLfloat LightAmbient[] ={0.0f, 0.0f, 0.0f, 0.0f};
+
+GLScene::GLScene(char* title) : window(sf::VideoMode(800, 600, 32), title) {
+    GLfloat LightAmbient[] = {0.0f, 0.0f, 0.0f, 0.0f};
     GLfloat LightDiffuse[] = {0.0f, 0.0f, 0.0f, 0.0f};
     GLfloat LightSpecular[] = {0.0f, 0.0f, 0.0f, 0.0f};
     GLfloat LightPosition[] = {0.0f, 0.0f, 0.0f, 0.0f};
-    
+
     memcpy(this->LightAmbient, LightAmbient, sizeof LightAmbient);
     memcpy(this->LightDiffuse, LightDiffuse, sizeof LightDiffuse);
     memcpy(this->LightSpecular, LightSpecular, sizeof LightSpecular);
     memcpy(this->LightPosition, LightPosition, sizeof LightPosition);
-    
+
     light = true;
     filter = 0;
     fullscreen = FALSE; // Fullscreen Flag Set To Fullscreen Mode By Default
     vsync = TRUE; // Turn VSYNC on/off
     update_child_controls = false;
     default_lighting = false;
-    camera=new GLFrame();    
-    camera2=new GLFrame();
-    camera3=new GLFrame();
+    camera = new GLFrame();
+    camera2 = new GLFrame();
+    camera3 = new GLFrame();
     //cameraEnable = new GLFrame(*camera);
 }
 
@@ -39,28 +40,28 @@ GLScene::~GLScene() {
 
 int GLScene::Run() {
     // Create the main window
- 
+
     LoadComponents();
     if (!LoadContent()) // Jump To Texture Loading Routine
     {
         return FALSE; // If Texture Didn't Load Return FALSE
     }
-    
+
     if (!InitGL())
         printf("Warning : Content not Loaded ");
-    
+
     ReSizeGLScene(800, 600);
 
     // Start game loop
     while (window.IsOpened()) {
         // Process events
-        
+
         sf::Event Event;
         while (window.GetEvent(Event)) {
             // Close window : exit
             if (Event.Type == sf::Event::Closed)
                 window.Close();
-        
+
             // Resize event : adjust viewport
             if (Event.Type == sf::Event::Resized)
                 ReSizeGLScene(Event.Size.Width, Event.Size.Height);
@@ -102,17 +103,17 @@ int GLScene::Run() {
                 }
             }
         }
-        
-        
-        window.SetCursorPosition(window.GetWidth()/2,window.GetHeight()/2);
+
+
+        window.SetCursorPosition(window.GetWidth() / 2, window.GetHeight() / 2);
         //Handle movement keys
         const sf::Input& Input = window.GetInput();
 
 
-        (*cameraEnable).UpdateCamera(Input,window.GetWidth()/2,window.GetHeight()/2);
+        (*cameraEnable).UpdateCamera(Input, window.GetWidth() / 2, window.GetHeight() / 2);
 
         Update(Input);
-        
+
 
         // Turn VSYNC on so that animations run at a more reasonable speed on new CPU's/GPU's.
         window.UseVerticalSync(vsync);
@@ -123,7 +124,7 @@ int GLScene::Run() {
         window.SetActive();
 
         //Draw some pretty stuff
-        
+
         Draw();
 
         // Finally, display rendered frame on screen
@@ -135,7 +136,7 @@ int GLScene::Run() {
 
 int GLScene::InitGL() // All Setup For OpenGL Goes Here
 {
-    
+
     glEnable(GL_TEXTURE_2D); // Enable Texture Mapping
     glShadeModel(GL_SMOOTH); // Enable Smooth Shading
     glClearColor(0.0f, 0.0f, 0.0f, 0.5f); // Black Background
@@ -146,12 +147,12 @@ int GLScene::InitGL() // All Setup For OpenGL Goes Here
 
     // setup lighting for each component
     list<GLDrawable*>::iterator i;
-    for (i=components.begin();i!=components.end();i++){
-        ((GLDrawable*)(*i))->GLInit();
+    for (i = components.begin(); i != components.end(); i++) {
+        ((GLDrawable*) (*i))->GLInit();
     }
 
-        glEnable(GL_LIGHTING);
-        
+    glEnable(GL_LIGHTING);
+
     if (default_lighting) {
         glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient); // Setup The Ambient Light
         glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse); // Setup The Diffuse Light
@@ -161,14 +162,13 @@ int GLScene::InitGL() // All Setup For OpenGL Goes Here
     }
 
 
-  
+
     return TRUE; // Initialization Went OK
 }
 
-
 GLvoid GLScene::ReSizeGLScene(GLsizei width, GLsizei height) // Resize And Initialize The GL Window
 {
-    
+
     if (height == 0) // Prevent A Divide By Zero By
     {
         height = 1; // Making Height Equal One
@@ -176,12 +176,12 @@ GLvoid GLScene::ReSizeGLScene(GLsizei width, GLsizei height) // Resize And Initi
 
     glViewport(0, 0, width, height); // Reset The Current Viewport
     InitGL();
-   
+
     glMatrixMode(GL_PROJECTION); // Select The Projection Matrix
     glLoadIdentity(); // Reset The Projection Matrix
 
     // Calculate The Aspect Ratio Of The Window    
-    gluPerspective(45.0f,(GLfloat) 800 / (GLfloat) 600, 0.1f, 500.0f);
+    gluPerspective(45.0f, (GLfloat) 800 / (GLfloat) 600, 0.1f, 500.0f);
 
     glMatrixMode(GL_MODELVIEW); // Select The Modelview Matrix
     glLoadIdentity(); // Reset The Modelview Matrix
@@ -190,50 +190,51 @@ GLvoid GLScene::ReSizeGLScene(GLsizei width, GLsizei height) // Resize And Initi
 void GLScene::Draw() // Here's Where We Do All The Drawing
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear The Screen And The Depth Buffer
-        
+
     glLoadIdentity(); // Reset The View
-        
+
     list<GLDrawable*>::iterator i;
-    
+
     glLoadIdentity(); // Reset The View
 
     (*cameraEnable).ApplyCamera();
-    
-    for (i=components.begin();i!=components.end();i++){
+
+    for (i = components.begin(); i != components.end(); i++) {
         glPushMatrix();
-        ((GLDrawable*)(*i))->Draw();
+        ((GLDrawable*) (*i))->Draw();
         glPopMatrix();
     }
-    
-    
+
+
     xrot += xspeed;
     yrot += yspeed;
     //return TRUE; // Keep Going
 }
-bool GLScene::LoadContent() {   
-    bool Status=true;									// Status Indicator
+
+bool GLScene::LoadContent() {
+    bool Status = true; // Status Indicator
     list<GLDrawable*>::iterator i;
-    for (i=components.begin();i!=components.end();i++){
-        Status = Status && ((GLDrawable*)(*i))->LoadContent();
+    for (i = components.begin(); i != components.end(); i++) {
+        Status = Status && ((GLDrawable*) (*i))->LoadContent();
     }
     return Status;
 }
 
 void GLScene::LoadComponents() {
     list<GLDrawable*>::iterator i;
-    for (i=components.begin();i!=components.end();i++){
-        ((GLDrawable*)(*i))->LoadComponents();
+    for (i = components.begin(); i != components.end(); i++) {
+        ((GLDrawable*) (*i))->LoadComponents();
     }
-   
-    
+
+
 }
 
 void GLScene::Update(const sf::Input& input) {
     glLightfv(GL_LIGHT0, GL_POSITION, LightPosition); // Position The Light
     list<GLDrawable*>::iterator i;
-    for (i=components.begin();i!=components.end();i++){            
-        if (update_child_controls && ((GLDrawable*)(*i))->self_control )
-                ((GLDrawable*)(*i))->Update(input);
-        ((GLDrawable*)(*i))->filter = filter;
+    for (i = components.begin(); i != components.end(); i++) {
+        if (update_child_controls && ((GLDrawable*) (*i))->self_control)
+            ((GLDrawable*) (*i))->Update(input);
+        ((GLDrawable*) (*i))->filter = filter;
     }
 }

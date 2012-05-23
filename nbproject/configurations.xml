@@ -80,6 +80,7 @@
             <linkerOptionItem>-lGLU -lGL</linkerOptionItem>
             <linkerOptionItem>-lsfml-graphics -lsfml-system -lsfml-window -lsfml-audio</linkerOptionItem>
             <linkerOptionItem>`pkg-config --libs assimp`</linkerOptionItem>
+            <linkerOptionItem>`pkg-config --libs openal`</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>

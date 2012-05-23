@@ -39,6 +39,7 @@ private:
     Texture *tex_wall_noised;
     Texture *tex_wall_brown;
     Texture *tex_default;
+    Texture *tex_bench;
     sf::Sound movmetnSound;
     sf::SoundBuffer movmetnBuffer;
 
