@@ -61,6 +61,16 @@ box2->camera = camera ;
 box2->setRotation(0.000000,0.000000,0.000000); 
 components.push_back(box2); 
 //==================================================================
+//========================box2=====================================
+user_train = new Train();
+user_train->position = Vector3f(5,0.200000,-169.224396); 
+user_train->halfSize = Vector3f(0.200000,0.200000,0.200000); 
+user_train->tag = "automated";
+user_train->camera = camera ;
+user_train->user_controlled = true;
+user_train->setRotation(0.000000,0.000000,0.000000); 
+components.push_back(user_train); 
+//==================================================================
 //========================box25=====================================
 box25  = new Light(sf::Vector3f(-8.399998,5.199969,-102.799728),90,true);
 box25->w = 1 ;
@@ -257,7 +267,7 @@ void Studio::Update(const sf::Input& input) {
         PrevComponent();
     }
     
-    if (input.IsKeyDown(sf::Key::Z) )  {
+    if (input.IsKeyDown(sf::Key::M) )  {
         Z_was_down = true;
     } else if (Z_was_down) {
         Z_was_down = false;
@@ -470,7 +480,9 @@ void Studio::ProcessComponent(GLDrawable *component) {
     string class_name = component->getClass(); 
     if (class_name == "Train") {
         train = ((Train*)(component)) ;
-        train->Gas();
+        if (!train->user_controlled){
+            train->Gas();
+        }
         //((Train*)(component)->Gas();
     }
     else if (class_name == "Stairs") {

@@ -45,7 +45,7 @@ public:
         light->lightNum = GL_LIGHT7;
         //left->ligthEnable = false ;
         components.push_back(light); 
-
+        user_controlled = false;
     }
     void Update(const sf::Input &input);
     void WriteInstanceCreation(FILE* outfile, string name){
@@ -86,6 +86,7 @@ public:
         return (fabs(speed) < 0.1);
     }
     float waiting_time;
+    bool user_controlled;
 private:
     float speed;
     float acceleration;   
