@@ -12,11 +12,16 @@ Features
 ========
 - Fully OOP 
 - Drawable class to inherit from
+- Any Drawable can have child components
 - Scene class to organize your components
 - Assimp Model Loader, provided as Model3d class that you can use by simply passing model file path.
 - A Light Class (not fully implemented)
 - A Camera Class integerated into the scene (original code of the caner taken from nehe tutorial) 
 - Remember that all amazing features of SFML is available.
+
+State
+=====
+Pre-Alpha
 
 Requirements
 ============
@@ -67,6 +72,11 @@ Quick Start Guide
 Imprtant Notes
 ==============
 - to make use of your Update() method, you should set "self_control" as true for your Drawable Component, in additon of setting "update_child_controls" as true in your scene/parent component
+
+Known Bugs
+==========
+- sometimes the executable won't run because of a problem in openal library (if you are using sound)
+
 
 Thanks To
 =========
