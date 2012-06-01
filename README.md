@@ -77,6 +77,11 @@ Known Bugs
 ==========
 - sometimes the executable won't run because of a problem in openal library (if you are using sound)
 
+TODO List
+=========
+- Cleaning 
+- organizing files
+- adding some gets/sets instead of public members
 
 Thanks To
 =========
