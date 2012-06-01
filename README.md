@@ -1,3 +1,23 @@
+What is QuickSFML
+=================
+QuickSFML is a component-based Application Model, you can fork and build ,quickly, your SFML app.
+
+Repo Contents
+=============
+this repo includes 
+- Component-based Application Model
+- A Demo App "just a simple metro station" built on it
+
+Features
+========
+- Fully OOP 
+- Drawable class to inherit from
+- Scene class to organize your components
+- Assimp Model Loader, provided as Model3d class that you can use by simply passing model file path.
+- A Light Class (not fully implemented)
+- A Camera Class integerated into the scene (original code of the caner taken from nehe tutorial) 
+- Remember that all amazing features of SFML is available.
+
 Requirements
 ============
 
@@ -43,3 +63,13 @@ Quick Start Guide
     return instance.Run();
   }
 ```
+
+Imprtant Notes
+==============
+- to make use of your Update() method, you should set "self_control" as true for your Drawable Component, in additon of setting "update_child_controls" as true in your scene/parent component
+
+Thanks To
+=========
+- The Amazing SFML
+- Assimp Model Loader
+- Nehe Tuturials
