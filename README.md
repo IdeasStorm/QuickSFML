@@ -1,6 +1,6 @@
 What is QuickSFML
 =================
-QuickSFML is a component-based Application Model, you can fork and build ,quickly, your SFML app.
+QuickSFML is a component-based SFML Application Model for OpenGL Apps, you can fork and build ,quickly, your SFML app.
 
 Repo Contents
 =============
