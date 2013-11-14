@@ -71,6 +71,10 @@ Quick Start Guide
 
 Implementing Components
 ========================
+To Implement a component you should inherit from `Component` or `Model3d` if it's a 3d model
+
+This is an example of implementing a train model, check `Train.cpp` for more information https://github.com/IdeasStorm/QuickSFML/blob/master/src/Train.cpp
+
 ```cpp
 #ifndef TRAIN_H
 #define        TRAIN_H
